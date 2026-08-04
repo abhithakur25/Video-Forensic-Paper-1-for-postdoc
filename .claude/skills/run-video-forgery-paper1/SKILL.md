@@ -125,7 +125,21 @@ Another video: `--video path\to\clip.mp4`.
 # the paper's 40-90%% training-percentage sweep
 & "$E\python.exe" -u ".claude\skills\run-video-forgery-paper1\driver.py" `
     evaluate --sweep --epochs 10 --skip BA-TFD
+
+# k-fold comparative analysis, k = 6..10
+& "$E\python.exe" -u ".claude\skills\run-video-forgery-paper1\driver.py" `
+    evaluate --kfold --epochs 10 --folds-per-k 1 --skip BA-TFD
+
+# learning curve for the proposed model only
+& "$E\python.exe" -u ".claude\skills\run-video-forgery-paper1\driver.py" `
+    evaluate --curve 2,5,10,20,40 --train-pct 0.6
 ```
+
+`--folds-per-k` exists because evaluating every fold of every k is
+6+7+8+9+10 = 40 fold-fits x 7 models. K-fold always trains on 41-45 of the 50
+samples, so each fit is ~3x slower than the average training-percentage split:
+measured ~7.5 min per model-fit, i.e. **~8.75 h** for the complete sweep versus
+~1.4 h at `--folds-per-k 1`.
 
 `Features/Features.pkl` holds features already extracted from FaceForensics++,
 so `ReadDataset(exec=False)` gives you the real training/evaluation path with no
@@ -211,6 +225,18 @@ in the repo.
   `batch_size` to 2 and then 1 does not help, because the weight matrix is
   independent of batch size. Pass `--skip BA-TFD`; calling the project's own
   `TPAnalysis.ComparativeAnalysis()` directly will abort on this model.
+
+- **`KFAnalysis.train_test_split` references a key that never exists.**
+  `Analysis.py:355` loops `range(len(data['image']))`, but `GetData.py` only ever
+  stores `comparative1-5`, `proposed` and `labels` — so `KFAnalysis` raises
+  `KeyError: 'image'` on the shipped pickle. The driver indexes on
+  `len(data['labels'])` instead, which is the same length and clearly the intent.
+
+- **`Analysis1/` ships with the AUTHORS' own arrays, dated 2025-03-19.** A
+  re-run overwrites only the categories it actually computes, so a stale
+  `Analysis1/KF/COM_*.npy` sitting next to a fresh `Analysis1/TP/` is easy to
+  mistake for your own output. Check mtimes before reporting anything from
+  `Analysis1/`.
 
 - **`Features/Features.pkl` contains only 50 videos (29 authentic / 21 forged),**
   not the 1000+ implied by the dataset description, and the classes are not

@@ -173,7 +173,25 @@ submission, independently of anything in this run.
 
 ---
 
-## 6. Provenance
+## 6. GitHub repository
+
+Pushed to **<https://github.com/abhithakur25/Video-Forensic-Paper-1-for-postdoc>**
+(private), branch `main`, 1672 files.
+
+`Features/Features.pkl` is excluded by `.gitignore` — at 1.0 GB it exceeds
+GitHub's hard 100 MB per-file limit, and a 1 GB file does not fit the free Git
+LFS quota either. `README.md` §5 documents how to copy or regenerate it. Nothing
+else is excluded except the licensed `DATASET/` videos and the usual Python
+noise.
+
+The full project description — environment setup, a table covering every
+executable file, the step-by-step execution sequence and the gotchas — is in
+`README.md` at the repository root. The authors' original README is preserved
+verbatim as `README_ORIGINAL.md`.
+
+---
+
+## 7. Provenance
 
 Verified: **no research source was modified.** Every `.py` outside `.claude/` is
 byte-identical to `CODE_28-04-2025(Paper1)`. Differences from the original:
