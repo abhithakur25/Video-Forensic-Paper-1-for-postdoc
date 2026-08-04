@@ -1,0 +1,21 @@
+# git_push_initial.log
+# Initial push of 1672 files to GitHub.
+# source: tasks/bfb4kbo8a.output   captured: 2026-08-04 16:16:39
+#--------------------------------------------------------------------------
+remote:
+origin	https://github.com/abhithakur25/Video-Forensic-Paper-1-for-postdoc.git (fetch)
+pushing...
+git : To https://github.com/abhithakur25/Video-Forensic-Paper-1
+-for-postdoc.git
+At line:1 char:652
++ ... t-Object -First 1; "pushing..."; git push -u origin main 
+2>&1 | Selec ...
++                                      
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith.. 
+   .for-postdoc.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+push exit=0

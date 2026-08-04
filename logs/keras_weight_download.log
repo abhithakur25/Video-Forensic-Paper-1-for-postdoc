@@ -1,0 +1,16 @@
+# keras_weight_download.log
+# First import of SubFunctions: ResNet101 (180 MB) and VGG16 (553 MB) download at module scope. Shows the 733 MB cost of a bare import.
+# source: tasks/boieyzpuz.output   captured: 2026-08-04 16:16:39
+# note: 1538 progress-bar lines collapsed
+#--------------------------------------------------------------------------
+=== C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025(Paper1) ===
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/resnet/resnet101_weights_tf_dim_ordering_tf_kernels.h5
+
+=== C:\Users\USER\Downloads\PostDoc\CODE_05-08-2025(Paper2) ===
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/resnet/resnet101_weights_tf_dim_ordering_tf_kernels.h5
+
+179648224/179648224 [==============================] - 15s 0us/step
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/vgg16/vgg16_weights_tf_dim_ordering_tf_kernels.h5
+
+553467096/553467096 [==============================] - 45s 0us/step
+exit=1

@@ -1,0 +1,17 @@
+# webapp_start_failure.log
+# First webapp launch - AttributeError: module 'cv2' has no attribute 'data'. Fixed by bundling the Haar cascade.
+# source: tasks/bbu17tann.output   captured: 2026-08-04 16:16:39
+#--------------------------------------------------------------------------
+python.exe : Traceback (most recent call last):
+At line:1 char:536
++ ... stDoc\Implimentation_Paper1\webapp"; & "$E\python.exe" 
+-u app.py 2>&1
++                                          
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most r 
+   ecent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "app.py", line 37, in <module>
+    cv2.data.haarcascades + "haarcascade_frontalface_alt2.xml")
+AttributeError: module 'cv2' has no attribute 'data'

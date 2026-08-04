@@ -1,0 +1,109 @@
+# conda_pytorch_ssl_failure.log
+# conda install pytorch - FAILED. CERTIFICATE_VERIFY_FAILED via the network's TLS interception; why torch stayed unavailable.
+# source: tasks/bjvf1rpd2.output   captured: 2026-08-04 16:16:39
+#--------------------------------------------------------------------------
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /conda-forge/win-64/repodata.json.zst
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/msys2/win-64/repodata.json.zst
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/r/noarch/repodata.json.zst
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /conda-forge/noarch/repodata.json.zst
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/r/win-64/repodata.json.zst
+Retrying (Retry(total=1, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/msys2/noarch/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/main/win-64/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pytorch/win-64/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pytorch/noarch/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/main/noarch/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /conda-forge/win-64/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/r/win-64/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /conda-forge/noarch/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/r/noarch/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/msys2/win-64/repodata.json.zst
+Retrying (Retry(total=0, connect=None, read=None, 
+redirect=None, status=None)) after connection broken by 
+'SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain 
+(_ssl.c:1028)'))': /pkgs/msys2/noarch/repodata.json.zst
+Collecting package metadata (repodata.json): | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | failed
+CondaSSLError: Encountered an SSL error. Most likely a 
+certificate verification issue.
+Exception: HTTPSConnectionPool(host='conda.anaconda.org', 
+port=443): Max retries exceeded with url: 
+/pytorch/win-64/repodata.json.zst (Caused by 
+SSLError(SSLCertVerificationError(1, '[SSL: 
+CERTIFICATE_VERIFY_FAILED] certificate verify failed: 
+self-signed certificate in certificate chain (_ssl.c:1028)')))

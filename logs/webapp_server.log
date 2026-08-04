@@ -1,0 +1,54 @@
+# webapp_server.log
+# Flask dev server serving the analyze API during verification.
+# source: tasks/b4t427wv2.output   captured: 2026-08-04 16:16:39
+#--------------------------------------------------------------------------
+ * Serving Flask app 'app'
+ * Debug mode: on
+python.exe : WARNING: This is a development server. Do not use 
+it in a production deployment. Use a production WSGI server 
+instead.
+At line:1 char:536
++ ... stDoc\Implimentation_Paper1\webapp"; & "$E\python.exe" 
+-u app.py 2>&1
++                                          
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: This i.. 
+   .server instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5057
+ * Running on http://10.20.36.59:5057
+Press CTRL+C to quit
+ * Restarting with watchdog (windowsapi)
+ * Debugger is active!
+ * Debugger PIN: 108-995-286
+127.0.0.1 - - [04/Aug/2026 16:09:53] "GET /healthz HTTP/1.1" 
+200 -
+127.0.0.1 - - [04/Aug/2026 16:09:54] "GET /healthz HTTP/1.1" 
+200 -
+127.0.0.1 - - [04/Aug/2026 16:09:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:09:54] "GET /about HTTP/1.1" 200 
+-
+127.0.0.1 - - [04/Aug/2026 16:10:07] "POST /api/analyze 
+HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:21] "POST /api/analyze 
+HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:49] "GET 
+/static/css/styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:49] "GET /static/js/app.js 
+HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:49] "GET /favicon.ico 
+HTTP/1.1" 404 -
+127.0.0.1 - - [04/Aug/2026 16:10:50] "GET /about HTTP/1.1" 200 
+-
+127.0.0.1 - - [04/Aug/2026 16:10:50] "GET 
+/static/css/styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:10:50] "GET /favicon.ico 
+HTTP/1.1" 404 -
+127.0.0.1 - - [04/Aug/2026 16:11:36] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:11:37] "GET 
+/static/css/styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [04/Aug/2026 16:11:37] "GET /static/js/app.js 
+HTTP/1.1" 200 -

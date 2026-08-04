@@ -1,0 +1,191 @@
+# evaluation_kfold_aborted.log
+# First k-fold attempt at 2 folds per k. ABORTED at 12/70 fits: projected ~8.75 h because k-fold always trains on 41-45 of the 50 samples, ~3x slower per fit than the TP sweep.
+# source: tasks/bs332of72.output   captured: 2026-08-04 16:16:39
+#--------------------------------------------------------------------------
+
+[driver] features loaded in 0.4s
+[driver]     comparative1   (50, 128, 128, 10)       float64
+[driver]     comparative2   (50, 128, 128, 10)       float64
+[driver]     comparative3   (50, 128, 128, 10)       float64
+[driver]     comparative4   (50, 10, 12)             float64
+[driver]     comparative5   (50, 128, 128, 10)       float64
+[driver]     proposed       (50, 10, 128, 128, 12)   float64
+[driver]     labels         (50,)                    int32
+[driver]     class balance: {0: 29, 1: 21}  (0=original, 
+1=manipulated)
+[driver] ===== k=6 fold 1/2  (train n=41, test n=9) =====
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   EfficientNet   acc=0.7778 f1=0.6667 (7.6s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   STIDNet        acc=1.0000 f1=1.0000 (8.5s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   DCNN           acc=0.8889 f1=0.8889 (13.6s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   GLCM           acc=0.8889 f1=0.8571 (0.6s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   MUSE-CLMPNet   acc=1.0000 f1=1.0000 (267.5s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   SCAM-CLMPNet   acc=0.8889 f1=0.8571 (305.7s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   SMA-CLMPNet    acc=0.7778 f1=0.8000 (790.9s)
+[driver] ===== k=6 fold 2/2  (train n=41, test n=9) =====
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   EfficientNet   acc=1.0000 f1=1.0000 (33.4s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   STIDNet        acc=0.8889 f1=0.9231 (33.9s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   DCNN           acc=1.0000 f1=1.0000 (28.5s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   GLCM           acc=0.8889 f1=0.9091 (1.6s)
+Epoch 1/10
+Epoch 2/10
+Epoch 3/10
+Epoch 4/10
+Epoch 5/10
+Epoch 6/10
+Epoch 7/10
+Epoch 8/10
+Epoch 9/10
+Epoch 10/10
+[driver]   MUSE-CLMPNet   acc=1.0000 f1=1.0000 (324.6s)
+Epoch 1/10
+Epoch 2/10
