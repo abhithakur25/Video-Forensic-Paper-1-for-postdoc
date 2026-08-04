@@ -1,0 +1,22 @@
+# --- Exceeds GitHub's hard 100 MB per-file limit -------------------------
+# Features/Features.pkl is 1.0 GB (pre-extracted FaceForensics++ features).
+# It cannot be pushed to GitHub without paid Git LFS. See README section
+# "Getting Features.pkl" for how to obtain or regenerate it.
+Features/Features.pkl
+
+# --- Dataset: licensed, must be requested from the authors ---------------
+DATASET/**/*.mp4
+DATASET/**/*.avi
+
+# --- Python / editor noise ----------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+
+# --- Local backups from document edits -----------------------------------
+*.bak-*

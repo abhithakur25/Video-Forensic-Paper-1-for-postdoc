@@ -1,0 +1,15 @@
+Paper 1 (SMA-CLMPNet) - reduced evaluation
+features : Features/Features.pkl (pre-extracted FaceForensics++)
+samples  : 50 videos, class balance {0: 29, 1: 21}
+split    : train_size=0.9  (train n=44, test n=6)
+epochs   : 1   (paper uses 500 over 6 training percentages)
+
+Model           Accuracy  Sensitivity  Specificity  Precision       F1      sec
+-------------------------------------------------------------------------------
+EfficientNet      0.8333       1.0000       0.6667     0.7500   0.8571      4.5
+STIDNet           1.0000       1.0000       1.0000     1.0000   1.0000      7.8
+DCNN              1.0000       1.0000       1.0000     1.0000   1.0000      7.7
+GLCM              1.0000       1.0000       1.0000     1.0000   1.0000      1.7
+MUSE-CLMPNet      0.8333       0.6667       1.0000     1.0000   0.8000     36.9
+SCAM-CLMPNet      0.8333       0.6667       1.0000     1.0000   0.8000     26.2
+SMA-CLMPNet       1.0000       1.0000       1.0000     1.0000   1.0000     48.4
