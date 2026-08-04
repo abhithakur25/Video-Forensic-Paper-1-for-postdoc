@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vforensiq-paper1
+    runtime: python
+    rootDir: webapp
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --threads 2 --timeout 180 --preload app:app
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.2
+      # Grad-CAM / ResNet-101 / VGG-16 need 733 MB of Keras weights and will
+      # OOM a 512 MB free instance. Leave at 0 unless running on a larger plan
+      # with tensorflow-cpu added to requirements.txt.
+      - key: ENABLE_DEEP
+        value: "0"
+      # Frames sampled per clip. Bounds both latency and peak memory.
+      - key: MAX_FRAMES
+        value: "48"

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VForensiQ — Video Forgery Detection</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap nav-in">
+  <div class="brand"><span class="mark">V</span> VForensiQ <span class="badge-v">P1</span></div>
+  <div class="tabs">
+    <a class="tab on" href="/">Video Forgery Detection</a>
+    <a class="tab" href="/about">About</a>
+  </div>
+  <div class="pill-model">
+    <span class="dot {% if not deep %}off{% endif %}"></span>
+    Pipeline: <strong>&nbsp;SMA-CLMPNet {% if deep %}(deep on){% else %}(classical){% endif %}</strong>
+  </div>
+</div></nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">⚡ Intra-Frame Forensic Analysis</span>
+    <h1>Detect Video Forgery<br>with Attention-Guided AI</h1>
+    <p class="sub">Upload a clip and the SMA-CLMPNet pipeline extracts key frames, isolates the
+      facial ROI, and profiles optical flow, LDZP texture and neighbourhood statistics to surface
+      tampering artefacts.</p>
+
+    <form id="form">
+      <div class="drop" id="drop">
+        <div class="ico">🎬</div>
+        <h3>Drop a video here or click to browse</h3>
+        <p>MP4, AVI, MOV, MKV, WebM · Max 32 MB</p>
+        <div class="chosen" id="chosen"></div>
+        <input type="file" id="file" name="video" accept="video/*" hidden>
+      </div>
+      <button class="btn" id="go" type="submit" disabled>Analyze for Forgery</button>
+    </form>
+
+    <div class="spinner" id="spin"></div>
+    <div class="err" id="err"></div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="notice" id="notice" style="display:none"></div>
+
+    <div class="section-h">Tamper-Evidence Index</div>
+    <div class="scorecard">
+      <div class="gauge">
+        <div class="val" id="sVal">—</div>
+        <div class="band" id="sBand"></div>
+        <div class="bar"><i id="sBar" style="width:0"></i></div>
+      </div>
+      <div class="terms" id="terms"></div>
+    </div>
+
+    <div class="section-h">Temporal Signals</div>
+    <div class="chart">
+      <svg id="chart" viewBox="0 0 800 170" preserveAspectRatio="none"></svg>
+      <div class="legend">
+        <span><i style="background:#60a5fa"></i>Key-frame gradient change</span>
+        <span><i style="background:#f59e0b"></i>Optical-flow magnitude</span>
+        <span><i style="background:#ef4444"></i>Flagged discontinuity</span>
+      </div>
+    </div>
+
+    <div class="section-h">Clip Metrics</div>
+    <div class="kv" id="kv"></div>
+
+    <div class="section-h">Pipeline Stages</div>
+    <div class="grid" id="stages"></div>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  VForensiQ — Paper 1 · SMA-CLMPNet · Built with Flask + OpenCV ·
+  <a href="/about">How it works</a>
+</footer>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

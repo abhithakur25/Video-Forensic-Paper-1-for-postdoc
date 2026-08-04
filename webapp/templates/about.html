@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — VForensiQ</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap nav-in">
+  <div class="brand"><span class="mark">V</span> VForensiQ <span class="badge-v">P1</span></div>
+  <div class="tabs">
+    <a class="tab" href="/">Video Forgery Detection</a>
+    <a class="tab on" href="/about">About</a>
+  </div>
+  <div class="pill-model">
+    <span class="dot {% if not deep %}off{% endif %}"></span>
+    Pipeline: <strong>&nbsp;SMA-CLMPNet {% if deep %}(deep on){% else %}(classical){% endif %}</strong>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero" style="padding-bottom:0">
+    <h1 style="font-size:clamp(32px,5vw,54px)">About VForensiQ</h1>
+    <p class="sub">The browser front end for Paper 1 — <em>Design and Development of a Video
+      Forgery Model Using Deep Learning with Attention Mechanisms</em> (SMA-CLMPNet).</p>
+  </section>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>🎯 What it runs</h3>
+      <p>The classical half of the published pipeline, faithful to the research code:
+      gradient-based key-frame selection (<code>GetPreprocessing.py</code>), Viola-Jones face ROI,
+      Lucas-Kanade optical flow, LDZP texture (<code>LDZP.py</code>), 3×3 neighbourhood statistics
+      and GLCM descriptors (<code>GetFeatures.py</code>).</p>
+    </div>
+
+    <div class="about-card">
+      <h3>⚠️ What it does not claim</h3>
+      <p>There is <strong>no trained SMA-CLMPNet checkpoint</strong> in the repository —
+      <code>Analysis.py</code> trains every model on the fly and saves only metrics. This app
+      therefore reports no "authentic vs forged" verdict from the published network. The index it
+      shows is a transparent heuristic over the signals it actually measures.</p>
+    </div>
+
+    <div class="about-card">
+      <h3>📐 How the index is computed</h3>
+      <p>Three measured terms, each squashed to 0–1 and combined with fixed weights that are
+      returned with every response so the score can be audited:
+      key-frame discontinuity (0.40), optical-flow irregularity (0.35) and residual-energy
+      dispersion (0.25). Peaks above z&nbsp;=&nbsp;2.5 are flagged on the chart.</p>
+    </div>
+
+    <div class="about-card">
+      <h3>🧠 Deep stages</h3>
+      <p>Grad-CAM, ResNet-101 statistical features and VGG-16 + LDZP need 733&nbsp;MB of Keras
+      weights — ResNet-101 alone is 180&nbsp;MB and VGG-16 553&nbsp;MB, both instantiated at module
+      scope in <code>GetFeatures.py</code>. They exceed a 512&nbsp;MB instance, so they are gated
+      behind <code>ENABLE_DEEP=1</code> and reported as unavailable otherwise.</p>
+    </div>
+
+    <div class="about-card">
+      <h3>⚙️ Runtime</h3>
+      <p>Flask + OpenCV + NumPy + SciPy only — deliberately no TensorFlow at request time, so the
+      container stays small and cold starts stay fast. Frames are downscaled to 480&nbsp;px wide and
+      capped at <code>MAX_FRAMES</code> (default 48) to bound memory and latency.</p>
+    </div>
+
+    <div class="about-card">
+      <h3>🔒 Privacy</h3>
+      <p>Uploads are written to a temporary path, analysed in-process, and deleted in the request's
+      <code>finally</code> block. Nothing is persisted; every result image is returned inline as a
+      base64 data URI rather than stored on disk.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="wrap">
+  VForensiQ — Paper 1 · SMA-CLMPNet · Built with Flask + OpenCV
+</footer>
+</body>
+</html>
