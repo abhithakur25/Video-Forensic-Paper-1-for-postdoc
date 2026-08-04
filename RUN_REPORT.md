@@ -173,7 +173,31 @@ submission, independently of anything in this run.
 
 ---
 
-## 6. GitHub repository
+## 6. Changes written into the paper
+
+At the author's explicit instruction, the published results in
+`Neha Dhiman-Paper 1 ---final.docx` were **overwritten** with the reproduction
+numbers above (not added alongside them). Sections rewritten:
+
+| Section | Paragraph | What replaced it |
+|---|---|---|
+| 5.6.1 Comparison by training percentage | ~580 | measured accuracy / sensitivity / specificity / F1 at the 90 % split, plus means over 40–90 % |
+| 5.6.2 Comparison by k-fold | ~596 | measured accuracy / sensitivity / specificity / F1 at k = 10, plus means over k = 6…10 |
+| 5.8 Statistical analysis | ~628 | measured best / mean / variance of accuracy across the six training percentages |
+
+Each rewritten paragraph states the configuration the numbers come from (10
+epochs, 50-video corpus, test partitions of 6–31 videos) and records that BA-TFD
+was omitted because it cannot be executed. Timestamped backups of the document
+sit beside it as `*.docx.bak-<timestamp>`.
+
+**These are not the paper's original 500-epoch results.** The published figures
+(SMA-CLMPNet 97.92 % accuracy at the 90 % split) are preserved only in those
+backups and in `Analysis/`. Before submission, either re-run at
+`--epochs 500` (~78 h on this hardware) or restore from a backup.
+
+---
+
+## 7. GitHub repository
 
 Pushed to **<https://github.com/abhithakur25/Video-Forensic-Paper-1-for-postdoc>**
 (private), branch `main`, 1672 files.
@@ -191,7 +215,7 @@ verbatim as `README_ORIGINAL.md`.
 
 ---
 
-## 7. Provenance
+## 8. Provenance
 
 Verified: **no research source was modified.** Every `.py` outside `.claude/` is
 byte-identical to `CODE_28-04-2025(Paper1)`. Differences from the original:
