@@ -306,10 +306,9 @@ def fit_smaclmpnet(data, tr, te, epochs, batch_size, opt=3, normalise=True):
     from keras.utils import to_categorical
 
     seed_everything()
-    prop = np.asarray(data["proposed"], dtype=np.float32)
+    prop = _float32_cache(data)[5]
     y = np.asarray(data["labels"]).astype(int)
-    x_tr, x_te = prop[tr], prop[te]
-    del prop
+    x_tr, x_te = prop[tr].copy(), prop[te].copy()
 
     if normalise:
         # Training statistics only - the test split must not inform them.
@@ -336,6 +335,21 @@ def fit_smaclmpnet(data, tr, te, epochs, batch_size, opt=3, normalise=True):
     return yhat
 
 
+_F32 = {}
+
+
+def _float32_cache(data):
+    """The six feature tensors as float32, converted once per process."""
+    if not _F32:
+        for k in ["comparative1", "comparative2", "comparative3",
+                  "comparative4", "comparative5", "proposed"]:
+            _F32[k] = np.asarray(data[k], dtype=np.float32)
+        total = sum(a.nbytes for a in _F32.values()) / 1e9
+        log(f"  float32 feature cache built ({total:.2f} GB)")
+    return [_F32[k] for k in ["comparative1", "comparative2", "comparative3",
+                              "comparative4", "comparative5", "proposed"]]
+
+
 def fit_published(name, data, tr, te, epochs):
     """Run one of the paper's own models, unmodified, and return its real
     predictions.  Only the scoring of those predictions was ever broken - the
@@ -344,15 +358,15 @@ def fit_published(name, data, tr, te, epochs):
     from SubFunctions.Model import Network
 
     seed_everything()
-    keys = ["comparative1", "comparative2", "comparative3",
-            "comparative4", "comparative5", "proposed"]
-    arrs = [np.asarray(data[k], dtype=np.float32) for k in keys]
+    # Converted once and cached: 'proposed' alone is 786 MB as float64, and
+    # this function is called 42 times over a full sweep.
+    arrs = _float32_cache(data)
     y = np.asarray(data["labels"]).astype(int)
 
     net = Network(*[a[tr] for a in arrs], *[a[te] for a in arrs],
                   y[tr], y[te], epochs)
     yhat = PUBLISHED_MODELS[name](net)
-    del net, arrs
+    del net
     # NOT clear_session(): it resets Keras's global name counter, so the
     # next Input() is named 'input_1' again and collides with the cached
     # InputLayer of the module-level EfficientNetB7 in SubFunctions/Model.py
