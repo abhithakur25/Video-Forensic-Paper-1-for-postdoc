@@ -20,3 +20,5 @@ desktop.ini
 
 # --- Local backups from document edits -----------------------------------
 *.bak-*
+FFPP/cache/
+FFPP/results/

@@ -1,0 +1,185 @@
+{
+  "protocol": "nested CV; class weights, hyper-parameters, calibration and decision threshold all selected on training folds",
+  "ranking": [
+    {
+      "model": "svm-rbf cw=1.4:1",
+      "bal_acc": 0.6966666666666667,
+      "std": 0.15675529408036662,
+      "threshold": 0.40120000000000006
+    },
+    {
+      "model": "svm-rbf cw=1:2.0",
+      "bal_acc": 0.6799999999999999,
+      "std": 0.15684387141358122,
+      "threshold": 0.3848
+    },
+    {
+      "model": "svm-rbf cw=1:1.4",
+      "bal_acc": 0.6799999999999999,
+      "std": 0.13546217184144066,
+      "threshold": 0.4676
+    },
+    {
+      "model": "logreg-l1 cw=1.4:1",
+      "bal_acc": 0.675,
+      "std": 0.14999999999999997,
+      "threshold": 0.2772
+    },
+    {
+      "model": "svm-rbf cw=balanced",
+      "bal_acc": 0.6716666666666666,
+      "std": 0.13474255287605158,
+      "threshold": 0.49119999999999997
+    },
+    {
+      "model": "svm-rbf cw=1:2.0 +calib",
+      "bal_acc": 0.6583333333333333,
+      "std": 0.1925703334715224,
+      "threshold": 0.3702
+    },
+    {
+      "model": "logreg-l1 cw=balanced",
+      "bal_acc": 0.6583333333333333,
+      "std": 0.13540064007726596,
+      "threshold": 0.33140000000000003
+    },
+    {
+      "model": "svm-rbf cw=1.4:1 +calib",
+      "bal_acc": 0.6416666666666666,
+      "std": 0.19825628755617197,
+      "threshold": 0.375
+    },
+    {
+      "model": "logreg-l1 cw=none",
+      "bal_acc": 0.6333333333333333,
+      "std": 0.13540064007726596,
+      "threshold": 0.313
+    },
+    {
+      "model": "logreg-l1 cw=1:2.0",
+      "bal_acc": 0.6333333333333332,
+      "std": 0.1274754878398196,
+      "threshold": 0.37779999999999997
+    },
+    {
+      "model": "svm-rbf cw=none",
+      "bal_acc": 0.6133333333333333,
+      "std": 0.16787892462525883,
+      "threshold": 0.45760000000000006
+    },
+    {
+      "model": "extra-trees cw=none +calib",
+      "bal_acc": 0.6116666666666667,
+      "std": 0.10679679562400528,
+      "threshold": 0.41600000000000004
+    },
+    {
+      "model": "extra-trees cw=1:1.4 +calib",
+      "bal_acc": 0.6083333333333334,
+      "std": 0.13591255358583412,
+      "threshold": 0.3632
+    },
+    {
+      "model": "svm-rbf cw=balanced +calib",
+      "bal_acc": 0.6,
+      "std": 0.15942605391424158,
+      "threshold": 0.37
+    },
+    {
+      "model": "extra-trees cw=balanced +calib",
+      "bal_acc": 0.6,
+      "std": 0.14092945437739804,
+      "threshold": 0.437
+    },
+    {
+      "model": "extra-trees cw=1:2.0",
+      "bal_acc": 0.6,
+      "std": 0.08579691784155831,
+      "threshold": 0.4422
+    },
+    {
+      "model": "extra-trees cw=1:2.0 +calib",
+      "bal_acc": 0.6,
+      "std": 0.07264831572567786,
+      "threshold": 0.4412
+    },
+    {
+      "model": "logreg-l1 cw=none +calib",
+      "bal_acc": 0.5999999999999999,
+      "std": 0.067700320038633,
+      "threshold": 0.3362
+    },
+    {
+      "model": "svm-rbf cw=1:1.4 +calib",
+      "bal_acc": 0.5916666666666666,
+      "std": 0.1674979270186815,
+      "threshold": 0.3632
+    },
+    {
+      "model": "logreg-l1 cw=1:2.0 +calib",
+      "bal_acc": 0.5833333333333333,
+      "std": 0.12076147288491199,
+      "threshold": 0.2994
+    },
+    {
+      "model": "logreg-l1 cw=balanced +calib",
+      "bal_acc": 0.5833333333333333,
+      "std": 0.10206207261596575,
+      "threshold": 0.36279999999999996
+    },
+    {
+      "model": "extra-trees cw=none",
+      "bal_acc": 0.575,
+      "std": 0.0927960727138337,
+      "threshold": 0.4013999999999999
+    },
+    {
+      "model": "logreg-l1 cw=1:1.4 +calib",
+      "bal_acc": 0.575,
+      "std": 0.07637626158259732,
+      "threshold": 0.34219999999999995
+    },
+    {
+      "model": "extra-trees cw=1.4:1",
+      "bal_acc": 0.575,
+      "std": 0.048591265790377494,
+      "threshold": 0.36660000000000004
+    },
+    {
+      "model": "extra-trees cw=balanced",
+      "bal_acc": 0.5666666666666667,
+      "std": 0.119605834120061,
+      "threshold": 0.4391999999999999
+    },
+    {
+      "model": "logreg-l1 cw=1.4:1 +calib",
+      "bal_acc": 0.5666666666666667,
+      "std": 0.0565194165260439,
+      "threshold": 0.40580000000000005
+    },
+    {
+      "model": "extra-trees cw=1:1.4",
+      "bal_acc": 0.5416666666666666,
+      "std": 0.09501461875826149,
+      "threshold": 0.4476
+    },
+    {
+      "model": "logreg-l1 cw=1:1.4",
+      "bal_acc": 0.5333333333333334,
+      "std": 0.1328114787542436,
+      "threshold": 0.4696000000000001
+    },
+    {
+      "model": "extra-trees cw=1.4:1 +calib",
+      "bal_acc": 0.5333333333333333,
+      "std": 0.181429508808977,
+      "threshold": 0.41819999999999996
+    },
+    {
+      "model": "svm-rbf cw=none +calib",
+      "bal_acc": 0.5,
+      "std": 0.10206207261596575,
+      "threshold": 0.34400000000000003
+    }
+  ]
+}
