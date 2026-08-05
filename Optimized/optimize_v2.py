@@ -195,10 +195,27 @@ def nested_score(X, y, est, grid, n_outer=5, n_inner=4, seed=SEED):
 
 
 def main():
+    import argparse
     import pickle
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", default="",
+                    help="comma-separated substrings; evaluate only "
+                         "representations whose name contains one of them")
+    ap.add_argument("--perms", type=int, default=100,
+                    help="permutations for the null; 0 skips the test")
+    ap.add_argument("--out", default="optimize_v2.json")
+    args = ap.parse_args()
+
     with open(P / "Features" / "Features.pkl", "rb") as f:
         data = pickle.load(f)
     reps, y = build(data)
+    if args.only:
+        keys = [k.strip() for k in args.only.split(",") if k.strip()]
+        reps = {r: X for r, X in reps.items()
+                if any(k.lower() in r.lower() for k in keys)}
+        if not reps:
+            raise SystemExit(f"--only {args.only!r} matched no representation")
     log(f"{len(reps)} representations, {len(y)} samples, "
         f"classes {np.bincount(y).tolist()}")
 
@@ -226,11 +243,14 @@ def main():
 
     br, bm, bv, bs = flat[0]
     log("")
-    log(f"permutation test on the winner: {bm} / {br}")
+    if args.perms == 0:
+        log("permutation test skipped (--perms 0)")
+        return
+    log(f"permutation test on the winner: {bm} / {br}  ({args.perms} shuffles)")
     est, grid = pipes[bm]
     X = np.nan_to_num(np.asarray(reps[br], dtype=np.float64))
     null = []
-    for i in range(100):
+    for i in range(args.perms):
         yp = rng.permutation(y)
         null.append(nested_score(X, yp, est, grid, seed=SEED + i)[0])
     null = np.asarray(null)
@@ -241,7 +261,7 @@ def main():
     log(f"   p = {p:.3f}  -> "
         f"{'SIGNAL' if p < 0.05 else 'not distinguishable from chance'}")
 
-    (P / "Optimized" / "optimize_v2.json").write_text(json.dumps({
+    (P / "Optimized" / args.out).write_text(json.dumps({
         "representations": {r: {m: list(v) for m, v in row.items()}
                             for r, row in table.items()},
         "ranking": [{"representation": r, "model": m, "mean": v, "std": s}
@@ -252,7 +272,7 @@ def main():
                    "p_value": p},
         "protocol": "nested CV, outer 5-fold, inner 4-fold, balanced accuracy",
     }, indent=2), encoding="utf-8")
-    log("wrote Optimized/optimize_v2.json")
+    log(f"wrote Optimized/{args.out}")
 
 
 if __name__ == "__main__":
