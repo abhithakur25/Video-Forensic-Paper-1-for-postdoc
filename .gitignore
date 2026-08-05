@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.log
+
+# Large binary artefacts (exceed GitHub limits / not needed for code review)
+Features/Features.pkl
+Results/ImageResults/
+Results/Results.xlsx
+Results/Results.rar
+*.rar
+
+# Local temp / UI caches
+Temp/*.jpg
+Temp/*.png
+driver_out/sample.mp4
+driver_out/screenshots/*.png
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Keep structure markers
+!Features/.gitkeep
+!Results/ImageResults/.gitkeep
