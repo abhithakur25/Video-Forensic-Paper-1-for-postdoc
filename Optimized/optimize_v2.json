@@ -1,0 +1,1303 @@
+{
+  "representations": {
+    "c1: multiscale grid pool": {
+      "logreg-l2": [
+        0.5183333333333333,
+        0.18621970297951232
+      ],
+      "logreg-l1": [
+        0.5266666666666667,
+        0.1861451046898629
+      ],
+      "svm-rbf": [
+        0.4616666666666667,
+        0.12151817422372126
+      ],
+      "svm-lin": [
+        0.51,
+        0.19856429129573572
+      ],
+      "rf": [
+        0.47000000000000003,
+        0.12523311596112802
+      ],
+      "extra-trees": [
+        0.49000000000000005,
+        0.18703832049431293
+      ],
+      "grad-boost": [
+        0.4416666666666667,
+        0.10408329997330666
+      ],
+      "knn": [
+        0.4333333333333333,
+        0.13591255358583407
+      ],
+      "gaussian-nb": [
+        0.5433333333333333,
+        0.19758261282028053
+      ]
+    },
+    "c1: channel histograms": {
+      "logreg-l2": [
+        0.5683333333333334,
+        0.18199511592958267
+      ],
+      "logreg-l1": [
+        0.5366666666666666,
+        0.05233439489369195
+      ],
+      "svm-rbf": [
+        0.525,
+        0.1572330188676101
+      ],
+      "svm-lin": [
+        0.585,
+        0.18260461233069786
+      ],
+      "rf": [
+        0.5616666666666666,
+        0.1746106780494506
+      ],
+      "extra-trees": [
+        0.47666666666666674,
+        0.16188130082117438
+      ],
+      "grad-boost": [
+        0.5249999999999999,
+        0.14813657362192648
+      ],
+      "knn": [
+        0.59,
+        0.13138154783344239
+      ],
+      "gaussian-nb": [
+        0.5083333333333333,
+        0.135400640077266
+      ]
+    },
+    "c1: grid pool + hist": {
+      "logreg-l2": [
+        0.5233333333333333,
+        0.14845500627762234
+      ],
+      "logreg-l1": [
+        0.38666666666666666,
+        0.11602202855971408
+      ],
+      "svm-rbf": [
+        0.4216666666666667,
+        0.10049875621120892
+      ],
+      "svm-lin": [
+        0.5233333333333333,
+        0.14845500627762234
+      ],
+      "rf": [
+        0.4116666666666666,
+        0.18660713336371207
+      ],
+      "extra-trees": [
+        0.5033333333333334,
+        0.12873314344885015
+      ],
+      "grad-boost": [
+        0.4083333333333333,
+        0.0716860438920219
+      ],
+      "knn": [
+        0.5533333333333333,
+        0.2003191897392204
+      ],
+      "gaussian-nb": [
+        0.5533333333333333,
+        0.16198422419757083
+      ]
+    },
+    "c4: GLCM stats (flat)": {
+      "logreg-l2": [
+        0.46499999999999997,
+        0.1772788136743299
+      ],
+      "logreg-l1": [
+        0.4416666666666666,
+        0.12527746981977425
+      ],
+      "svm-rbf": [
+        0.5249999999999999,
+        0.1504622507105649
+      ],
+      "svm-lin": [
+        0.5033333333333333,
+        0.07845734863959884
+      ],
+      "rf": [
+        0.4916666666666667,
+        0.11303883305208784
+      ],
+      "extra-trees": [
+        0.5816666666666668,
+        0.1756258649642599
+      ],
+      "grad-boost": [
+        0.4783333333333334,
+        0.13870432181042122
+      ],
+      "knn": [
+        0.4466666666666666,
+        0.06337717780610513
+      ],
+      "gaussian-nb": [
+        0.47833333333333333,
+        0.10105004260816079
+      ]
+    },
+    "proposed: per-frame mean+std": {
+      "logreg-l2": [
+        0.49833333333333335,
+        0.12080746849613412
+      ],
+      "logreg-l1": [
+        0.4833333333333333,
+        0.05651941652604389
+      ],
+      "svm-rbf": [
+        0.4083333333333333,
+        0.09646530752325189
+      ],
+      "svm-lin": [
+        0.5433333333333333,
+        0.14243907079481
+      ],
+      "rf": [
+        0.45,
+        0.17159383568311665
+      ],
+      "extra-trees": [
+        0.44499999999999995,
+        0.11792181967539152
+      ],
+      "grad-boost": [
+        0.4416666666666666,
+        0.1637240225365708
+      ],
+      "knn": [
+        0.4716666666666667,
+        0.06023103666530887
+      ],
+      "gaussian-nb": [
+        0.515,
+        0.10767750203475396
+      ]
+    },
+    "proposed: temporal delta stats": {
+      "logreg-l2": [
+        0.6016666666666667,
+        0.1592866040262715
+      ],
+      "logreg-l1": [
+        0.7716666666666667,
+        0.15434449203720305
+      ],
+      "svm-rbf": [
+        0.5449999999999999,
+        0.055677643628300195
+      ],
+      "svm-lin": [
+        0.5816666666666667,
+        0.10997474457549078
+      ],
+      "rf": [
+        0.5899999999999999,
+        0.10157099323461725
+      ],
+      "extra-trees": [
+        0.625,
+        0.1263812574008592
+      ],
+      "grad-boost": [
+        0.5033333333333333,
+        0.09812124019690018
+      ],
+      "knn": [
+        0.615,
+        0.0873053390247253
+      ],
+      "gaussian-nb": [
+        0.575,
+        0.08897565210026091
+      ]
+    },
+    "proposed: frame0 grid pool": {
+      "logreg-l2": [
+        0.5116666666666667,
+        0.06553201083779168
+      ],
+      "logreg-l1": [
+        0.495,
+        0.18322724203082416
+      ],
+      "svm-rbf": [
+        0.4616666666666667,
+        0.08844332774281066
+      ],
+      "svm-lin": [
+        0.4,
+        0.097182531580755
+      ],
+      "rf": [
+        0.5216666666666667,
+        0.09015418890865683
+      ],
+      "extra-trees": [
+        0.45499999999999996,
+        0.08922505876216112
+      ],
+      "grad-boost": [
+        0.37666666666666665,
+        0.09360080721399316
+      ],
+      "knn": [
+        0.4666666666666667,
+        0.1611589967151143
+      ],
+      "gaussian-nb": [
+        0.43166666666666664,
+        0.15068362736394275
+      ]
+    },
+    "proposed: mean-frame grid pool": {
+      "logreg-l2": [
+        0.4583333333333333,
+        0.12638125740085918
+      ],
+      "logreg-l1": [
+        0.5333333333333334,
+        0.17360555546666384
+      ],
+      "svm-rbf": [
+        0.5199999999999999,
+        0.08860022573334675
+      ],
+      "svm-lin": [
+        0.5883333333333333,
+        0.16903319858010799
+      ],
+      "rf": [
+        0.6116666666666667,
+        0.15005554527129833
+      ],
+      "extra-trees": [
+        0.6533333333333333,
+        0.08749603165604458
+      ],
+      "grad-boost": [
+        0.5383333333333333,
+        0.14009917122445006
+      ],
+      "knn": [
+        0.49833333333333335,
+        0.1291424708520701
+      ],
+      "gaussian-nb": [
+        0.5866666666666667,
+        0.17293222821543572
+      ]
+    },
+    "proposed: spatial + temporal": {
+      "logreg-l2": [
+        0.5900000000000001,
+        0.1259850079264284
+      ],
+      "logreg-l1": [
+        0.6166666666666666,
+        0.12190615698606491
+      ],
+      "svm-rbf": [
+        0.6416666666666666,
+        0.07728015412913085
+      ],
+      "svm-lin": [
+        0.6066666666666667,
+        0.0703957069398096
+      ],
+      "rf": [
+        0.45999999999999996,
+        0.12420860589257808
+      ],
+      "extra-trees": [
+        0.4766666666666667,
+        0.1170707288589063
+      ],
+      "grad-boost": [
+        0.5199999999999999,
+        0.08860022573334675
+      ],
+      "knn": [
+        0.585,
+        0.15814901552368613
+      ],
+      "gaussian-nb": [
+        0.4916666666666666,
+        0.07168604389202189
+      ]
+    },
+    "ConvNeXtTiny embedding": {
+      "logreg-l2": [
+        0.525,
+        0.2
+      ],
+      "logreg-l1": [
+        0.47833333333333333,
+        0.16604885492595914
+      ],
+      "svm-rbf": [
+        0.4666666666666667,
+        0.08498365855987977
+      ],
+      "svm-lin": [
+        0.5616666666666666,
+        0.2171532996653644
+      ],
+      "rf": [
+        0.565,
+        0.14657193910613767
+      ],
+      "extra-trees": [
+        0.4833333333333333,
+        0.07728015412913085
+      ],
+      "grad-boost": [
+        0.5199999999999999,
+        0.12163241527012623
+      ],
+      "knn": [
+        0.5533333333333333,
+        0.22940744926391948
+      ],
+      "gaussian-nb": [
+        0.5083333333333333,
+        0.09646530752325187
+      ]
+    },
+    "EfficientNetV2S embedding": {
+      "logreg-l2": [
+        0.5283333333333333,
+        0.1061445555206044
+      ],
+      "logreg-l1": [
+        0.5283333333333333,
+        0.1061445555206044
+      ],
+      "svm-rbf": [
+        0.57,
+        0.04428443418528807
+      ],
+      "svm-lin": [
+        0.5233333333333333,
+        0.11098047876390993
+      ],
+      "rf": [
+        0.48,
+        0.08038103701191662
+      ],
+      "extra-trees": [
+        0.4883333333333333,
+        0.11542193128787191
+      ],
+      "grad-boost": [
+        0.5,
+        0.15138251770487457
+      ],
+      "knn": [
+        0.5566666666666666,
+        0.12046207333061765
+      ],
+      "gaussian-nb": [
+        0.6233333333333333,
+        0.06778233135887583
+      ]
+    },
+    "MobileNetV3Large embedding": {
+      "logreg-l2": [
+        0.36,
+        0.11271892279273943
+      ],
+      "logreg-l1": [
+        0.26999999999999996,
+        0.15790292376436016
+      ],
+      "svm-rbf": [
+        0.44333333333333336,
+        0.07404953297174355
+      ],
+      "svm-lin": [
+        0.425,
+        0.08498365855987977
+      ],
+      "rf": [
+        0.41666666666666663,
+        0.10865337342004416
+      ],
+      "extra-trees": [
+        0.485,
+        0.13095800853708792
+      ],
+      "grad-boost": [
+        0.42666666666666664,
+        0.20543990740738652
+      ],
+      "knn": [
+        0.51,
+        0.13533908033774525
+      ],
+      "gaussian-nb": [
+        0.4883333333333334,
+        0.1295933811752917
+      ]
+    },
+    "ResNetRS50 embedding": {
+      "logreg-l2": [
+        0.44333333333333325,
+        0.13918413064075308
+      ],
+      "logreg-l1": [
+        0.485,
+        0.16811041345232336
+      ],
+      "svm-rbf": [
+        0.485,
+        0.12827920936595902
+      ],
+      "svm-lin": [
+        0.38,
+        0.1372953021774598
+      ],
+      "rf": [
+        0.4616666666666666,
+        0.2032103453184518
+      ],
+      "extra-trees": [
+        0.385,
+        0.08323327326122514
+      ],
+      "grad-boost": [
+        0.4683333333333334,
+        0.08965985104208511
+      ],
+      "knn": [
+        0.5199999999999999,
+        0.2132812436406185
+      ],
+      "gaussian-nb": [
+        0.49333333333333335,
+        0.13032011868216406
+      ]
+    },
+    "ALL (grid+hist+temporal+GLCM)": {
+      "logreg-l2": [
+        0.5516666666666666,
+        0.2016873267654113
+      ],
+      "logreg-l1": [
+        0.5249999999999999,
+        0.10069204977995476
+      ],
+      "svm-rbf": [
+        0.5166666666666666,
+        0.12527746981977425
+      ],
+      "svm-lin": [
+        0.5733333333333334,
+        0.17235299694393352
+      ],
+      "rf": [
+        0.625,
+        0.25954019170662396
+      ],
+      "extra-trees": [
+        0.5866666666666667,
+        0.18458662525281247
+      ],
+      "grad-boost": [
+        0.45999999999999996,
+        0.16711606080140165
+      ],
+      "knn": [
+        0.5116666666666666,
+        0.1154219312878719
+      ],
+      "gaussian-nb": [
+        0.5016666666666667,
+        0.16032952178421647
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "logreg-l1",
+      "mean": 0.7716666666666667,
+      "std": 0.15434449203720305
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "extra-trees",
+      "mean": 0.6533333333333333,
+      "std": 0.08749603165604458
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "svm-rbf",
+      "mean": 0.6416666666666666,
+      "std": 0.07728015412913085
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "extra-trees",
+      "mean": 0.625,
+      "std": 0.1263812574008592
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "rf",
+      "mean": 0.625,
+      "std": 0.25954019170662396
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "gaussian-nb",
+      "mean": 0.6233333333333333,
+      "std": 0.06778233135887583
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "logreg-l1",
+      "mean": 0.6166666666666666,
+      "std": 0.12190615698606491
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "knn",
+      "mean": 0.615,
+      "std": 0.0873053390247253
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "rf",
+      "mean": 0.6116666666666667,
+      "std": 0.15005554527129833
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "svm-lin",
+      "mean": 0.6066666666666667,
+      "std": 0.0703957069398096
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "logreg-l2",
+      "mean": 0.6016666666666667,
+      "std": 0.1592866040262715
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "logreg-l2",
+      "mean": 0.5900000000000001,
+      "std": 0.1259850079264284
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "knn",
+      "mean": 0.59,
+      "std": 0.13138154783344239
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "rf",
+      "mean": 0.5899999999999999,
+      "std": 0.10157099323461725
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "svm-lin",
+      "mean": 0.5883333333333333,
+      "std": 0.16903319858010799
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "gaussian-nb",
+      "mean": 0.5866666666666667,
+      "std": 0.17293222821543572
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "extra-trees",
+      "mean": 0.5866666666666667,
+      "std": 0.18458662525281247
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "svm-lin",
+      "mean": 0.585,
+      "std": 0.18260461233069786
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "knn",
+      "mean": 0.585,
+      "std": 0.15814901552368613
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "extra-trees",
+      "mean": 0.5816666666666668,
+      "std": 0.1756258649642599
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "svm-lin",
+      "mean": 0.5816666666666667,
+      "std": 0.10997474457549078
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "gaussian-nb",
+      "mean": 0.575,
+      "std": 0.08897565210026091
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "svm-lin",
+      "mean": 0.5733333333333334,
+      "std": 0.17235299694393352
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "svm-rbf",
+      "mean": 0.57,
+      "std": 0.04428443418528807
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "logreg-l2",
+      "mean": 0.5683333333333334,
+      "std": 0.18199511592958267
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "rf",
+      "mean": 0.565,
+      "std": 0.14657193910613767
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "rf",
+      "mean": 0.5616666666666666,
+      "std": 0.1746106780494506
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "svm-lin",
+      "mean": 0.5616666666666666,
+      "std": 0.2171532996653644
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "knn",
+      "mean": 0.5566666666666666,
+      "std": 0.12046207333061765
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "knn",
+      "mean": 0.5533333333333333,
+      "std": 0.2003191897392204
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "gaussian-nb",
+      "mean": 0.5533333333333333,
+      "std": 0.16198422419757083
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "knn",
+      "mean": 0.5533333333333333,
+      "std": 0.22940744926391948
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "logreg-l2",
+      "mean": 0.5516666666666666,
+      "std": 0.2016873267654113
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "svm-rbf",
+      "mean": 0.5449999999999999,
+      "std": 0.055677643628300195
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "gaussian-nb",
+      "mean": 0.5433333333333333,
+      "std": 0.19758261282028053
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "svm-lin",
+      "mean": 0.5433333333333333,
+      "std": 0.14243907079481
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "grad-boost",
+      "mean": 0.5383333333333333,
+      "std": 0.14009917122445006
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "logreg-l1",
+      "mean": 0.5366666666666666,
+      "std": 0.05233439489369195
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "logreg-l1",
+      "mean": 0.5333333333333334,
+      "std": 0.17360555546666384
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "logreg-l2",
+      "mean": 0.5283333333333333,
+      "std": 0.1061445555206044
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "logreg-l1",
+      "mean": 0.5283333333333333,
+      "std": 0.1061445555206044
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "logreg-l1",
+      "mean": 0.5266666666666667,
+      "std": 0.1861451046898629
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "svm-rbf",
+      "mean": 0.525,
+      "std": 0.1572330188676101
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "logreg-l2",
+      "mean": 0.525,
+      "std": 0.2
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "grad-boost",
+      "mean": 0.5249999999999999,
+      "std": 0.14813657362192648
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "svm-rbf",
+      "mean": 0.5249999999999999,
+      "std": 0.1504622507105649
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "logreg-l1",
+      "mean": 0.5249999999999999,
+      "std": 0.10069204977995476
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "logreg-l2",
+      "mean": 0.5233333333333333,
+      "std": 0.14845500627762234
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "svm-lin",
+      "mean": 0.5233333333333333,
+      "std": 0.14845500627762234
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "svm-lin",
+      "mean": 0.5233333333333333,
+      "std": 0.11098047876390993
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "rf",
+      "mean": 0.5216666666666667,
+      "std": 0.09015418890865683
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "svm-rbf",
+      "mean": 0.5199999999999999,
+      "std": 0.08860022573334675
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "grad-boost",
+      "mean": 0.5199999999999999,
+      "std": 0.08860022573334675
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "grad-boost",
+      "mean": 0.5199999999999999,
+      "std": 0.12163241527012623
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "knn",
+      "mean": 0.5199999999999999,
+      "std": 0.2132812436406185
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "logreg-l2",
+      "mean": 0.5183333333333333,
+      "std": 0.18621970297951232
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "svm-rbf",
+      "mean": 0.5166666666666666,
+      "std": 0.12527746981977425
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "gaussian-nb",
+      "mean": 0.515,
+      "std": 0.10767750203475396
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "logreg-l2",
+      "mean": 0.5116666666666667,
+      "std": 0.06553201083779168
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "knn",
+      "mean": 0.5116666666666666,
+      "std": 0.1154219312878719
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "svm-lin",
+      "mean": 0.51,
+      "std": 0.19856429129573572
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "knn",
+      "mean": 0.51,
+      "std": 0.13533908033774525
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "gaussian-nb",
+      "mean": 0.5083333333333333,
+      "std": 0.135400640077266
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "gaussian-nb",
+      "mean": 0.5083333333333333,
+      "std": 0.09646530752325187
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "extra-trees",
+      "mean": 0.5033333333333334,
+      "std": 0.12873314344885015
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "svm-lin",
+      "mean": 0.5033333333333333,
+      "std": 0.07845734863959884
+    },
+    {
+      "representation": "proposed: temporal delta stats",
+      "model": "grad-boost",
+      "mean": 0.5033333333333333,
+      "std": 0.09812124019690018
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "gaussian-nb",
+      "mean": 0.5016666666666667,
+      "std": 0.16032952178421647
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "grad-boost",
+      "mean": 0.5,
+      "std": 0.15138251770487457
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "logreg-l2",
+      "mean": 0.49833333333333335,
+      "std": 0.12080746849613412
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "knn",
+      "mean": 0.49833333333333335,
+      "std": 0.1291424708520701
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "logreg-l1",
+      "mean": 0.495,
+      "std": 0.18322724203082416
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "gaussian-nb",
+      "mean": 0.49333333333333335,
+      "std": 0.13032011868216406
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "rf",
+      "mean": 0.4916666666666667,
+      "std": 0.11303883305208784
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "gaussian-nb",
+      "mean": 0.4916666666666666,
+      "std": 0.07168604389202189
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "extra-trees",
+      "mean": 0.49000000000000005,
+      "std": 0.18703832049431293
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "gaussian-nb",
+      "mean": 0.4883333333333334,
+      "std": 0.1295933811752917
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "extra-trees",
+      "mean": 0.4883333333333333,
+      "std": 0.11542193128787191
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "extra-trees",
+      "mean": 0.485,
+      "std": 0.13095800853708792
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "logreg-l1",
+      "mean": 0.485,
+      "std": 0.16811041345232336
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "svm-rbf",
+      "mean": 0.485,
+      "std": 0.12827920936595902
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "logreg-l1",
+      "mean": 0.4833333333333333,
+      "std": 0.05651941652604389
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "extra-trees",
+      "mean": 0.4833333333333333,
+      "std": 0.07728015412913085
+    },
+    {
+      "representation": "EfficientNetV2S embedding",
+      "model": "rf",
+      "mean": 0.48,
+      "std": 0.08038103701191662
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "grad-boost",
+      "mean": 0.4783333333333334,
+      "std": 0.13870432181042122
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "gaussian-nb",
+      "mean": 0.47833333333333333,
+      "std": 0.10105004260816079
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "logreg-l1",
+      "mean": 0.47833333333333333,
+      "std": 0.16604885492595914
+    },
+    {
+      "representation": "c1: channel histograms",
+      "model": "extra-trees",
+      "mean": 0.47666666666666674,
+      "std": 0.16188130082117438
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "extra-trees",
+      "mean": 0.4766666666666667,
+      "std": 0.1170707288589063
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "knn",
+      "mean": 0.4716666666666667,
+      "std": 0.06023103666530887
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "rf",
+      "mean": 0.47000000000000003,
+      "std": 0.12523311596112802
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "grad-boost",
+      "mean": 0.4683333333333334,
+      "std": 0.08965985104208511
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "knn",
+      "mean": 0.4666666666666667,
+      "std": 0.1611589967151143
+    },
+    {
+      "representation": "ConvNeXtTiny embedding",
+      "model": "svm-rbf",
+      "mean": 0.4666666666666667,
+      "std": 0.08498365855987977
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "logreg-l2",
+      "mean": 0.46499999999999997,
+      "std": 0.1772788136743299
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "svm-rbf",
+      "mean": 0.4616666666666667,
+      "std": 0.12151817422372126
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "svm-rbf",
+      "mean": 0.4616666666666667,
+      "std": 0.08844332774281066
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "rf",
+      "mean": 0.4616666666666666,
+      "std": 0.2032103453184518
+    },
+    {
+      "representation": "proposed: spatial + temporal",
+      "model": "rf",
+      "mean": 0.45999999999999996,
+      "std": 0.12420860589257808
+    },
+    {
+      "representation": "ALL (grid+hist+temporal+GLCM)",
+      "model": "grad-boost",
+      "mean": 0.45999999999999996,
+      "std": 0.16711606080140165
+    },
+    {
+      "representation": "proposed: mean-frame grid pool",
+      "model": "logreg-l2",
+      "mean": 0.4583333333333333,
+      "std": 0.12638125740085918
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "extra-trees",
+      "mean": 0.45499999999999996,
+      "std": 0.08922505876216112
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "rf",
+      "mean": 0.45,
+      "std": 0.17159383568311665
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "knn",
+      "mean": 0.4466666666666666,
+      "std": 0.06337717780610513
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "extra-trees",
+      "mean": 0.44499999999999995,
+      "std": 0.11792181967539152
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "svm-rbf",
+      "mean": 0.44333333333333336,
+      "std": 0.07404953297174355
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "logreg-l2",
+      "mean": 0.44333333333333325,
+      "std": 0.13918413064075308
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "grad-boost",
+      "mean": 0.4416666666666667,
+      "std": 0.10408329997330666
+    },
+    {
+      "representation": "c4: GLCM stats (flat)",
+      "model": "logreg-l1",
+      "mean": 0.4416666666666666,
+      "std": 0.12527746981977425
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "grad-boost",
+      "mean": 0.4416666666666666,
+      "std": 0.1637240225365708
+    },
+    {
+      "representation": "c1: multiscale grid pool",
+      "model": "knn",
+      "mean": 0.4333333333333333,
+      "std": 0.13591255358583407
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "gaussian-nb",
+      "mean": 0.43166666666666664,
+      "std": 0.15068362736394275
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "grad-boost",
+      "mean": 0.42666666666666664,
+      "std": 0.20543990740738652
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "svm-lin",
+      "mean": 0.425,
+      "std": 0.08498365855987977
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "svm-rbf",
+      "mean": 0.4216666666666667,
+      "std": 0.10049875621120892
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "rf",
+      "mean": 0.41666666666666663,
+      "std": 0.10865337342004416
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "rf",
+      "mean": 0.4116666666666666,
+      "std": 0.18660713336371207
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "grad-boost",
+      "mean": 0.4083333333333333,
+      "std": 0.0716860438920219
+    },
+    {
+      "representation": "proposed: per-frame mean+std",
+      "model": "svm-rbf",
+      "mean": 0.4083333333333333,
+      "std": 0.09646530752325189
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "svm-lin",
+      "mean": 0.4,
+      "std": 0.097182531580755
+    },
+    {
+      "representation": "c1: grid pool + hist",
+      "model": "logreg-l1",
+      "mean": 0.38666666666666666,
+      "std": 0.11602202855971408
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "extra-trees",
+      "mean": 0.385,
+      "std": 0.08323327326122514
+    },
+    {
+      "representation": "ResNetRS50 embedding",
+      "model": "svm-lin",
+      "mean": 0.38,
+      "std": 0.1372953021774598
+    },
+    {
+      "representation": "proposed: frame0 grid pool",
+      "model": "grad-boost",
+      "mean": 0.37666666666666665,
+      "std": 0.09360080721399316
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "logreg-l2",
+      "mean": 0.36,
+      "std": 0.11271892279273943
+    },
+    {
+      "representation": "MobileNetV3Large embedding",
+      "model": "logreg-l1",
+      "mean": 0.26999999999999996,
+      "std": 0.15790292376436016
+    }
+  ],
+  "winner": {
+    "representation": "proposed: temporal delta stats",
+    "model": "logreg-l1",
+    "nested_bal_acc": 0.7716666666666667,
+    "null_mean": 0.50235,
+    "null_p95": 0.6350833333333333,
+    "p_value": 0.009900990099009901
+  },
+  "protocol": "nested CV, outer 5-fold, inner 4-fold, balanced accuracy"
+}

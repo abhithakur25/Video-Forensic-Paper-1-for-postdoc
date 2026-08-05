@@ -1,0 +1,275 @@
+{
+  "results": {
+    "T1: first-order deltas": {
+      "logreg-l1": [
+        0.7549999999999999,
+        0.14177446878757824
+      ],
+      "svm-rbf": [
+        0.5449999999999999,
+        0.055677643628300195
+      ],
+      "extra-trees": [
+        0.575,
+        0.08498365855987979
+      ],
+      "voting-soft": [
+        0.5983333333333333,
+        0.11515689780083131
+      ],
+      "stacking-lr": [
+        0.5233333333333333,
+        0.20939065032719215
+      ]
+    },
+    "T2: full temporal bank": {
+      "logreg-l1": [
+        0.6316666666666666,
+        0.07930251502246882
+      ],
+      "svm-rbf": [
+        0.6200000000000001,
+        0.10588253449512397
+      ],
+      "extra-trees": [
+        0.5700000000000001,
+        0.06883958809354462
+      ],
+      "voting-soft": [
+        0.615,
+        0.09851677804087765
+      ],
+      "stacking-lr": [
+        0.5800000000000001,
+        0.14828650946356817
+      ]
+    },
+    "E: EfficientNetV2S_frames": {
+      "logreg-l1": [
+        0.5983333333333334,
+        0.13461880337539117
+      ],
+      "svm-rbf": [
+        0.665,
+        0.09433981132056604
+      ],
+      "extra-trees": [
+        0.7016666666666667,
+        0.14638230008364325
+      ],
+      "voting-soft": [
+        0.7066666666666667,
+        0.18069310999592655
+      ],
+      "stacking-lr": [
+        0.5650000000000001,
+        0.2607893999209154
+      ]
+    },
+    "E: MobileNetV3Large_frames": {
+      "logreg-l1": [
+        0.5583333333333333,
+        0.12801909579781018
+      ],
+      "svm-rbf": [
+        0.6333333333333334,
+        0.09646530752325191
+      ],
+      "extra-trees": [
+        0.6066666666666667,
+        0.13211947455070944
+      ],
+      "voting-soft": [
+        0.5866666666666667,
+        0.07003967129816895
+      ],
+      "stacking-lr": [
+        0.5700000000000001,
+        0.10808946911393975
+      ]
+    },
+    "F: temporal bank + frame embedding": {
+      "logreg-l1": [
+        0.6399999999999999,
+        0.08455767262643879
+      ],
+      "svm-rbf": [
+        0.64,
+        0.09963823451756745
+      ],
+      "extra-trees": [
+        0.6266666666666667,
+        0.12860361149240285
+      ],
+      "voting-soft": [
+        0.7066666666666667,
+        0.18069310999592655
+      ],
+      "stacking-lr": [
+        0.5483333333333333,
+        0.20859317129549357
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "representation": "T1: first-order deltas",
+      "model": "logreg-l1",
+      "mean": 0.7549999999999999,
+      "std": 0.14177446878757824
+    },
+    {
+      "representation": "E: EfficientNetV2S_frames",
+      "model": "voting-soft",
+      "mean": 0.7066666666666667,
+      "std": 0.18069310999592655
+    },
+    {
+      "representation": "F: temporal bank + frame embedding",
+      "model": "voting-soft",
+      "mean": 0.7066666666666667,
+      "std": 0.18069310999592655
+    },
+    {
+      "representation": "E: EfficientNetV2S_frames",
+      "model": "extra-trees",
+      "mean": 0.7016666666666667,
+      "std": 0.14638230008364325
+    },
+    {
+      "representation": "E: EfficientNetV2S_frames",
+      "model": "svm-rbf",
+      "mean": 0.665,
+      "std": 0.09433981132056604
+    },
+    {
+      "representation": "F: temporal bank + frame embedding",
+      "model": "svm-rbf",
+      "mean": 0.64,
+      "std": 0.09963823451756745
+    },
+    {
+      "representation": "F: temporal bank + frame embedding",
+      "model": "logreg-l1",
+      "mean": 0.6399999999999999,
+      "std": 0.08455767262643879
+    },
+    {
+      "representation": "E: MobileNetV3Large_frames",
+      "model": "svm-rbf",
+      "mean": 0.6333333333333334,
+      "std": 0.09646530752325191
+    },
+    {
+      "representation": "T2: full temporal bank",
+      "model": "logreg-l1",
+      "mean": 0.6316666666666666,
+      "std": 0.07930251502246882
+    },
+    {
+      "representation": "F: temporal bank + frame embedding",
+      "model": "extra-trees",
+      "mean": 0.6266666666666667,
+      "std": 0.12860361149240285
+    },
+    {
+      "representation": "T2: full temporal bank",
+      "model": "svm-rbf",
+      "mean": 0.6200000000000001,
+      "std": 0.10588253449512397
+    },
+    {
+      "representation": "T2: full temporal bank",
+      "model": "voting-soft",
+      "mean": 0.615,
+      "std": 0.09851677804087765
+    },
+    {
+      "representation": "E: MobileNetV3Large_frames",
+      "model": "extra-trees",
+      "mean": 0.6066666666666667,
+      "std": 0.13211947455070944
+    },
+    {
+      "representation": "E: EfficientNetV2S_frames",
+      "model": "logreg-l1",
+      "mean": 0.5983333333333334,
+      "std": 0.13461880337539117
+    },
+    {
+      "representation": "T1: first-order deltas",
+      "model": "voting-soft",
+      "mean": 0.5983333333333333,
+      "std": 0.11515689780083131
+    },
+    {
+      "representation": "E: MobileNetV3Large_frames",
+      "model": "voting-soft",
+      "mean": 0.5866666666666667,
+      "std": 0.07003967129816895
+    },
+    {
+      "representation": "T2: full temporal bank",
+      "model": "stacking-lr",
+      "mean": 0.5800000000000001,
+      "std": 0.14828650946356817
+    },
+    {
+      "representation": "T1: first-order deltas",
+      "model": "extra-trees",
+      "mean": 0.575,
+      "std": 0.08498365855987979
+    },
+    {
+      "representation": "T2: full temporal bank",
+      "model": "extra-trees",
+      "mean": 0.5700000000000001,
+      "std": 0.06883958809354462
+    },
+    {
+      "representation": "E: MobileNetV3Large_frames",
+      "model": "stacking-lr",
+      "mean": 0.5700000000000001,
+      "std": 0.10808946911393975
+    },
+    {
+      "representation": "E: EfficientNetV2S_frames",
+      "model": "stacking-lr",
+      "mean": 0.5650000000000001,
+      "std": 0.2607893999209154
+    },
+    {
+      "representation": "E: MobileNetV3Large_frames",
+      "model": "logreg-l1",
+      "mean": 0.5583333333333333,
+      "std": 0.12801909579781018
+    },
+    {
+      "representation": "F: temporal bank + frame embedding",
+      "model": "stacking-lr",
+      "mean": 0.5483333333333333,
+      "std": 0.20859317129549357
+    },
+    {
+      "representation": "T1: first-order deltas",
+      "model": "svm-rbf",
+      "mean": 0.5449999999999999,
+      "std": 0.055677643628300195
+    },
+    {
+      "representation": "T1: first-order deltas",
+      "model": "stacking-lr",
+      "mean": 0.5233333333333333,
+      "std": 0.20939065032719215
+    }
+  ],
+  "winner": {
+    "representation": "T1: first-order deltas",
+    "model": "logreg-l1",
+    "nested_bal_acc": 0.7549999999999999,
+    "std": 0.14177446878757824,
+    "null_mean": 0.5003333333333334,
+    "null_p95": 0.6366666666666666,
+    "p_value": 0.009900990099009901
+  }
+}
