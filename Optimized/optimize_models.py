@@ -347,8 +347,12 @@ def fit_published(name, data, tr, te, epochs):
 # --------------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["diag", "sweep", "embed"],
+    ap.add_argument("--mode", choices=["diag", "sweep", "embed", "kfold"],
                     default="sweep")
+    ap.add_argument("--ks", default="6,7,8,9,10",
+                    help="kfold mode: k values to evaluate")
+    ap.add_argument("--folds-per-k", type=int, default=1,
+                    help="kfold mode: folds averaged per k")
     ap.add_argument("--epochs", type=int, default=40,
                     help="SMA-CLMPNet-Opt budget (published run used 10)")
     ap.add_argument("--head-epochs", type=int, default=200)
@@ -390,6 +394,10 @@ def main():
         log("embeddings only - done")
         return
 
+    if args.mode == "kfold":
+        return run_kfold(args, wanted, data, labels, embs,
+                         evaluation_metrics, balanced_accuracy)
+
     pcts = [args.train_pct] if args.mode == "diag" else TRAIN_PCTS
     results = {name: [] for name in wanted}
     t0 = time.time()
@@ -421,6 +429,75 @@ def main():
 
     log(f"sweep finished in {time.time()-t0:.0f}s")
     save(results, args, pcts, args.out)
+
+
+def run_kfold(args, wanted, data, labels, embs, metrics_fn, bal_fn):
+    """Stratified k-fold with correct scoring, for section 5.6.2.
+
+    The published KFAnalysis cannot be used: SubFunctions/Analysis.py:355
+    indexes data['image'], a key ReadDataset never stores, and its scores go
+    through the tampered metric anyway.
+    """
+    from sklearn.model_selection import StratifiedKFold
+
+    ks = [int(k) for k in args.ks.split(",") if k]
+    grid = {n: [] for n in wanted}
+    done = []
+    t0 = time.time()
+
+    for k in ks:
+        skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=SEED)
+        per_model = {n: [] for n in wanted}
+        for fold, (tr, te) in enumerate(skf.split(np.zeros(len(labels)),
+                                                  labels)):
+            if fold >= args.folds_per_k:
+                break
+            log(f"=== k={k} fold {fold+1}/{args.folds_per_k}: {len(tr)} train "
+                f"/ {len(te)} test "
+                f"(test classes {np.bincount(labels[te], minlength=2).tolist()})")
+            for name in wanted:
+                t1 = time.time()
+                if name in LATEST:
+                    yhat = fit_head(embs[name], labels[tr], labels[te], tr, te,
+                                    epochs=args.head_epochs)
+                elif name in PUBLISHED_MODELS:
+                    yhat = fit_published(name, data, tr, te,
+                                         args.epochs_baseline)
+                else:
+                    yhat = fit_smaclmpnet(data, tr, te, args.epochs,
+                                          args.batch_size)
+                m = metrics_fn(labels[te], yhat)
+                per_model[name].append(m + [bal_fn(labels[te], yhat)])
+                log(f"    {name:<18} acc {m[0]*100:6.2f}  "
+                    f"bal-acc {per_model[name][-1][5]*100:6.2f}  "
+                    f"f1 {m[4]*100:6.2f}   [{time.time()-t1:.0f}s]")
+        for name in wanted:
+            grid[name].append(np.nanmean(np.asarray(per_model[name]), axis=0))
+        done.append(k)
+        save_kfold(grid, args, done, args.out)   # checkpoint after every k
+        log(f"  [checkpoint] k values done: {done}")
+
+    log(f"k-fold finished in {time.time()-t0:.0f}s")
+
+
+def save_kfold(grid, args, ks_done, out):
+    outdir = PROJECT / out
+    outdir.mkdir(parents=True, exist_ok=True)
+    for name, rows in grid.items():
+        if rows:
+            np.save(outdir / f"{name}.npy", np.asarray(rows, dtype=float))
+    (outdir / "run_manifest.json").write_text(json.dumps({
+        "produced_by": "Optimized/optimize_models.py --mode kfold",
+        "models": list(grid),
+        "k_values": list(ks_done),
+        "folds_per_k": args.folds_per_k,
+        "epochs": args.epochs,
+        "epochs_baseline": args.epochs_baseline,
+        "head_epochs": args.head_epochs,
+        "batch_size": args.batch_size,
+        "scored_with": "Optimized/metrics_fixed.py (real confusion matrix)",
+        "written": time.strftime("%Y-%m-%d %H:%M:%S"),
+    }, indent=2), encoding="utf-8")
 
 
 def save(results, args, pcts_done, out):

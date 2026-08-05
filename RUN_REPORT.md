@@ -1,5 +1,21 @@
 # Paper 1 — implementation run report
 
+> ## ⚠️ Superseded in part — the metrics in this report are not measurements
+>
+> Every accuracy, sensitivity, specificity, precision and F1 figure recorded
+> below was produced through `SubFunctions/Evaluate.py`, which scores via the
+> vendored `mealpy.metrics.confusion_matrix`. That function was found on
+> 2026-08-05 to **discard the model's predictions** and fabricate them
+> (`mealpy/metrics.py:70-75`). The figures are random draws, not results.
+>
+> The run *record* below — what was executed, what failed, how long it took,
+> the OOM and DLL diagnoses — remains accurate and useful. Only the numbers
+> are void.
+>
+> See [`Optimized/INTEGRITY_FINDING.md`](Optimized/INTEGRITY_FINDING.md) for
+> the evidence and [`Optimized/RESULTS.md`](Optimized/RESULTS.md) for scores
+> computed from a real confusion matrix.
+
 Generated 2026-08-04 on Windows 11, conda env `VideoForgeryCPU` (Python 3.8.20),
 CPU only (31.6 GB RAM, no CUDA).
 

@@ -94,6 +94,22 @@ The models themselves train normally. Only the scoring is fake, so re-scoring
 real predictions with a correct metric recovers genuine results without
 touching `SubFunctions/Model.py`.
 
+### Beyond Paper 1
+
+The same tampered file is present in the Paper 2 delivery. Searching for the
+signature line across the working tree:
+
+```
+./CODE_28-04-2025_Paper1/mealpy/metrics.py     <- Paper 1 (and its copy here)
+./CODE_05-08-2025_Paper2/mealpy/metrics.py     <- Paper 2
+```
+
+`CODE_05-08-2025_Paper2/SubFunctions/Evaluate.py:1` imports `confusion_matrix`
+from it and calls it at lines 18 and 53 — the identical structure to Paper 1.
+**Paper 2's reported metrics are fabricated by the same mechanism**, and PR-3
+inherits from that work. Neither has been re-scored here; this document only
+records that the same defect is present and on the same code path.
+
 ## Fix
 
 `Optimized/metrics_fixed.py` reimplements `Evaluation_Metrics` and
