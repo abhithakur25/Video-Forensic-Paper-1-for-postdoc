@@ -124,9 +124,27 @@ package executes the whole chain.
 | **`SCAM.py`** | 126 | Spatial, channel and joint spatial-channel attention layers (the SCAM-CLMPNet ablation). |
 | **`Model.py`** | 526 | `Network` — all eight classifiers: `EfficientNet`, `STIDNet`, `CNN` (DCNN), `GLCM`, `ViTDCNN` (BA-TFD) and `ThreeDCNNLSTM(opt=1/2/3)` = MUSE- / SCAM- / **SMA-CLMPNet**. Also `Distiller` for knowledge distillation. |
 | **`Analysis.py`** | 500 | `TPAnalysis` (training percentage 40–90 %), `KFAnalysis` (k = 6…10), plus `RocAnalysis`. |
-| **`Evaluate.py`** | 77 | `Evaluation_Metrics` — confusion matrix → accuracy, sensitivity, specificity, precision, F1. |
+| **`Evaluate.py`** | 77 | `Evaluation_Metrics` — confusion matrix → accuracy, sensitivity, specificity, precision, F1. ⚠️ **Its output is fabricated**: it scores through the tampered `mealpy.metrics.confusion_matrix`. The formulas are correct; the matrix is not. Use `Optimized/metrics_fixed.py`. |
 | **`VisualizeResults.py`** | 502 | `PlotResults`. `show=True` blocks on `plt.show()`; `show=False, save=True` writes PNG + CSV under `Results/`. |
-| **`mealpy/`** | — | Vendored metaheuristic optimiser package (**local copy, not the PyPI one**). Because it is vendored, the working directory must be the project root. |
+| **`mealpy/`** | — | Vendored metaheuristic optimiser package (**local copy, not the PyPI one**). Because it is vendored, the working directory must be the project root. ⚠️ `metrics.py` is modified relative to upstream; `_check_targets()` at lines 16-75 is what fabricates every score. Left in place as evidence — do not import it. |
+
+### 3.2b `Optimized/` — corrected scoring and the model comparison
+
+Added after the fabrication was found. Everything here is additive; nothing in
+`SubFunctions/` or `mealpy/` was edited.
+
+| File | What it does | How to run |
+|---|---|---|
+| **`metrics_fixed.py`** | Correct `Evaluation_Metrics` / `Evaluation_Metrics1`. Keeps the original formulas verbatim, including the class-0-as-positive convention; replaces only the confusion matrix with `sklearn`'s. Carries a self-test. | `python Optimized/metrics_fixed.py` → prints the self-test, exits non-zero on failure |
+| **`optimize_models.py`** | The evaluation harness. Re-runs the paper's seven models with correct scoring, adds four current-generation backbones (EfficientNetV2-S, ConvNeXt-Tiny, MobileNetV3-Large, ResNet-RS-50) as frozen ImageNet extractors with trained heads, and an `SMA-CLMPNet-Opt` that keeps the published architecture but fixes the training recipe. Checkpoints after every split; `--resume` skips splits already on disk. | `python Optimized/optimize_models.py --mode sweep --resume --out Analysis1/TRUE`<br>`--mode kfold --ks 6,7,8,9,10`<br>`--mode diag --train-pct 0.6` |
+| **`feature_probe.py`** | Answers whether the features carry any class signal at all: logistic regression / RBF SVM / random forest under repeated stratified CV across every feature representation, plus a 200-shuffle permutation test. | `python Optimized/feature_probe.py` |
+| **`report.py`** | Builds `RESULTS.md` from `Analysis1/TP` (fabricated) and `Analysis1/TRUE` (measured), including the side-by-side gap table. | `python Optimized/report.py` |
+| **`correct_doc.py`** | Rewrites §5.6.1, §5.6.2 and §5.8 of the `.docx` from the measured arrays, preserving each paragraph's formatting. Writes a timestamped backup. | `python Optimized/correct_doc.py [path.docx]` |
+| `INTEGRITY_FINDING.md` | Evidence, blast radius and demonstration of the fabricated metric. | — |
+| `RESULTS.md` | Generated results tables. | — |
+| `cache/emb_*.npy` | Frozen backbone embeddings, computed once for all 50 samples. | — |
+
+All of these need the env PATH set as in §2 and are run from the project root.
 
 ### 3.3 Data and output directories
 
@@ -135,7 +153,10 @@ package executes the whole chain.
 | `DATASET/` | FaceForensics++ videos. **Empty** — licensed, see §4. |
 | `Features/Features.pkl` | Pre-extracted features. **Not in this repo** (1.0 GB > GitHub's 100 MB limit) — see §5. |
 | `Analysis/` | The **published** result arrays. Read by `PlotResults`. Never overwritten by a re-run. |
-| `Analysis1/` | Where a **re-run writes**. Contains the results of the evaluation in §6. |
+| `Analysis1/TP`, `Analysis1/KF` | Where a **re-run writes** via `driver.py`. ⚠️ Scored by the tampered metric — not measurements. |
+| `Analysis1/TRUE` | Measured results: all models, correct scoring. Columns are ACC, SEN, SPE, PRE, F1, **BAL-ACC**. |
+| `Analysis1/TRUE_LATEST` | Measured results for the four current-generation backbones alone, all six splits. |
+| `logs/sweep_true.log` | Live log of the corrected evaluation sweep. |
 | `Results/` | Generated figures, CSVs and sample imagery. |
 | `driver_out/` | Harness output: screenshots, evaluation tables, synthesised sample clip. |
 | `RUN_REPORT.md` | Full narrative record of the reproduction run. |
