@@ -309,6 +309,27 @@ def _sweep(args, data, lab):
     return 0
 
 
+def _save_kf(grid, letters, done_ks, args):
+    """Write Analysis1/KF/COM_*.npy plus a manifest naming the k values that are
+    genuinely from this run. Analysis1/ ships with the authors' own arrays, so
+    without the manifest a partial run is indistinguishable from theirs."""
+    import json
+    import numpy as np
+    outdir = PROJECT / "Analysis1" / "KF"
+    outdir.mkdir(parents=True, exist_ok=True)
+    for letter, (name, _) in zip(letters, MODELS):
+        np.save(outdir / f"COM_{letter}.npy", np.asarray(grid[name], dtype=float))
+    (outdir / "run_manifest.json").write_text(json.dumps({
+        "produced_by": "driver.py evaluate --kfold",
+        "k_values": list(done_ks),
+        "folds_per_k": args.folds_per_k,
+        "epochs": args.epochs,
+        "skipped_models": sorted(set((args.skip or "").split(",")) - {""}),
+        "written": time.strftime("%Y-%m-%d %H:%M:%S"),
+    }, indent=2), encoding="utf-8")
+    log(f"    [checkpoint] saved k={list(done_ks)} to Analysis1\\KF")
+
+
 def _kfold(args, data, lab):
     """Replicate KFAnalysis.ComparativeAnalysis: KFold(n_splits=k, shuffle=True,
     random_state=1) for k in 6..10, metrics averaged across the evaluated folds,
@@ -372,11 +393,14 @@ def _kfold(args, data, lab):
                               if nfolds else [np.nan] * 5)
         log(f"  -> k={k} averaged over {nfolds} fold(s)")
 
-    outdir = PROJECT / "Analysis1" / "KF"
-    outdir.mkdir(parents=True, exist_ok=True)
-    for letter, (name, _) in zip(letters, MODELS):
-        np.save(outdir / f"COM_{letter}.npy", np.asarray(grid[name], dtype=float))
-    log(f"saved COM_A..COM_H.npy to {outdir.relative_to(PROJECT)}")
+        # Persist after every k. A full sweep is ~1.5 h and an interrupted run
+        # previously lost everything; now a crash costs at most one k value.
+        # The saved arrays carry one row per COMPLETED k only, so a partial run
+        # yields a short array rather than a padded one, and run_manifest.json
+        # names exactly which k values those rows correspond to.
+        _save_kf(grid, letters, ks[:len(grid[MODELS[0][0]])], args)
+
+    log(f"saved COM_A..COM_H.npy to Analysis1\\KF")
 
     metric_names = ["Accuracy", "Sensitivity", "Specificity", "Precision", "F1"]
     blocks = []
