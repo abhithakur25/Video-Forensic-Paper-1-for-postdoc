@@ -161,6 +161,46 @@ def main():
         out.append(table(rows, ["Training %", "Base acc.", "Opt acc.", "Δ",
                                 "Base bal.", "Opt bal.", "Δ"]))
 
+    # ------------------------------------------- representation/model search
+    v2 = P / "Optimized" / "optimize_v2.json"
+    if v2.exists():
+        j = json.loads(v2.read_text(encoding="utf-8"))
+        out.append("\n\n## Model selection over richer representations\n")
+        out.append(f"Protocol: {j['protocol']}. The deep models above are "
+                   "trained on a single deterministic split; this section "
+                   "instead does nested cross-validation, so the reported "
+                   "score is estimated on folds the hyper-parameter selection "
+                   "never saw. Representations preserve what a channel mean "
+                   "destroys: multi-scale spatial layout, per-channel "
+                   "distributions, and frame-to-frame temporal change.\n")
+        rows = [[r["representation"], r["model"], f"{r['mean']*100:.2f}",
+                 f"±{r['std']*100:.2f}"] for r in j["ranking"][:12]]
+        out.append(table(rows, ["Representation", "Model",
+                                "Nested bal. acc.", "SD across folds"]))
+        w = j["winner"]
+        out.append(f"\n**Permutation test on the winner** "
+                   f"({w['model']} on {w['representation']}): observed "
+                   f"{w['nested_bal_acc']*100:.2f}%, null mean "
+                   f"{w['null_mean']*100:.2f}%, null 95th percentile "
+                   f"**{w['null_p95']*100:.2f}%**, p = **{w['p_value']:.3f}**.\n")
+        verdict = ("signal above chance" if w["p_value"] < 0.05 else
+                   "**not distinguishable from chance** — the best honest "
+                   "score does not beat what the same pipeline achieves on "
+                   "randomly shuffled labels")
+        out.append(f"Verdict: {verdict}.\n")
+
+    fp = P / "Optimized" / "feature_probe.json"
+    if fp.exists():
+        j = json.loads(fp.read_text(encoding="utf-8"))
+        pm = j["permutation"]
+        out.append("\n## Independent probe\n")
+        out.append("A separate, simpler probe (repeated stratified 5-fold, "
+                   "logistic regression / RBF SVM / random forest on summary "
+                   f"statistics) reached {pm['observed']*100:.2f}% balanced "
+                   f"accuracy on '{pm['representation']}', against a null 95th "
+                   f"percentile of {pm['null_p95']*100:.2f}% "
+                   f"(p = {pm['p_value']:.3f}).\n")
+
     out.append("\n\n## Reading these numbers honestly\n")
     out.append("The corpus is 50 videos, 29 authentic / 21 forged, and the "
                "test partition ranges from 31 videos at the 40% split down to "
