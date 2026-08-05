@@ -12,9 +12,12 @@ Columns of the TRUE arrays: ACC, SEN, SPE, PRE, F1, BAL-ACC.
 import datetime
 import json
 import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
+
+warnings.filterwarnings("ignore", message="Mean of empty slice")
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -54,6 +57,14 @@ def table(rows, head):
     return "\n".join([line(head),
                       "|" + "|".join("-" * (x + 2) for x in w)  + "|"]
                      + [line(r) for r in rows])
+
+
+def mp(a):
+    """Mean of a column, or an em dash when every entry is undefined."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        v = np.nanmean(a) if not np.all(np.isnan(a)) else np.nan
+    return "—" if np.isnan(v) else f"{v*100:.2f}"
 
 
 def pc(v):
@@ -108,8 +119,7 @@ def main():
             continue
         a = tr[n][:, 0]
         cells = [pc(a[done.index(p)]) if p in done else "—" for p in PCTS]
-        rows.append([n, *cells, f"{np.nanmean(a)*100:.2f}",
-                     f"{np.nanmean(tr[n][:, 5])*100:.2f}"])
+        rows.append([n, *cells, mp(a), mp(tr[n][:, 5])])
     out.append(table(rows, ["Model"] + [f"{p}%" for p in PCTS]
                      + ["Mean acc.", "Mean bal. acc."]))
     out.append("\nChance is 50.00%. Majority-class-always is 58.00% accuracy "
@@ -123,8 +133,7 @@ def main():
     for n in PUBLISHED + LATEST + ["SMA-CLMPNet-Opt"]:
         if n not in tr:
             continue
-        rows.append([n] + [f"{np.nanmean(tr[n][:, i])*100:.2f}"
-                           for i in range(6)])
+        rows.append([n] + [mp(tr[n][:, i]) for i in range(6)])
     out.append(table(rows, ["Model"] + METRICS))
 
     # -------------------------------------------------------- recipe ablation
