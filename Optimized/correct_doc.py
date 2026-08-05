@@ -116,21 +116,27 @@ def degenerate(res, names):
     return out
 
 
+WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+
+
 def build_561(res, man):
     pcts = [int(round(p * 100)) for p in man["train_pcts"]]
     r = len(pcts) - 1
     names = [n for n in PUBLISHED if n in res]
     others = [n for n in names if n != "SMA-CLMPNet"]
     dead = degenerate(res, names)
+    span = (f"from {pcts[0]}% to {pcts[-1]}%" if len(pcts) > 1
+            else f"at {pcts[0]}%")
     t = (
         "The comparison of the SMA-CLMPNet with existing approaches by varying "
-        f"training percentages from {pcts[0]}% to {pcts[-1]}% using the Face "
+        f"training percentages {span} using the Face "
         "Forensics++ dataset is demonstrated in Figure 9. At the "
         f"{pcts[r]}% training percentage the SMA-CLMPNet attained an accuracy "
         f"of {pct(res['SMA-CLMPNet'][r, 0])} with a balanced accuracy of "
         f"{pct(res['SMA-CLMPNet'][r, 5])}, whereas the established methods "
         f"attained: {listing(res, others, 0, r)}. Averaged over the "
-        f"{len(pcts)} training percentages the accuracies were: "
+        f"{WORDS.get(len(pcts), len(pcts))} evaluated training "
+        f"{'percentage' if len(pcts) == 1 else 'percentages'} the accuracies were: "
         f"{mean_listing(res, names, 0)}; the corresponding balanced "
         f"accuracies were {mean_listing(res, names, 5)}. Mean sensitivities "
         f"were {mean_listing(res, names, 1)} and mean specificities "
@@ -164,6 +170,23 @@ def build_561(res, man):
             "extracted features and the size of the corpus rather than in any "
             "one architecture. "
         )
+    if "SMA-CLMPNet-Opt" in res:
+        o = res["SMA-CLMPNet-Opt"]
+        b = res["SMA-CLMPNet"]
+        t += (
+            "Retraining the SMA-CLMPNet with an optimised recipe - the "
+            "architecture unchanged, but the batch size reduced from 32 to 8 "
+            "so that each epoch performs several gradient updates rather than "
+            "two, the inputs standardised using training-split statistics "
+            "only, class weights applied for the 29/21 imbalance, and the "
+            "learning rate cosine-decayed over a longer budget - gave a mean "
+            f"accuracy of {pct(np.nanmean(o[:, 0]))} and a mean balanced "
+            f"accuracy of {pct(np.nanmean(o[:, 5]))}, against "
+            f"{pct(np.nanmean(b[:, 0]))} and {pct(np.nanmean(b[:, 5]))} for "
+            "the published recipe. The recipe therefore does not rescue the "
+            "model: it changes which class the network collapses onto without "
+            "producing a classifier that separates them. "
+        )
     return t + INTEGRITY + " " + CORPUS
 
 
@@ -195,7 +218,9 @@ def build_562(res, man):
 
 
 def build_58(res, man):
-    names = [n for n in PUBLISHED if n in res] + [n for n in LATEST if n in res]
+    names = ([n for n in PUBLISHED if n in res]
+             + [n for n in LATEST if n in res]
+             + [n for n in ["SMA-CLMPNet-Opt"] if n in res])
     stat = "; ".join(
         f"{n}: best {pct(np.nanmax(res[n][:, 0]))}, mean "
         f"{pct(np.nanmean(res[n][:, 0]))}, variance "
