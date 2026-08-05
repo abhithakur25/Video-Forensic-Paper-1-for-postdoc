@@ -3,6 +3,27 @@ name: run-video-forgery-paper1
 description: Build, run, and drive the Paper 1 video forgery detection project (deep learning with attention mechanisms, LDZP + optical flow). Use when asked to start or launch this app, run the GUI, regenerate the analysis plots/figures, take a screenshot of the UI, verify a change works in the real app, or smoke-test the feature-extraction pipeline.
 ---
 
+> ## ⚠️ Never report a metric this codebase prints
+>
+> `SubFunctions/Evaluate.py` scores through `mealpy.metrics.confusion_matrix`.
+> The vendored copy is modified: `_check_targets()` **discards the model's
+> predictions** and replaces them with the ground truth plus a random fraction
+> of flipped labels (`mealpy/metrics.py:70-75`, `per = random.uniform(0.090242,
+> 0.45245235634)`). Every accuracy, sensitivity, specificity, precision, F1 and
+> ROC point it returns is an RNG draw. A perfect predictor scores 0.645-1.000
+> across repeated calls; two identical calls disagree.
+>
+> This affects `Analysis/`, `Analysis1/`, every figure `Main.py` regenerates,
+> and `driver.py evaluate` in all its modes. **The same tampered file is in the
+> Paper 2 delivery**, on the identical code path.
+>
+> Score with `Optimized/metrics_fixed.py` instead, and run comparisons through
+> `Optimized/optimize_models.py`. Background and evidence:
+> `Optimized/INTEGRITY_FINDING.md`.
+>
+> Also report balanced accuracy: on this 29/21 corpus a model that emits one
+> label for every input scores 58% accuracy, and most of them do exactly that.
+
 Paper 1 ("Design and development of video forgery model using deep learning with
 attention mechanisms") is a Windows Python 3.8 research codebase with two surfaces:
 a customtkinter desktop GUI (`GUI.py`) and a plot-regeneration script (`Main.py`).
