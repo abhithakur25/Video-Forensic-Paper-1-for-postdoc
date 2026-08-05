@@ -41,6 +41,7 @@ Track B - OPTIMISED SMA-CLMPNet
 Nothing in SubFunctions/ is modified - this module imports it.
 """
 import argparse
+import gc
 import json
 import os
 import pickle
@@ -199,7 +200,11 @@ def embed(name, data, cache_dir):
     log(f"  {name}: embeddings {e.shape} cached "
         f"({backbone.count_params()/1e6:.1f} M frozen params)")
     del backbone
-    tf.keras.backend.clear_session()
+    # NOT clear_session(): it resets Keras's global name counter, so the
+    # next Input() is named 'input_1' again and collides with the cached
+    # InputLayer of the module-level EfficientNetB7 in SubFunctions/Model.py
+    # ('The name "input_1" is used 2 times in the model').
+    gc.collect()
     return e
 
 
@@ -230,7 +235,11 @@ def fit_head(emb, y_tr, y_te, tr, te, epochs=200):
     model.fit(x_tr, to_categorical(y_tr, 2), epochs=epochs, batch_size=8,
               verbose=0, shuffle=True, class_weight=class_weights(y_tr))
     yhat = np.argmax(model.predict(x_te, verbose=0), axis=1)
-    tf.keras.backend.clear_session()
+    # NOT clear_session(): it resets Keras's global name counter, so the
+    # next Input() is named 'input_1' again and collides with the cached
+    # InputLayer of the module-level EfficientNetB7 in SubFunctions/Model.py
+    # ('The name "input_1" is used 2 times in the model').
+    gc.collect()
     return yhat
 
 
@@ -319,7 +328,11 @@ def fit_smaclmpnet(data, tr, te, epochs, batch_size, opt=3, normalise=True):
               batch_size=batch_size, verbose=2, shuffle=True,
               class_weight=class_weights(y[tr]))
     yhat = np.argmax(model.predict(x_te, verbose=0), axis=1)
-    tf.keras.backend.clear_session()
+    # NOT clear_session(): it resets Keras's global name counter, so the
+    # next Input() is named 'input_1' again and collides with the cached
+    # InputLayer of the module-level EfficientNetB7 in SubFunctions/Model.py
+    # ('The name "input_1" is used 2 times in the model').
+    gc.collect()
     return yhat
 
 
@@ -340,7 +353,11 @@ def fit_published(name, data, tr, te, epochs):
                   y[tr], y[te], epochs)
     yhat = PUBLISHED_MODELS[name](net)
     del net, arrs
-    tf.keras.backend.clear_session()
+    # NOT clear_session(): it resets Keras's global name counter, so the
+    # next Input() is named 'input_1' again and collides with the cached
+    # InputLayer of the module-level EfficientNetB7 in SubFunctions/Model.py
+    # ('The name "input_1" is used 2 times in the model').
+    gc.collect()
     return np.asarray(yhat).astype(int)
 
 
@@ -365,6 +382,8 @@ def main():
     ap.add_argument("--epochs-baseline", type=int, default=10,
                     help="budget for the paper's own models; 10 matches the "
                          "reproduction so only the scoring differs")
+    ap.add_argument("--resume", action="store_true",
+                    help="reuse splits already measured in --out")
     ap.add_argument("--out", default="Analysis1/OPT")
     args = ap.parse_args()
 
@@ -400,9 +419,32 @@ def main():
 
     pcts = [args.train_pct] if args.mode == "diag" else TRAIN_PCTS
     results = {name: [] for name in wanted}
+    done_pcts = []
+
+    # Resume: a completed split is expensive (~30 min) and already on disk.
+    outdir = PROJECT / args.out
+    man_path = outdir / "run_manifest.json"
+    if args.resume and man_path.exists():
+        prev = json.loads(man_path.read_text(encoding="utf-8"))
+        prev_pcts = [float(p) for p in prev["train_pcts"]]
+        if all((outdir / f"{n}.npy").exists() for n in wanted):
+            for n in wanted:
+                results[n] = [list(r) for r in np.load(outdir / f"{n}.npy")]
+            keep = min(len(results[n]) for n in wanted)
+            for n in wanted:
+                results[n] = results[n][:keep]
+            done_pcts = prev_pcts[:keep]
+            log(f"resuming: {keep} split(s) already measured "
+                f"({', '.join(f'{p:.0%}' for p in done_pcts)})")
+        else:
+            log("resume requested but not every model has an array - "
+                "starting clean")
+
     t0 = time.time()
 
     for pct in pcts:
+        if any(abs(pct - d) < 1e-9 for d in done_pcts):
+            continue
         tr, te = split_indices(labels, pct)
         log(f"=== train {pct:.0%}: {len(tr)} train / {len(te)} test "
             f"(test classes {np.bincount(labels[te], minlength=2).tolist()})")
@@ -425,10 +467,11 @@ def main():
 
         # Checkpoint after every split: a killed process then costs one split,
         # not the whole sweep.
-        save(results, args, pcts[:len(results[wanted[0]])], args.out)
+        done_pcts.append(pct)
+        save(results, args, done_pcts, args.out)
 
     log(f"sweep finished in {time.time()-t0:.0f}s")
-    save(results, args, pcts, args.out)
+    save(results, args, done_pcts, args.out)
 
 
 def run_kfold(args, wanted, data, labels, embs, metrics_fn, bal_fn):
