@@ -107,12 +107,22 @@ def mean_listing(res, names, col):
 
 
 def degenerate(res, names):
-    """Models whose mean balanced accuracy is at or below chance - i.e. they
-    are predicting a single class."""
+    """Models that emitted a CONSTANT prediction, counted per split.
+
+    Judging this from mean sensitivity/specificity is wrong: a model that is
+    constant on some splits and not others averages to something that looks
+    discriminating. A constant prediction on a split shows up as sensitivity
+    or specificity being exactly zero on that split.
+    """
     out = []
     for n in names:
-        if n in res and np.nanmean(res[n][:, 5]) <= 0.505:
-            out.append(n)
+        if n not in res:
+            continue
+        a = res[n]
+        k = int(np.sum(np.minimum(np.nan_to_num(a[:, 1]),
+                                  np.nan_to_num(a[:, 2])) == 0.0))
+        if k:
+            out.append((n, k, a.shape[0]))
     return out
 
 
@@ -144,18 +154,17 @@ def build_561(res, man):
         f"{mean_listing(res, names, 4)}. "
     )
     if dead:
+        listing_txt = ", ".join(f"{n} on {k} of {tot}" for n, k, tot in dead)
         t += (
-            f"The sensitivity and specificity columns show that "
-            f"{', '.join(dead)} " +
-            ("does" if len(dead) == 1 else "do") +
-            " not discriminate between the two classes at all: "
-            + ("it assigns" if len(dead) == 1 else "they assign") +
-            " a single label to every input, which a headline accuracy figure "
-            "conceals but balanced accuracy of approximately 50% exposes. "
-            "With 19 to 44 training samples and a batch size of 32, training "
-            "for 10 epochs performs at most two gradient updates per epoch, "
-            "which is not sufficient for these networks to depart from the "
-            "majority class. "
+            "The sensitivity and specificity columns expose a failure that a "
+            "headline accuracy figure conceals: on a number of splits these "
+            "methods assigned a single label to every test video, giving a "
+            "sensitivity or specificity of exactly zero and a balanced "
+            f"accuracy of 50%. The affected counts are {listing_txt} "
+            "evaluated splits. With 19 to 44 training samples and a batch "
+            "size of 32, training for 10 epochs performs at most two gradient "
+            "updates per epoch, which is not sufficient for these networks to "
+            "depart from the majority class. "
         )
     lat = [n for n in LATEST if n in res]
     if lat:

@@ -1,0 +1,29 @@
+[12:04:53] proposed (50, 10, 128, 128, 12)
+2026-08-05 12:04:54.322063: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2026-08-05 12:04:54.324011: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2026-08-05 12:05:03.403682: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2026-08-05 12:05:03.406667: W tensorflow/stream_executor/cuda/cuda_driver.cc:263] failed call to cuInit: UNKNOWN ERROR (303)
+2026-08-05 12:05:03.425526: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: DESKTOP-4K1LHQC
+2026-08-05 12:05:03.426775: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: DESKTOP-4K1LHQC
+2026-08-05 12:05:03.427915: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[12:05:06] MobileNetV3Large: 3.0 M frozen params
+[12:05:34]   frames ch0:3 done (2/16 blocks)
+[12:06:00]   frames ch3:6 done (4/16 blocks)
+[12:06:29]   frames ch6:9 done (6/16 blocks)
+[12:06:57]   frames ch9:12 done (8/16 blocks)
+[12:07:22]   delta ch0:3 done (10/16 blocks)
+[12:07:49]   delta ch3:6 done (12/16 blocks)
+[12:08:14]   delta ch6:9 done (14/16 blocks)
+[12:08:38]   delta ch9:12 done (16/16 blocks)
+[12:08:38] MobileNetV3Large: wrote (50, 15360) -> emb_MobileNetV3Large_frames.npy
+[12:08:48] EfficientNetV2S: 20.3 M frozen params
+[12:10:28]   frames ch0:3 done (2/16 blocks)
+[12:12:00]   frames ch3:6 done (4/16 blocks)
+[12:15:11]   frames ch6:9 done (6/16 blocks)
+[12:17:45]   frames ch9:12 done (8/16 blocks)
+[12:19:17]   delta ch0:3 done (10/16 blocks)
+[12:21:05]   delta ch3:6 done (12/16 blocks)
+[12:22:45]   delta ch6:9 done (14/16 blocks)
+[12:24:44]   delta ch9:12 done (16/16 blocks)
+[12:24:44] EfficientNetV2S: wrote (50, 20480) -> emb_EfficientNetV2S_frames.npy

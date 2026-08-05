@@ -1,0 +1,42 @@
+[14:38:50] 5 representations x 5 models, n=50, classes [29, 21]
+[14:38:52]   T1: first-order deltas               logreg-l1     75.50% ±14.18
+[14:38:54]   T1: first-order deltas               svm-rbf       54.50% ± 5.57
+[14:39:13]   T1: first-order deltas               extra-trees   57.50% ± 8.50
+[14:39:16]   T1: first-order deltas               voting-soft   59.83% ±11.52
+[14:39:29]   T1: first-order deltas               stacking-lr   52.33% ±20.94
+[14:39:30]   T2: full temporal bank               logreg-l1     63.17% ± 7.93
+[14:39:32]   T2: full temporal bank               svm-rbf       62.00% ±10.59
+[14:40:06]   T2: full temporal bank               extra-trees   57.00% ± 6.88
+[14:40:22]   T2: full temporal bank               voting-soft   61.50% ± 9.85
+[14:41:19]   T2: full temporal bank               stacking-lr   58.00% ±14.83
+[14:41:29]   E: EfficientNetV2S_frames            logreg-l1     59.83% ±13.46
+[14:41:46]   E: EfficientNetV2S_frames            svm-rbf       66.50% ± 9.43
+[14:42:39]   E: EfficientNetV2S_frames            extra-trees   70.17% ±14.64
+[14:43:01]   E: EfficientNetV2S_frames            voting-soft   70.67% ±18.07
+[14:43:32]   E: EfficientNetV2S_frames            stacking-lr   56.50% ±26.08
+[14:43:38]   E: MobileNetV3Large_frames           logreg-l1     55.83% ±12.80
+[14:43:55]   E: MobileNetV3Large_frames           svm-rbf       63.33% ± 9.65
+[14:44:40]   E: MobileNetV3Large_frames           extra-trees   60.67% ±13.21
+[14:44:50]   E: MobileNetV3Large_frames           voting-soft   58.67% ± 7.00
+[14:45:25]   E: MobileNetV3Large_frames           stacking-lr   57.00% ±10.81
+[14:45:37]   F: temporal bank + frame embedding   logreg-l1     64.00% ± 8.46
+[14:46:00]   F: temporal bank + frame embedding   svm-rbf       64.00% ± 9.96
+[14:46:49]   F: temporal bank + frame embedding   extra-trees   62.67% ±12.86
+[14:46:59]   F: temporal bank + frame embedding   voting-soft   70.67% ±18.07
+[14:47:42]   F: temporal bank + frame embedding   stacking-lr   54.83% ±20.86
+[14:47:42] 
+[14:47:42] TOP 10:
+[14:47:42]     75.50% ±14.18   logreg-l1    on T1: first-order deltas
+[14:47:42]     70.67% ±18.07   voting-soft  on E: EfficientNetV2S_frames
+[14:47:42]     70.67% ±18.07   voting-soft  on F: temporal bank + frame embedding
+[14:47:42]     70.17% ±14.64   extra-trees  on E: EfficientNetV2S_frames
+[14:47:42]     66.50% ± 9.43   svm-rbf      on E: EfficientNetV2S_frames
+[14:47:42]     64.00% ± 9.96   svm-rbf      on F: temporal bank + frame embedding
+[14:47:42]     64.00% ± 8.46   logreg-l1    on F: temporal bank + frame embedding
+[14:47:42]     63.33% ± 9.65   svm-rbf      on E: MobileNetV3Large_frames
+[14:47:42]     63.17% ± 7.93   logreg-l1    on T2: full temporal bank
+[14:47:42]     62.67% ±12.86   extra-trees  on F: temporal bank + frame embedding
+[14:47:42] 
+[14:47:42] permutation test: logreg-l1 on T1: first-order deltas
+[14:49:37]    observed 75.50%  null mean 50.03%  p95 63.67%  p=0.0099
+[14:49:37] wrote Optimized/optimize_v3.json

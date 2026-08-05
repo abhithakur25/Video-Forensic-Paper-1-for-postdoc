@@ -1,0 +1,12 @@
+[14:56:56] building per-frame descriptors
+[14:56:56] sequence tensor (50, 10, 252)  (Paper 2 settings: 500 epochs, batch 32, lr 0.001, 5 incremental chunks)
+[15:00:38]   fold 1: BiLSTM+GBM acc  60.00 bal  60.00 | BiLSTM-only acc  60.00 bal  60.00 [221s]
+[15:04:32]   fold 2: BiLSTM+GBM acc  40.00 bal  37.50 | BiLSTM-only acc  40.00 bal  37.50 [235s]
+WARNING:tensorflow:5 out of the last 9 calls to <function Model.make_predict_function.<locals>.predict_function at 0x00000204509BBE50> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 12 calls to <function Model.make_predict_function.<locals>.predict_function at 0x000002044F822160> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+[15:11:53]   fold 3: BiLSTM+GBM acc  60.00 bal  62.50 | BiLSTM-only acc  60.00 bal  62.50 [441s]
+[15:23:15]   fold 4: BiLSTM+GBM acc  60.00 bal  58.33 | BiLSTM-only acc  70.00 bal  62.50 [682s]
+[15:35:40]   fold 5: BiLSTM+GBM acc  40.00 bal  33.33 | BiLSTM-only acc  40.00 bal  33.33 [745s]
+[15:35:40] BiLSTMGBM (Paper 2 model): acc 52.00  sen 58.67  spe 42.00  pre 60.33  f1 58.76  BAL 50.33
+[15:35:40] BiLSTM softmax only: acc 54.00  sen 65.33  spe 37.00  pre 60.33  f1 61.43  BAL 51.17
+[15:35:40] wrote Optimized/paper2_model.json

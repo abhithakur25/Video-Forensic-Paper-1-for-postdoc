@@ -1,0 +1,24 @@
+{
+  "produced_by": "Optimized/optimize_models.py",
+  "models": [
+    "EfficientNetV2S",
+    "ConvNeXtTiny",
+    "MobileNetV3Large",
+    "ResNetRS50"
+  ],
+  "train_pcts": [
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "epochs": 40,
+  "epochs_baseline": 10,
+  "head_epochs": 200,
+  "scored_with": "Optimized/metrics_fixed.py (real confusion matrix)",
+  "batch_size": 8,
+  "mode": "sweep",
+  "written": "2026-08-05 11:36:19"
+}

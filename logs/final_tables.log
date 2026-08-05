@@ -1,0 +1,8 @@
+logreg-l1    on temporal delta stats   mean bal-acc 55.20%
+svm-rbf      on temporal delta stats   mean bal-acc 55.80%
+extra-trees  on temporal delta stats   mean bal-acc 54.29%
+logreg-l1    on mean-frame grid pool   mean bal-acc 43.19%
+svm-rbf      on mean-frame grid pool   mean bal-acc 41.40%
+extra-trees  on mean-frame grid pool   mean bal-acc 36.47%
+
+wrote Optimized/FINAL_TABLES.md
