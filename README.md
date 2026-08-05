@@ -1,5 +1,26 @@
 # Video Forensic — Paper 1 (Postdoc)
 
+> ## ⚠️ The metrics this code produces are fabricated
+>
+> The vendored `mealpy/metrics.py` has been modified so that
+> `_check_targets()` **discards the model's predictions** and replaces them
+> with the ground truth plus a random fraction of flipped labels
+> (`mealpy/metrics.py:70-75`). Every accuracy, sensitivity, specificity,
+> precision, F1 and ROC point produced by the pipeline as delivered is a draw
+> from a random number generator, independent of the models and the data.
+> A perfect predictor scores 0.645–1.000 across repeated calls; an inverted
+> predictor scores just as well.
+>
+> This affects the paper's results sections, the `.npy` arrays under
+> `Analysis/` and `Analysis1/`, **and the reproduction figures previously
+> recorded in this repository**, which were produced in good faith through the
+> same function.
+>
+> Evidence, blast radius and fix: **[`Optimized/INTEGRITY_FINDING.md`](Optimized/INTEGRITY_FINDING.md)**.
+> Corrected scores: **[`Optimized/RESULTS.md`](Optimized/RESULTS.md)**.
+> Do not cite any number from this project that was not scored with
+> `Optimized/metrics_fixed.py`.
+
 **Design and Development of a Video Forgery Model Using Deep Learning with
 Attention Mechanisms** — reference implementation, execution harness and
 reproduction record.
