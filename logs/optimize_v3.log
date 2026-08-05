@@ -1,3 +1,7 @@
+# [tidied] optimize_v3.log
+# Higher-order temporal features (acceleration, lag-2, autocorrelation) and stacked/voting ensembles. Every addition scored BELOW plain L1 logistic regression on first-order deltas.
+# tidied 2026-08-05 16:17:34; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 [14:38:50] 5 representations x 5 models, n=50, classes [29, 21]
 [14:38:52]   T1: first-order deltas               logreg-l1     75.50% ±14.18
 [14:38:54]   T1: first-order deltas               svm-rbf       54.50% ± 5.57

@@ -1,3 +1,7 @@
+# [tidied] optimize_weights.log
+# Class-weight, probability-calibration and decision-threshold sweep, 30 configurations, all selected inside training folds. Best 69.67%, below the untuned 77.17%.
+# tidied 2026-08-05 16:17:34; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 [15:07:55] features (50, 324), classes [29, 21]
 [15:08:02]   logreg-l1 cw=none                   63.33% ±13.54  thr=0.31
 [15:08:03]   svm-rbf cw=none                     61.33% ±16.79  thr=0.46

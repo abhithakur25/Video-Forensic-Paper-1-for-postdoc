@@ -1,3 +1,7 @@
+# [tidied] evaluation_kfold_aborted.log
+# First k-fold attempt at 2 folds per k, aborted at 12/70 fits on a projected ~8.75 h runtime.
+# tidied 2026-08-05 16:17:33; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 # evaluation_kfold_aborted.log
 # First k-fold attempt at 2 folds per k. ABORTED at 12/70 fits: projected ~8.75 h because k-fold always trains on 41-45 of the 50 samples, ~3x slower per fit than the TP sweep.
 # source: tasks/bs332of72.output   captured: 2026-08-04 16:16:39

@@ -1,12 +1,13 @@
+# [tidied] frame_embeddings.log
+# Per-frame and frame-difference backbone embeddings of the 'proposed' tensor (MobileNetV3Large 15,360-dim, EfficientNetV2S 20,480-dim).
+# tidied 2026-08-05 16:17:33; 5 noise lines collapsed
+#--------------------------------------------------------------------------
 [12:04:53] proposed (50, 10, 128, 128, 12)
-2026-08-05 12:04:54.322063: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
-2026-08-05 12:04:54.324011: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
-2026-08-05 12:05:03.403682: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+    ... [3 lines collapsed: CUDA library probe]
 2026-08-05 12:05:03.406667: W tensorflow/stream_executor/cuda/cuda_driver.cc:263] failed call to cuInit: UNKNOWN ERROR (303)
 2026-08-05 12:05:03.425526: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: DESKTOP-4K1LHQC
 2026-08-05 12:05:03.426775: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: DESKTOP-4K1LHQC
-2026-08-05 12:05:03.427915: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+    ... [2 lines collapsed: TF CPU-feature notice]
 [12:05:06] MobileNetV3Large: 3.0 M frozen params
 [12:05:34]   frames ch0:3 done (2/16 blocks)
 [12:06:00]   frames ch3:6 done (4/16 blocks)

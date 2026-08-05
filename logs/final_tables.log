@@ -1,3 +1,7 @@
+# [tidied] final_tables.log
+# Full metric tables by training percentage for the best honest pipeline.
+# tidied 2026-08-05 16:17:33; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 logreg-l1    on temporal delta stats   mean bal-acc 55.20%
 svm-rbf      on temporal delta stats   mean bal-acc 55.80%
 extra-trees  on temporal delta stats   mean bal-acc 54.29%

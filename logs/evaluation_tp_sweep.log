@@ -1,3 +1,7 @@
+# [tidied] evaluation_tp_sweep.log
+# SUPERSEDED. The original training-percentage sweep, scored by the tampered metric. Kept as the record of what the pipeline produces as delivered.
+# tidied 2026-08-05 16:17:33; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 # evaluation_tp_sweep.log
 # Training-percentage comparative sweep, 40-90%, 10 epochs, 7 models. COMPLETED in 5639 s -> Analysis1/TP/COM_A..H.npy
 # source: tasks/bkod1c346.output   captured: 2026-08-04 16:16:39

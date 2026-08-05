@@ -1,3 +1,7 @@
+# [tidied] webapp_server.log
+# Flask dev server serving the analyze API during verification.
+# tidied 2026-08-05 16:17:34; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 # webapp_server.log
 # Flask dev server serving the analyze API during verification.
 # source: tasks/b4t427wv2.output   captured: 2026-08-04 16:16:39

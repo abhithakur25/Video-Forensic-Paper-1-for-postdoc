@@ -1,3 +1,7 @@
+# [tidied] conda_pytorch_ssl_failure.log
+# conda install pytorch FAILED with CERTIFICATE_VERIFY_FAILED through the network's TLS interception; why torch stayed unavailable and the SubFunctions __init__ bypass was needed.
+# tidied 2026-08-05 16:17:32; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 # conda_pytorch_ssl_failure.log
 # conda install pytorch - FAILED. CERTIFICATE_VERIFY_FAILED via the network's TLS interception; why torch stayed unavailable.
 # source: tasks/bjvf1rpd2.output   captured: 2026-08-04 16:16:39

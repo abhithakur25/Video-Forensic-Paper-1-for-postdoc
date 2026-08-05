@@ -1,3 +1,7 @@
+# [tidied] sweep_true.log
+# The corrected re-evaluation. All 7 of the paper's models plus the 4 current-generation backbones and SMA-CLMPNet-Opt, across training percentages 40-90%, scored with a real confusion matrix. 10,109 s. Source of Analysis1/TRUE and of the tables in sections 5.6.1 / 5.8.
+# tidied 2026-08-05 16:17:34; 262 noise lines collapsed
+#--------------------------------------------------------------------------
 [11:25:08] features loaded: proposed(50, 10, 128, 128, 12) comparative1(50, 128, 128, 10) labels(50,)
 [11:25:08]   EfficientNetV2S: embeddings from cache (50, 1280)
 [11:25:08]   ConvNeXtTiny: embeddings from cache (50, 768)
@@ -757,7 +761,7 @@ Epoch 10/10
 
 1/1 [==============================] - ETA: 0s - loss: 0.4764 - accuracy: 0.8333
 1/1 [==============================] - 25s 25s/step - loss: 0.4764 - accuracy: 0.8333
-WARNING:tensorflow:5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x00000254B00AD280> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+    ... [1 lines collapsed: TF retracing warning]
 
 1/1 [==============================] - ETA: 0s
 1/1 [==============================] - 6s 6s/step
@@ -906,7 +910,7 @@ Epoch 10/10
 
 1/1 [==============================] - ETA: 0s - loss: 0.4747 - accuracy: 0.7500
 1/1 [==============================] - 10s 10s/step - loss: 0.4747 - accuracy: 0.7500
-WARNING:tensorflow:6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x00000254B1C36B80> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+    ... [1 lines collapsed: TF retracing warning]
 
 1/1 [==============================] - ETA: 0s
 1/1 [==============================] - 2s 2s/step
@@ -2586,52 +2590,52 @@ Non-trainable params: 7
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 5s - loss: 1.6797 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.5809 - accuracy: 0.4706
 2/2 [==============================] - 5s 239ms/step - loss: 1.5809 - accuracy: 0.4706
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 12.2256 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 11.7563 - accuracy: 0.5882
 2/2 [==============================] - 3s 264ms/step - loss: 11.7563 - accuracy: 0.5882
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 5.1739 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 4.8911 - accuracy: 0.4118
 2/2 [==============================] - 3s 235ms/step - loss: 4.8911 - accuracy: 0.4118
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 3.7882 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 3.6919 - accuracy: 0.5882
 2/2 [==============================] - 2s 194ms/step - loss: 3.6919 - accuracy: 0.5882
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 1.8186 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.7922 - accuracy: 0.4118
 2/2 [==============================] - 2s 215ms/step - loss: 1.7922 - accuracy: 0.4118
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.9532 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0445 - accuracy: 0.5882
 2/2 [==============================] - 3s 245ms/step - loss: 1.0445 - accuracy: 0.5882
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.9843 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9759 - accuracy: 0.4412
 2/2 [==============================] - 3s 247ms/step - loss: 0.9759 - accuracy: 0.4412
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.8231 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8155 - accuracy: 0.4706
 2/2 [==============================] - 3s 263ms/step - loss: 0.8155 - accuracy: 0.4706
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.7351 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7338 - accuracy: 0.4412
 2/2 [==============================] - 3s 237ms/step - loss: 0.7338 - accuracy: 0.4412
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.6678 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6675 - accuracy: 0.6176
 2/2 [==============================] - 3s 225ms/step - loss: 0.6675 - accuracy: 0.6176
 
@@ -2710,102 +2714,102 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.7163 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7013 - accuracy: 0.5000
 2/2 [==============================] - 3s 93ms/step - loss: 0.7013 - accuracy: 0.5000
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 1.1313 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2125 - accuracy: 0.6176
 2/2 [==============================] - 1s 95ms/step - loss: 1.2125 - accuracy: 0.6176
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7944 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8199 - accuracy: 0.5882
 2/2 [==============================] - 1s 95ms/step - loss: 0.8199 - accuracy: 0.5882
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.8407 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8152 - accuracy: 0.6176
 2/2 [==============================] - 1s 92ms/step - loss: 0.8152 - accuracy: 0.6176
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7614 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7608 - accuracy: 0.4412
 2/2 [==============================] - 1s 94ms/step - loss: 0.7608 - accuracy: 0.4412
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6604 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6979 - accuracy: 0.6176
 2/2 [==============================] - 1s 93ms/step - loss: 0.6979 - accuracy: 0.6176
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7126 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7184 - accuracy: 0.5294
 2/2 [==============================] - 1s 83ms/step - loss: 0.7184 - accuracy: 0.5294
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7071 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7043 - accuracy: 0.5294
 2/2 [==============================] - 1s 84ms/step - loss: 0.7043 - accuracy: 0.5294
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6716 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6673 - accuracy: 0.6176
 2/2 [==============================] - 1s 85ms/step - loss: 0.6673 - accuracy: 0.6176
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6729 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6766 - accuracy: 0.5588
 2/2 [==============================] - 1s 100ms/step - loss: 0.6766 - accuracy: 0.5588
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.7466 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7075 - accuracy: 0.4706
 2/2 [==============================] - 3s 118ms/step - loss: 0.7075 - accuracy: 0.4706
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 2.4673 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 2.4812 - accuracy: 0.5882
 2/2 [==============================] - 1s 111ms/step - loss: 2.4812 - accuracy: 0.5882
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6549 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6543 - accuracy: 0.6765
 2/2 [==============================] - 1s 107ms/step - loss: 0.6543 - accuracy: 0.6765
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6888 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6865 - accuracy: 0.6471
 2/2 [==============================] - 1s 102ms/step - loss: 0.6865 - accuracy: 0.6471
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.8086 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7963 - accuracy: 0.5882
 2/2 [==============================] - 1s 108ms/step - loss: 0.7963 - accuracy: 0.5882
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5737 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5777 - accuracy: 0.6765
 2/2 [==============================] - 1s 124ms/step - loss: 0.5777 - accuracy: 0.6765
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7992 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7809 - accuracy: 0.4706
 2/2 [==============================] - 1s 118ms/step - loss: 0.7809 - accuracy: 0.4706
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5490 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5597 - accuracy: 0.7059
 2/2 [==============================] - 1s 110ms/step - loss: 0.5597 - accuracy: 0.7059
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6539 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6498 - accuracy: 0.6176
 2/2 [==============================] - 1s 127ms/step - loss: 0.6498 - accuracy: 0.6176
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.8481 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8503 - accuracy: 0.5588
 2/2 [==============================] - 1s 113ms/step - loss: 0.8503 - accuracy: 0.5588
 Epoch 1/10
@@ -2916,52 +2920,52 @@ Non-trainable params: 456
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 8s - loss: 1.4233 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.4132 - accuracy: 0.4118
 2/2 [==============================] - 9s 728ms/step - loss: 1.4132 - accuracy: 0.4118
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 4s - loss: 0.8159 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8747 - accuracy: 0.5588
 2/2 [==============================] - 5s 676ms/step - loss: 0.8747 - accuracy: 0.5588
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.8955 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8475 - accuracy: 0.6765
 2/2 [==============================] - 4s 563ms/step - loss: 0.8475 - accuracy: 0.6765
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.7873 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8505 - accuracy: 0.5882
 2/2 [==============================] - 5s 666ms/step - loss: 0.8505 - accuracy: 0.5882
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 4s - loss: 0.7516 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7200 - accuracy: 0.6471
 2/2 [==============================] - 5s 625ms/step - loss: 0.7200 - accuracy: 0.6471
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.7106 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7246 - accuracy: 0.7059
 2/2 [==============================] - 2s 714ms/step - loss: 0.7246 - accuracy: 0.7059
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 4s - loss: 0.7066 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6839 - accuracy: 0.7059
 2/2 [==============================] - 5s 605ms/step - loss: 0.6839 - accuracy: 0.7059
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.6570 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6186 - accuracy: 0.7059
 2/2 [==============================] - 5s 632ms/step - loss: 0.6186 - accuracy: 0.7059
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.4452 - accuracy: 0.8438
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4577 - accuracy: 0.8235
 2/2 [==============================] - 4s 652ms/step - loss: 0.4577 - accuracy: 0.8235
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.7534 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7093 - accuracy: 0.6765
 2/2 [==============================] - 5s 737ms/step - loss: 0.7093 - accuracy: 0.6765
 
@@ -3010,43 +3014,43 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 192.8508 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 2s 10ms/step - loss: 191.4213 - accuracy: 0.4118
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 93.1189 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 8ms/step - loss: 87.6413 - accuracy: 0.6176
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 131.3995 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 131.5674 - accuracy: 0.6176
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 71.8544 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 67.6920 - accuracy: 0.5882
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 65.5978 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 76.1767 - accuracy: 0.5000
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 41.1178 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 38.6991 - accuracy: 0.7353
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 92.4526 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 8ms/step - loss: 88.5360 - accuracy: 0.4706
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 135.7336 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 10ms/step - loss: 127.7493 - accuracy: 0.4706
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 73.3131 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 9ms/step - loss: 69.8552 - accuracy: 0.5294
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 52.6643 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 9ms/step - loss: 49.5664 - accuracy: 0.6765
 
 1/1 [==============================] - ETA: 0s
@@ -3283,52 +3287,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1:22 - loss: 0.6933 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8276 - accuracy: 0.4118  
 2/2 [==============================] - 89s 7s/step - loss: 0.8276 - accuracy: 0.4118
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 51s - loss: 0.8225 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9181 - accuracy: 0.5294 
 2/2 [==============================] - 58s 7s/step - loss: 0.9181 - accuracy: 0.5294
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 49s - loss: 1.3122 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.3035 - accuracy: 0.4412 
 2/2 [==============================] - 55s 6s/step - loss: 1.3035 - accuracy: 0.4412
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.6560 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6323 - accuracy: 0.6765 
 2/2 [==============================] - 40s 6s/step - loss: 0.6323 - accuracy: 0.6765
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.9873 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0627 - accuracy: 0.5588 
 2/2 [==============================] - 40s 6s/step - loss: 1.0627 - accuracy: 0.5588
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 38s - loss: 0.7887 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7902 - accuracy: 0.6765 
 2/2 [==============================] - 45s 7s/step - loss: 0.7902 - accuracy: 0.6765
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 46s - loss: 0.7117 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7867 - accuracy: 0.5588 
 2/2 [==============================] - 51s 4s/step - loss: 0.7867 - accuracy: 0.5588
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 32s - loss: 0.9828 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9694 - accuracy: 0.6765 
 2/2 [==============================] - 38s 5s/step - loss: 0.9694 - accuracy: 0.6765
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 38s - loss: 1.1089 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1030 - accuracy: 0.5588 
 2/2 [==============================] - 45s 7s/step - loss: 1.1030 - accuracy: 0.5588
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 52s - loss: 0.8870 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8890 - accuracy: 0.7059 
 2/2 [==============================] - 59s 7s/step - loss: 0.8890 - accuracy: 0.7059
 
@@ -3441,52 +3445,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 59s - loss: 1.0527 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0425 - accuracy: 0.5000 
 2/2 [==============================] - 64s 5s/step - loss: 1.0425 - accuracy: 0.5000
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 1.2236 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1756 - accuracy: 0.4412 
 2/2 [==============================] - 32s 4s/step - loss: 1.1756 - accuracy: 0.4412
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 0.8744 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9355 - accuracy: 0.5588 
 2/2 [==============================] - 31s 4s/step - loss: 0.9355 - accuracy: 0.5588
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 1.0409 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0490 - accuracy: 0.4706 
 2/2 [==============================] - 31s 4s/step - loss: 1.0490 - accuracy: 0.4706
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 0.8493 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8796 - accuracy: 0.5000 
 2/2 [==============================] - 32s 4s/step - loss: 0.8796 - accuracy: 0.5000
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 1.2557 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2896 - accuracy: 0.4118 
 2/2 [==============================] - 31s 4s/step - loss: 1.2896 - accuracy: 0.4118
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 28s - loss: 1.0550 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0574 - accuracy: 0.5000 
 2/2 [==============================] - 33s 4s/step - loss: 1.0574 - accuracy: 0.5000
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 1.1353 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0777 - accuracy: 0.4706 
 2/2 [==============================] - 41s 5s/step - loss: 1.0777 - accuracy: 0.4706
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 39s - loss: 0.8380 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8643 - accuracy: 0.7059 
 2/2 [==============================] - 45s 5s/step - loss: 0.8643 - accuracy: 0.7059
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 1.1000 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0377 - accuracy: 0.4706 
 2/2 [==============================] - 38s 3s/step - loss: 1.0377 - accuracy: 0.4706
 
@@ -3729,52 +3733,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 36s - loss: 0.6933 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8276 - accuracy: 0.4118 
 2/2 [==============================] - 40s 4s/step - loss: 0.8276 - accuracy: 0.4118
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 26s - loss: 0.8227 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9200 - accuracy: 0.5294 
 2/2 [==============================] - 30s 4s/step - loss: 0.9200 - accuracy: 0.5294
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 1.0867 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1170 - accuracy: 0.5294 
 2/2 [==============================] - 30s 4s/step - loss: 1.1170 - accuracy: 0.5294
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 1.0736 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2335 - accuracy: 0.5000 
 2/2 [==============================] - 30s 4s/step - loss: 1.2335 - accuracy: 0.5000
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 26s - loss: 1.0298 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0000 - accuracy: 0.6176 
 2/2 [==============================] - 31s 4s/step - loss: 1.0000 - accuracy: 0.6176
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 26s - loss: 1.2422 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2262 - accuracy: 0.5294 
 2/2 [==============================] - 31s 4s/step - loss: 1.2262 - accuracy: 0.5294
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 0.8788 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8299 - accuracy: 0.4412 
 2/2 [==============================] - 29s 4s/step - loss: 0.8299 - accuracy: 0.4412
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 0.6799 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6984 - accuracy: 0.6471 
 2/2 [==============================] - 29s 4s/step - loss: 0.6984 - accuracy: 0.6471
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 0.9068 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9121 - accuracy: 0.6471 
 2/2 [==============================] - 30s 4s/step - loss: 0.9121 - accuracy: 0.6471
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 25s - loss: 0.9216 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8817 - accuracy: 0.5882 
 2/2 [==============================] - 29s 4s/step - loss: 0.8817 - accuracy: 0.5882
 
@@ -3917,52 +3921,52 @@ Non-trainable params: 7
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 2.0412 - accuracy: 0.3438
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 2.9145 - accuracy: 0.3333
 2/2 [==============================] - 2s 264ms/step - loss: 2.9145 - accuracy: 0.3333
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 1.7524 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.6153 - accuracy: 0.4872
 2/2 [==============================] - 1s 227ms/step - loss: 1.6153 - accuracy: 0.4872
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.7440 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7183 - accuracy: 0.6410
 2/2 [==============================] - 1s 271ms/step - loss: 0.7183 - accuracy: 0.6410
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.8281 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7444 - accuracy: 0.5385
 2/2 [==============================] - 1s 279ms/step - loss: 0.7444 - accuracy: 0.5385
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 1.3047 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1892 - accuracy: 0.5897
 2/2 [==============================] - 1s 270ms/step - loss: 1.1892 - accuracy: 0.5897
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6697 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6647 - accuracy: 0.6410
 2/2 [==============================] - 1s 277ms/step - loss: 0.6647 - accuracy: 0.6410
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.7079 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7258 - accuracy: 0.6154
 2/2 [==============================] - 1s 262ms/step - loss: 0.7258 - accuracy: 0.6154
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6769 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6853 - accuracy: 0.5641
 2/2 [==============================] - 1s 272ms/step - loss: 0.6853 - accuracy: 0.5641
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6823 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6805 - accuracy: 0.6154
 2/2 [==============================] - 1s 269ms/step - loss: 0.6805 - accuracy: 0.6154
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6815 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6874 - accuracy: 0.5897
 2/2 [==============================] - 1s 254ms/step - loss: 0.6874 - accuracy: 0.5897
 
@@ -4041,152 +4045,152 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.7011 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8773 - accuracy: 0.5128
 2/2 [==============================] - 1s 96ms/step - loss: 0.8773 - accuracy: 0.5128
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.9190 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9752 - accuracy: 0.4615
 2/2 [==============================] - 0s 93ms/step - loss: 0.9752 - accuracy: 0.4615
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 1.0240 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9717 - accuracy: 0.4103
 2/2 [==============================] - 0s 82ms/step - loss: 0.9717 - accuracy: 0.4103
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6969 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6802 - accuracy: 0.6667
 2/2 [==============================] - 0s 88ms/step - loss: 0.6802 - accuracy: 0.6667
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6943 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6916 - accuracy: 0.5128
 2/2 [==============================] - 0s 85ms/step - loss: 0.6916 - accuracy: 0.5128
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6571 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6662 - accuracy: 0.6667
 2/2 [==============================] - 0s 88ms/step - loss: 0.6662 - accuracy: 0.6667
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6546 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6510 - accuracy: 0.6410
 2/2 [==============================] - 0s 96ms/step - loss: 0.6510 - accuracy: 0.6410
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6600 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6594 - accuracy: 0.6154
 2/2 [==============================] - 0s 95ms/step - loss: 0.6594 - accuracy: 0.6154
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7003 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7040 - accuracy: 0.5385
 2/2 [==============================] - 0s 76ms/step - loss: 0.7040 - accuracy: 0.5385
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6371 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6406 - accuracy: 0.6154
 2/2 [==============================] - 0s 85ms/step - loss: 0.6406 - accuracy: 0.6154
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.7633 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2013 - accuracy: 0.4103
 2/2 [==============================] - 1s 114ms/step - loss: 1.2013 - accuracy: 0.4103
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7215 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7239 - accuracy: 0.5128
 2/2 [==============================] - 1s 126ms/step - loss: 0.7239 - accuracy: 0.5128
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6753 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6751 - accuracy: 0.6667
 2/2 [==============================] - 1s 116ms/step - loss: 0.6751 - accuracy: 0.6667
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6496 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6087 - accuracy: 0.6410
 2/2 [==============================] - 1s 119ms/step - loss: 0.6087 - accuracy: 0.6410
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7183 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6878 - accuracy: 0.5897
 2/2 [==============================] - 1s 115ms/step - loss: 0.6878 - accuracy: 0.5897
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5977 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5959 - accuracy: 0.6410
 2/2 [==============================] - 1s 117ms/step - loss: 0.5959 - accuracy: 0.6410
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5513 - accuracy: 0.8125
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5714 - accuracy: 0.7436
 2/2 [==============================] - 1s 114ms/step - loss: 0.5714 - accuracy: 0.7436
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5431 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5396 - accuracy: 0.6923
 2/2 [==============================] - 1s 115ms/step - loss: 0.5396 - accuracy: 0.6923
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5455 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5380 - accuracy: 0.7179
 2/2 [==============================] - 1s 131ms/step - loss: 0.5380 - accuracy: 0.7179
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.4671 - accuracy: 0.7812
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4773 - accuracy: 0.7692
 2/2 [==============================] - 1s 119ms/step - loss: 0.4773 - accuracy: 0.7692
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - accuracy: 0.9688 - loss: 0.0457 - student_loss: 0.4249 - distillation_loss: 0.0035
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.9143 - loss: 0.2641 - student_loss: 2.2557 - distillation_loss: 0.0428
 2/2 [==============================] - 2s 416ms/step - accuracy: 0.9143 - loss: 0.3368 - student_loss: 2.8660 - distillation_loss: 0.0558 - val_accuracy: 0.5000 - val_student_loss: 0.8071
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8125 - loss: 0.0455 - student_loss: 0.3382 - distillation_loss: 0.0130
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8286 - loss: 0.0407 - student_loss: 0.3208 - distillation_loss: 0.0095
 2/2 [==============================] - 0s 121ms/step - accuracy: 0.8286 - loss: 0.0391 - student_loss: 0.3150 - distillation_loss: 0.0084 - val_accuracy: 1.0000 - val_student_loss: 0.2989
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.7188 - loss: 0.0571 - student_loss: 0.5066 - distillation_loss: 0.0072
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7143 - loss: 0.0526 - student_loss: 0.4846 - distillation_loss: 0.0046
 2/2 [==============================] - 1s 158ms/step - accuracy: 0.7143 - loss: 0.0511 - student_loss: 0.4773 - distillation_loss: 0.0038 - val_accuracy: 0.2500 - val_student_loss: 0.8043
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.7500 - loss: 0.0555 - student_loss: 0.5228 - distillation_loss: 0.0036
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7429 - loss: 0.0691 - student_loss: 0.6448 - distillation_loss: 0.0052
 2/2 [==============================] - 1s 142ms/step - accuracy: 0.7429 - loss: 0.0737 - student_loss: 0.6855 - distillation_loss: 0.0057 - val_accuracy: 0.2500 - val_student_loss: 0.6854
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8125 - loss: 0.0505 - student_loss: 0.4744 - distillation_loss: 0.0034
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8286 - loss: 0.0494 - student_loss: 0.4718 - distillation_loss: 0.0024
 2/2 [==============================] - 1s 146ms/step - accuracy: 0.8286 - loss: 0.0490 - student_loss: 0.4710 - distillation_loss: 0.0021 - val_accuracy: 1.0000 - val_student_loss: 0.5289
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.9062 - loss: 0.0529 - student_loss: 0.5016 - distillation_loss: 0.0030
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.9143 - loss: 0.0436 - student_loss: 0.3936 - distillation_loss: 0.0047
 2/2 [==============================] - 1s 147ms/step - accuracy: 0.9143 - loss: 0.0405 - student_loss: 0.3576 - distillation_loss: 0.0053 - val_accuracy: 1.0000 - val_student_loss: 0.5150
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8750 - loss: 0.0470 - student_loss: 0.4223 - distillation_loss: 0.0053
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8571 - loss: 0.0496 - student_loss: 0.4612 - distillation_loss: 0.0038
 2/2 [==============================] - 1s 150ms/step - accuracy: 0.8571 - loss: 0.0504 - student_loss: 0.4742 - distillation_loss: 0.0033 - val_accuracy: 0.2500 - val_student_loss: 0.7797
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.7812 - loss: 0.0451 - student_loss: 0.3825 - distillation_loss: 0.0076
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8000 - loss: 0.0343 - student_loss: 0.2483 - distillation_loss: 0.0105
 2/2 [==============================] - 1s 149ms/step - accuracy: 0.8000 - loss: 0.0307 - student_loss: 0.2036 - distillation_loss: 0.0115 - val_accuracy: 0.2500 - val_student_loss: 1.5101
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.7188 - loss: 0.0519 - student_loss: 0.4689 - distillation_loss: 0.0056
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7429 - loss: 0.0348 - student_loss: 0.3086 - distillation_loss: 0.0043
 2/2 [==============================] - 1s 154ms/step - accuracy: 0.7429 - loss: 0.0291 - student_loss: 0.2552 - distillation_loss: 0.0039 - val_accuracy: 0.2500 - val_student_loss: 0.7137
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8750 - loss: 0.0355 - student_loss: 0.3194 - distillation_loss: 0.0040
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8857 - loss: 0.0264 - student_loss: 0.2321 - distillation_loss: 0.0035
 2/2 [==============================] - 1s 150ms/step - accuracy: 0.8857 - loss: 0.0233 - student_loss: 0.2030 - distillation_loss: 0.0034 - val_accuracy: 0.2500 - val_student_loss: 0.7524
 
@@ -4257,52 +4261,52 @@ Non-trainable params: 456
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 3s - loss: 0.9831 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0495 - accuracy: 0.4872
 2/2 [==============================] - 4s 612ms/step - loss: 1.0495 - accuracy: 0.4872
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.9204 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8501 - accuracy: 0.5641
 2/2 [==============================] - 2s 559ms/step - loss: 0.8501 - accuracy: 0.5641
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.8048 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8464 - accuracy: 0.6667
 2/2 [==============================] - 2s 604ms/step - loss: 0.8464 - accuracy: 0.6667
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.8603 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7810 - accuracy: 0.5641
 2/2 [==============================] - 2s 534ms/step - loss: 0.7810 - accuracy: 0.5641
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.5751 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6183 - accuracy: 0.7179
 2/2 [==============================] - 2s 600ms/step - loss: 0.6183 - accuracy: 0.7179
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.7307 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7242 - accuracy: 0.6923
 2/2 [==============================] - 3s 953ms/step - loss: 0.7242 - accuracy: 0.6923
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.5984 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7122 - accuracy: 0.6923
 2/2 [==============================] - 3s 796ms/step - loss: 0.7122 - accuracy: 0.6923
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.6244 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6753 - accuracy: 0.6923
 2/2 [==============================] - 3s 775ms/step - loss: 0.6753 - accuracy: 0.6923
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.6819 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6600 - accuracy: 0.7179
 2/2 [==============================] - 3s 772ms/step - loss: 0.6600 - accuracy: 0.7179
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.4682 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4622 - accuracy: 0.7436
 2/2 [==============================] - 3s 781ms/step - loss: 0.4622 - accuracy: 0.7436
 
@@ -4351,43 +4355,43 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 129.7683 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 1s 5ms/step - loss: 110.7375 - accuracy: 0.6154
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 221.1872 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 3ms/step - loss: 226.3897 - accuracy: 0.4359
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 118.9666 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 5ms/step - loss: 119.3962 - accuracy: 0.4872
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 104.1709 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 4ms/step - loss: 86.6569 - accuracy: 0.5897
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 91.2055 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 109.5149 - accuracy: 0.6410
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 108.8863 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 5ms/step - loss: 130.1199 - accuracy: 0.5641
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 81.5192 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 4ms/step - loss: 83.1673 - accuracy: 0.4615
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 78.6202 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 5ms/step - loss: 73.7463 - accuracy: 0.4872
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 92.3925 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 3ms/step - loss: 95.1010 - accuracy: 0.5385
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 113.9119 - accuracy: 0.3125
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 7ms/step - loss: 105.6961 - accuracy: 0.3333
 
 1/1 [==============================] - ETA: 0s
@@ -4624,52 +4628,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 29s - loss: 0.6931 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6993 - accuracy: 0.5897 
 2/2 [==============================] - 35s 6s/step - loss: 0.6993 - accuracy: 0.5897
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 18s - loss: 1.3459 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1514 - accuracy: 0.5385 
 2/2 [==============================] - 23s 5s/step - loss: 1.1514 - accuracy: 0.5385
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 18s - loss: 0.9920 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1482 - accuracy: 0.5385 
 2/2 [==============================] - 27s 8s/step - loss: 1.1482 - accuracy: 0.5385
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.8271 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0233 - accuracy: 0.5897 
 2/2 [==============================] - 44s 10s/step - loss: 1.0233 - accuracy: 0.5897
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 1.0323 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9847 - accuracy: 0.5897 
 2/2 [==============================] - 46s 10s/step - loss: 0.9847 - accuracy: 0.5897
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 36s - loss: 0.6303 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7233 - accuracy: 0.6923 
 2/2 [==============================] - 46s 9s/step - loss: 0.7233 - accuracy: 0.6923
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.7919 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7994 - accuracy: 0.6410 
 2/2 [==============================] - 44s 9s/step - loss: 0.7994 - accuracy: 0.6410
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.8037 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7745 - accuracy: 0.6667 
 2/2 [==============================] - 43s 9s/step - loss: 0.7745 - accuracy: 0.6667
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 32s - loss: 0.8285 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7229 - accuracy: 0.6410 
 2/2 [==============================] - 42s 9s/step - loss: 0.7229 - accuracy: 0.6410
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 29s - loss: 1.0605 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0724 - accuracy: 0.5385 
 2/2 [==============================] - 33s 4s/step - loss: 1.0724 - accuracy: 0.5385
 
@@ -4782,52 +4786,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 1.6244 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.6898 - accuracy: 0.5128 
 2/2 [==============================] - 20s 4s/step - loss: 1.6898 - accuracy: 0.5128
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 1.3305 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2750 - accuracy: 0.5128 
 2/2 [==============================] - 20s 5s/step - loss: 1.2750 - accuracy: 0.5128
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 0.7708 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7638 - accuracy: 0.7179 
 2/2 [==============================] - 20s 4s/step - loss: 0.7638 - accuracy: 0.7179
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 14s - loss: 0.9486 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9291 - accuracy: 0.5897 
 2/2 [==============================] - 19s 4s/step - loss: 0.9291 - accuracy: 0.5897
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 0.8053 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7648 - accuracy: 0.6667 
 2/2 [==============================] - 20s 4s/step - loss: 0.7648 - accuracy: 0.6667
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.9535 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9892 - accuracy: 0.6667 
 2/2 [==============================] - 21s 5s/step - loss: 0.9892 - accuracy: 0.6667
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.7390 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7533 - accuracy: 0.7436 
 2/2 [==============================] - 22s 5s/step - loss: 0.7533 - accuracy: 0.7436
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.8334 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8430 - accuracy: 0.6410 
 2/2 [==============================] - 21s 5s/step - loss: 0.8430 - accuracy: 0.6410
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.8632 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9012 - accuracy: 0.5641 
 2/2 [==============================] - 21s 4s/step - loss: 0.9012 - accuracy: 0.5641
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 1.2071 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1684 - accuracy: 0.5385 
 2/2 [==============================] - 21s 5s/step - loss: 1.1684 - accuracy: 0.5385
 
@@ -5070,52 +5074,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 20s - loss: 0.6931 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6993 - accuracy: 0.5897 
 2/2 [==============================] - 25s 5s/step - loss: 0.6993 - accuracy: 0.5897
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 1.3459 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1514 - accuracy: 0.5385 
 2/2 [==============================] - 21s 4s/step - loss: 1.1514 - accuracy: 0.5385
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 0.9920 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1482 - accuracy: 0.5385 
 2/2 [==============================] - 20s 4s/step - loss: 1.1482 - accuracy: 0.5385
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.8271 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0233 - accuracy: 0.5897 
 2/2 [==============================] - 21s 4s/step - loss: 1.0233 - accuracy: 0.5897
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 1.0323 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9847 - accuracy: 0.5897 
 2/2 [==============================] - 21s 4s/step - loss: 0.9847 - accuracy: 0.5897
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 14s - loss: 0.6303 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7233 - accuracy: 0.6923 
 2/2 [==============================] - 19s 4s/step - loss: 0.7233 - accuracy: 0.6923
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 15s - loss: 0.7919 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7994 - accuracy: 0.6410 
 2/2 [==============================] - 19s 4s/step - loss: 0.7994 - accuracy: 0.6410
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 14s - loss: 0.8037 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7745 - accuracy: 0.6667 
 2/2 [==============================] - 19s 4s/step - loss: 0.7745 - accuracy: 0.6667
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 14s - loss: 0.8285 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7229 - accuracy: 0.6410 
 2/2 [==============================] - 19s 4s/step - loss: 0.7229 - accuracy: 0.6410
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 14s - loss: 1.0605 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0724 - accuracy: 0.5385 
 2/2 [==============================] - 20s 5s/step - loss: 1.0724 - accuracy: 0.5385
 
@@ -5258,52 +5262,52 @@ Non-trainable params: 7
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 1.6006 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 2.0545 - accuracy: 0.5000
 2/2 [==============================] - 2s 367ms/step - loss: 2.0545 - accuracy: 0.5000
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.9001 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1263 - accuracy: 0.4773
 2/2 [==============================] - 1s 365ms/step - loss: 1.1263 - accuracy: 0.4773
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 1.5465 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2548 - accuracy: 0.5682
 2/2 [==============================] - 1s 344ms/step - loss: 1.2548 - accuracy: 0.5682
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7369 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7264 - accuracy: 0.5909
 2/2 [==============================] - 1s 358ms/step - loss: 0.7264 - accuracy: 0.5909
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7448 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7441 - accuracy: 0.5000
 2/2 [==============================] - 1s 343ms/step - loss: 0.7441 - accuracy: 0.5000
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6235 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6953 - accuracy: 0.6591
 2/2 [==============================] - 1s 345ms/step - loss: 0.6953 - accuracy: 0.6591
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6758 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6930 - accuracy: 0.6136
 2/2 [==============================] - 1s 338ms/step - loss: 0.6930 - accuracy: 0.6136
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6765 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6868 - accuracy: 0.6364
 2/2 [==============================] - 1s 345ms/step - loss: 0.6868 - accuracy: 0.6364
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6772 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6834 - accuracy: 0.5227
 2/2 [==============================] - 1s 393ms/step - loss: 0.6834 - accuracy: 0.5227
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7031 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6864 - accuracy: 0.6136
 2/2 [==============================] - 1s 347ms/step - loss: 0.6864 - accuracy: 0.6136
 
@@ -5382,152 +5386,152 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7040 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8318 - accuracy: 0.5000
 2/2 [==============================] - 1s 80ms/step - loss: 0.8318 - accuracy: 0.5000
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.8314 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8108 - accuracy: 0.5909
 2/2 [==============================] - 0s 111ms/step - loss: 0.8108 - accuracy: 0.5909
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.8065 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7805 - accuracy: 0.4545
 2/2 [==============================] - 0s 129ms/step - loss: 0.7805 - accuracy: 0.4545
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7439 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7298 - accuracy: 0.4773
 2/2 [==============================] - 0s 116ms/step - loss: 0.7298 - accuracy: 0.4773
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6626 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6373 - accuracy: 0.6364
 2/2 [==============================] - 0s 136ms/step - loss: 0.6373 - accuracy: 0.6364
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6209 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6811 - accuracy: 0.5682
 2/2 [==============================] - 0s 137ms/step - loss: 0.6811 - accuracy: 0.5682
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6279 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6444 - accuracy: 0.6136
 2/2 [==============================] - 0s 146ms/step - loss: 0.6444 - accuracy: 0.6136
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6511 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6766 - accuracy: 0.6364
 2/2 [==============================] - 0s 148ms/step - loss: 0.6766 - accuracy: 0.6364
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6142 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6285 - accuracy: 0.6364
 2/2 [==============================] - 0s 180ms/step - loss: 0.6285 - accuracy: 0.6364
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6601 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6288 - accuracy: 0.6136
 2/2 [==============================] - 0s 92ms/step - loss: 0.6288 - accuracy: 0.6136
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.7396 - accuracy: 0.4062
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9140 - accuracy: 0.4773
 2/2 [==============================] - 1s 187ms/step - loss: 0.9140 - accuracy: 0.4773
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6121 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6223 - accuracy: 0.7045
 2/2 [==============================] - 1s 266ms/step - loss: 0.6223 - accuracy: 0.7045
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6601 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6396 - accuracy: 0.6818
 2/2 [==============================] - 1s 232ms/step - loss: 0.6396 - accuracy: 0.6818
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.6917 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7149 - accuracy: 0.6136
 2/2 [==============================] - 1s 204ms/step - loss: 0.7149 - accuracy: 0.6136
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5983 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5873 - accuracy: 0.6818
 2/2 [==============================] - 1s 221ms/step - loss: 0.5873 - accuracy: 0.6818
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.5595 - accuracy: 0.8125
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5666 - accuracy: 0.7500
 2/2 [==============================] - 1s 206ms/step - loss: 0.5666 - accuracy: 0.7500
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.4751 - accuracy: 0.7812
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4574 - accuracy: 0.8182
 2/2 [==============================] - 1s 223ms/step - loss: 0.4574 - accuracy: 0.8182
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.4671 - accuracy: 0.8125
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4605 - accuracy: 0.8182
 2/2 [==============================] - 1s 238ms/step - loss: 0.4605 - accuracy: 0.8182
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.3873 - accuracy: 0.8438
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.4026 - accuracy: 0.8182
 2/2 [==============================] - 1s 191ms/step - loss: 0.4026 - accuracy: 0.8182
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 0.3015 - accuracy: 0.9688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.3077 - accuracy: 0.9318
 2/2 [==============================] - 1s 274ms/step - loss: 0.3077 - accuracy: 0.9318
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 1s - accuracy: 0.7812 - loss: 0.0602 - student_loss: 0.3199 - distillation_loss: 0.0314
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7949 - loss: 0.0618 - student_loss: 0.4016 - distillation_loss: 0.0241
 2/2 [==============================] - 2s 310ms/step - accuracy: 0.7949 - loss: 0.0624 - student_loss: 0.4289 - distillation_loss: 0.0216 - val_accuracy: 1.0000 - val_student_loss: 0.3372
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.6562 - loss: 0.0602 - student_loss: 0.5640 - distillation_loss: 0.0043
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.6410 - loss: 0.0632 - student_loss: 0.6058 - distillation_loss: 0.0029
 2/2 [==============================] - 1s 194ms/step - accuracy: 0.6410 - loss: 0.0642 - student_loss: 0.6198 - distillation_loss: 0.0024 - val_accuracy: 1.0000 - val_student_loss: 0.5286
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8750 - loss: 0.0598 - student_loss: 0.5861 - distillation_loss: 0.0013
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8462 - loss: 0.0619 - student_loss: 0.6086 - distillation_loss: 0.0011
 2/2 [==============================] - 1s 228ms/step - accuracy: 0.8462 - loss: 0.0626 - student_loss: 0.6160 - distillation_loss: 0.0011 - val_accuracy: 1.0000 - val_student_loss: 0.5936
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8750 - loss: 0.0578 - student_loss: 0.5709 - distillation_loss: 8.3648e-04
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8718 - loss: 0.0619 - student_loss: 0.6136 - distillation_loss: 6.3498e-04
 2/2 [==============================] - 1s 199ms/step - accuracy: 0.8718 - loss: 0.0633 - student_loss: 0.6279 - distillation_loss: 5.6782e-04 - val_accuracy: 0.2000 - val_student_loss: 0.6380
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8125 - loss: 0.0579 - student_loss: 0.5710 - distillation_loss: 9.2179e-04
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8205 - loss: 0.0545 - student_loss: 0.5352 - distillation_loss: 0.0010    
 2/2 [==============================] - 1s 221ms/step - accuracy: 0.8205 - loss: 0.0533 - student_loss: 0.5232 - distillation_loss: 0.0011 - val_accuracy: 0.2000 - val_student_loss: 0.8284
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8125 - loss: 0.0473 - student_loss: 0.4410 - distillation_loss: 0.0036
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7949 - loss: 0.0571 - student_loss: 0.5368 - distillation_loss: 0.0038
 2/2 [==============================] - 1s 217ms/step - accuracy: 0.7949 - loss: 0.0603 - student_loss: 0.5687 - distillation_loss: 0.0039 - val_accuracy: 0.2000 - val_student_loss: 0.9799
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.7500 - loss: 0.0519 - student_loss: 0.4606 - distillation_loss: 0.0065
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.7692 - loss: 0.0483 - student_loss: 0.4363 - distillation_loss: 0.0052
 2/2 [==============================] - 1s 210ms/step - accuracy: 0.7692 - loss: 0.0471 - student_loss: 0.4282 - distillation_loss: 0.0047 - val_accuracy: 0.4000 - val_student_loss: 0.6640
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.9062 - loss: 0.0432 - student_loss: 0.3918 - distillation_loss: 0.0044
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8718 - loss: 0.0474 - student_loss: 0.4287 - distillation_loss: 0.0050
 2/2 [==============================] - 1s 234ms/step - accuracy: 0.8718 - loss: 0.0488 - student_loss: 0.4410 - distillation_loss: 0.0052 - val_accuracy: 0.4000 - val_student_loss: 0.6606
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 0.8438 - loss: 0.0431 - student_loss: 0.3873 - distillation_loss: 0.0048
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.8205 - loss: 0.0451 - student_loss: 0.3723 - distillation_loss: 0.0088
 2/2 [==============================] - 1s 236ms/step - accuracy: 0.8205 - loss: 0.0458 - student_loss: 0.3673 - distillation_loss: 0.0101 - val_accuracy: 0.8000 - val_student_loss: 0.4974
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - accuracy: 1.0000 - loss: 0.0337 - student_loss: 0.2712 - distillation_loss: 0.0073
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - accuracy: 0.9231 - loss: 0.0421 - student_loss: 0.3676 - distillation_loss: 0.0059
 2/2 [==============================] - 1s 165ms/step - accuracy: 0.9231 - loss: 0.0449 - student_loss: 0.3998 - distillation_loss: 0.0055 - val_accuracy: 0.8000 - val_student_loss: 0.3862
 
@@ -5598,52 +5602,52 @@ Non-trainable params: 456
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 1.3746 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.4520 - accuracy: 0.5455
 2/2 [==============================] - 4s 829ms/step - loss: 1.4520 - accuracy: 0.5455
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 1.2524 - accuracy: 0.4688
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0515 - accuracy: 0.5227
 2/2 [==============================] - 3s 893ms/step - loss: 1.0515 - accuracy: 0.5227
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6809 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7980 - accuracy: 0.6364
 2/2 [==============================] - 3s 861ms/step - loss: 0.7980 - accuracy: 0.6364
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6587 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5658 - accuracy: 0.6818
 2/2 [==============================] - 3s 813ms/step - loss: 0.5658 - accuracy: 0.6818
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.8841 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8240 - accuracy: 0.6364
 2/2 [==============================] - 3s 818ms/step - loss: 0.8240 - accuracy: 0.6364
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 1.1603 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.2204 - accuracy: 0.5000
 2/2 [==============================] - 3s 853ms/step - loss: 1.2204 - accuracy: 0.5000
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 1.0423 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9250 - accuracy: 0.5909
 2/2 [==============================] - 3s 873ms/step - loss: 0.9250 - accuracy: 0.5909
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 0.8331 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8420 - accuracy: 0.5000
 2/2 [==============================] - 3s 870ms/step - loss: 0.8420 - accuracy: 0.5000
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 2s - loss: 1.2049 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1081 - accuracy: 0.6136
 2/2 [==============================] - 3s 889ms/step - loss: 1.1081 - accuracy: 0.6136
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 1s - loss: 0.6265 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8282 - accuracy: 0.6818
 2/2 [==============================] - 3s 825ms/step - loss: 0.8282 - accuracy: 0.6818
 
@@ -5692,43 +5696,43 @@ Non-trainable params: 0
 _________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 98.9887 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 0s/step - loss: 109.5629 - accuracy: 0.5227
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 70.6710 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 4ms/step - loss: 60.1779 - accuracy: 0.5909
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 83.6543 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 0s/step - loss: 84.0969 - accuracy: 0.4545
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 85.1650 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 5ms/step - loss: 68.3964 - accuracy: 0.5909
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 35.8848 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 5ms/step - loss: 39.4224 - accuracy: 0.6818
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 85.2363 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 4ms/step - loss: 72.3907 - accuracy: 0.6136
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 42.0719 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 0s/step - loss: 39.8404 - accuracy: 0.6591
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 91.9473 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 2ms/step - loss: 84.0107 - accuracy: 0.5682
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 94.4579 - accuracy: 0.3438
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 8ms/step - loss: 77.4417 - accuracy: 0.4091
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 0s - loss: 54.7974 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - 0s 6ms/step - loss: 47.2194 - accuracy: 0.6364
 
 1/1 [==============================] - ETA: 0s
@@ -5965,52 +5969,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 24s - loss: 0.6933 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8688 - accuracy: 0.4545 
 2/2 [==============================] - 33s 8s/step - loss: 0.8688 - accuracy: 0.4545
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 17s - loss: 0.9297 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0853 - accuracy: 0.5227 
 2/2 [==============================] - 26s 8s/step - loss: 1.0853 - accuracy: 0.5227
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 27s - loss: 0.7835 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8366 - accuracy: 0.6818 
 2/2 [==============================] - 44s 16s/step - loss: 0.8366 - accuracy: 0.6818
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 16s - loss: 0.7236 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8962 - accuracy: 0.6136 
 2/2 [==============================] - 24s 8s/step - loss: 0.8962 - accuracy: 0.6136
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 22s - loss: 0.5887 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7079 - accuracy: 0.6136 
 2/2 [==============================] - 42s 19s/step - loss: 0.7079 - accuracy: 0.6136
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 42s - loss: 0.6065 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5760 - accuracy: 0.6591 
 2/2 [==============================] - 57s 15s/step - loss: 0.5760 - accuracy: 0.6591
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 0.9343 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0232 - accuracy: 0.5455 
 2/2 [==============================] - 51s 15s/step - loss: 1.0232 - accuracy: 0.5455
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 0.5291 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7528 - accuracy: 0.6136 
 2/2 [==============================] - 51s 15s/step - loss: 0.7528 - accuracy: 0.6136
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 0.6934 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7400 - accuracy: 0.7500 
 2/2 [==============================] - 50s 15s/step - loss: 0.7400 - accuracy: 0.7500
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.8815 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9379 - accuracy: 0.6818 
 2/2 [==============================] - 49s 15s/step - loss: 0.9379 - accuracy: 0.6818
 
@@ -6123,52 +6127,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 43s - loss: 0.8796 - accuracy: 0.5312
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0546 - accuracy: 0.5000 
 2/2 [==============================] - 58s 15s/step - loss: 1.0546 - accuracy: 0.5000
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.9804 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9683 - accuracy: 0.6136 
 2/2 [==============================] - 49s 15s/step - loss: 0.9683 - accuracy: 0.6136
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 1.1687 - accuracy: 0.5000
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.1759 - accuracy: 0.5455 
 2/2 [==============================] - 50s 15s/step - loss: 1.1759 - accuracy: 0.5455
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.5864 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8020 - accuracy: 0.6591 
 2/2 [==============================] - 49s 15s/step - loss: 0.8020 - accuracy: 0.6591
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.8085 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7785 - accuracy: 0.5682 
 2/2 [==============================] - 48s 14s/step - loss: 0.7785 - accuracy: 0.5682
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.8059 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0001 - accuracy: 0.6591 
 2/2 [==============================] - 49s 15s/step - loss: 1.0001 - accuracy: 0.6591
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.5525 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5099 - accuracy: 0.7500 
 2/2 [==============================] - 50s 15s/step - loss: 0.5099 - accuracy: 0.7500
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.5933 - accuracy: 0.6562
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.6465 - accuracy: 0.6591 
 2/2 [==============================] - 49s 15s/step - loss: 0.6465 - accuracy: 0.6591
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.5682 - accuracy: 0.7188
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5378 - accuracy: 0.7500 
 2/2 [==============================] - 48s 15s/step - loss: 0.5378 - accuracy: 0.7500
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.8349 - accuracy: 0.5938
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8136 - accuracy: 0.5909 
 2/2 [==============================] - 50s 15s/step - loss: 0.8136 - accuracy: 0.5909
 
@@ -6411,52 +6415,52 @@ Non-trainable params: 456
 __________________________________________________________________________________________________
 Epoch 1/10
 
-1/2 [==============>...............] - ETA: 48s - loss: 0.6933 - accuracy: 0.4375
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8688 - accuracy: 0.4545 
 2/2 [==============================] - 63s 15s/step - loss: 0.8688 - accuracy: 0.4545
 Epoch 2/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.9297 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0853 - accuracy: 0.5227 
 2/2 [==============================] - 51s 17s/step - loss: 1.0853 - accuracy: 0.5227
 Epoch 3/10
 
-1/2 [==============>...............] - ETA: 40s - loss: 0.7835 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8366 - accuracy: 0.6818 
 2/2 [==============================] - 57s 17s/step - loss: 0.8366 - accuracy: 0.6818
 Epoch 4/10
 
-1/2 [==============>...............] - ETA: 35s - loss: 0.7236 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.8962 - accuracy: 0.6136 
 2/2 [==============================] - 49s 14s/step - loss: 0.8962 - accuracy: 0.6136
 Epoch 5/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.5887 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7079 - accuracy: 0.6136 
 2/2 [==============================] - 48s 15s/step - loss: 0.7079 - accuracy: 0.6136
 Epoch 6/10
 
-1/2 [==============>...............] - ETA: 34s - loss: 0.6065 - accuracy: 0.6250
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.5760 - accuracy: 0.6591 
 2/2 [==============================] - 49s 15s/step - loss: 0.5760 - accuracy: 0.6591
 Epoch 7/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.9343 - accuracy: 0.5625
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 1.0232 - accuracy: 0.5455 
 2/2 [==============================] - 48s 14s/step - loss: 1.0232 - accuracy: 0.5455
 Epoch 8/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.5291 - accuracy: 0.6875
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7528 - accuracy: 0.6136 
 2/2 [==============================] - 47s 14s/step - loss: 0.7528 - accuracy: 0.6136
 Epoch 9/10
 
-1/2 [==============>...............] - ETA: 32s - loss: 0.6934 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.7400 - accuracy: 0.7500 
 2/2 [==============================] - 47s 14s/step - loss: 0.7400 - accuracy: 0.7500
 Epoch 10/10
 
-1/2 [==============>...............] - ETA: 33s - loss: 0.8815 - accuracy: 0.7500
+    ... [1 lines collapsed: Keras progress bar]
 2/2 [==============================] - ETA: 0s - loss: 0.9379 - accuracy: 0.6818 
 2/2 [==============================] - 48s 14s/step - loss: 0.9379 - accuracy: 0.6818
 

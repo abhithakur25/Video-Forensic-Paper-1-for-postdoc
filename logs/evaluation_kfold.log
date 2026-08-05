@@ -1,3 +1,7 @@
+# [tidied] evaluation_kfold.log
+# SUPERSEDED. Partial k-fold under the tampered metric; stopped once the fabrication was found.
+# tidied 2026-08-05 16:17:33; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 ﻿# evaluation_kfold.log
 # K-fold comparative analysis, k=6..10, 1 fold per k, 10 epochs. Feeds section 5.6.2 of the paper.
 # source: tasks/bly68davm.output   captured: 2026-08-04 16:16:39

@@ -1,3 +1,7 @@
+# [tidied] keras_weight_download.log
+# First import of SubFunctions: ResNet101 (180 MB) and VGG16 (553 MB) download at module scope - the 733 MB cost of a bare import.
+# tidied 2026-08-05 16:17:33; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 # keras_weight_download.log
 # First import of SubFunctions: ResNet101 (180 MB) and VGG16 (553 MB) download at module scope. Shows the 733 MB cost of a bare import.
 # source: tasks/boieyzpuz.output   captured: 2026-08-04 16:16:39
