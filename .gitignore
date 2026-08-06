@@ -22,3 +22,7 @@ desktop.ini
 *.bak-*
 FFPP/cache/
 FFPP/results/
+
+# Third-party reference implementations, cloned for comparison.
+# Commit hashes are recorded in Optimized/oof_*.json.
+External/

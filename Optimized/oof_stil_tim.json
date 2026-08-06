@@ -1,0 +1,62 @@
+{
+  "model": "STIL TIM+ISM blocks on the proposed tensor",
+  "reference": "Tencent/TFace security/tasks/Face-Forgery-Detection/STIL",
+  "tface_commit": "171ec1434aca0972e111663ac646c9c1e3e44b5b",
+  "modules_imported_unmodified": [
+    "TIM_Module",
+    "ISM_Module"
+  ],
+  "input": [
+    50,
+    10,
+    12,
+    128,
+    128
+  ],
+  "protocol": "5 outer folds from cache/folds.npz; inner 20% stratified validation split for early stopping; nothing selected on the outer test fold",
+  "hyperparameters": {
+    "epochs": 60,
+    "batch": 8,
+    "lr": 0.0003,
+    "wd": 0.01,
+    "width": 32,
+    "dropout": 0.5,
+    "threads": 6,
+    "tag": "stil_tim"
+  },
+  "pooled_balanced_accuracy": 0.5049261083743842,
+  "mean_fold_balanced_accuracy": 0.5166666666666666,
+  "per_fold": [
+    {
+      "fold": 0,
+      "inner_val_bal": 0.6666666666666666,
+      "best_epoch": 1,
+      "outer_bal": 0.5
+    },
+    {
+      "fold": 1,
+      "inner_val_bal": 0.5333333333333333,
+      "best_epoch": 22,
+      "outer_bal": 0.5416666666666666
+    },
+    {
+      "fold": 2,
+      "inner_val_bal": 0.5,
+      "best_epoch": 1,
+      "outer_bal": 0.5
+    },
+    {
+      "fold": 3,
+      "inner_val_bal": 0.5,
+      "best_epoch": 1,
+      "outer_bal": 0.5
+    },
+    {
+      "fold": 4,
+      "inner_val_bal": 0.6,
+      "best_epoch": 3,
+      "outer_bal": 0.5416666666666666
+    }
+  ],
+  "wall_seconds": 754.3
+}
