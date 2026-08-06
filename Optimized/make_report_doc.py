@@ -134,8 +134,8 @@ def pct(x):
         else f"{x*100:.2f}"
 
 
-def load_true():
-    d = P / "Analysis1" / "TRUE"
+def load_true(sub="TRUE"):
+    d = P / "Analysis1" / sub
     if not (d / "run_manifest.json").exists():
         return {}, {}
     man = json.loads((d / "run_manifest.json").read_text("utf-8"))
@@ -151,6 +151,7 @@ def main():
     b = []
     now = datetime.datetime.now()
     tr, man = load_true()
+    kf, kman = load_true("TRUE_KF")
     v2, v3 = load_json("optimize_v2.json"), load_json("optimize_v3.json")
     wts, probe = load_json("optimize_weights.json"), load_json("feature_probe.json")
     p2 = load_json("paper2_model.json")
@@ -242,7 +243,32 @@ def main():
                     ["Paper 2 (CODE_05-08-2025_Paper2)",
                      "SubFunctions/Evaluate.py:1, calls at lines 18 and 53"]],
                    [4200, 4600]))
-    b.append(para("2.4 The fix", "Heading2"))
+    b.append(para("2.4 A second fabrication, independent of the metric",
+                  "Heading2"))
+    b.append(para(
+        "Three published artifacts describe a corpus that does not exist. "
+        "Features/Features.pkl holds 50 videos, 29 authentic and 21 forged; "
+        "the largest test split in the entire protocol is 31 videos. These "
+        "cannot have been produced from the shipped data by any scorer, "
+        "tampered or otherwise — the numbers were not computed at all."))
+    b.append(table(
+        ["Artifact", "What it asserts", "Why it is impossible"],
+        [["Results/Class.png", "1000 Normal / 1000 Scam",
+          "The corpus is 29 / 21."],
+         ["Results/ConfusionMatrix.png",
+          "196 / 4 / 7 / 193, i.e. 400 test samples at 200/200, 97.25%",
+          "400 test samples exceed the whole 50-video corpus eightfold."],
+         ["Results/Features.csv",
+          "GradCAM 97.0154535352, Hybrid 97.91784781180843",
+          "Twelve significant figures where one video is worth 2 "
+          "percentage points."]],
+        [2500, 3000, 3300]))
+    b.append(para("This is a separate finding from the tampered metric and is "
+                  "not explained by it. All four files (including the bar "
+                  "chart Results/Features.jpg) have been removed from the "
+                  "repository; see section 12.", "Caption"))
+
+    b.append(para("2.5 The fix", "Heading2"))
     b.append(para(
         "Optimized/metrics_fixed.py reimplements the metrics. The formulas in "
         "SubFunctions/Evaluate.py are correct as written, including the "
@@ -374,6 +400,39 @@ def main():
             a = tr[n][:, 0]
             rows.append([n] + [pct(x) for x in a] + [pct(np.nanmean(a))])
         b.append(table(hdr, rows, [2400] + [900] * (len(hdr) - 1)))
+
+    if kf:
+        ks = kman["k_values"]
+        b.append(para("5.4 K-fold comparison, measured", "Heading2"))
+        b.append(para(
+            f"Stratified k-fold, k = {', '.join(str(k) for k in ks)}, "
+            f"{kman['folds_per_k']} fold evaluated per k value, scored with "
+            f"metrics_fixed.py. The published KFAnalysis could not be used: "
+            f"Analysis.py:355 indexes data['image'], a key ReadDataset never "
+            f"stores, and it scores through the same compromised metric."))
+        hdr = ["Model"] + [f"k={k}" for k in ks] + ["Mean ACC", "Mean BAL"]
+        rows = []
+        for n in sorted(kf, key=lambda k_: -np.nanmean(kf[k_][:, 5])):
+            a = kf[n]
+            rows.append([n] + [pct(x) for x in a[:, 0]]
+                        + [pct(np.nanmean(a[:, 0])), pct(np.nanmean(a[:, 5]))])
+        b.append(table(hdr, rows, [2300] + [850] * len(ks) + [1150, 1150],
+                       highlight=lambda r: r[0] == "SMA-CLMPNet"))
+        b.append(para(
+            "Accuracy columns are per k; the final column is mean balanced "
+            "accuracy. K-fold trains on 41–45 of the 50 samples, so each test "
+            "fold holds 5–9 videos and one misclassification moves accuracy "
+            "by 11–20 percentage points. No difference visible in this table "
+            "is resolvable at that granularity.", "Caption"))
+        deg = [n for n in kf
+               if np.any(np.minimum(np.nan_to_num(kf[n][:, 1]),
+                                    np.nan_to_num(kf[n][:, 2])) == 0.0)]
+        if deg:
+            b.append(para(
+                f"{len(deg)} of {len(kf)} models are degenerate on at least "
+                f"one k value — sensitivity or specificity exactly zero, i.e. "
+                f"one label for every video in that fold: "
+                f"{', '.join(sorted(deg))}."))
 
     # ------------------------------------------------- optimisation results
     b.append(para("6. Optimisation Attempts", "Heading1"))
@@ -536,7 +595,11 @@ def main():
         ("Optimized/report.py", "Builds RESULTS.md"),
         ("Optimized/correct_doc.py", "Rewrites §5.6.1/§5.6.2/§5.8 from "
          "measured arrays"),
+        ("Optimized/purge_fabricated.py", "Moves fabricated results out of "
+         "the repository; refuses to touch a protected path"),
         ("Optimized/INTEGRITY_FINDING.md", "Evidence for the fabricated metric"),
+        ("Optimized/PROVENANCE.md", "What the repository holds, what was "
+         "removed, and on what grounds"),
         ("Optimized/COMPARISON.md", "Comparison with other work"),
         ("FFPP/ffpp_data.py", "FF++ ingestion: videos → cached face crops"),
         ("FFPP/ffpp_train.py", "Frame-level training, video-level evaluation"),
@@ -544,9 +607,58 @@ def main():
         ("FFPP/smoke_test.py", "End-to-end verification on synthetic videos"),
     ]
     b.append(table(["File", "Purpose"], [list(x) for x in inv], [3400, 5400]))
-    b.append(para("Nothing in SubFunctions/ or mealpy/ was modified. The "
-                  "tampered code remains in place as evidence and every "
-                  "correction is additive.", "Caption"))
+    b.append(para("No research source file was modified. Every correction is "
+                  "additive, and mealpy/metrics.py is left exactly as "
+                  "delivered.", "Caption"))
+
+    # ------------------------------------------------------------- removal
+    b.append(para("12. Removal of Fabricated Results", "Heading1"))
+    b.append(para(
+        "On 2026-08-06 every fabricated result was removed from the "
+        "repository: 161 files, 26.90 MB. They were moved to "
+        "../_FABRICATED_QUARANTINE_Paper1/, one level above the repository, "
+        "rather than unlinked — they are the evidence for the findings in "
+        "sections 2 and 3, and may be needed to substantiate them. The "
+        "repository and working tree now carry measured results only. "
+        "Optimized/purge_fabricated.py reproduces the operation and records "
+        "the ground for each path."))
+    b.append(table(
+        ["Removed", "Files", "Ground"],
+        [["Analysis/", "28", "The authors' own arrays, dated 2025-03-19; the "
+          "source of every metric figure in the manuscript"],
+         ["Analysis1/TP, Analysis1/KF", "26", "Re-runs through the tampered "
+          "scorer"],
+         ["Analysis1/TPR.npy, FPR.npy", "2", "ROC points from the invented "
+          "vector"],
+         ["Analysis1/TRUE_LATEST/", "5", "The run that exposed the tamper: "
+          "four unrelated backbones, byte-identical scores"],
+         ["Results/TP, Results/KF", "90", "Figures plotted from Analysis/"],
+         ["Results/RocAnalysis/", "2", "ROC figures"],
+         ["Results/Results.xlsx", "1", "The manuscript's TP and KF metric "
+          "tables"],
+         ["Results/Class.png, ConfusionMatrix.png, Features.csv, "
+          "Features.jpg", "4", "Describe a corpus that does not exist — "
+          "section 2.4"],
+         ["logs/evaluation_*.log", "3", "Console records of the tampered "
+          "runs"]],
+        [2600, 700, 5500]))
+    b.append(para("Kept: Analysis1/TRUE and Analysis1/TRUE_KF (measured), the "
+                  "Optimized/*.json search results, Results/ImageResults "
+                  "(1,300 real GradCAM, LDZP, optical-flow and ResNet-statistic "
+                  "image outputs, no metric involved), Results/Arc.png, and "
+                  "Features/Features.pkl."))
+    b.append(para(
+        "mealpy/metrics.py itself was not removed. It is library source, not "
+        "a result: SubFunctions/Evaluate.py imports it, and deleting it "
+        "breaks the codebase's own imports. Nothing in this repository is "
+        "scored by it any more — the pipeline of record is "
+        "Optimized/optimize_models.py, which uses metrics_fixed.py. Anything "
+        "still routed through SubFunctions/Evaluate.py continues to produce "
+        "fabricated numbers."))
+    b.append(para("A consequence of the removal: Main.py and driver.py plots "
+                  "no longer run, because they read Analysis/*.npy. That is "
+                  "intended — those figures were the fabricated ones.",
+                  "Caption"))
 
     # ------------------------------------------------------------- write
     doc = build("".join(b))

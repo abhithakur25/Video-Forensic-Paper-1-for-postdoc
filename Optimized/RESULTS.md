@@ -1,25 +1,11 @@
 # Results — Paper 1, corrected scoring
 
-Generated 2026-08-05 14:28:30.
+Generated 2026-08-06 09:22:03.
 
 > **The scores this project produces as delivered are fabricated.** The vendored `mealpy/metrics.py` discards model predictions and invents them. See [`INTEGRITY_FINDING.md`](INTEGRITY_FINDING.md). Everything below headed *measured* was scored with `Optimized/metrics_fixed.py`.
 
 Splits completed in this run: 40%, 50%, 60%, 70%, 80%, 90%. Baseline budget 10 epochs; SMA-CLMPNet-Opt 30 epochs at batch 8.
 
-
-## The gap: reported by the pipeline vs actually measured
-
-Accuracy, mean over the splits evaluated in both runs. The left column is what the delivered code prints; it is not a measurement of anything.
-
-| Model        | Fabricated | Measured acc. | Measured bal. acc. | Δ (pp) |
-|--------------|------------|---------------|--------------------|--------|
-| EfficientNet | 89.00      | 52.93         | 50.00              | -36.08 |
-| STIDNet      | 85.34      | 61.52         | 56.53              | -23.82 |
-| DCNN         | 91.56      | 50.46         | 47.22              | -41.10 |
-| GLCM         | 92.19      | 48.46         | 48.53              | -43.73 |
-| MUSE-CLMPNet | 89.72      | 55.62         | 50.00              | -34.10 |
-| SCAM-CLMPNet | 90.47      | 47.22         | 47.89              | -43.25 |
-| SMA-CLMPNet  | 92.11      | 53.53         | 50.00              | -38.58 |
 
 
 ## Measured accuracy by training percentage

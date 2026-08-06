@@ -136,6 +136,30 @@ def main():
         rows.append([n] + [mp(tr[n][:, i]) for i in range(6)])
     out.append(table(rows, ["Model"] + METRICS))
 
+    # ------------------------------------------------------------- k-fold
+    kd = P / "Analysis1" / "TRUE_KF"
+    if (kd / "run_manifest.json").exists():
+        kman = json.loads((kd / "run_manifest.json").read_text(encoding="utf-8"))
+        kf = {f.stem: np.load(f) for f in sorted(kd.glob("*.npy"))}
+        ks = kman["k_values"]
+        out.append("\n\n## Measured k-fold comparison\n")
+        out.append(f"Stratified k-fold, k = {', '.join(str(k) for k in ks)}, "
+                   f"{kman['folds_per_k']} fold per k, scored with "
+                   f"`metrics_fixed.py`. The published `KFAnalysis` could not "
+                   f"be used: `Analysis.py:355` indexes `data['image']`, a key "
+                   f"`ReadDataset` never stores.\n")
+        rows = []
+        for n in sorted(kf, key=lambda x: -np.nanmean(kf[x][:, 5])):
+            a = kf[n]
+            rows.append([n] + [mp(np.array([v])) for v in a[:, 0]]
+                        + [mp(a[:, 0]), mp(a[:, 5])])
+        out.append(table(rows, ["Model"] + [f"k={k}" for k in ks]
+                         + ["Mean acc.", "Mean bal. acc."]))
+        out.append("\nEach test fold holds 5-9 of the 50 videos, so one "
+                   "misclassification moves accuracy by 11-20 pp. No "
+                   "difference in this table is resolvable at that "
+                   "granularity.\n")
+
     # -------------------------------------------------------- recipe ablation
     if "SMA-CLMPNet" in tr and "SMA-CLMPNet-Opt" in tr:
         base, new = tr["SMA-CLMPNet"], tr["SMA-CLMPNet-Opt"]
