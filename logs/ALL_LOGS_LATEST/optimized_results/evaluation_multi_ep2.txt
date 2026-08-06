@@ -1,0 +1,75 @@
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 2
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 — EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 93s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.8000     0.6000
+EfficientNetV2B0     0.6000     0.8000
+MobileNetV2        0.7000     0.2000
+STIDNet            0.4000     0.6000
+P1-Proposed        0.8000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.5000
+MobileNetV2        0.5000     0.0000
+STIDNet            1.0000     0.0000
+P1-Proposed        0.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               1.0000     1.0000
+EfficientNetV2B0     0.7500     1.0000
+MobileNetV2        0.7500     0.3333
+STIDNet            0.2500     1.0000
+P1-Proposed        1.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     1.0000
+MobileNetV2        0.3333     0.0000
+STIDNet            0.2500     0.0000
+P1-Proposed        0.0000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.6667
+MobileNetV2        0.4000     0.0000
+STIDNet            0.4000     0.0000
+P1-Proposed        0.0000     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.5000     0.5000
+EfficientNetV2B0     0.3750     0.7500
+MobileNetV2        0.6250     0.1667
+STIDNet            0.6250     0.5000
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only — Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334

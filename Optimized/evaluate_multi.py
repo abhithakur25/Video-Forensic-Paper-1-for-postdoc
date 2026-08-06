@@ -250,17 +250,12 @@ def main():
         lines.append(f"  {name}: {ok}/{len(pcts)} splits OK"
                      + (f", {fails} FAILED" if fails else ""))
 
-    # paper reference COM_A (secondary only)
-    com_path = PROJECT / "Analysis" / "TP" / "COM_A.npy"
-    if com_path.exists():
-        com = np.load(com_path)
-        lines += [
-            "",
-            "Reference only — Analysis/TP/COM_A.npy (original paper artefacts;",
-            "NOT re-measured here; may be affected by mealpy metric path):",
-            f"  shape={com.shape}",
-            f"  last-row (90% train if 6 rows) ACC~{com[-1,0]:.4f}" if com.ndim == 2 else "",
-        ]
+    lines += [
+        "",
+        "GENUINE ONLY: scores from Optimized/metrics_fixed.py (sklearn).",
+        "Fabricated Analysis/COM_A and mealpy Evaluate paths are not used.",
+        "",
+    ]
 
     text = "\n".join(lines) + "\n"
     print("\n" + text)

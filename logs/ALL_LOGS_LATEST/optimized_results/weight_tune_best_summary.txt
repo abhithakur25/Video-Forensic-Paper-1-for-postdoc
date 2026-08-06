@@ -1,0 +1,8 @@
+﻿N=50 balance={0: 29, 1: 21} maj=0.580
+BEST DCNN: scale=3.0 osr=1.5 BAL=0.688 ACC=0.500
+BEST EfficientNetV2B0: scale=1.0 osr=1.5 BAL=0.812 ACC=0.700
+BEST MobileNetV2: scale=2.0 osr=1.0 BAL=0.812 ACC=0.700
+BEST STIDNet: scale=3.0 osr=1.5 BAL=0.688 ACC=0.800
+BEST P1-Proposed: scale=2.0 osr=1.0 BAL=0.500 ACC=0.800
+BEST RF: scale=1.0 osr=1.0 BAL=0.625 ACC=0.700
+BEST GBM: scale=1.0 osr=1.5 BAL=0.438 ACC=0.700

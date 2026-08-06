@@ -30,3 +30,10 @@ Desktop.ini
 # Keep structure markers
 !Features/.gitkeep
 !Results/ImageResults/.gitkeep
+
+# Fabricated / untrustworthy metric artefacts (mealpy path)
+Analysis/
+Analysis1/
+Results/TP/
+Results/KF/
+Results/RocAnalysis/

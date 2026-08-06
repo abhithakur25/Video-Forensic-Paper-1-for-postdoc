@@ -1,0 +1,1483 @@
+﻿PAPER 1 — FULL LOG ARCHIVE
+Created: 2026-08-05 16:17:11
+Source: CODE_28-04-2025_Paper1
+============================================================
+
+
+===== INTEGRITY_FINDING.md =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\INTEGRITY_FINDING.md
+-----
+# Integrity finding â€” Paper 1 evaluation metrics
+
+## Issue
+`mealpy/metrics.py` (vendored) overrides `_check_targets()` so that
+`confusion_matrix(y_true, y_pred)` **discards model predictions** and replaces
+them with ground-truth labels plus a random fraction of flips
+(`per = random.uniform(0.090242, 0.45245235634)`).
+
+Consequently every accuracy / sensitivity / specificity / precision / F1 value
+produced through `SubFunctions/Evaluate.py â†’ mealpy.metrics.confusion_matrix`
+is **not** a true model score. This affects published `Analysis/*.npy` figures
+when regenerated through the original path.
+
+## Fix used in this package
+`Optimized/metrics_fixed.py` scores with **sklearn** only
+(`confusion_matrix`, `accuracy_score`, `balanced_accuracy_score`, etc.).
+
+All numbers in `Optimized/results/` are machine-verified under this honest metric
+path. Published `Analysis/TP/COM_*.npy` rows are kept only as **reference**
+figures from the original paper artefacts, not as re-measured scores.
+
+
+===== evaluation_multi_ep2.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep2.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 2
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 93s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.8000     0.6000
+EfficientNetV2B0     0.6000     0.8000
+MobileNetV2        0.7000     0.2000
+STIDNet            0.4000     0.6000
+P1-Proposed        0.8000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.5000
+MobileNetV2        0.5000     0.0000
+STIDNet            1.0000     0.0000
+P1-Proposed        0.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               1.0000     1.0000
+EfficientNetV2B0     0.7500     1.0000
+MobileNetV2        0.7500     0.3333
+STIDNet            0.2500     1.0000
+P1-Proposed        1.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     1.0000
+MobileNetV2        0.3333     0.0000
+STIDNet            0.2500     0.0000
+P1-Proposed        0.0000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.6667
+MobileNetV2        0.4000     0.0000
+STIDNet            0.4000     0.0000
+P1-Proposed        0.0000     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.5000     0.5000
+EfficientNetV2B0     0.3750     0.7500
+MobileNetV2        0.6250     0.1667
+STIDNet            0.6250     0.5000
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== evaluation_multi_ep20.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 20
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 232s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.6000     0.8000
+EfficientNetV2B0     0.5000     0.6000
+MobileNetV2        0.4000     0.6000
+STIDNet            0.7000     0.4000
+P1-Proposed        0.2000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.0000     0.5000
+EfficientNetV2B0     0.5000     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            1.0000     0.0000
+P1-Proposed        1.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.7500     1.0000
+EfficientNetV2B0     0.5000     1.0000
+MobileNetV2        0.5000     0.6667
+STIDNet            0.6250     0.6667
+P1-Proposed        0.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.0000     1.0000
+EfficientNetV2B0     0.2000     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            0.4000     0.0000
+P1-Proposed        0.2000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.0000     0.6667
+EfficientNetV2B0     0.2857     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            0.5714     0.0000
+P1-Proposed        0.3333     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.3750     0.7500
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.2500     0.5833
+STIDNet            0.8125     0.3333
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== evaluation_multi_ep50.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep50.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 50
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 484s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.4000     0.0000
+EfficientNetV2B0     0.8000     0.6000
+MobileNetV2        0.5000     0.6000
+STIDNet            0.5000     0.4000
+P1-Proposed        0.2000     0.4000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.5000     0.0000
+STIDNet            0.5000     0.5000
+P1-Proposed        1.0000     1.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.3750     0.0000
+EfficientNetV2B0     1.0000     1.0000
+MobileNetV2        0.5000     1.0000
+STIDNet            0.5000     0.3333
+P1-Proposed        0.0000     0.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.1667     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.2000     0.0000
+STIDNet            0.2000     0.3333
+P1-Proposed        0.2000     0.4000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2500     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.2857     0.0000
+STIDNet            0.2857     0.4000
+P1-Proposed        0.3333     0.5714
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.4375     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.5000     0.5000
+STIDNet            0.5000     0.4167
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== evaluation_multi_ep100.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep100.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 100
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 1060s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.8000     0.6000
+MobileNetV2        0.6000     0.2000
+STIDNet            0.6000     0.2000
+P1-Proposed        0.8000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        1.0000     0.0000
+STIDNet            0.5000     0.0000
+P1-Proposed        0.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     1.0000     1.0000
+MobileNetV2        0.5000     0.3333
+STIDNet            0.6250     0.3333
+P1-Proposed        1.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.2000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.3333     0.0000
+STIDNet            0.2500     0.0000
+P1-Proposed        0.0000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2857     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.5000     0.0000
+STIDNet            0.3333     0.0000
+P1-Proposed        0.0000     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.7500     0.1667
+STIDNet            0.5625     0.1667
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== evaluation_multi_ep20_bal_cw_os.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20_bal_cw_os.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 20
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+class_weight : True
+oversample   : True
+tag      : bal_cw_os
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 558s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.3000     0.6000
+EfficientNetV2B0     0.5000     0.6000
+MobileNetV2        0.7000     0.4000
+STIDNet            0.8000     0.2000
+P1-Proposed        0.2000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        1.0000     0.5000
+STIDNet            0.0000     0.5000
+P1-Proposed        1.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.2500     1.0000
+EfficientNetV2B0     0.5000     0.6667
+MobileNetV2        0.6250     0.3333
+STIDNet            1.0000     0.0000
+P1-Proposed        0.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.1429     0.0000
+EfficientNetV2B0     0.2000     0.5000
+MobileNetV2        0.4000     0.3333
+STIDNet            0.0000     0.2500
+P1-Proposed        0.2000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2222     0.0000
+EfficientNetV2B0     0.2857     0.5000
+MobileNetV2        0.5714     0.4000
+STIDNet            0.0000     0.3333
+P1-Proposed        0.3333     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.3750     0.5000
+EfficientNetV2B0     0.5000     0.5833
+MobileNetV2        0.8125     0.4167
+STIDNet            0.5000     0.2500
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== weight_tune_best_summary.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\weight_tune_best_summary.txt
+-----
+N=50 balance={0: 29, 1: 21} maj=0.580
+BEST DCNN: scale=3.0 osr=1.5 BAL=0.688 ACC=0.500
+BEST EfficientNetV2B0: scale=1.0 osr=1.5 BAL=0.812 ACC=0.700
+BEST MobileNetV2: scale=2.0 osr=1.0 BAL=0.812 ACC=0.700
+BEST STIDNet: scale=3.0 osr=1.5 BAL=0.688 ACC=0.800
+BEST P1-Proposed: scale=2.0 osr=1.0 BAL=0.500 ACC=0.800
+BEST RF: scale=1.0 osr=1.0 BAL=0.625 ACC=0.700
+BEST GBM: scale=1.0 osr=1.5 BAL=0.438 ACC=0.700
+
+
+===== weight_tune.log =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\logs\weight_tune.log
+-----
+N=50 balance={0: 29, 1: 21} maj=0.580
+DCNN             scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+DCNN             scale=1.0  osr=1.5  meanBAL=0.562 meanACC=0.300
+DCNN             scale=2.0  osr=1.0  meanBAL=0.375 meanACC=0.300
+DCNN             scale=2.0  osr=1.5  meanBAL=0.375 meanACC=0.300
+DCNN             scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+DCNN             scale=3.0  osr=1.5  meanBAL=0.688 meanACC=0.500
+DCNN             scale=4.0  osr=1.0  meanBAL=0.562 meanACC=0.600
+DCNN             scale=4.0  osr=1.5  meanBAL=0.562 meanACC=0.300
+BEST DCNN: scale=3.0 osr=1.5 BAL=0.688 ACC=0.500
+EfficientNetV2B0 scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+EfficientNetV2B0 scale=1.0  osr=1.5  meanBAL=0.812 meanACC=0.700
+EfficientNetV2B0 scale=2.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=2.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=3.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+BEST EfficientNetV2B0: scale=1.0 osr=1.5 BAL=0.812 ACC=0.700
+MobileNetV2      scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+MobileNetV2      scale=1.0  osr=1.5  meanBAL=0.250 meanACC=0.400
+MobileNetV2      scale=2.0  osr=1.0  meanBAL=0.812 meanACC=0.700
+MobileNetV2      scale=2.0  osr=1.5  meanBAL=0.250 meanACC=0.400
+MobileNetV2      scale=3.0  osr=1.0  meanBAL=0.812 meanACC=0.700
+MobileNetV2      scale=3.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+MobileNetV2      scale=4.0  osr=1.0  meanBAL=0.375 meanACC=0.600
+MobileNetV2      scale=4.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+BEST MobileNetV2: scale=2.0 osr=1.0 BAL=0.812 ACC=0.700
+STIDNet          scale=1.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+STIDNet          scale=1.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+STIDNet          scale=2.0  osr=1.0  meanBAL=0.562 meanACC=0.600
+STIDNet          scale=2.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+STIDNet          scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+STIDNet          scale=3.0  osr=1.5  meanBAL=0.688 meanACC=0.800
+STIDNet          scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+STIDNet          scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+BEST STIDNet: scale=3.0 osr=1.5 BAL=0.688 ACC=0.800
+P1-Proposed      scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=1.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=2.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=2.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=3.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+BEST P1-Proposed: scale=2.0 osr=1.0 BAL=0.500 ACC=0.800
+RF               scale=1.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=1.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=2.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=2.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=3.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=3.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=4.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=4.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+BEST RF: scale=1.0 osr=1.0 BAL=0.625 ACC=0.700
+GBM              scale=1.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=1.0  osr=1.5  meanBAL=0.438 meanACC=0.700
+GBM              scale=2.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=2.0  osr=1.5  meanBAL=0.438 meanACC=0.700
+GBM              scale=3.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=3.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+GBM              scale=4.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=4.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+BEST GBM: scale=1.0 osr=1.5 BAL=0.438 ACC=0.700
+===== FINAL TP=0.8 train=40 test=10 =====
+  DCNN             sc=3.0 osr=1.5 ACC=0.4000 SEN=0.5000 SPE=0.3750 F1=0.2500 BAL=0.4375 (18s)
+  EfficientNetV2B0 sc=1.0 osr=1.5 ACC=0.5000 SEN=0.0000 SPE=0.6250 F1=0.0000 BAL=0.3125 (166s)
+  MobileNetV2      sc=2.0 osr=1.0 ACC=0.3000 SEN=0.0000 SPE=0.3750 F1=0.0000 BAL=0.1875 (87s)
+  STIDNet          sc=3.0 osr=1.5 ACC=0.8000 SEN=0.0000 SPE=1.0000 F1=0.0000 BAL=0.5000 (19s)
+
+
+===== evaluate_multi.log =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\logs\evaluate_multi.log
+-----
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=2 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (2s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=0.7500 PRE=0.0000 F1=0.0000 BAL=0.3750  (16s)
+[P1-eval]   MobileNetV2      ACC=0.7000 SEN=0.5000 SPE=0.7500 PRE=0.3333 F1=0.4000 BAL=0.6250  (9s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=1.0000 SPE=0.2500 PRE=0.2500 F1=0.4000 BAL=0.6250  (1s)
+[P1-eval]   P1-Proposed      ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (28s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (1s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.5000 SPE=1.0000 PRE=1.0000 F1=0.6667 BAL=0.7500  (17s)
+[P1-eval]   MobileNetV2      ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (7s)
+[P1-eval]   STIDNet          ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (1s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (10s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep2.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=20 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=0.7500 PRE=0.0000 F1=0.0000 BAL=0.3750  (2s)
+[P1-eval]   EfficientNetV2B0 ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (32s)
+[P1-eval]   MobileNetV2      ACC=0.4000 SEN=0.0000 SPE=0.5000 PRE=0.0000 F1=0.0000 BAL=0.2500  (23s)
+[P1-eval]   STIDNet          ACC=0.7000 SEN=1.0000 SPE=0.6250 PRE=0.4000 F1=0.5714 BAL=0.8125  (3s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (49s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.8000 SEN=0.5000 SPE=1.0000 PRE=1.0000 F1=0.6667 BAL=0.7500  (3s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (44s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=0.5000 SPE=0.6667 PRE=0.5000 F1=0.5000 BAL=0.5833  (31s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=0.0000 SPE=0.6667 PRE=0.0000 F1=0.0000 BAL=0.3333  (4s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (41s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=50 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.4000 SEN=0.5000 SPE=0.3750 PRE=0.1667 F1=0.2500 BAL=0.4375  (3s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (61s)
+[P1-eval]   MobileNetV2      ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (46s)
+[P1-eval]   STIDNet          ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (5s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (88s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.0000 SEN=0.0000 SPE=0.0000 PRE=0.0000 F1=0.0000 BAL=0.0000  (5s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (91s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (59s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=0.5000 SPE=0.3333 PRE=0.3333 F1=0.4000 BAL=0.4167  (7s)
+[P1-eval]   P1-Proposed      ACC=0.4000 SEN=1.0000 SPE=0.0000 PRE=0.4000 F1=0.5714 BAL=0.5000  (119s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep50.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=100 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (7s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (115s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=1.0000 SPE=0.5000 PRE=0.3333 F1=0.5000 BAL=0.7500  (91s)
+[P1-eval]   STIDNet          ACC=0.6000 SEN=0.5000 SPE=0.6250 PRE=0.2500 F1=0.3333 BAL=0.5625  (13s)
+[P1-eval]   P1-Proposed      ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (225s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.0000 SEN=0.0000 SPE=0.0000 PRE=0.0000 F1=0.0000 BAL=0.0000  (10s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (127s)
+[P1-eval]   MobileNetV2      ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (110s)
+[P1-eval]   STIDNet          ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (20s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (341s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep100.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=20 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] balance: class_weight=True oversample=True tag='bal_cw_os'
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.3000 SEN=0.5000 SPE=0.2500 PRE=0.1429 F1=0.2222 BAL=0.3750  (10s)
+[P1-eval]   EfficientNetV2B0 ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (95s)
+[P1-eval]   MobileNetV2      ACC=0.7000 SEN=1.0000 SPE=0.6250 PRE=0.4000 F1=0.5714 BAL=0.8125  (56s)
+[P1-eval]   STIDNet          ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (13s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (102s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (7s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.5000 SPE=0.6667 PRE=0.5000 F1=0.5000 BAL=0.5833  (72s)
+[P1-eval]   MobileNetV2      ACC=0.4000 SEN=0.5000 SPE=0.3333 PRE=0.3333 F1=0.4000 BAL=0.4167  (46s)
+[P1-eval]   STIDNet          ACC=0.2000 SEN=0.5000 SPE=0.0000 PRE=0.2500 F1=0.3333 BAL=0.2500  (17s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (139s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20_bal_cw_os.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+
+
+===== RESULTS_SUMMARY.md =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\RESULTS_SUMMARY.md
+-----
+# Paper 1 â€” Multi-model evaluation summary (machine, honest metrics)
+
+**Date:** 2026-08-05  
+**Project:** `CODE_28-04-2025_Paper1`  
+**Features:** `Features/Features.pkl` â†’ `proposed` tensor `(50, 10, 128, 128, 12)`  
+**Labels:** 29 authentic (0), 21 forged (1) â€” majority baseline **58.0%** accuracy  
+**Metrics path:** `Optimized/metrics_fixed.py` (sklearn) â€” **not** tampered `mealpy.metrics`
+
+---
+
+## Run E â€” epochs = 20 + class_weight + oversample (requested)
+
+**Protocol:** epochs=20, `--class-weight --oversample`, wall ~558 s  
+**Files:** `results/evaluation_multi_ep20_bal_cw_os.txt`, `.csv`
+
+| Model | Acc @80% | Acc @90% | BalAcc @80% | BalAcc @90% | F1 @80% | F1 @90% |
+|-------|----------|----------|-------------|-------------|---------|---------|
+| DCNN | 30% | 60% | 37.5% | 50% | 0.22 | 0.00 |
+| EfficientNetV2B0 | 50% | 60% | 50% | 58.3% | 0.29 | **0.50** |
+| MobileNetV2 | **70%** | 40% | **81.3%** | 41.7% | **0.57** | 0.40 |
+| STIDNet | 80%â€  | 20% | 50% | 25% | 0.00 | 0.33 |
+| P1-Proposed | 20% | 60% | 50% | 50% | 0.33 | 0.00 |
+
+â€  Majority collapse. **Best balanced result this run:** MobileNetV2 @80% (BalAcc 81.3%, F1 0.57, Sen=1.0).
+
+vs plain epochs=20 (no balance): STIDNet had BalAcc 81% / F1 0.57 @80%; balancing shifts the win to MobileNetV2 and raises EffNet F1@90% to 0.50.
+
+---
+
+## Run D â€” epochs = 100 (requested re-run)
+
+**Protocol:** epochs=100, train 80% / 90%, wall ~1060 s  
+**Files:** `results/evaluation_multi_ep100.txt`, `evaluation_multi_ep100.csv`
+
+| Model | Acc @80% | Acc @90% | BalAcc @80% | BalAcc @90% | F1 @80% | F1 @90% |
+|-------|----------|----------|-------------|-------------|---------|---------|
+| DCNN | 50% | 0% | 50% | 0% | 0.29 | 0.00 |
+| EfficientNetV2B0 | **80%**â€  | 60% | 50% | 50% | 0.00 | 0.00 |
+| MobileNetV2 | 60% | 20% | **75%** | 17% | **0.50** | 0.00 |
+| STIDNet | 60% | 20% | 56% | 17% | 0.33 | 0.00 |
+| P1-Proposed | **80%**â€  | 60% | 50% | 50% | 0.00 | 0.00 |
+
+â€  Majority collapse (Sen=0, Spec=1). **More epochs alone does not fix N=50 imbalance.**
+
+---
+
+## Run C â€” epochs = 50 (requested re-run)
+
+**Protocol:** epochs=50, train 80% / 90%, wall ~484 s  
+**Files:** `results/evaluation_multi_ep50.txt`, `evaluation_multi_ep50.csv`
+
+### Accuracy (epochs=50)
+
+| Model | Acc @80% | Acc @90% |
+|-------|----------|----------|
+| DCNN | 40.00% | 0.00% |
+| EfficientNetV2B0 | **80.00%** | 60.00% |
+| MobileNetV2 | 50.00% | 60.00% |
+| STIDNet | 50.00% | 40.00% |
+| P1-Proposed | 20.00% | 40.00% |
+
+### Balanced accuracy / F1 (epochs=50)
+
+| Model | BalAcc @80% | BalAcc @90% | F1 @80% | F1 @90% |
+|-------|-------------|-------------|---------|---------|
+| DCNN | 43.75% | 0.00% | 0.25 | 0.00 |
+| EfficientNetV2B0 | 50.00% | 50.00% | 0.00 | 0.00 |
+| MobileNetV2 | 50.00% | 50.00% | 0.29 | 0.00 |
+| STIDNet | 50.00% | 41.67% | 0.29 | 0.40 |
+| P1-Proposed | 50.00% | 50.00% | 0.33 | **0.57** |
+
+**Note:** EfficientNetV2B0 Acc@80%=80% is majority collapse (Sen=0, Spec=1). P1-Proposed F1@90% improves to 0.57 but Acc remains low.
+
+---
+
+## Run B â€” epochs = 20
+
+**Protocol:** epochs=20, train 80% / 90%, wall ~232 s  
+**Files:** `results/evaluation_multi_ep20.txt`, `evaluation_multi_ep20.csv`
+
+### Accuracy (epochs=20)
+
+| Model | Acc @80% | Acc @90% |
+|-------|----------|----------|
+| DCNN | 60.00% | **80.00%** |
+| EfficientNetV2B0 | 50.00% | 60.00% |
+| MobileNetV2 | 40.00% | 60.00% |
+| STIDNet | **70.00%** | 40.00% |
+| P1-Proposed | 20.00% | 60.00% |
+
+### Balanced accuracy (epochs=20)
+
+| Model | BalAcc @80% | BalAcc @90% |
+|-------|-------------|-------------|
+| DCNN | 37.50% | **75.00%** |
+| EfficientNetV2B0 | 50.00% | 50.00% |
+| MobileNetV2 | 25.00% | 58.33% |
+| STIDNet | **81.25%** | 33.33% |
+| P1-Proposed | 50.00% | 50.00% |
+
+### Best F1 (epochs=20)
+
+| Model | F1 @80% | F1 @90% |
+|-------|---------|---------|
+| DCNN | 0.00 | **0.67** |
+| EfficientNetV2B0 | 0.29 | 0.00 |
+| MobileNetV2 | 0.00 | 0.50 |
+| STIDNet | **0.57** | 0.00 |
+| P1-Proposed | 0.33 | 0.00 |
+
+---
+
+## Run A â€” epochs = 2 (baseline)
+
+| Model | Acc @80% | Acc @90% | BalAcc @80% | BalAcc @90% |
+|-------|----------|----------|-------------|-------------|
+| DCNN | 80% | 60% | 50% | 50% |
+| EfficientNetV2B0 | 60% | 80% | 37.5% | **75%** |
+| MobileNetV2 | 70% | 20% | **62.5%** | 16.7% |
+| STIDNet | 40% | 60% | **62.5%** | 50% |
+| P1-Proposed | 80% | 60% | 50% | 50% |
+
+## Interpretation
+
+- Test sets remain tiny (n=10 @80%, n=5 @90%) â†’ high variance between runs.
+- More epochs **does not guarantee higher Acc**; STIDNet BalAcc@80% improved strongly (62.5%â†’81.25%), DCNN Acc@90% rose (60%â†’80%).
+- P1-Proposed still unstable (majority collapse on some splits).
+- Paper artefact `Analysis/TP/COM_A.npy` ~93% ACC is reference only.
+
+## Package layout
+
+```
+Optimized/
+  INTEGRITY_FINDING.md
+  metrics_fixed.py
+  feature_adapters.py
+  MultiModel.py
+  evaluate_multi.py
+  results/          # CSV, TXT, NPY
+  figures/          # comparison charts (no on-image titles)
+  working_code/     # original Model/MUSE/SCAM + optimized copies
+  logs/
+```
+
+Re-run:
+```powershell
+$E = "C:\Users\USER\anaconda3\envs\VideoForgeryCPU"
+$env:PATH = "$E\Library\bin;$E;$E\Scripts;" + $env:PATH
+cd C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1
+& "$E\python.exe" -u Optimized\evaluate_multi.py --epochs 5 --train-pcts "0.7,0.8,0.9"
+```
+
+
+===== GITHUB_REPO_DESCRIPTION.md =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\GITHUB_REPO_DESCRIPTION.md
+-----
+# Video Forensic Paper 1 for Postdoc
+
+**Private research repository** for Paper 1: *Design and development of video forgery model using deep learning with attention mechanisms* (LDZP + optical flow + 3D-CNN/LSTM/MUSE/SCAM).
+
+Aligned with the RIITCâ€“NKUST postdoctoral programme (semantic media forensics) and the Paper 2 multi-model evaluation workflow.
+
+---
+
+## What this repo contains
+
+| Area | Contents |
+|------|----------|
+| **Core app** | `GUI.py`, `Main.py`, `SubFunctions/` (features, GradCAM, LDZP, MUSE, SCAM, Model) |
+| **Optimized multi-model package** | `Optimized/` â€” honest metrics, multi-model training, class-weight tuning, full result report |
+| **Results** | `Optimized/results/*.csv|txt|npy`, comparison figures, Word report |
+| **Paper artefacts** | Analysis NPY (reference), ROC/TP/KF plots (small), Word paper draft |
+| **Driver** | `.claude/skills/run-video-forgery-paper1/driver.py` for headless GUI/plots/check |
+
+**Not in Git** (too large): `Features/Features.pkl` (~1 GB), `Results/ImageResults/` (~324 MB). Place them locally before full re-runs.
+
+---
+
+## Step-by-step: what was done (evaluation campaign)
+
+### Step 1 â€” Environment & integrity
+- Use conda env `VideoForgeryCPU` (Python 3.8, TensorFlow/Keras 2.10).
+- Put `Library\bin` on `PATH` (required for scipy/skimage).
+- **Integrity:** vendored `mealpy/metrics.py` was found to discard model predictions and inject random label flips. All Optimized scores use `Optimized/metrics_fixed.py` (sklearn only). See `Optimized/INTEGRITY_FINDING.md`.
+
+### Step 2 â€” Multi-model baseline (epochs = 2)
+```powershell
+python -u Optimized\evaluate_multi.py --epochs 2 --train-pcts "0.8,0.9"
+```
+Models: DCNN, EfficientNetV2B0, MobileNetV2, STIDNet, P1-Proposed (3D-CNN+LSTM+SCAM+MUSE).  
+Outputs: `Optimized/results/evaluation_multi_ep2.*`
+
+### Step 3 â€” More epochs (20)
+```powershell
+python -u Optimized\evaluate_multi.py --epochs 20 --train-pcts "0.8,0.9"
+```
+Outputs: `evaluation_multi_ep20.*`
+
+### Step 4 â€” Epochs = 50
+```powershell
+python -u Optimized\evaluate_multi.py --epochs 50 --train-pcts "0.8,0.9"
+```
+Outputs: `evaluation_multi_ep50.*`
+
+### Step 5 â€” Epochs = 100
+```powershell
+python -u Optimized\evaluate_multi.py --epochs 100 --train-pcts "0.8,0.9"
+```
+Outputs: `evaluation_multi_ep100.*`  
+Finding: more epochs alone did **not** reliably reach 95â€“99% honest test accuracy on N=50.
+
+### Step 6 â€” Class weights + oversampling (epochs = 20)
+```powershell
+python -u Optimized\evaluate_multi.py --epochs 20 --class-weight --oversample --tag bal
+```
+Outputs: `evaluation_multi_ep20_bal_cw_os.*`  
+Best balanced signal: MobileNetV2 BalAcc â‰ˆ 81% @80% train.
+
+### Step 7 â€” Minority weight-scale tuning
+```powershell
+python -u Optimized\run_weight_tuned.py
+```
+Sweeps `minority_scale` and `oversample_ratio` for deep + RF/GBM models.  
+Log: `Optimized/logs/weight_tune.log`, summary: `results/weight_tune_best_summary.txt`.
+
+### Step 8 â€” Full Word report
+```powershell
+python Optimized\build_results_docx.py
+```
+Produces: `Optimized/Paper1_MultiModel_Evaluation_Full_Report.docx` (all steps + tables + figures).
+
+---
+
+## Dataset note
+- Cached features: `Features/Features.pkl` â†’ proposed shape `(50, 10, 128, 128, 12)`, labels 29/21, majority baseline **58%**.
+- Test sets at 80%/90% train are tiny (n=10 / n=5) â†’ high variance.
+- Paper reference `Analysis/TP/COM_A.npy` ~93% Acc is **reference only** (may use original metric path).
+
+---
+
+## How to run (quick start)
+
+```powershell
+$E = "C:\Users\USER\anaconda3\envs\VideoForgeryCPU"
+$env:PATH = "$E\Library\bin;$E;$E\Scripts;" + $env:PATH
+cd path\to\Video-Forensic-Paper-1-for-postdoc
+
+# 1) Put Features.pkl into Features\ (not shipped)
+# 2) Multi-model evaluation
+& "$E\python.exe" -u Optimized\evaluate_multi.py --epochs 20 --train-pcts "0.8,0.9"
+
+# 3) With class balance
+& "$E\python.exe" -u Optimized\evaluate_multi.py --epochs 20 --class-weight --oversample --tag bal
+
+# 4) Driver checks / plots / GUI (optional)
+& "$E\python.exe" -u .claude\skills\run-video-forgery-paper1\driver.py check
+```
+
+---
+
+## Postdoc context
+- Offer: RIITC-Postdoc-2027-B03 (NKUST / RIITC)
+- Topic: unified multi-modal deep learning for semantic media forensics
+- Paper 1 = attention + LDZP/flow visual stream; Paper 2 = OMÂ²AHL-BiG hybrid stream
+
+## Authors (from postdoc offer letter)
+- Dr. Abhishek Thakur â€” Chitkara University (primary); NKUST RIITC postdoc (secondary)
+- Prof. Vishal Jain â€” VIPS-TC (co-supervisor)
+- Prof. Chin-Shiuh Shieh â€” NKUST RIITC (supervisor)
+
+
+===== optimized_logs/evaluate_multi.log =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluate_multi.log
+-----
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=2 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (2s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=0.7500 PRE=0.0000 F1=0.0000 BAL=0.3750  (16s)
+[P1-eval]   MobileNetV2      ACC=0.7000 SEN=0.5000 SPE=0.7500 PRE=0.3333 F1=0.4000 BAL=0.6250  (9s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=1.0000 SPE=0.2500 PRE=0.2500 F1=0.4000 BAL=0.6250  (1s)
+[P1-eval]   P1-Proposed      ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (28s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (1s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.5000 SPE=1.0000 PRE=1.0000 F1=0.6667 BAL=0.7500  (17s)
+[P1-eval]   MobileNetV2      ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (7s)
+[P1-eval]   STIDNet          ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (1s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (10s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep2.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=20 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=0.7500 PRE=0.0000 F1=0.0000 BAL=0.3750  (2s)
+[P1-eval]   EfficientNetV2B0 ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (32s)
+[P1-eval]   MobileNetV2      ACC=0.4000 SEN=0.0000 SPE=0.5000 PRE=0.0000 F1=0.0000 BAL=0.2500  (23s)
+[P1-eval]   STIDNet          ACC=0.7000 SEN=1.0000 SPE=0.6250 PRE=0.4000 F1=0.5714 BAL=0.8125  (3s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (49s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.8000 SEN=0.5000 SPE=1.0000 PRE=1.0000 F1=0.6667 BAL=0.7500  (3s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (44s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=0.5000 SPE=0.6667 PRE=0.5000 F1=0.5000 BAL=0.5833  (31s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=0.0000 SPE=0.6667 PRE=0.0000 F1=0.0000 BAL=0.3333  (4s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (41s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=50 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.4000 SEN=0.5000 SPE=0.3750 PRE=0.1667 F1=0.2500 BAL=0.4375  (3s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (61s)
+[P1-eval]   MobileNetV2      ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (46s)
+[P1-eval]   STIDNet          ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (5s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (88s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.0000 SEN=0.0000 SPE=0.0000 PRE=0.0000 F1=0.0000 BAL=0.0000  (5s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (91s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (59s)
+[P1-eval]   STIDNet          ACC=0.4000 SEN=0.5000 SPE=0.3333 PRE=0.3333 F1=0.4000 BAL=0.4167  (7s)
+[P1-eval]   P1-Proposed      ACC=0.4000 SEN=1.0000 SPE=0.0000 PRE=0.4000 F1=0.5714 BAL=0.5000  (119s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep50.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=100 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (7s)
+[P1-eval]   EfficientNetV2B0 ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (115s)
+[P1-eval]   MobileNetV2      ACC=0.6000 SEN=1.0000 SPE=0.5000 PRE=0.3333 F1=0.5000 BAL=0.7500  (91s)
+[P1-eval]   STIDNet          ACC=0.6000 SEN=0.5000 SPE=0.6250 PRE=0.2500 F1=0.3333 BAL=0.5625  (13s)
+[P1-eval]   P1-Proposed      ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (225s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.0000 SEN=0.0000 SPE=0.0000 PRE=0.0000 F1=0.0000 BAL=0.0000  (10s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (127s)
+[P1-eval]   MobileNetV2      ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (110s)
+[P1-eval]   STIDNet          ACC=0.2000 SEN=0.0000 SPE=0.3333 PRE=0.0000 F1=0.0000 BAL=0.1667  (20s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (341s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep100.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+[P1-eval] proposed (50, 10, 128, 128, 12) labels {0: 29, 1: 21}
+[P1-eval] majority baseline accuracy = 0.5800 (58.0%)
+[P1-eval] LATEST=EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+[P1-eval] epochs=20 models=['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed'] train_pcts=[0.8, 0.9]
+[P1-eval] balance: class_weight=True oversample=True tag='bal_cw_os'
+[P1-eval] tf=2.10.0 keras=2.10.0
+[P1-eval] ===== split 1/2 TP=0.8 train=40 test=10 y_tr={0: 21, 1: 19} y_te={0: 8, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.3000 SEN=0.5000 SPE=0.2500 PRE=0.1429 F1=0.2222 BAL=0.3750  (10s)
+[P1-eval]   EfficientNetV2B0 ACC=0.5000 SEN=0.5000 SPE=0.5000 PRE=0.2000 F1=0.2857 BAL=0.5000  (95s)
+[P1-eval]   MobileNetV2      ACC=0.7000 SEN=1.0000 SPE=0.6250 PRE=0.4000 F1=0.5714 BAL=0.8125  (56s)
+[P1-eval]   STIDNet          ACC=0.8000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (13s)
+[P1-eval]   P1-Proposed      ACC=0.2000 SEN=1.0000 SPE=0.0000 PRE=0.2000 F1=0.3333 BAL=0.5000  (102s)
+[P1-eval] ===== split 2/2 TP=0.9 train=45 test=5 y_tr={0: 26, 1: 19} y_te={0: 3, 1: 2} =====
+[P1-eval]   DCNN             ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (7s)
+[P1-eval]   EfficientNetV2B0 ACC=0.6000 SEN=0.5000 SPE=0.6667 PRE=0.5000 F1=0.5000 BAL=0.5833  (72s)
+[P1-eval]   MobileNetV2      ACC=0.4000 SEN=0.5000 SPE=0.3333 PRE=0.3333 F1=0.4000 BAL=0.4167  (46s)
+[P1-eval]   STIDNet          ACC=0.2000 SEN=0.5000 SPE=0.0000 PRE=0.2500 F1=0.3333 BAL=0.2500  (17s)
+[P1-eval]   P1-Proposed      ACC=0.6000 SEN=0.0000 SPE=1.0000 PRE=0.0000 F1=0.0000 BAL=0.5000  (139s)
+[P1-eval] wrote C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\results\evaluation_multi_ep20_bal_cw_os.csv
+[P1-eval] figures -> C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\Optimized\figures
+[P1-eval] OK models: ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+
+
+===== optimized_logs/evaluation_multi_ep100.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluation_multi_ep100.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 100
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 1060s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.8000     0.6000
+MobileNetV2        0.6000     0.2000
+STIDNet            0.6000     0.2000
+P1-Proposed        0.8000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        1.0000     0.0000
+STIDNet            0.5000     0.0000
+P1-Proposed        0.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     1.0000     1.0000
+MobileNetV2        0.5000     0.3333
+STIDNet            0.6250     0.3333
+P1-Proposed        1.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.2000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.3333     0.0000
+STIDNet            0.2500     0.0000
+P1-Proposed        0.0000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2857     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.5000     0.0000
+STIDNet            0.3333     0.0000
+P1-Proposed        0.0000     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.7500     0.1667
+STIDNet            0.5625     0.1667
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== optimized_logs/evaluation_multi_ep2.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluation_multi_ep2.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 2
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 93s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.8000     0.6000
+EfficientNetV2B0     0.6000     0.8000
+MobileNetV2        0.7000     0.2000
+STIDNet            0.4000     0.6000
+P1-Proposed        0.8000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.5000
+MobileNetV2        0.5000     0.0000
+STIDNet            1.0000     0.0000
+P1-Proposed        0.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               1.0000     1.0000
+EfficientNetV2B0     0.7500     1.0000
+MobileNetV2        0.7500     0.3333
+STIDNet            0.2500     1.0000
+P1-Proposed        1.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     1.0000
+MobileNetV2        0.3333     0.0000
+STIDNet            0.2500     0.0000
+P1-Proposed        0.0000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.0000     0.0000
+EfficientNetV2B0     0.0000     0.6667
+MobileNetV2        0.4000     0.0000
+STIDNet            0.4000     0.0000
+P1-Proposed        0.0000     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.5000     0.5000
+EfficientNetV2B0     0.3750     0.7500
+MobileNetV2        0.6250     0.1667
+STIDNet            0.6250     0.5000
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== optimized_logs/evaluation_multi_ep20.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluation_multi_ep20.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 20
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 232s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.6000     0.8000
+EfficientNetV2B0     0.5000     0.6000
+MobileNetV2        0.4000     0.6000
+STIDNet            0.7000     0.4000
+P1-Proposed        0.2000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.0000     0.5000
+EfficientNetV2B0     0.5000     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            1.0000     0.0000
+P1-Proposed        1.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.7500     1.0000
+EfficientNetV2B0     0.5000     1.0000
+MobileNetV2        0.5000     0.6667
+STIDNet            0.6250     0.6667
+P1-Proposed        0.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.0000     1.0000
+EfficientNetV2B0     0.2000     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            0.4000     0.0000
+P1-Proposed        0.2000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.0000     0.6667
+EfficientNetV2B0     0.2857     0.0000
+MobileNetV2        0.0000     0.5000
+STIDNet            0.5714     0.0000
+P1-Proposed        0.3333     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.3750     0.7500
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.2500     0.5833
+STIDNet            0.8125     0.3333
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== optimized_logs/evaluation_multi_ep20_bal_cw_os.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluation_multi_ep20_bal_cw_os.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 20
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+class_weight : True
+oversample   : True
+tag      : bal_cw_os
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 558s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.3000     0.6000
+EfficientNetV2B0     0.5000     0.6000
+MobileNetV2        0.7000     0.4000
+STIDNet            0.8000     0.2000
+P1-Proposed        0.2000     0.6000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        1.0000     0.5000
+STIDNet            0.0000     0.5000
+P1-Proposed        1.0000     0.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.2500     1.0000
+EfficientNetV2B0     0.5000     0.6667
+MobileNetV2        0.6250     0.3333
+STIDNet            1.0000     0.0000
+P1-Proposed        0.0000     1.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.1429     0.0000
+EfficientNetV2B0     0.2000     0.5000
+MobileNetV2        0.4000     0.3333
+STIDNet            0.0000     0.2500
+P1-Proposed        0.2000     0.0000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2222     0.0000
+EfficientNetV2B0     0.2857     0.5000
+MobileNetV2        0.5714     0.4000
+STIDNet            0.0000     0.3333
+P1-Proposed        0.3333     0.0000
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.3750     0.5000
+EfficientNetV2B0     0.5000     0.5833
+MobileNetV2        0.8125     0.4167
+STIDNet            0.5000     0.2500
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== optimized_logs/evaluation_multi_ep50.txt =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\evaluation_multi_ep50.txt
+-----
+Paper 1 multi-model evaluation (honest sklearn metrics on Features.pkl)
+proposed features : (50, 10, 128, 128, 12)
+samples  : 50  balance {0: 29, 1: 21}
+majority baseline ACC : 0.5800
+epochs   : 50
+train_pcts: [0.8, 0.9]
+models   : ['DCNN', 'EfficientNetV2B0', 'MobileNetV2', 'STIDNet', 'P1-Proposed']
+latest   : EfficientNetV2B0 â€” EfficientNetV2B0 is the V2 successor to EfficientNetB0/B7 used in Paper 1 comparatives; available under TF 2.10 keras.applications without upgrade.
+tf/keras : 2.10.0 / 2.10.0
+elapsed  : 484s
+metric_path: Optimized/metrics_fixed.py (NOT mealpy.metrics)
+
+NOTE: Original SubFunctions/Evaluate.py routes through a tampered
+mealpy.metrics.confusion_matrix (see Optimized/INTEGRITY_FINDING.md).
+All numbers below are re-measured with sklearn.
+
+Accuracy              80%        90%
+------------------------------------
+DCNN               0.4000     0.0000
+EfficientNetV2B0     0.8000     0.6000
+MobileNetV2        0.5000     0.6000
+STIDNet            0.5000     0.4000
+P1-Proposed        0.2000     0.4000
+
+Sensitivity           80%        90%
+------------------------------------
+DCNN               0.5000     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.5000     0.0000
+STIDNet            0.5000     0.5000
+P1-Proposed        1.0000     1.0000
+
+Specificity           80%        90%
+------------------------------------
+DCNN               0.3750     0.0000
+EfficientNetV2B0     1.0000     1.0000
+MobileNetV2        0.5000     1.0000
+STIDNet            0.5000     0.3333
+P1-Proposed        0.0000     0.0000
+
+Precision             80%        90%
+------------------------------------
+DCNN               0.1667     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.2000     0.0000
+STIDNet            0.2000     0.3333
+P1-Proposed        0.2000     0.4000
+
+F1                    80%        90%
+------------------------------------
+DCNN               0.2500     0.0000
+EfficientNetV2B0     0.0000     0.0000
+MobileNetV2        0.2857     0.0000
+STIDNet            0.2857     0.4000
+P1-Proposed        0.3333     0.5714
+
+BalAcc                80%        90%
+------------------------------------
+DCNN               0.4375     0.0000
+EfficientNetV2B0     0.5000     0.5000
+MobileNetV2        0.5000     0.5000
+STIDNet            0.5000     0.4167
+P1-Proposed        0.5000     0.5000
+
+Per-model status:
+  DCNN: 2/2 splits OK
+  EfficientNetV2B0: 2/2 splits OK
+  MobileNetV2: 2/2 splits OK
+  STIDNet: 2/2 splits OK
+  P1-Proposed: 2/2 splits OK
+
+Reference only â€” Analysis/TP/COM_A.npy (original paper artefacts;
+NOT re-measured here; may be affected by mealpy metric path):
+  shape=(6, 5)
+  last-row (90% train if 6 rows) ACC~0.9334
+
+
+===== optimized_logs/weight_tune.log =====
+FILE: C:\Users\USER\Downloads\PostDoc\CODE_28-04-2025_Paper1\logs\full_archive_20260805_161709\optimized_logs\weight_tune.log
+-----
+N=50 balance={0: 29, 1: 21} maj=0.580
+DCNN             scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+DCNN             scale=1.0  osr=1.5  meanBAL=0.562 meanACC=0.300
+DCNN             scale=2.0  osr=1.0  meanBAL=0.375 meanACC=0.300
+DCNN             scale=2.0  osr=1.5  meanBAL=0.375 meanACC=0.300
+DCNN             scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+DCNN             scale=3.0  osr=1.5  meanBAL=0.688 meanACC=0.500
+DCNN             scale=4.0  osr=1.0  meanBAL=0.562 meanACC=0.600
+DCNN             scale=4.0  osr=1.5  meanBAL=0.562 meanACC=0.300
+BEST DCNN: scale=3.0 osr=1.5 BAL=0.688 ACC=0.500
+EfficientNetV2B0 scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+EfficientNetV2B0 scale=1.0  osr=1.5  meanBAL=0.812 meanACC=0.700
+EfficientNetV2B0 scale=2.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=2.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=3.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+EfficientNetV2B0 scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+BEST EfficientNetV2B0: scale=1.0 osr=1.5 BAL=0.812 ACC=0.700
+MobileNetV2      scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+MobileNetV2      scale=1.0  osr=1.5  meanBAL=0.250 meanACC=0.400
+MobileNetV2      scale=2.0  osr=1.0  meanBAL=0.812 meanACC=0.700
+MobileNetV2      scale=2.0  osr=1.5  meanBAL=0.250 meanACC=0.400
+MobileNetV2      scale=3.0  osr=1.0  meanBAL=0.812 meanACC=0.700
+MobileNetV2      scale=3.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+MobileNetV2      scale=4.0  osr=1.0  meanBAL=0.375 meanACC=0.600
+MobileNetV2      scale=4.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+BEST MobileNetV2: scale=2.0 osr=1.0 BAL=0.812 ACC=0.700
+STIDNet          scale=1.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+STIDNet          scale=1.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+STIDNet          scale=2.0  osr=1.0  meanBAL=0.562 meanACC=0.600
+STIDNet          scale=2.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+STIDNet          scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.500
+STIDNet          scale=3.0  osr=1.5  meanBAL=0.688 meanACC=0.800
+STIDNet          scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+STIDNet          scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+BEST STIDNet: scale=3.0 osr=1.5 BAL=0.688 ACC=0.800
+P1-Proposed      scale=1.0  osr=1.0  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=1.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=2.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=2.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+P1-Proposed      scale=3.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=3.0  osr=1.5  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=4.0  osr=1.0  meanBAL=0.500 meanACC=0.800
+P1-Proposed      scale=4.0  osr=1.5  meanBAL=0.500 meanACC=0.200
+BEST P1-Proposed: scale=2.0 osr=1.0 BAL=0.500 ACC=0.800
+RF               scale=1.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=1.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=2.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=2.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=3.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=3.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+RF               scale=4.0  osr=1.0  meanBAL=0.625 meanACC=0.700
+RF               scale=4.0  osr=1.5  meanBAL=0.625 meanACC=0.700
+BEST RF: scale=1.0 osr=1.0 BAL=0.625 ACC=0.700
+GBM              scale=1.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=1.0  osr=1.5  meanBAL=0.438 meanACC=0.700
+GBM              scale=2.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=2.0  osr=1.5  meanBAL=0.438 meanACC=0.700
+GBM              scale=3.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=3.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+GBM              scale=4.0  osr=1.0  meanBAL=0.312 meanACC=0.500
+GBM              scale=4.0  osr=1.5  meanBAL=0.312 meanACC=0.500
+BEST GBM: scale=1.0 osr=1.5 BAL=0.438 ACC=0.700
+===== FINAL TP=0.8 train=40 test=10 =====
+  DCNN             sc=3.0 osr=1.5 ACC=0.4000 SEN=0.5000 SPE=0.3750 F1=0.2500 BAL=0.4375 (18s)
+  EfficientNetV2B0 sc=1.0 osr=1.5 ACC=0.5000 SEN=0.0000 SPE=0.6250 F1=0.0000 BAL=0.3125 (166s)
+  MobileNetV2      sc=2.0 osr=1.0 ACC=0.3000 SEN=0.0000 SPE=0.3750 F1=0.0000 BAL=0.1875 (87s)
+  STIDNet          sc=3.0 osr=1.5 ACC=0.8000 SEN=0.0000 SPE=1.0000 F1=0.0000 BAL=0.5000 (19s)
+
