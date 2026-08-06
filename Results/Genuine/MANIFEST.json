@@ -1,0 +1,22 @@
+{
+  "figures": [
+    "fig01_balanced_accuracy_by_model.png",
+    "fig02_accuracy_by_model.png",
+    "fig03_accuracy_vs_training_percentage.png",
+    "fig04_kfold_balanced_accuracy.png",
+    "fig05_roc_curve.png",
+    "fig06_confusion_matrix.png",
+    "fig07_representation_search.png",
+    "fig08_method_comparison.png",
+    "fig09_accuracy_ceiling.png"
+  ],
+  "sources": {
+    "fig01-03": "Analysis1/TRUE",
+    "fig04": "Analysis1/TRUE_KF",
+    "fig05-06": "Optimized/roc_confusion.json",
+    "fig07": "Optimized/optimize_v2.json",
+    "fig08": "all of the above + Optimized/oof_stil_tim.json",
+    "fig09": "Optimized/corpus_audit.json"
+  },
+  "scored_with": "Optimized/metrics_fixed.py (real confusion matrix)"
+}

@@ -9,6 +9,7 @@ import datetime
 import glob
 import html
 import json
+import re
 import os
 import sys
 import zipfile
@@ -39,31 +40,140 @@ DOC_RELS = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
 </Relationships>"""
 
+# ------------------------------------------------------------------- images
+# Embedding a picture in OOXML needs four things kept in step: the PNG bytes
+# as word/media/*, a Default extension in [Content_Types].xml, a relationship
+# in word/_rels/document.xml.rels, and a w:drawing referencing that rId.
+# IMAGES accumulates (rId, filename, bytes) as picture() is called; write_doc()
+# emits all four.
+IMAGES = []
+EMU_PER_PX = 9525          # 1 px at 96 dpi
+MAX_WIDTH_EMU = 5943600    # 6.2 in - fits A4 with the 1134 twip margins
 
-def _style(sid, name, sz, bold, color, before=200, after=100, mono=False):
-    font = "Consolas" if mono else "Calibri"
+
+def picture(path, caption=None, max_w_in=6.2):
+    """Embed a PNG, scaled to fit the text column, with an optional caption."""
+    path = Path(path)
+    if not path.exists():
+        return para(f"[figure missing: {path.name}]", "Caption")
+    data = path.read_bytes()
+    try:
+        import struct
+        w, h = struct.unpack(">II", data[16:24])   # PNG IHDR
+    except Exception:
+        w, h = 1200, 800
+    cx, cy = w * EMU_PER_PX, h * EMU_PER_PX
+    cap = int(max_w_in * 914400)
+    if cx > cap:
+        cy = int(cy * cap / cx)
+        cx = cap
+
+    rid = f"rIdImg{len(IMAGES) + 1}"
+    name = f"image{len(IMAGES) + 1}{path.suffix.lower()}"
+    IMAGES.append((rid, name, data))
+    n = len(IMAGES)
+    drawing = (
+        '<w:p><w:pPr><w:pStyle w:val="Normal"/><w:jc w:val="center"/>'
+        '<w:spacing w:before="160" w:after="60"/></w:pPr><w:r><w:drawing>'
+        f'<wp:inline distT="0" distB="0" distL="0" distR="0">'
+        f'<wp:extent cx="{cx}" cy="{cy}"/>'
+        f'<wp:docPr id="{n}" name="Picture {n}" descr="{esc(path.stem)}"/>'
+        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+        '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        f'<pic:nvPicPr><pic:cNvPr id="{n}" name="{esc(path.name)}"/>'
+        '<pic:cNvPicPr/></pic:nvPicPr>'
+        f'<pic:blipFill><a:blip r:embed="{rid}"/>'
+        '<a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+        '<pic:spPr><a:xfrm><a:off x="0" y="0"/>'
+        f'<a:ext cx="{cx}" cy="{cy}"/></a:xfrm>'
+        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>'
+        '</pic:pic></a:graphicData></a:graphic></wp:inline>'
+        '</w:drawing></w:r></w:p>')
+    if caption:
+        drawing += para(caption, "Caption")
+    return drawing
+
+
+def figure(name, caption=None):
+    """Embed Results/Genuine/<name> if it exists."""
+    return picture(P / "Results" / "Genuine" / name, caption)
+
+
+# Formatting follows Paper1_SMA_CLMPNet_Genuine_Research_Paper.docx:
+# Times New Roman throughout; title 15pt centred, authors 12pt centred,
+# affiliations 8pt centred, section headings 13pt bold, subsections 12pt bold,
+# body 10pt justified, table text 8pt. Sizes below are half-points, as OOXML
+# requires.
+FONT = "Times New Roman"
+
+
+def _style(sid, name, sz, bold, color=None, before=200, after=100,
+           mono=False, jc=None):
+    font = "Consolas" if mono else FONT
     # built outside the f-string: Python 3.8 forbids backslashes in f-string
     # expressions, and nesting quotes here is what would need them
     b_tag = "<w:b/>" if bold else ""
     c_tag = '<w:color w:val="%s"/>' % color if color else ""
+    j_tag = '<w:jc w:val="%s"/>' % jc if jc else ""
     return (f'<w:style w:type="paragraph" w:styleId="{sid}">'
             f'<w:name w:val="{name}"/>'
-            f'<w:pPr><w:spacing w:before="{before}" w:after="{after}"/></w:pPr>'
+            f'<w:pPr><w:spacing w:before="{before}" w:after="{after}"/>'
+            f'{j_tag}</w:pPr>'
             f'<w:rPr><w:rFonts w:ascii="{font}" w:hAnsi="{font}"/>'
             f'<w:sz w:val="{sz}"/><w:szCs w:val="{sz}"/>'
             f'{b_tag}{c_tag}</w:rPr></w:style>')
 
 
+DOC_DEFAULTS = (
+    '<w:docDefaults><w:rPrDefault><w:rPr>'
+    f'<w:rFonts w:ascii="{FONT}" w:hAnsi="{FONT}" w:cs="{FONT}"/>'
+    '<w:sz w:val="20"/><w:szCs w:val="20"/></w:rPr></w:rPrDefault>'
+    '</w:docDefaults>')
+
 STYLES = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
           '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
-          + _style("Title", "Title", 56, True, "1F3864", 0, 240)
-          + _style("Heading1", "heading 1", 32, True, "1F3864", 320, 120)
-          + _style("Heading2", "heading 2", 26, True, "2E5496", 260, 100)
-          + _style("Heading3", "heading 3", 23, True, "404040", 220, 80)
-          + _style("Normal", "Normal", 21, False, None, 60, 60)
-          + _style("Code", "Code", 17, False, "333333", 60, 60, mono=True)
-          + _style("Caption", "Caption", 18, False, "666666", 20, 160)
+          + DOC_DEFAULTS
+          + _style("Title", "Title", 30, True, None, 0, 120, jc="center")
+          + _style("Authors", "Authors", 24, True, None, 60, 60, jc="center")
+          + _style("Affil", "Affiliation", 16, False, None, 0, 20, jc="center")
+          + _style("Corr", "Corresponding", 18, False, None, 40, 160,
+                   jc="center")
+          + _style("Heading1", "heading 1", 26, True, None, 300, 120)
+          + _style("Heading2", "heading 2", 24, True, None, 240, 100)
+          + _style("Heading3", "heading 3", 22, True, None, 200, 80)
+          + _style("Normal", "Normal", 20, False, None, 60, 60, jc="both")
+          + _style("Code", "Code", 18, False, "333333", 60, 60, mono=True)
+          + _style("Caption", "Caption", 18, False, "444444", 20, 160)
           + '</w:styles>')
+
+# The template's own front matter, reproduced verbatim.
+TITLE_BLOCK_AUTHORS = ("Dr. Abhishek Thakur1,2,*,  Prof. Vishal Jain3, and  "
+                       "Prof. Chin-Shiuh Shieh4")
+TITLE_BLOCK_AFFIL = [
+    "(謝欽旭)",
+    "1 Primary: School of Computer Science & Engineering, Chitkara "
+    "University, Himachal Pradesh, India (Associate Professor).",
+    "2 Secondary: Postdoctoral Researcher, RIITC / Department of Electronic "
+    "Engineering, NKUST, Kaohsiung 80778, Taiwan (R.O.C.); Ref. "
+    "RIITC-Postdoc-2027-B03.",
+    "3 Co-Supervisor: Vivekananda Institute of Professional Studies – "
+    "Technical Campus (VIPS-TC), India.",
+    "4 Supervisor: Department of Electronic Engineering / RIITC, NKUST, "
+    "No. 415, Jiangong Rd., Kaohsiung 80778, Taiwan (R.O.C.).",
+    "E-mail: abhithakur25@gmail.com; abhishek@chitkarauniversity.edu.in  |  "
+    "drvishaljain83@gmail.com; vishal.jain@vips.edu  |  csshieh@nkust.edu.tw",
+]
+TITLE_BLOCK_CORR = ("* Corresponding author: Dr. Abhishek Thakur "
+                    "(abhithakur25@gmail.com).")
+
+
+def title_block(title):
+    """Title, authors, affiliations and corresponding-author line."""
+    out = [para(title, "Title"), para(TITLE_BLOCK_AUTHORS, "Authors")]
+    out += [para(a, "Affil") for a in TITLE_BLOCK_AFFIL]
+    out.append(para(TITLE_BLOCK_CORR, "Corr"))
+    return "".join(out)
 
 
 def esc(t):
@@ -92,10 +202,15 @@ def code(lines):
 def cell(text, bold=False, shade=None, width=1200):
     sh = f'<w:shd w:val="clear" w:fill="{shade}"/>' if shade else ""
     rpr = "<w:b/>" if bold else ""
-    return (f'<w:tc><w:tcPr><w:tcW w:w="{width}" w:type="dxa"/>{sh}</w:tcPr>'
+    # jc=left explicitly: Normal is justified, which stretches short cell
+    # text across the column and looks broken in a narrow table
+    return (f'<w:tc><w:tcPr><w:tcW w:w="{width}" w:type="dxa"/>{sh}'
+            f'<w:vAlign w:val="center"/></w:tcPr>'
             f'<w:p><w:pPr><w:pStyle w:val="Normal"/>'
+            f'<w:jc w:val="left"/>'
             f'<w:spacing w:before="20" w:after="20"/></w:pPr>'
-            f'<w:r><w:rPr>{rpr}<w:sz w:val="18"/></w:rPr>'
+            f'<w:r><w:rPr>{rpr}<w:rFonts w:ascii="{FONT}" w:hAnsi="{FONT}"/>'
+            f'<w:sz w:val="16"/><w:szCs w:val="16"/></w:rPr>'
             f'<w:t xml:space="preserve">{esc(text)}</w:t></w:r></w:p></w:tc>')
 
 
@@ -119,13 +234,70 @@ def table(head, rows, widths=None, highlight=None):
     return "".join(out)
 
 
+NS = (' xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"'
+      ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"'
+      ' xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"'
+      ' xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"'
+      ' xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"')
+
+
 def build(body):
     return ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-            '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+            f'<w:document{NS}>'
             f'<w:body>{body}'
             '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/>'
             '<w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/>'
             '</w:sectPr></w:body></w:document>')
+
+
+def write_doc(out_path, body):
+    """Write the .docx, including any images picture() accumulated, and
+    validate the result before returning."""
+    import xml.dom.minidom as md
+
+    xml = build(body)
+    ct = CONTENT_TYPES
+    if IMAGES:
+        exts = {Path(n).suffix.lstrip(".").lower() for _, n, _ in IMAGES}
+        mime = {"png": "image/png", "jpg": "image/jpeg",
+                "jpeg": "image/jpeg", "gif": "image/gif"}
+        ct = ct.replace("</Types>", "".join(
+            f'<Default Extension="{e}" ContentType="{mime.get(e, "image/png")}"/>'
+            for e in sorted(exts)) + "</Types>")
+    rels = DOC_RELS.replace("</Relationships>", "".join(
+        f'<Relationship Id="{rid}" Type="http://schemas.openxmlformats.org/'
+        f'officeDocument/2006/relationships/image" Target="media/{name}"/>'
+        for rid, name, _ in IMAGES) + "</Relationships>")
+
+    with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("[Content_Types].xml", ct)
+        z.writestr("_rels/.rels", RELS)
+        z.writestr("word/document.xml", xml)
+        z.writestr("word/styles.xml", STYLES)
+        z.writestr("word/_rels/document.xml.rels", rels)
+        for _, name, data in IMAGES:
+            z.writestr(f"word/media/{name}", data)
+
+    with zipfile.ZipFile(out_path) as z:
+        assert z.testzip() is None, "corrupt zip"
+        d = z.read("word/document.xml").decode("utf8")
+        md.parseString(d)
+        md.parseString(z.read("word/_rels/document.xml.rels").decode("utf8"))
+        md.parseString(z.read("[Content_Types].xml").decode("utf8"))
+        media = [n for n in z.namelist() if n.startswith("word/media/")]
+        # every rId referenced by a drawing must exist as a relationship
+        used = set(re.findall(r'r:embed="([^"]+)"', d))
+        declared = set(re.findall(r'Id="(rIdImg\d+)"',
+                                  z.read("word/_rels/document.xml.rels")
+                                  .decode("utf8")))
+        missing = used - declared
+        assert not missing, f"drawings reference undeclared rIds: {missing}"
+    print(f"wrote {Path(out_path).name}  "
+          f"({Path(out_path).stat().st_size/1024:.0f} KB)")
+    print(f"validated: zip OK, XML well-formed, "
+          f"{d.count('<w:p>') + d.count('<w:p ')} paragraphs, "
+          f"{d.count('<w:tbl>')} tables, {len(media)} embedded images")
+    return d
 
 
 # ------------------------------------------------------------------- content
@@ -152,17 +324,23 @@ def main():
     now = datetime.datetime.now()
     tr, man = load_true()
     kf, kman = load_true("TRUE_KF")
+    roc = load_json("roc_confusion.json")
+    audit = load_json("corpus_audit.json")
+    stil = load_json("oof_stil_tim.json")
     v2, v3 = load_json("optimize_v2.json"), load_json("optimize_v3.json")
     wts, probe = load_json("optimize_weights.json"), load_json("feature_probe.json")
     p2 = load_json("paper2_model.json")
 
     # ---------------------------------------------------------------- title
-    b.append(para("Paper 1 — Complete Work Record", "Title"))
-    b.append(para("Design and Development of a Video Forgery Model Using Deep "
-                  "Learning with Attention Mechanisms (SMA-CLMPNet)", "Caption"))
-    b.append(para(f"Generated {now:%Y-%m-%d %H:%M:%S} · Windows 11 · conda env "
-                  f"VideoForgeryCPU (Python 3.8.20, TensorFlow 2.10, CPU only)",
-                  "Caption"))
+    b.append(title_block(
+        "SMA-CLMPNet: Spatial Multiscale Attention enabled Convolutional "
+        "Distributed Memory Network for Intra-frame Video Forgery Detection "
+        "— Complete Work Record and Measured Evaluation"))
+    b.append(para(f"Generated {now:%Y-%m-%d %H:%M:%S}. Windows 11, conda env "
+                  f"VideoForgeryCPU (Python 3.8.20, TensorFlow 2.10, CPU "
+                  f"only). Every figure in this record was scored with "
+                  f"Optimized/metrics_fixed.py and traces to a named file in "
+                  f"the repository.", "Caption"))
 
     # ------------------------------------------------------------- summary
     b.append(para("1. Executive Summary", "Heading1"))
@@ -392,6 +570,17 @@ def main():
                       "accuracy: the model assigns one label to every video. "
                       "Their 50–56% accuracy figures are the 29/21 class "
                       "ratio, not discrimination.", "Caption"))
+        b.append(figure("fig01_balanced_accuracy_by_model.png",
+                        "Figure 1. Mean balanced accuracy by model over the "
+                        "six training percentages. Red bars sit at exactly "
+                        "50.00%: one label for every input. The dashed line "
+                        "is chance."))
+        b.append(figure("fig02_accuracy_by_model.png",
+                        "Figure 2. The same models by raw accuracy. The "
+                        "dashed line is the 58.00% majority-class baseline; "
+                        "a bar at or below it carries no information, which "
+                        "is why accuracy alone is not reportable on this "
+                        "corpus."))
 
         b.append(para("5.3 Accuracy by training percentage", "Heading2"))
         hdr = ["Model"] + [f"{int(p*100)}%" for p in man["train_pcts"]] + ["Mean"]
@@ -400,6 +589,12 @@ def main():
             a = tr[n][:, 0]
             rows.append([n] + [pct(x) for x in a] + [pct(np.nanmean(a))])
         b.append(table(hdr, rows, [2400] + [900] * (len(hdr) - 1)))
+        b.append(figure("fig03_accuracy_vs_training_percentage.png",
+                        "Figure 3. Accuracy against training percentage. "
+                        "The test partition falls from 31 videos to 6, so "
+                        "one misclassification is worth 3.23 points on the "
+                        "left and 16.67 on the right. No trend across a "
+                        "line is resolvable."))
 
     if kf:
         ks = kman["k_values"]
@@ -433,6 +628,120 @@ def main():
                 f"one k value — sensitivity or specificity exactly zero, i.e. "
                 f"one label for every video in that fold: "
                 f"{', '.join(sorted(deg))}."))
+        b.append(figure("fig04_kfold_balanced_accuracy.png",
+                        "Figure 4. K-fold balanced accuracy per model and per "
+                        "k. Test folds hold 5–9 of the 50 videos, so one "
+                        "error moves a bar by 11–20 points; the degeneracy "
+                        "count, not the ranking, is what this figure "
+                        "supports."))
+
+    if roc:
+        key = "temporal delta stats (best honest pipeline)"
+        ref = "per-frame mean+std (time-collapsed reference)"
+        c, cr = roc["curves"][key], roc["curves"][ref]
+        cm = c["confusion_matrix"]
+        b.append(para("5.5 ROC, AUC and confusion matrix", "Heading2"))
+        b.append(para(
+            "The harness stores hard predictions only, so neither a "
+            "confusion matrix nor an ROC could be reported from it, and the "
+            "published ROC cannot be reproduced at all - Analysis.py builds "
+            "it through Evaluation_Metrics1, i.e. the same tampered scorer, "
+            "so its curve is a function of a random vector. Both were "
+            "recomputed from out-of-fold predicted probabilities under the "
+            "same nested cross-validation."))
+        b.append(table(["", "Predicted authentic", "Predicted forged"],
+                       [["True authentic", str(cm["TN"]), str(cm["FP"])],
+                        ["True forged", str(cm["FN"]), str(cm["TP"])]],
+                       [2600, 2600, 2600]))
+        b.append(para(
+            f"Accuracy {c['accuracy']*100:.2f}%, balanced accuracy "
+            f"{c['balanced_accuracy']*100:.2f}%, sensitivity to forgery "
+            f"{c['sensitivity_forged']*100:.2f}%, specificity "
+            f"{c['specificity_authentic']*100:.2f}%, AUC {c['auc']:.4f}. Both "
+            f"classes are predicted, which is what separates this pipeline "
+            f"from the degenerate models of section 5.2.", "Caption"))
+        b.append(table(["Representation", "AUC", "Pooled balanced acc."],
+                       [[key.split(" (")[0], f"{c['auc']:.4f}",
+                         f"{c['balanced_accuracy']*100:.2f}"],
+                        [ref.split(" (")[0], f"{cr['auc']:.4f}",
+                         f"{cr['balanced_accuracy']*100:.2f}"]],
+                       [4000, 1500, 2000]))
+        if "auc_permutation" in roc:
+            ap = roc["auc_permutation"]
+            b.append(para(
+                f"Against {ap['n_shuffles']} label shuffles the null AUC has "
+                f"mean {ap['null_mean']:.4f} and 95th percentile "
+                f"{ap['null_p95']:.4f}, giving p = {ap['p_value']:.4f}. The "
+                f"second row is the control that matters: collapsing the same "
+                f"tensor over time drops the AUC to {cr['auc']:.4f}, "
+                f"indistinguishable from chance. The signal is temporal, and "
+                f"any pooling stage that averages it away removes it."))
+        b.append(figure("fig05_roc_curve.png",
+                        "Figure 5. ROC curves, out-of-fold over all 50 "
+                        "videos. The dashed curve is the same tensor with "
+                        "the time axis collapsed."))
+        b.append(figure("fig06_confusion_matrix.png",
+                        "Figure 6. Out-of-fold confusion matrix for the "
+                        "best measured pipeline. Both classes are "
+                        "predicted, unlike every deep model in section "
+                        "5.2."))
+
+    if audit:
+        b.append(para("5.6 Corpus audit and the attainable-accuracy ceiling",
+                      "Heading2"))
+        b.append(para(
+            "Due diligence that should precede any accuracy claim on a "
+            "50-sample corpus. No model is trained here; this only "
+            "characterises the data."))
+        rows = [
+            ["Near-duplicate pairs (cosine > 0.98)",
+             str(audit["near_duplicate_pairs_gt_098"]),
+             f"max off-diagonal cosine {audit['max_offdiag_cosine']:.3f} - no "
+             f"footage straddles a split, so the measured scores are not "
+             f"inflated by leakage"],
+            ["Best single feature, in-sample AUC",
+             f"{audit['best_single_feature_auc']:.4f}",
+             f"{audit['n_features_auc_gt_090']} of 324 features exceed 0.90 - "
+             f"no dimension encodes the label, so this is a genuine detection "
+             f"problem"],
+        ]
+        if "max_accuracy_any_threshold" in audit:
+            rows.append(
+                ["Max accuracy at ANY threshold",
+                 f"{audit['max_accuracy_any_threshold']*100:.2f}%",
+                 f"upper bound on the observed ROC (AUC "
+                 f"{audit['oof_auc']:.4f}), computed with the test labels in "
+                 f"hand and therefore already optimistic"])
+        b.append(table(["Check", "Value", "What it means"], rows,
+                       [3000, 1400, 4600]))
+        if "max_accuracy_any_threshold" in audit:
+            b.append(para(
+                f"This is the decisive number for any accuracy target. "
+                f"Accuracy is bounded by the ROC curve: at AUC "
+                f"{audit['oof_auc']:.4f} no threshold reaches beyond "
+                f"{audit['max_accuracy_any_threshold']*100:.2f}%. Reaching "
+                f"95% would require an AUC near 0.98 against a permutation "
+                f"null whose 95th percentile is "
+                f"{audit.get('null_auc_p95', 0):.4f}. A target above that "
+                f"bound cannot be met by any architecture on this corpus, and "
+                f"a reported figure above it should be read as evidence of a "
+                f"scoring fault, test-set fitting, or best-of-N selection "
+                f"rather than of detection."))
+            b.append(figure("fig09_accuracy_ceiling.png",
+                            "Figure 7. The attainable-accuracy ceiling. "
+                            "Accuracy is bounded by the ROC curve, so the "
+                            "measured AUC caps accuracy at 74.00% however "
+                            "the threshold is chosen."))
+        if audit.get("binomial_ci"):
+            b.append(table(
+                ["Fold result", "Accuracy", "95% confidence interval"],
+                [[f"{d['correct']}/{d['n']} correct", f"{d['acc']*100:.2f}%",
+                  f"[{d['lo']*100:.1f}, {d['hi']*100:.1f}]"]
+                 for d in audit["binomial_ci"]], [2400, 1600, 2800]))
+            b.append(para(
+                "A 10-video test fold cannot separate 80% from 100% at 95% "
+                "confidence. This sets the granularity below which no two "
+                "methods in this report are distinguishable.", "Caption"))
 
     # ------------------------------------------------- optimisation results
     b.append(para("6. Optimisation Attempts", "Heading1"))
@@ -452,6 +761,12 @@ def main():
             f"{w['nested_bal_acc']*100:.2f}%, null mean "
             f"{w['null_mean']*100:.2f}%, null 95th percentile "
             f"{w['null_p95']*100:.2f}%, p = {w['p_value']:.4f}."))
+        b.append(figure("fig07_representation_search.png",
+                        "Figure 9. Top 12 representation × model "
+                        "combinations under nested cross-validation, with "
+                        "the spread across outer folds. The dotted line is "
+                        "the permutation null's 95th percentile: only the "
+                        "top bar clears it."))
     b.append(para("6.2 Higher-order features and ensembles", "Heading2"))
     if v3:
         rows = [[f"{r['mean']*100:.2f}", f"±{r['std']*100:.2f}", r["model"],
@@ -481,6 +796,64 @@ def main():
     b.append(para("The paper's split takes the first N of each class, so any "
                   "ordering in the data becomes a train/test distribution "
                   "shift. Stratified splits recover roughly 7 points."))
+
+    b.append(para("6.5 External reference implementations", "Heading2"))
+    b.append(para(
+        "The published detectors this project compares against were sought "
+        "on GitHub so their own code could be used rather than a "
+        "reimplementation. Findings:"))
+    b.append(table(
+        ["Model", "Repository", "Usable here"],
+        [["STIL / STIDNet", "wizyoung/STIL-DeepFake-Video-Detection, "
+          "Holmes-GU/MM-2021", "No - both contain a README and no code; both "
+          "redirect to Tencent/TFace"],
+         ["STIL (actual code)", "Tencent/TFace, security/tasks/"
+          "Face-Forgery-Detection/STIL", "Yes - TIM and ISM modules"],
+         ["BA-TFD", "ControlNet/LAV-DF", "No - audio-visual temporal "
+          "localisation on the LAV-DF corpus"],
+         ["20+ detectors", "SCLBD/DeepfakeBench", "No - all frame-level on "
+          "raw RGB face crops"],
+         ["MUSE/SCAM/SMA-CLMPNet, DCNN, GLCM", "none found",
+          "The authors' own constructions"]],
+        [2400, 3000, 3600]))
+    b.append(para(
+        "None can be run as shipped. Every one consumes raw RGB face crops "
+        "from a full video corpus; this project has 50 videos already reduced "
+        "to a (10, 128, 128, 12) tensor with twelve non-RGB feature channels, "
+        "and DATASET/ holds no video files."))
+    if stil:
+        b.append(para(
+            f"What was done instead: TIM_Module and ISM_Module were imported "
+            f"unmodified from TFace at commit {stil['tface_commit'][:12]} and "
+            f"placed in a stem sized for 40 training samples - 26,696 "
+            f"parameters against SMA-CLMPNet's 2,258,534. The paper's own "
+            f"ablation credits TIM for most of its gain and the block is "
+            f"backbone-independent, so it is the transferable part. Protocol: "
+            f"{stil['protocol']}"))
+        b.append(table(
+            ["Fold", "Outer-test balanced acc.", "Inner-val", "Checkpoint epoch"],
+            [[str(f["fold"]), f"{f['outer_bal']*100:.2f}",
+              f"{f['inner_val_bal']*100:.2f}", str(f["best_epoch"])]
+             for f in stil["per_fold"]], [1200, 3000, 1800, 2200]))
+        b.append(para(
+            f"Pooled out-of-fold balanced accuracy "
+            f"{stil['pooled_balanced_accuracy']*100:.2f}%, mean of per-fold "
+            f"{stil['mean_fold_balanced_accuracy']*100:.2f}%. Three of five "
+            f"folds selected their checkpoint at epoch 1 or 3, meaning "
+            f"nothing after initialisation improved validation. A "
+            f"26,696-parameter network cannot extract from 40 training "
+            f"samples what a regularised linear model already recovers.",
+            "Caption"))
+    b.append(para(
+        "Six independent methods now agree that no architecture separates "
+        "these classes on this corpus: the published model, its two "
+        "ablations, four current-generation backbones, the companion study's "
+        "architecture, and the state-of-the-art temporal module. The binding "
+        "constraint is 40 training samples."))
+    b.append(figure("fig08_method_comparison.png",
+                    "Figure 8. Every method tried, on identical data and "
+                    "folds. Blue clears the permutation null; red does "
+                    "not."))
 
     b.append(para("7. Training / Validation / Test Accuracy", "Heading1"))
     b.append(table(
@@ -661,27 +1034,7 @@ def main():
                   "Caption"))
 
     # ------------------------------------------------------------- write
-    doc = build("".join(b))
-    with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("[Content_Types].xml", CONTENT_TYPES)
-        z.writestr("_rels/.rels", RELS)
-        z.writestr("word/document.xml", doc)
-        z.writestr("word/_rels/document.xml.rels", DOC_RELS)
-        z.writestr("word/styles.xml", STYLES)
-    print(f"wrote {OUT.name}  ({OUT.stat().st_size/1024:.0f} KB)")
-
-    # validate
-    with zipfile.ZipFile(OUT) as z:
-        bad = z.testzip()
-        assert bad is None, bad
-        import xml.dom.minidom as md
-        for part in ("word/document.xml", "word/styles.xml",
-                     "[Content_Types].xml"):
-            md.parseString(z.read(part))
-    paras = doc.count("<w:p>")
-    tables = doc.count("<w:tbl>")
-    print(f"validated: zip OK, XML well-formed, {paras} paragraphs, "
-          f"{tables} tables")
+    write_doc(OUT, "".join(b))
 
 
 if __name__ == "__main__":

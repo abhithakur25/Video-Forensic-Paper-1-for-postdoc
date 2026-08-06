@@ -53,6 +53,15 @@ DESC = {
         "Class-weight, probability-calibration and decision-threshold sweep, "
         "30 configurations, all selected inside training folds. Best 69.67%, "
         "below the untuned 77.17%.",
+    "stil_tim.log":
+        "STIL's Temporal Inconsistency Module (Gu et al., ACM MM 2021) on "
+        "this feature tensor. TIM_Module and ISM_Module imported unmodified "
+        "from Tencent/TFace 171ec143 - the two repos everyone cites for STIL "
+        "contain no code and both redirect there. 26,696 parameters against "
+        "SMA-CLMPNet's 2,258,534. Pooled out-of-fold balanced accuracy "
+        "50.49%, catching 6 of 21 forgeries; three of five folds checkpointed "
+        "at epoch 1 or 3, so nothing after initialisation improved "
+        "validation.",
     "frame_embeddings.log":
         "Per-frame and frame-difference backbone embeddings of the 'proposed' "
         "tensor (MobileNetV3Large 15,360-dim, EfficientNetV2S 20,480-dim).",

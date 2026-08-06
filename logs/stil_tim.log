@@ -1,3 +1,7 @@
+# [tidied] stil_tim.log
+# STIL's Temporal Inconsistency Module (Gu et al., ACM MM 2021) on this feature tensor. TIM_Module and ISM_Module imported unmodified from Tencent/TFace 171ec143 - the two repos everyone cites for STIL contain no code and both redirect there. 26,696 parameters against SMA-CLMPNet's 2,258,534. Pooled out-of-fold balanced accuracy 50.49%, catching 6 of 21 forgeries; three of five folds checkpointed at epoch 1 or 3, so nothing after initialisation improved validation.
+# tidied 2026-08-06 12:37:34; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 [11:47:21] X (50, 10, 12, 128, 128)  y [29, 21]
 [11:47:22] fold 0: 40 train / 10 test (test classes [5, 5])
 [11:47:41]     fold 0 ep  10  loss 0.6395  inner-val bal  43.33  (best 66.67 @ep1)

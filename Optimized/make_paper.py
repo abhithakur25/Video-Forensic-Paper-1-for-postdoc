@@ -30,8 +30,8 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from make_report_doc import (CONTENT_TYPES, DOC_RELS, RELS, STYLES, build,  # noqa: E402
-                             bullet, code, para, table)
+from make_report_doc import (bullet, code, figure, para, table,  # noqa: E402
+                             title_block, write_doc)
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 P = Path(__file__).resolve().parents[1]
@@ -76,8 +76,10 @@ def main():
     roc = load_json("roc_confusion.json")
 
     # ============================================================== front
-    b.append(para("Video Forgery Detection with Multi-Feature Fusion and "
-                  "Attention: A Measured Evaluation of SMA-CLMPNet", "Title"))
+    b.append(title_block(
+        "SMA-CLMPNet: Spatial Multiscale Attention enabled Convolutional "
+        "Distributed Memory Network for Intra-frame Video Forgery "
+        "Detection — A Measured Evaluation"))
     b.append(para("Manuscript generated from measured results only. Every "
                   "figure below was produced by a run scored with a real "
                   "confusion matrix (Optimized/metrics_fixed.py) and can be "
@@ -398,6 +400,12 @@ def main():
             "with specificity 0, or the reverse, means one label for every "
             "input. Their 50-56% accuracy figures are the class ratio.",
             "Caption"))
+        b.append(figure("fig01_balanced_accuracy_by_model.png",
+                        "Figure 1. Mean balanced accuracy by model. Red bars "
+                        "sit at exactly 50.00%: one label for every input."))
+        b.append(figure("fig02_accuracy_by_model.png",
+                        "Figure 2. The same models by raw accuracy, against "
+                        "the 58.00% majority-class baseline."))
         deg = sum(1 for n in tr
                   if abs(np.nanmean(tr[n][:, 5]) - 0.5) < 1e-9)
         b.append(para(
@@ -425,6 +433,8 @@ def main():
             "falls from 31 videos at 40% to 6 at 90%, so one misclassification "
             "is worth 3.23 points on the left of this table and 16.67 on the "
             "right. No trend across a row is resolvable.", "Caption"))
+        b.append(figure("fig03_accuracy_vs_training_percentage.png",
+                        "Figure 2. Accuracy against training percentage, all twelve models."))
     b.append(para("5.5.2 Performance evaluation based on k-fold", "Heading3"))
     if kf:
         ks = kman["k_values"]
@@ -444,6 +454,8 @@ def main():
                        highlight=lambda r: r[0] == "SMA-CLMPNet"))
         b.append(para(f"Table 3. K-fold accuracy per k, with mean accuracy and "
                       f"mean balanced accuracy.", "Caption"))
+        b.append(figure("fig04_kfold_balanced_accuracy.png",
+                        "Figure 3. K-fold balanced accuracy per model and per k."))
     else:
         missing(b, "5.5.2", "the k-fold run had not checkpointed when this "
                             "document was generated. Re-run "
@@ -532,6 +544,8 @@ def main():
             f"percentile {w['null_p95']*100:.2f}%, giving p = "
             f"{w['p_value']:.4f}. The representation carries signal above "
             f"chance."))
+        b.append(figure("fig07_representation_search.png",
+                        "Figure 4. Top 12 representation x model combinations. Only the top bar clears the permutation null."))
         b.append(para(
             "The representation that wins is the temporal one: absolute "
             "frame-to-frame differences, summarised by their mean, standard "
@@ -597,6 +611,8 @@ def main():
             f"{c['specificity_authentic']*100:.2f}%. Both classes are "
             f"predicted, which is what distinguishes this pipeline from the "
             f"degenerate models of table 1.", "Caption"))
+        b.append(figure("fig06_confusion_matrix.png",
+                        "Figure 5. Out-of-fold confusion matrix."))
         if v2:
             b.append(para(
                 f"This balanced accuracy, "
@@ -661,6 +677,8 @@ def main():
             f"Optimized/roc_confusion.json. With 50 samples the curve is a "
             f"step function and its confidence band is wide; the AUC and its "
             f"permutation test are the parts worth reporting."))
+        b.append(figure("fig05_roc_curve.png",
+                        "Figure 6. ROC, out-of-fold over all 50 videos, against the time-collapsed control."))
     else:
         missing(b, "5.10", "Optimized/roc_confusion.json is absent.")
 
@@ -703,6 +721,10 @@ def main():
         "crops. No architectural change closes a gap of that size, and the "
         "measurements here do not support ranking the methods against each "
         "other at all."))
+    b.append(figure("fig08_method_comparison.png",
+                    "Figure 7. Every method tried, on identical data and folds. Blue clears the permutation null; red does not."))
+    b.append(figure("fig09_accuracy_ceiling.png",
+                    "Figure 8. The attainable-accuracy ceiling on this corpus."))
 
     # ====================================================== 6 Conclusion
     b.append(para("6. Conclusion", "Heading1"))
@@ -774,23 +796,7 @@ def main():
         "grounds.", "Caption"))
 
     # ---------------------------------------------------------------- write
-    xml = build("".join(b))
-    with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("[Content_Types].xml", CONTENT_TYPES)
-        z.writestr("_rels/.rels", RELS)
-        z.writestr("word/document.xml", xml)
-        z.writestr("word/styles.xml", STYLES)
-        z.writestr("word/_rels/document.xml.rels", DOC_RELS)
-
-    import xml.dom.minidom as md
-    with zipfile.ZipFile(OUT) as z:
-        assert z.testzip() is None
-        d = z.read("word/document.xml").decode("utf8")
-        md.parseString(d)
-    print(f"wrote {OUT.name}  ({OUT.stat().st_size/1024:.0f} KB)")
-    print(f"validated: zip OK, XML well-formed, "
-          f"{d.count('<w:p>') + d.count('<w:p ')} paragraphs, "
-          f"{d.count('<w:tbl>')} tables")
+    write_doc(OUT, "".join(b))
     for tag, ok in [("5.5.2/5.6.2 k-fold", bool(kf)),
                     ("5.7 feature analysis", bool(v2)),
                     ("5.9/5.10 ROC + confusion", bool(roc))]:

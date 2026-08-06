@@ -1,6 +1,6 @@
 # Results — Paper 1, corrected scoring
 
-Generated 2026-08-06 10:20:35.
+Generated 2026-08-06 12:45:25.
 
 > **The scores this project produces as delivered are fabricated.** The vendored `mealpy/metrics.py` discards model predictions and invents them. See [`INTEGRITY_FINDING.md`](INTEGRITY_FINDING.md). Everything below headed *measured* was scored with `Optimized/metrics_fixed.py`.
 
@@ -44,6 +44,29 @@ Chance is 50.00%. Majority-class-always is 58.00% accuracy and 50.00% balanced a
 | MobileNetV3Large | 61.41    | 78.70       | 40.79       | 62.69     | 69.17    | 59.75         |
 | ResNetRS50       | 46.72    | 52.87       | 37.59       | 51.91     | 52.01    | 45.23         |
 | SMA-CLMPNet-Opt  | 54.51    | 82.41       | 21.43       | 63.49     | 61.07    | 51.92         |
+
+
+## Measured k-fold comparison
+
+Stratified k-fold, k = 6, 7, 8, 1 fold per k, scored with `metrics_fixed.py`. The published `KFAnalysis` could not be used: `Analysis.py:355` indexes `data['image']`, a key `ReadDataset` never stores.
+
+| Model            | k=6   | k=7   | k=8   | Mean acc. | Mean bal. acc. |
+|------------------|-------|-------|-------|-----------|----------------|
+| STIDNet          | 66.67 | 75.00 | 71.43 | 71.03     | 70.56          |
+| GLCM             | 66.67 | 87.50 | 57.14 | 70.44     | 65.28          |
+| EfficientNetV2S  | 55.56 | 62.50 | 71.43 | 63.16     | 58.61          |
+| ConvNeXtTiny     | 44.44 | 62.50 | 57.14 | 54.70     | 50.28          |
+| DCNN             | 55.56 | 62.50 | 57.14 | 58.40     | 50.00          |
+| EfficientNet     | 55.56 | 62.50 | 57.14 | 58.40     | 50.00          |
+| MUSE-CLMPNet     | 55.56 | 62.50 | 57.14 | 58.40     | 50.00          |
+| SMA-CLMPNet-Opt  | 44.44 | 62.50 | 57.14 | 54.70     | 50.00          |
+| SMA-CLMPNet      | 55.56 | 62.50 | 57.14 | 58.40     | 50.00          |
+| SCAM-CLMPNet     | 33.33 | 50.00 | 28.57 | 37.30     | 43.61          |
+| MobileNetV3Large | 33.33 | 12.50 | 28.57 | 24.80     | 23.33          |
+| ResNetRS50       | 11.11 | 12.50 | 14.29 | 12.63     | 10.83          |
+
+Each test fold holds 5-9 of the 50 videos, so one misclassification moves accuracy by 11-20 pp. No difference in this table is resolvable at that granularity.
+
 
 
 ## SMA-CLMPNet: published training recipe vs optimised
