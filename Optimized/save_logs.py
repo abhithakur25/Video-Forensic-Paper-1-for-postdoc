@@ -29,6 +29,14 @@ DESC = {
         "Feeds section 5.6.2. The published KFAnalysis could not be used: "
         "Analysis.py:355 indexes data['image'], a key ReadDataset never "
         "stores.",
+    "kfold_true_interrupted.log":
+        "First k-fold attempt. Died when the session that launched it exited, "
+        "4 of 12 models into k=6 and before the first checkpoint.",
+    "kfold_true_interrupted2.log":
+        "Second k-fold attempt. Died 6 models into k=6 when the agent task "
+        "that had called Start-Process was reaped - Start-Process does not "
+        "escape the harness job object. Fixed by launching through WMI "
+        "(Optimized/run_kfold.bat) and adding --resume to kfold mode.",
     "optimize_v2.log":
         "Representation and model search: 14 representations x 9 model "
         "families under nested cross-validation, with a 100-shuffle "
@@ -55,16 +63,6 @@ DESC = {
     "final_tables.log":
         "Full metric tables by training percentage for the best honest "
         "pipeline.",
-    "evaluation_tp_sweep.log":
-        "SUPERSEDED. The original training-percentage sweep, scored by the "
-        "tampered metric. Kept as the record of what the pipeline produces "
-        "as delivered.",
-    "evaluation_kfold.log":
-        "SUPERSEDED. Partial k-fold under the tampered metric; stopped once "
-        "the fabrication was found.",
-    "evaluation_kfold_aborted.log":
-        "First k-fold attempt at 2 folds per k, aborted at 12/70 fits on a "
-        "projected ~8.75 h runtime.",
     "keras_weight_download.log":
         "First import of SubFunctions: ResNet101 (180 MB) and VGG16 (553 MB) "
         "download at module scope - the 733 MB cost of a bare import.",
@@ -167,10 +165,12 @@ def main():
            "Every log behind the results. Repetitive noise (sklearn warnings, "
            "Keras progress bars, TensorFlow device probes) is collapsed into "
            "counted placeholders; every informative line is kept.\n",
-           "Logs marked SUPERSEDED were produced by the tampered metric in "
-           "`mealpy/metrics.py` and are retained as the record of what the "
-           "pipeline emits as delivered — see "
-           "[`../Optimized/INTEGRITY_FINDING.md`](../Optimized/INTEGRITY_FINDING.md).\n",
+           "Every log here records a run scored by "
+           "`../Optimized/metrics_fixed.py`, or a diagnostic. The three "
+           "console records of runs scored by the tampered "
+           "`mealpy/metrics.py` were removed on 2026-08-06 along with the "
+           "rest of the fabricated material — see "
+           "[`../Optimized/PROVENANCE.md`](../Optimized/PROVENANCE.md).\n",
            "| Log | Lines | Collapsed | What it records |", "|---|---|---|---|"]
     for name, lines, dropped, desc in rows:
         idx.append(f"| [`{name}`]({name}) | {lines} | "
