@@ -1,0 +1,29 @@
+{
+  "produced_by": "Optimized/optimize_models.py --mode kfold",
+  "models": [
+    "EfficientNet",
+    "STIDNet",
+    "DCNN",
+    "GLCM",
+    "MUSE-CLMPNet",
+    "SCAM-CLMPNet",
+    "SMA-CLMPNet",
+    "EfficientNetV2S",
+    "ConvNeXtTiny",
+    "MobileNetV3Large",
+    "ResNetRS50",
+    "SMA-CLMPNet-Opt"
+  ],
+  "k_values": [
+    6,
+    7,
+    8
+  ],
+  "folds_per_k": 1,
+  "epochs": 30,
+  "epochs_baseline": 10,
+  "head_epochs": 200,
+  "batch_size": 8,
+  "scored_with": "Optimized/metrics_fixed.py (real confusion matrix)",
+  "written": "2026-08-06 12:32:24"
+}
