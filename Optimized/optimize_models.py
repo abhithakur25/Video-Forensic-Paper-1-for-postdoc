@@ -502,7 +502,28 @@ def run_kfold(args, wanted, data, labels, embs, metrics_fn, bal_fn):
     done = []
     t0 = time.time()
 
+    # Resume: one k value costs ~45 min and is checkpointed on completion.
+    # Losing the whole run to a crash in the fifth k is not acceptable.
+    outdir = PROJECT / args.out
+    man_path = outdir / "run_manifest.json"
+    if args.resume and man_path.exists():
+        prev = json.loads(man_path.read_text(encoding="utf-8"))
+        prev_ks = [int(k) for k in prev["k_values"]]
+        if all((outdir / f"{n}.npy").exists() for n in wanted):
+            for n in wanted:
+                grid[n] = [list(r) for r in np.load(outdir / f"{n}.npy")]
+            keep = min(len(grid[n]) for n in wanted)
+            for n in wanted:
+                grid[n] = grid[n][:keep]
+            done = prev_ks[:keep]
+            log(f"resuming: k = {done} already measured")
+        else:
+            log("resume requested but not every model has an array - "
+                "starting clean")
+
     for k in ks:
+        if k in done:
+            continue
         skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=SEED)
         per_model = {n: [] for n in wanted}
         for fold, (tr, te) in enumerate(skf.split(np.zeros(len(labels)),

@@ -138,7 +138,9 @@ Added after the fabrication was found. Everything here is additive; nothing in
 | **`metrics_fixed.py`** | Correct `Evaluation_Metrics` / `Evaluation_Metrics1`. Keeps the original formulas verbatim, including the class-0-as-positive convention; replaces only the confusion matrix with `sklearn`'s. Carries a self-test. | `python Optimized/metrics_fixed.py` → prints the self-test, exits non-zero on failure |
 | **`optimize_models.py`** | The evaluation harness. Re-runs the paper's seven models with correct scoring, adds four current-generation backbones (EfficientNetV2-S, ConvNeXt-Tiny, MobileNetV3-Large, ResNet-RS-50) as frozen ImageNet extractors with trained heads, and an `SMA-CLMPNet-Opt` that keeps the published architecture but fixes the training recipe. Checkpoints after every split; `--resume` skips splits already on disk. | `python Optimized/optimize_models.py --mode sweep --resume --out Analysis1/TRUE`<br>`--mode kfold --ks 6,7,8,9,10`<br>`--mode diag --train-pct 0.6` |
 | **`feature_probe.py`** | Answers whether the features carry any class signal at all: logistic regression / RBF SVM / random forest under repeated stratified CV across every feature representation, plus a 200-shuffle permutation test. | `python Optimized/feature_probe.py` |
-| **`report.py`** | Builds `RESULTS.md` from `Analysis1/TP` (fabricated) and `Analysis1/TRUE` (measured), including the side-by-side gap table. | `python Optimized/report.py` |
+| **`report.py`** | Builds `RESULTS.md` from `Analysis1/TRUE` (measured). The side-by-side gap table against the fabricated arrays is preserved in `RESULTS.md` as generated on 2026-08-05; the arrays it compared against have since been removed. | `python Optimized/report.py` |
+| **`purge_fabricated.py`** | Moves every fabricated result out of the repository to `../_FABRICATED_QUARANTINE_Paper1/`, with the ground for each. Refuses to touch a protected path. | `python Optimized/purge_fabricated.py` (dry run) / `--apply` |
+| **`PROVENANCE.md`** | What this repository contains, what was removed, and why. | — |
 | **`correct_doc.py`** | Rewrites §5.6.1, §5.6.2 and §5.8 of the `.docx` from the measured arrays, preserving each paragraph's formatting. Writes a timestamped backup. | `python Optimized/correct_doc.py [path.docx]` |
 | `INTEGRITY_FINDING.md` | Evidence, blast radius and demonstration of the fabricated metric. | — |
 | `RESULTS.md` | Generated results tables. | — |
@@ -152,12 +154,19 @@ All of these need the env PATH set as in §2 and are run from the project root.
 |---|---|
 | `DATASET/` | FaceForensics++ videos. **Empty** — licensed, see §4. |
 | `Features/Features.pkl` | Pre-extracted features. **Not in this repo** (1.0 GB > GitHub's 100 MB limit) — see §5. |
-| `Analysis/` | The **published** result arrays. Read by `PlotResults`. Never overwritten by a re-run. |
-| `Analysis1/TP`, `Analysis1/KF` | Where a **re-run writes** via `driver.py`. ⚠️ Scored by the tampered metric — not measurements. |
-| `Analysis1/TRUE` | Measured results: all models, correct scoring. Columns are ACC, SEN, SPE, PRE, F1, **BAL-ACC**. |
-| `Analysis1/TRUE_LATEST` | Measured results for the four current-generation backbones alone, all six splits. |
-| `logs/sweep_true.log` | Live log of the corrected evaluation sweep. |
-| `Results/` | Generated figures, CSVs and sample imagery. |
+| `Analysis1/TRUE` | Measured training-percentage sweep: all models, correct scoring. Columns are ACC, SEN, SPE, PRE, F1, **BAL-ACC**. |
+| `Analysis1/TRUE_KF` | Measured k-fold, k = 6…10, same columns. |
+| `logs/sweep_true.log`, `logs/kfold_true.log` | Logs of the corrected evaluation runs. |
+| `Results/ImageResults/` | Real GradCAM, LDZP, optical-flow and ResNet-statistic image outputs. No metric involved. |
+
+**Removed 2026-08-06:** `Analysis/`, `Analysis1/TP`, `Analysis1/KF`,
+`Analysis1/TRUE_LATEST`, `Results/TP`, `Results/KF`, `Results/RocAnalysis`,
+`Results/Results.xlsx`, `Results/Features.{csv,jpg}`, `Results/Class.png`,
+`Results/ConfusionMatrix.png` — 161 files of fabricated results. See
+[`Optimized/PROVENANCE.md`](Optimized/PROVENANCE.md) for the grounds in each
+case. They were moved to `../_FABRICATED_QUARANTINE_Paper1/`, outside the
+repository. Consequently `Main.py` and `driver.py plots` no longer run: they
+read `Analysis/*.npy`. That is intended.
 | `driver_out/` | Harness output: screenshots, evaluation tables, synthesised sample clip. |
 | `RUN_REPORT.md` | Full narrative record of the reproduction run. |
 
@@ -297,13 +306,14 @@ instead of blocking. Produces **41 figures** plus CSVs under `Results/`.
 ```
 
 These use the same `train_test_split`, the same `Network` models and the same
-`Evaluation_Metrics` as the original `Analysis.py`. Results are written to
-`Analysis1/TP/` and `Analysis1/KF/` in the project's own `.npy` format (one row
-per configuration, `[ACC, SEN, SPE, PRE, F1]`), plus readable tables in
-`driver_out/`.
+`Evaluation_Metrics` as the original `Analysis.py` — which means they are
+scored by the tampered metric and **their output is not a measurement**. The
+arrays they wrote (`Analysis1/TP/`, `Analysis1/KF/`) have been removed; see
+[`Optimized/PROVENANCE.md`](Optimized/PROVENANCE.md).
 
-`Analysis1/` is deliberately separate from `Analysis/`, so **re-running never
-overwrites the published arrays**.
+Use `Optimized/optimize_models.py` instead. It writes `Analysis1/TRUE`
+(training-percentage sweep) and `Analysis1/TRUE_KF` (k-fold) with an added
+sixth column for balanced accuracy, scored by `Optimized/metrics_fixed.py`.
 
 Measured results and their caveats are in **[`RUN_REPORT.md`](RUN_REPORT.md)**.
 

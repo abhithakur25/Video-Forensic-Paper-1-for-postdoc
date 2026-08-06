@@ -1,0 +1,771 @@
+[16:15:04] features loaded: proposed(50, 10, 128, 128, 12) comparative1(50, 128, 128, 10) labels(50,)
+[16:15:04]   EfficientNetV2S: embeddings from cache (50, 1280)
+[16:15:04]   ConvNeXtTiny: embeddings from cache (50, 768)
+[16:15:04]   MobileNetV3Large: embeddings from cache (50, 960)
+[16:15:05]   ResNetRS50: embeddings from cache (50, 2048)
+[16:15:05] === k=6 fold 1/1: 41 train / 9 test (test classes [5, 4])
+[16:15:38]   float32 feature cache built (0.52 GB)
+================================
+[⚠️] DCNN 
+================================
+Model: "model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_2 (InputLayer)        [(None, 224, 224, 3)]     0         
+                                                                 
+ input_1 (InputLayer)        multiple                  0         
+                                                                 
+ rescaling (Rescaling)       (None, 224, 224, 3)       0         
+                                                                 
+ normalization (Normalizatio  (None, 224, 224, 3)      7         
+ n)                                                              
+                                                                 
+ rescaling_1 (Rescaling)     (None, 224, 224, 3)       0         
+                                                                 
+ stem_conv_pad (ZeroPadding2  (None, 225, 225, 3)      0         
+ D)                                                              
+                                                                 
+ stem_conv (Conv2D)          (None, 112, 112, 64)      1728      
+                                                                 
+ conv2d (Conv2D)             (None, 112, 112, 64)      36928     
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 56, 56, 64)       0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 56, 56, 32)        18464     
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 28, 28, 32)       0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 25088)             0         
+                                                                 
+ dense (Dense)               (None, 128)               3211392   
+                                                                 
+ activation (Activation)     (None, 128)               0         
+                                                                 
+ dropout (Dropout)           (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 32)                4128      
+                                                                 
+ activation_1 (Activation)   (None, 32)                0         
+                                                                 
+ dropout_1 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_2 (Dense)             (None, 2)                 66        
+                                                                 
+=================================================================
+Total params: 3,272,713
+Trainable params: 3,272,706
+Non-trainable params: 7
+_________________________________________________________________
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 1.7968 - accuracy: 0.4688
+2/2 [==============================] - ETA: 0s - loss: 3.5288 - accuracy: 0.5366
+2/2 [==============================] - 4s 602ms/step - loss: 3.5288 - accuracy: 0.5366
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 1s - loss: 9.0134 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 7.9111 - accuracy: 0.5854
+2/2 [==============================] - 3s 604ms/step - loss: 7.9111 - accuracy: 0.5854
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 1.2917 - accuracy: 0.3750
+2/2 [==============================] - ETA: 0s - loss: 1.2331 - accuracy: 0.3415
+2/2 [==============================] - 3s 713ms/step - loss: 1.2331 - accuracy: 0.3415
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.7102 - accuracy: 0.5625
+2/2 [==============================] - ETA: 0s - loss: 0.6776 - accuracy: 0.6098
+2/2 [==============================] - 3s 705ms/step - loss: 0.6776 - accuracy: 0.6098
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.8289 - accuracy: 0.5938
+2/2 [==============================] - ETA: 0s - loss: 0.8045 - accuracy: 0.5610
+2/2 [==============================] - 3s 655ms/step - loss: 0.8045 - accuracy: 0.5610
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.8560 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.9115 - accuracy: 0.5610
+2/2 [==============================] - 3s 656ms/step - loss: 0.9115 - accuracy: 0.5610
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.6457 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.6572 - accuracy: 0.6098
+2/2 [==============================] - 3s 676ms/step - loss: 0.6572 - accuracy: 0.6098
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.6939 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 0.6950 - accuracy: 0.5122
+2/2 [==============================] - 3s 628ms/step - loss: 0.6950 - accuracy: 0.5122
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.6865 - accuracy: 0.5938
+2/2 [==============================] - ETA: 0s - loss: 0.6849 - accuracy: 0.6098
+2/2 [==============================] - 3s 644ms/step - loss: 0.6849 - accuracy: 0.6098
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.6851 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 0.6751 - accuracy: 0.5854
+2/2 [==============================] - 3s 678ms/step - loss: 0.6751 - accuracy: 0.5854
+
+1/1 [==============================] - ETA: 0s
+1/1 [==============================] - 1s 749ms/step
+[16:16:11]     EfficientNet       acc  55.56  bal-acc  50.00  f1  71.43   [66s]
+================================
+[⚠️] STIDNet 
+================================
+Model: "model_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_3 (InputLayer)        [(None, 128, 128, 10)]    0         
+                                                                 
+ conv2d_2 (Conv2D)           (None, 126, 126, 16)      1456      
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 63, 63, 16)       0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 61, 61, 32)        4640      
+                                                                 
+ max_pooling2d_3 (MaxPooling  (None, 30, 30, 32)       0         
+ 2D)                                                             
+                                                                 
+ conv2d_4 (Conv2D)           (None, 28, 28, 64)        18496     
+                                                                 
+ max_pooling2d_4 (MaxPooling  (None, 14, 14, 64)       0         
+ 2D)                                                             
+                                                                 
+ flatten_1 (Flatten)         (None, 12544)             0         
+                                                                 
+ dense_3 (Dense)             (None, 256)               3211520   
+                                                                 
+ dropout_2 (Dropout)         (None, 256)               0         
+                                                                 
+ dense_4 (Dense)             (None, 256)               65792     
+                                                                 
+ dropout_3 (Dropout)         (None, 256)               0         
+                                                                 
+ dense_5 (Dense)             (None, 2)                 514       
+                                                                 
+=================================================================
+Total params: 3,302,418
+Trainable params: 3,302,418
+Non-trainable params: 0
+_________________________________________________________________
+Model: "model_2"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_4 (InputLayer)        [(None, 128, 128, 10)]    0         
+                                                                 
+ conv2d_5 (Conv2D)           (None, 126, 126, 64)      5824      
+                                                                 
+ max_pooling2d_5 (MaxPooling  (None, 63, 63, 64)       0         
+ 2D)                                                             
+                                                                 
+ conv2d_6 (Conv2D)           (None, 61, 61, 16)        9232      
+                                                                 
+ max_pooling2d_6 (MaxPooling  (None, 30, 30, 16)       0         
+ 2D)                                                             
+                                                                 
+ flatten_2 (Flatten)         (None, 14400)             0         
+                                                                 
+ dense_6 (Dense)             (None, 64)                921664    
+                                                                 
+ dropout_4 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_7 (Dense)             (None, 2)                 130       
+                                                                 
+=================================================================
+Total params: 936,850
+Trainable params: 936,850
+Non-trainable params: 0
+_________________________________________________________________
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 2s - loss: 0.7276 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 0.8800 - accuracy: 0.4878
+2/2 [==============================] - 2s 174ms/step - loss: 0.8800 - accuracy: 0.4878
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.9058 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 0.9960 - accuracy: 0.4634
+2/2 [==============================] - 1s 191ms/step - loss: 0.9960 - accuracy: 0.4634
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.7144 - accuracy: 0.4688
+2/2 [==============================] - ETA: 0s - loss: 0.7182 - accuracy: 0.4878
+2/2 [==============================] - 1s 176ms/step - loss: 0.7182 - accuracy: 0.4878
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.7067 - accuracy: 0.5312
+2/2 [==============================] - ETA: 0s - loss: 0.6968 - accuracy: 0.6098
+2/2 [==============================] - 1s 156ms/step - loss: 0.6968 - accuracy: 0.6098
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6501 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 0.6422 - accuracy: 0.6341
+2/2 [==============================] - 1s 168ms/step - loss: 0.6422 - accuracy: 0.6341
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6831 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.7230 - accuracy: 0.5366
+2/2 [==============================] - 1s 160ms/step - loss: 0.7230 - accuracy: 0.5366
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6630 - accuracy: 0.5625
+2/2 [==============================] - ETA: 0s - loss: 0.6710 - accuracy: 0.5854
+2/2 [==============================] - 1s 198ms/step - loss: 0.6710 - accuracy: 0.5854
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6988 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 0.6935 - accuracy: 0.5366
+2/2 [==============================] - 1s 183ms/step - loss: 0.6935 - accuracy: 0.5366
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6646 - accuracy: 0.6875
+2/2 [==============================] - ETA: 0s - loss: 0.6698 - accuracy: 0.6341
+2/2 [==============================] - 1s 172ms/step - loss: 0.6698 - accuracy: 0.6341
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.7051 - accuracy: 0.2812
+2/2 [==============================] - ETA: 0s - loss: 0.6955 - accuracy: 0.3415
+2/2 [==============================] - 1s 170ms/step - loss: 0.6955 - accuracy: 0.3415
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 0.7088 - accuracy: 0.4062
+2/2 [==============================] - ETA: 0s - loss: 0.6779 - accuracy: 0.4878
+2/2 [==============================] - 3s 300ms/step - loss: 0.6779 - accuracy: 0.4878
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6293 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 0.6661 - accuracy: 0.5854
+2/2 [==============================] - 1s 276ms/step - loss: 0.6661 - accuracy: 0.5854
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6507 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 0.6567 - accuracy: 0.6341
+2/2 [==============================] - 1s 309ms/step - loss: 0.6567 - accuracy: 0.6341
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.6314 - accuracy: 0.5625
+2/2 [==============================] - ETA: 0s - loss: 0.6100 - accuracy: 0.6098
+2/2 [==============================] - 1s 280ms/step - loss: 0.6100 - accuracy: 0.6098
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.7126 - accuracy: 0.5938
+2/2 [==============================] - ETA: 0s - loss: 0.6913 - accuracy: 0.6098
+2/2 [==============================] - 1s 245ms/step - loss: 0.6913 - accuracy: 0.6098
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.5814 - accuracy: 0.7500
+2/2 [==============================] - ETA: 0s - loss: 0.5649 - accuracy: 0.8049
+2/2 [==============================] - 1s 254ms/step - loss: 0.5649 - accuracy: 0.8049
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.4901 - accuracy: 0.8750
+2/2 [==============================] - ETA: 0s - loss: 0.4706 - accuracy: 0.8537
+2/2 [==============================] - 1s 260ms/step - loss: 0.4706 - accuracy: 0.8537
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.4352 - accuracy: 0.8125
+2/2 [==============================] - ETA: 0s - loss: 0.4145 - accuracy: 0.8293
+2/2 [==============================] - 1s 246ms/step - loss: 0.4145 - accuracy: 0.8293
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.5701 - accuracy: 0.7812
+2/2 [==============================] - ETA: 0s - loss: 0.5214 - accuracy: 0.7805
+2/2 [==============================] - 1s 266ms/step - loss: 0.5214 - accuracy: 0.7805
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 0.5668 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.4971 - accuracy: 0.6829
+2/2 [==============================] - 1s 232ms/step - loss: 0.4971 - accuracy: 0.6829
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 2s - accuracy: 0.8438 - loss: 0.0477 - student_loss: 0.3712 - distillation_loss: 0.0118
+2/2 [==============================] - ETA: 0s - accuracy: 0.8611 - loss: 0.0523 - student_loss: 0.4482 - distillation_loss: 0.0083
+2/2 [==============================] - 3s 641ms/step - accuracy: 0.8611 - loss: 0.0538 - student_loss: 0.4739 - distillation_loss: 0.0071 - val_accuracy: 1.0000 - val_student_loss: 0.4381
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.7812 - loss: 0.0498 - student_loss: 0.4296 - distillation_loss: 0.0076
+2/2 [==============================] - ETA: 0s - accuracy: 0.7500 - loss: 0.0649 - student_loss: 0.5937 - distillation_loss: 0.0062
+2/2 [==============================] - 1s 307ms/step - accuracy: 0.7500 - loss: 0.0699 - student_loss: 0.6484 - distillation_loss: 0.0057 - val_accuracy: 0.8000 - val_student_loss: 0.4573
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.6562 - loss: 0.0595 - student_loss: 0.5372 - distillation_loss: 0.0064
+2/2 [==============================] - ETA: 0s - accuracy: 0.6667 - loss: 0.0561 - student_loss: 0.5244 - distillation_loss: 0.0041
+2/2 [==============================] - 1s 325ms/step - accuracy: 0.6667 - loss: 0.0550 - student_loss: 0.5202 - distillation_loss: 0.0034 - val_accuracy: 1.0000 - val_student_loss: 0.4123
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.9062 - loss: 0.0407 - student_loss: 0.3359 - distillation_loss: 0.0079
+2/2 [==============================] - ETA: 0s - accuracy: 0.8889 - loss: 0.0464 - student_loss: 0.4079 - distillation_loss: 0.0062
+2/2 [==============================] - 1s 351ms/step - accuracy: 0.8889 - loss: 0.0483 - student_loss: 0.4319 - distillation_loss: 0.0057 - val_accuracy: 1.0000 - val_student_loss: 0.4080
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 1.0000 - loss: 0.0370 - student_loss: 0.2984 - distillation_loss: 0.0080
+2/2 [==============================] - ETA: 0s - accuracy: 1.0000 - loss: 0.0386 - student_loss: 0.3426 - distillation_loss: 0.0048
+2/2 [==============================] - 1s 326ms/step - accuracy: 1.0000 - loss: 0.0391 - student_loss: 0.3574 - distillation_loss: 0.0038 - val_accuracy: 0.8000 - val_student_loss: 0.4124
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.9375 - loss: 0.0320 - student_loss: 0.2756 - distillation_loss: 0.0050
+2/2 [==============================] - ETA: 0s - accuracy: 0.9444 - loss: 0.0287 - student_loss: 0.2429 - distillation_loss: 0.0049
+2/2 [==============================] - 1s 336ms/step - accuracy: 0.9444 - loss: 0.0275 - student_loss: 0.2319 - distillation_loss: 0.0048 - val_accuracy: 0.8000 - val_student_loss: 0.3865
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.9375 - loss: 0.0212 - student_loss: 0.1807 - distillation_loss: 0.0034
+2/2 [==============================] - ETA: 0s - accuracy: 0.9167 - loss: 0.0387 - student_loss: 0.3685 - distillation_loss: 0.0020
+2/2 [==============================] - 1s 326ms/step - accuracy: 0.9167 - loss: 0.0445 - student_loss: 0.4311 - distillation_loss: 0.0015 - val_accuracy: 0.8000 - val_student_loss: 0.5248
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.9688 - loss: 0.0194 - student_loss: 0.1527 - distillation_loss: 0.0046
+2/2 [==============================] - ETA: 0s - accuracy: 0.9722 - loss: 0.0184 - student_loss: 0.1599 - distillation_loss: 0.0027
+2/2 [==============================] - 1s 335ms/step - accuracy: 0.9722 - loss: 0.0181 - student_loss: 0.1624 - distillation_loss: 0.0021 - val_accuracy: 0.8000 - val_student_loss: 0.5009
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.7812 - loss: 0.0303 - student_loss: 0.2805 - distillation_loss: 0.0025
+2/2 [==============================] - ETA: 0s - accuracy: 0.8056 - loss: 0.0263 - student_loss: 0.2422 - distillation_loss: 0.0023
+2/2 [==============================] - 1s 340ms/step - accuracy: 0.8056 - loss: 0.0249 - student_loss: 0.2295 - distillation_loss: 0.0022 - val_accuracy: 0.6000 - val_student_loss: 0.4299
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 0s - accuracy: 0.8438 - loss: 0.0342 - student_loss: 0.2818 - distillation_loss: 0.0066
+2/2 [==============================] - ETA: 0s - accuracy: 0.8333 - loss: 0.0528 - student_loss: 0.4678 - distillation_loss: 0.0067
+2/2 [==============================] - 1s 336ms/step - accuracy: 0.8333 - loss: 0.0590 - student_loss: 0.5298 - distillation_loss: 0.0067 - val_accuracy: 0.8000 - val_student_loss: 0.3539
+
+1/1 [==============================] - ETA: 0s
+1/1 [==============================] - 1s 635ms/step
+[16:16:48]     STIDNet            acc  66.67  bal-acc  67.50  f1  66.67   [37s]
+================================
+[⚠️] CNN 
+================================
+Model: "model_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_5 (InputLayer)        [(None, 128, 128, 10)]    0         
+                                                                 
+ conv2d_7 (Conv2D)           (None, 128, 128, 16)      1456      
+                                                                 
+ activation_2 (Activation)   (None, 128, 128, 16)      0         
+                                                                 
+ max_pooling2d_7 (MaxPooling  (None, 128, 128, 16)     0         
+ 2D)                                                             
+                                                                 
+ conv2d_8 (Conv2D)           (None, 128, 128, 32)      4640      
+                                                                 
+ activation_3 (Activation)   (None, 128, 128, 32)      0         
+                                                                 
+ max_pooling2d_8 (MaxPooling  (None, 128, 128, 32)     0         
+ 2D)                                                             
+                                                                 
+ conv2d_9 (Conv2D)           (None, 128, 128, 64)      18496     
+                                                                 
+ activation_4 (Activation)   (None, 128, 128, 64)      0         
+                                                                 
+ batch_normalization (BatchN  (None, 128, 128, 64)     256       
+ ormalization)                                                   
+                                                                 
+ max_pooling2d_9 (MaxPooling  (None, 128, 128, 64)     0         
+ 2D)                                                             
+                                                                 
+ dropout_5 (Dropout)         (None, 128, 128, 64)      0         
+                                                                 
+ flatten_3 (Flatten)         (None, 1048576)           0         
+                                                                 
+ dense_8 (Dense)             (None, 100)               104857700 
+                                                                 
+ activation_5 (Activation)   (None, 100)               0         
+                                                                 
+ batch_normalization_1 (Batc  (None, 100)              400       
+ hNormalization)                                                 
+                                                                 
+ dropout_6 (Dropout)         (None, 100)               0         
+                                                                 
+ dense2c (Dense)             (None, 64)                6464      
+                                                                 
+ activation_6 (Activation)   (None, 64)                0         
+                                                                 
+ batch_normalization_2 (Batc  (None, 64)               256       
+ hNormalization)                                                 
+                                                                 
+ dropout_7 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_9 (Dense)             (None, 2)                 130       
+                                                                 
+=================================================================
+Total params: 104,889,798
+Trainable params: 104,889,342
+Non-trainable params: 456
+_________________________________________________________________
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 5s - loss: 0.8537 - accuracy: 0.7500
+2/2 [==============================] - ETA: 0s - loss: 1.2279 - accuracy: 0.6829
+2/2 [==============================] - 6s 1s/step - loss: 1.2279 - accuracy: 0.6829
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 1.4527 - accuracy: 0.5000
+2/2 [==============================] - ETA: 0s - loss: 1.2418 - accuracy: 0.5366
+2/2 [==============================] - 5s 1s/step - loss: 1.2418 - accuracy: 0.5366
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 1.1964 - accuracy: 0.4688
+2/2 [==============================] - ETA: 0s - loss: 1.3390 - accuracy: 0.4390
+2/2 [==============================] - 5s 1s/step - loss: 1.3390 - accuracy: 0.4390
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 4s - loss: 0.6827 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.6904 - accuracy: 0.6098
+2/2 [==============================] - 6s 1s/step - loss: 0.6904 - accuracy: 0.6098
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 4s - loss: 0.8235 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.7606 - accuracy: 0.6341
+2/2 [==============================] - 5s 1s/step - loss: 0.7606 - accuracy: 0.6341
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 0.8902 - accuracy: 0.6250
+2/2 [==============================] - ETA: 0s - loss: 0.8694 - accuracy: 0.6341
+2/2 [==============================] - 5s 1s/step - loss: 0.8694 - accuracy: 0.6341
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 0.7463 - accuracy: 0.6875
+2/2 [==============================] - ETA: 0s - loss: 0.6925 - accuracy: 0.6829
+2/2 [==============================] - 5s 1s/step - loss: 0.6925 - accuracy: 0.6829
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 4s - loss: 0.7855 - accuracy: 0.5938
+2/2 [==============================] - ETA: 0s - loss: 0.7296 - accuracy: 0.6341
+2/2 [==============================] - 6s 2s/step - loss: 0.7296 - accuracy: 0.6341
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 0.9274 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 0.8598 - accuracy: 0.6585
+2/2 [==============================] - 5s 1s/step - loss: 0.8598 - accuracy: 0.6585
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 3s - loss: 0.5900 - accuracy: 0.6875
+2/2 [==============================] - ETA: 0s - loss: 0.7600 - accuracy: 0.6098
+2/2 [==============================] - 5s 1s/step - loss: 0.7600 - accuracy: 0.6098
+
+1/1 [==============================] - ETA: 0s
+1/1 [==============================] - 1s 735ms/step
+[16:17:45]     DCNN               acc  55.56  bal-acc  50.00  f1  71.43   [57s]
+================================
+[⚠️] GLCM 
+================================
+Model: "model_4"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_6 (InputLayer)        [(None, 10, 12)]          0         
+                                                                 
+ conv1d (Conv1D)             (None, 10, 32)            1184      
+                                                                 
+ activation_7 (Activation)   (None, 10, 32)            0         
+                                                                 
+ dropout_8 (Dropout)         (None, 10, 32)            0         
+                                                                 
+ max_pooling1d (MaxPooling1D  (None, 5, 32)            0         
+ )                                                               
+                                                                 
+ conv1d_1 (Conv1D)           (None, 5, 64)             6208      
+                                                                 
+ activation_8 (Activation)   (None, 5, 64)             0         
+                                                                 
+ max_pooling1d_1 (MaxPooling  (None, 3, 64)            0         
+ 1D)                                                             
+                                                                 
+ flatten_4 (Flatten)         (None, 192)               0         
+                                                                 
+ dense_10 (Dense)            (None, 32)                6176      
+                                                                 
+ activation_9 (Activation)   (None, 32)                0         
+                                                                 
+ dense_11 (Dense)            (None, 2)                 66        
+                                                                 
+ activation_10 (Activation)  (None, 2)                 0         
+                                                                 
+=================================================================
+Total params: 13,634
+Trainable params: 13,634
+Non-trainable params: 0
+_________________________________________________________________
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 1s - loss: 157.8167 - accuracy: 0.5312
+2/2 [==============================] - 1s 1ms/step - loss: 152.9801 - accuracy: 0.4634
+Epoch 2/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 137.9417 - accuracy: 0.3750
+2/2 [==============================] - 0s 3ms/step - loss: 107.6618 - accuracy: 0.5122
+Epoch 3/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 82.0085 - accuracy: 0.4688
+2/2 [==============================] - 0s 8ms/step - loss: 78.9361 - accuracy: 0.4146
+Epoch 4/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 122.0534 - accuracy: 0.4375
+2/2 [==============================] - 0s 8ms/step - loss: 103.0897 - accuracy: 0.4390
+Epoch 5/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 138.3862 - accuracy: 0.5938
+2/2 [==============================] - 0s 6ms/step - loss: 149.2169 - accuracy: 0.5610
+Epoch 6/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 98.1077 - accuracy: 0.6250
+2/2 [==============================] - 0s 8ms/step - loss: 126.5549 - accuracy: 0.5854
+Epoch 7/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 48.3188 - accuracy: 0.6250
+2/2 [==============================] - 0s 2ms/step - loss: 41.1945 - accuracy: 0.6585
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 96.7009 - accuracy: 0.3750
+2/2 [==============================] - 0s 5ms/step - loss: 116.9282 - accuracy: 0.3659
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 129.3631 - accuracy: 0.5000
+2/2 [==============================] - 0s 6ms/step - loss: 121.4330 - accuracy: 0.4634
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 0s - loss: 59.6139 - accuracy: 0.5000
+2/2 [==============================] - 0s 0s/step - loss: 56.6855 - accuracy: 0.5122
+
+1/1 [==============================] - ETA: 0s
+1/1 [==============================] - 0s 173ms/step
+[16:17:47]     GLCM               acc  66.67  bal-acc  62.50  f1  76.92   [2s]
+================================
+[⚠️] 3DCNN Based Distributed LSTM with Modified Pooling 
+================================
+linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+ 0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+channel is 128
+(None, 1, 128)
+Model: "model_5"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_7 (InputLayer)           [(None, 10, 128, 12  0           []                               
+                                8, 12)]                                                           
+                                                                                                  
+ conv3d (Conv3D)                (None, 10, 128, 128  5200        ['input_7[0][0]']                
+                                , 16)                                                             
+                                                                                                  
+ activation_11 (Activation)     (None, 10, 128, 128  0           ['conv3d[0][0]']                 
+                                , 16)                                                             
+                                                                                                  
+ max_pooling3d (MaxPooling3D)   (None, 10, 128, 128  0           ['activation_11[0][0]']          
+                                , 16)                                                             
+                                                                                                  
+ average_pooling3d (AveragePool  (None, 10, 128, 128  0          ['activation_11[0][0]']          
+ ing3D)                         , 16)                                                             
+                                                                                                  
+ lambda (Lambda)                (None, 10, 128, 128  0           ['max_pooling3d[0][0]',          
+                                , 16)                             'average_pooling3d[0][0]']      
+                                                                                                  
+ conv3d_1 (Conv3D)              (None, 8, 126, 126,  13856       ['lambda[0][0]']                 
+                                 32)                                                              
+                                                                                                  
+ activation_12 (Activation)     (None, 8, 126, 126,  0           ['conv3d_1[0][0]']               
+                                 32)                                                              
+                                                                                                  
+ max_pooling3d_1 (MaxPooling3D)  (None, 4, 63, 63, 3  0          ['activation_12[0][0]']          
+                                2)                                                                
+                                                                                                  
+ average_pooling3d_1 (AveragePo  (None, 4, 63, 63, 3  0          ['activation_12[0][0]']          
+ oling3D)                       2)                                                                
+                                                                                                  
+ lambda_1 (Lambda)              (None, 4, 63, 63, 3  0           ['max_pooling3d_1[0][0]',        
+                                2)                                'average_pooling3d_1[0][0]']    
+                                                                                                  
+ conv3d_2 (Conv3D)              (None, 2, 61, 61, 6  55360       ['lambda_1[0][0]']               
+                                4)                                                                
+                                                                                                  
+ activation_13 (Activation)     (None, 2, 61, 61, 6  0           ['conv3d_2[0][0]']               
+                                4)                                                                
+                                                                                                  
+ batch_normalization_3 (BatchNo  (None, 2, 61, 61, 6  256        ['activation_13[0][0]']          
+ rmalization)                   4)                                                                
+                                                                                                  
+ max_pooling3d_2 (MaxPooling3D)  (None, 1, 31, 31, 6  0          ['batch_normalization_3[0][0]']  
+                                4)                                                                
+                                                                                                  
+ average_pooling3d_2 (AveragePo  (None, 1, 31, 31, 6  0          ['batch_normalization_3[0][0]']  
+ oling3D)                       4)                                                                
+                                                                                                  
+ lambda_2 (Lambda)              (None, 1, 31, 31, 6  0           ['max_pooling3d_2[0][0]',        
+                                4)                                'average_pooling3d_2[0][0]']    
+                                                                                                  
+ dropout_9 (Dropout)            (None, 1, 31, 31, 6  0           ['lambda_2[0][0]']               
+                                4)                                                                
+                                                                                                  
+ reshape (Reshape)              (None, 31, 31, 64)   0           ['dropout_9[0][0]']              
+                                                                                                  
+ reshape_1 (Reshape)            (None, 31, 1984)     0           ['reshape[0][0]']                
+                                                                                                  
+ lstm (LSTM)                    (None, 128)          1081856     ['reshape_1[0][0]']              
+                                                                                                  
+ lstm_1 (LSTM)                  (None, 128)          1081856     ['reshape_1[0][0]']              
+                                                                                                  
+ add (Add)                      (None, 128)          0           ['lstm[0][0]',                   
+                                                                  'lstm_1[0][0]']                 
+                                                                                                  
+ reshape_2 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_3 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_4 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_5 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_6 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_7 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_8 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_9 (Reshape)            (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_10 (Reshape)           (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_11 (Reshape)           (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ reshape_12 (Reshape)           (None, 1, 128)       0           ['add[0][0]']                    
+                                                                                                  
+ dense_12 (Dense)               (None, 1, 11)        1419        ['reshape_2[0][0]']              
+                                                                                                  
+ dense_13 (Dense)               (None, 1, 23)        2967        ['reshape_3[0][0]']              
+                                                                                                  
+ dense_14 (Dense)               (None, 1, 34)        4386        ['reshape_4[0][0]']              
+                                                                                                  
+ dense_15 (Dense)               (None, 1, 46)        5934        ['reshape_5[0][0]']              
+                                                                                                  
+ dense_16 (Dense)               (None, 1, 58)        7482        ['reshape_6[0][0]']              
+                                                                                                  
+ dense_17 (Dense)               (None, 1, 69)        8901        ['reshape_7[0][0]']              
+                                                                                                  
+ dense_18 (Dense)               (None, 1, 81)        10449       ['reshape_8[0][0]']              
+                                                                                                  
+ dense_19 (Dense)               (None, 1, 93)        11997       ['reshape_9[0][0]']              
+                                                                                                  
+ dense_20 (Dense)               (None, 1, 104)       13416       ['reshape_10[0][0]']             
+                                                                                                  
+ dense_21 (Dense)               (None, 1, 116)       14964       ['reshape_11[0][0]']             
+                                                                                                  
+ dense_22 (Dense)               (None, 1, 128)       16512       ['reshape_12[0][0]']             
+                                                                                                  
+ activation_14 (Activation)     (None, 1, 11)        0           ['dense_12[0][0]']               
+                                                                                                  
+ activation_15 (Activation)     (None, 1, 23)        0           ['dense_13[0][0]']               
+                                                                                                  
+ activation_16 (Activation)     (None, 1, 34)        0           ['dense_14[0][0]']               
+                                                                                                  
+ activation_17 (Activation)     (None, 1, 46)        0           ['dense_15[0][0]']               
+                                                                                                  
+ activation_18 (Activation)     (None, 1, 58)        0           ['dense_16[0][0]']               
+                                                                                                  
+ activation_19 (Activation)     (None, 1, 69)        0           ['dense_17[0][0]']               
+                                                                                                  
+ activation_20 (Activation)     (None, 1, 81)        0           ['dense_18[0][0]']               
+                                                                                                  
+ activation_21 (Activation)     (None, 1, 93)        0           ['dense_19[0][0]']               
+                                                                                                  
+ activation_22 (Activation)     (None, 1, 104)       0           ['dense_20[0][0]']               
+                                                                                                  
+ activation_23 (Activation)     (None, 1, 116)       0           ['dense_21[0][0]']               
+                                                                                                  
+ activation_24 (Activation)     (None, 1, 128)       0           ['dense_22[0][0]']               
+                                                                                                  
+ excitation_0.091 (Dense)       (None, 1, 128)       1536        ['activation_14[0][0]']          
+                                                                                                  
+ excitation_0.182 (Dense)       (None, 1, 128)       3072        ['activation_15[0][0]']          
+                                                                                                  
+ excitation_0.273 (Dense)       (None, 1, 128)       4480        ['activation_16[0][0]']          
+                                                                                                  
+ excitation_0.364 (Dense)       (None, 1, 128)       6016        ['activation_17[0][0]']          
+                                                                                                  
+ excitation_0.455 (Dense)       (None, 1, 128)       7552        ['activation_18[0][0]']          
+                                                                                                  
+ excitation_0.545 (Dense)       (None, 1, 128)       8960        ['activation_19[0][0]']          
+                                                                                                  
+ excitation_0.636 (Dense)       (None, 1, 128)       10496       ['activation_20[0][0]']          
+                                                                                                  
+ excitation_0.727 (Dense)       (None, 1, 128)       12032       ['activation_21[0][0]']          
+                                                                                                  
+ excitation_0.818 (Dense)       (None, 1, 128)       13440       ['activation_22[0][0]']          
+                                                                                                  
+ excitation_0.909 (Dense)       (None, 1, 128)       14976       ['activation_23[0][0]']          
+                                                                                                  
+ excitation_1 (Dense)           (None, 1, 128)       16512       ['activation_24[0][0]']          
+                                                                                                  
+ average (Average)              (None, 1, 128)       0           ['excitation_0.091[0][0]',       
+                                                                  'excitation_0.182[0][0]',       
+                                                                  'excitation_0.273[0][0]',       
+                                                                  'excitation_0.364[0][0]',       
+                                                                  'excitation_0.455[0][0]',       
+                                                                  'excitation_0.545[0][0]',       
+                                                                  'excitation_0.636[0][0]',       
+                                                                  'excitation_0.727[0][0]',       
+                                                                  'excitation_0.818[0][0]',       
+                                                                  'excitation_0.909[0][0]',       
+                                                                  'excitation_1[0][0]']           
+                                                                                                  
+ normalized_attention (LayerNor  (None, 1, 128)      256         ['average[0][0]']                
+ malization)                                                                                      
+                                                                                                  
+ hadamard (Multiply)            (None, 1, 128)       0           ['add[0][0]',                    
+                                                                  'normalized_attention[0][0]']   
+                                                                                                  
+ normalized_attention2 (LayerNo  (None, 1, 128)      256         ['hadamard[0][0]']               
+ rmalization)                                                                                     
+                                                                                                  
+ trainableatt (TrainableAttenti  (None, 1, 128)      16384       ['normalized_attention2[0][0]']  
+ on)                                                                                              
+                                                                                                  
+ dense_23 (Dense)               (None, 1, 128)       16384       ['trainableatt[0][0]']           
+                                                                                                  
+ dense_24 (Dense)               (None, 1, 128)       16384       ['dense_23[0][0]']               
+                                                                                                  
+ flatten_5 (Flatten)            (None, 128)          0           ['dense_24[0][0]']               
+                                                                                                  
+ dense_25 (Dense)               (None, 100)          12900       ['flatten_5[0][0]']              
+                                                                                                  
+ activation_25 (Activation)     (None, 100)          0           ['dense_25[0][0]']               
+                                                                                                  
+ batch_normalization_4 (BatchNo  (None, 100)         400         ['activation_25[0][0]']          
+ rmalization)                                                                                     
+                                                                                                  
+ dropout_10 (Dropout)           (None, 100)          0           ['batch_normalization_4[0][0]']  
+                                                                                                  
+ dense2c (Dense)                (None, 64)           6464        ['dropout_10[0][0]']             
+                                                                                                  
+ activation_26 (Activation)     (None, 64)           0           ['dense2c[0][0]']                
+                                                                                                  
+ batch_normalization_5 (BatchNo  (None, 64)          256         ['activation_26[0][0]']          
+ rmalization)                                                                                     
+                                                                                                  
+ dropout_11 (Dropout)           (None, 64)           0           ['batch_normalization_5[0][0]']  
+                                                                                                  
+ dense_26 (Dense)               (None, 2)            130         ['dropout_11[0][0]']             
+                                                                                                  
+==================================================================================================
+Total params: 2,505,697
+Trainable params: 2,505,241
+Non-trainable params: 456
+__________________________________________________________________________________________________
+Epoch 1/10
+
+1/2 [==============>...............] - ETA: 49s - loss: 0.6932 - accuracy: 0.5312

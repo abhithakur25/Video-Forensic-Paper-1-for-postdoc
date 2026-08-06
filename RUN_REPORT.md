@@ -8,6 +8,13 @@
 > 2026-08-05 to **discard the model's predictions** and fabricate them
 > (`mealpy/metrics.py:70-75`). The figures are random draws, not results.
 >
+> **2026-08-06:** the arrays and figures this report points to
+> (`Analysis1/TP`, `Results/TP`, `Results/KF`, `Results/RocAnalysis` and the
+> rest — 161 files) have since been **removed from the repository** and moved
+> to `../_FABRICATED_QUARANTINE_Paper1/`. Paths named below no longer resolve.
+> See [`Optimized/PROVENANCE.md`](Optimized/PROVENANCE.md) for the grounds in
+> each case, and `Analysis1/TRUE` / `Analysis1/TRUE_KF` for measured results.
+>
 > The run *record* below — what was executed, what failed, how long it took,
 > the OOM and DLL diagnoses — remains accurate and useful. Only the numbers
 > are void.
