@@ -84,6 +84,13 @@ DESC = {
     "final_tables.log":
         "Full metric tables by training percentage for the best honest "
         "pipeline.",
+    "lit_ceiling_search.log":
+        "Literature-guided representation x model search (15 reps x 8 "
+        "algorithms: L1/L2 logistic, RBF/linear SVM, ExtraTrees, GBM, RF, "
+        "kNN) with GridSearchCV inside training folds. Best: FAD high-band "
+        "Xception + L1 logistic at 77.3% bal / 78% max acc (AUC 0.787); "
+        "EfficientNetV2S frames + ExtraTrees max acc 80%. 95% NOT REACHED. "
+        "Source of Optimized/lit_ceiling_search.json. ~80 min.",
     "keras_weight_download.log":
         "First import of SubFunctions: ResNet101 (180 MB) and VGG16 (553 MB) "
         "download at module scope - the 733 MB cost of a bare import.",
@@ -98,6 +105,22 @@ DESC = {
         "Flask dev server serving the analyze API during verification.",
     "git_push_initial.log": "Initial push of 1,672 files to GitHub.",
     "session_notes.md": "Running notes: every error hit and the fix.",
+    "extract_ffpp.log":
+        "FaceForensics++ frame extraction / face-crop cache build "
+        "(FFPP pipeline).",
+    "ffpp_prepare.log":
+        "FFPP prepare step: scan tree, identity grouping, shard plan.",
+    "ffpp_shard0.log": "FFPP train/eval shard 0.",
+    "ffpp_shard1.log": "FFPP train/eval shard 1.",
+    "ffpp_shard2.log": "FFPP train/eval shard 2.",
+    "ffpp_shard3.log": "FFPP train/eval shard 3.",
+    "ffpp_shard4.log": "FFPP train/eval shard 4.",
+    "ffpp_shard5.log": "FFPP train/eval shard 5.",
+    "ffpp_shard6.log": "FFPP train/eval shard 6.",
+    "ffpp_shard7.log": "FFPP train/eval shard 7.",
+    "kfold_true.err": "Stderr companion of kfold_true.log.",
+    "kfold_true_interrupted2.err":
+        "Stderr companion of kfold_true_interrupted2.log.",
 }
 
 # (regex, label) - consecutive matching lines collapse to one counted line
@@ -164,23 +187,33 @@ def main():
             rows.append((f.name, len(f.read_text("utf-8", "replace").split("\n")),
                          0, desc))
             continue
-        r = tidy(f)
-        if r is None:
-            n = len(f.read_text("utf-8", "replace").split("\n"))
-            rows.append((f.name, n, 0, desc))
-            print(f"{f.name:<30} already tidied")
-            continue
-        out, dropped = r
-        before = f.stat().st_size
-        header = (f"{MARK} {f.name}\n# {desc}\n"
-                  f"# tidied {time.strftime('%Y-%m-%d %H:%M:%S')}; "
-                  f"{dropped} noise lines collapsed\n"
-                  + "#" + "-" * 74)
-        f.write_text(header + "\n" + "\n".join(out), encoding="utf-8")
-        after = f.stat().st_size
-        rows.append((f.name, len(out), dropped, desc))
-        print(f"{f.name:<30} {before/1e6:7.2f} MB -> {after/1e6:5.2f} MB  "
-              f"({dropped} lines collapsed)")
+        try:
+            r = tidy(f)
+            if r is None:
+                n = len(f.read_text("utf-8", "replace").split("\n"))
+                rows.append((f.name, n, 0, desc))
+                print(f"{f.name:<30} already tidied")
+                continue
+            out, dropped = r
+            before = f.stat().st_size
+            header = (f"{MARK} {f.name}\n# {desc}\n"
+                      f"# tidied {time.strftime('%Y-%m-%d %H:%M:%S')}; "
+                      f"{dropped} noise lines collapsed\n"
+                      + "#" + "-" * 74)
+            f.write_text(header + "\n" + "\n".join(out), encoding="utf-8")
+            after = f.stat().st_size
+            rows.append((f.name, len(out), dropped, desc))
+            print(f"{f.name:<30} {before/1e6:7.2f} MB -> {after/1e6:5.2f} MB  "
+                  f"({dropped} lines collapsed)")
+        except (PermissionError, OSError) as exc:
+            n = 0
+            try:
+                n = len(f.read_text("utf-8", "replace").split("\n"))
+            except OSError:
+                pass
+            rows.append((f.name, n, 0,
+                         desc + f"  **(locked / not rewritten: {exc})**"))
+            print(f"{f.name:<30} locked - indexed without rewrite ({exc})")
 
     idx = ["# Run logs\n",
            "Every log behind the results. Repetitive noise (sklearn warnings, "
