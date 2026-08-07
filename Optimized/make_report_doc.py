@@ -534,6 +534,24 @@ def main():
          "tested end to end, ready for the real dataset."),
     ]
     b.append(table(["Step", "Detail"], steps, [2400, 6400]))
+    b.append(figure("fig10_pipeline_block_diagram.png",
+                    "Figure A. The pipeline as executed, drawn from the "
+                    "source rather than from the paper's description. Feature "
+                    "tensors are computed once and shared by every model, so "
+                    "all comparisons below differ only in the model."))
+    b.append(figure("fig11_smaclmpnet_architecture.png",
+                    "Figure B. SMA-CLMPNet as implemented "
+                    "(SubFunctions/Model.py:447-513). Shapes are recomputed "
+                    "from the (10, 128, 128, 12) input, so the figure cannot "
+                    "drift from the code. Note the pooling: window 1 with "
+                    "stride 1 in the first stage does no downsampling, and "
+                    "window 1 with stride 2 in the next two decimates rather "
+                    "than pools."))
+    b.append(figure("fig12_evaluation_protocol.png",
+                    "Figure C. The protocol used for every number in section "
+                    "5 onward. Everything selected is selected inside the "
+                    "training folds; the outer test fold is read once, at "
+                    "scoring time."))
 
     # ----------------------------------------------------------- results
     b.append(para("5. Results", "Heading1"))
@@ -851,9 +869,20 @@ def main():
         "architecture, and the state-of-the-art temporal module. The binding "
         "constraint is 40 training samples."))
     b.append(figure("fig08_method_comparison.png",
-                    "Figure 8. Every method tried, on identical data and "
-                    "folds. Blue clears the permutation null; red does "
-                    "not."))
+                    "Figure 8. Five representative methods on identical "
+                    "features and folds. Blue clears the permutation null; "
+                    "red does not. The estimator is not the same for every "
+                    "bar and is marked on each: [out-of-fold] is pooled "
+                    "balanced accuracy under nested CV, [sweep mean] is the "
+                    "mean over the six training percentages."))
+    b.append(figure("fig13_comparison_bar.png",
+                    "Figure 9. The full comparison: every method measured in "
+                    "this study on one axis, with its protocol in brackets. "
+                    "Colour encodes only whether a bar clears its own "
+                    "permutation null, so nothing here reads as more "
+                    "favourable than the statistics support — STIDNet at the "
+                    "top of the k-fold group is not coloured as significant "
+                    "because it was never permutation-tested."))
 
     b.append(para("7. Training / Validation / Test Accuracy", "Heading1"))
     b.append(table(

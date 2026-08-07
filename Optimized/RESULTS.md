@@ -1,6 +1,6 @@
 # Results — Paper 1, corrected scoring
 
-Generated 2026-08-06 12:45:25.
+Generated 2026-08-07 10:17:37.
 
 > **The scores this project produces as delivered are fabricated.** The vendored `mealpy/metrics.py` discards model predictions and invents them. See [`INTEGRITY_FINDING.md`](INTEGRITY_FINDING.md). Everything below headed *measured* was scored with `Optimized/metrics_fixed.py`.
 
