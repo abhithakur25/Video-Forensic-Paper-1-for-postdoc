@@ -7066,3 +7066,129 @@ Epoch 6/10
 Epoch 7/10
 
 1/2 [==============>...............] - ETA: 33s - loss: 0.9571 - accuracy: 0.4688
+2/2 [==============================] - ETA: 0s - loss: 0.9118 - accuracy: 0.5227 
+2/2 [==============================] - 48s 15s/step - loss: 0.9118 - accuracy: 0.5227
+Epoch 8/10
+
+1/2 [==============>...............] - ETA: 33s - loss: 0.6888 - accuracy: 0.7812
+2/2 [==============================] - ETA: 0s - loss: 0.7104 - accuracy: 0.7500 
+2/2 [==============================] - 48s 15s/step - loss: 0.7104 - accuracy: 0.7500
+Epoch 9/10
+
+1/2 [==============>...............] - ETA: 33s - loss: 0.6297 - accuracy: 0.6875
+2/2 [==============================] - ETA: 0s - loss: 0.6804 - accuracy: 0.6591 
+2/2 [==============================] - 48s 15s/step - loss: 0.6804 - accuracy: 0.6591
+Epoch 10/10
+
+1/2 [==============>...............] - ETA: 33s - loss: 0.6186 - accuracy: 0.6562
+2/2 [==============================] - ETA: 0s - loss: 0.6236 - accuracy: 0.6818 
+2/2 [==============================] - 48s 14s/step - loss: 0.6236 - accuracy: 0.6818
+
+1/1 [==============================] - ETA: 0s
+1/1 [==============================] - 4s 4s/step
+[10:14:01]     MUSE-CLMPNet       acc  50.00  bal-acc  50.00  f1  66.67   [427s]
+================================
+[⚠️] 3DCNN Based Distributed LSTM with Modified Pooling 
+================================
+Model: "model_6"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_8 (InputLayer)           [(None, 10, 128, 12  0           []                               
+                                8, 12)]                                                           
+                                                                                                  
+ conv3d_3 (Conv3D)              (None, 10, 128, 128  5200        ['input_8[0][0]']                
+                                , 16)                                                             
+                                                                                                  
+ activation_27 (Activation)     (None, 10, 128, 128  0           ['conv3d_3[0][0]']               
+                                , 16)                                                             
+                                                                                                  
+ max_pooling3d_3 (MaxPooling3D)  (None, 10, 128, 128  0          ['activation_27[0][0]']          
+                                , 16)                                                             
+                                                                                                  
+ average_pooling3d_3 (AveragePo  (None, 10, 128, 128  0          ['activation_27[0][0]']          
+ oling3D)                       , 16)                                                             
+                                                                                                  
+ lambda_3 (Lambda)              (None, 10, 128, 128  0           ['max_pooling3d_3[0][0]',        
+                                , 16)                             'average_pooling3d_3[0][0]']    
+                                                                                                  
+ conv3d_4 (Conv3D)              (None, 8, 126, 126,  13856       ['lambda_3[0][0]']               
+                                 32)                                                              
+                                                                                                  
+ activation_28 (Activation)     (None, 8, 126, 126,  0           ['conv3d_4[0][0]']               
+                                 32)                                                              
+                                                                                                  
+ max_pooling3d_4 (MaxPooling3D)  (None, 4, 63, 63, 3  0          ['activation_28[0][0]']          
+                                2)                                                                
+                                                                                                  
+ average_pooling3d_4 (AveragePo  (None, 4, 63, 63, 3  0          ['activation_28[0][0]']          
+ oling3D)                       2)                                                                
+                                                                                                  
+ lambda_4 (Lambda)              (None, 4, 63, 63, 3  0           ['max_pooling3d_4[0][0]',        
+                                2)                                'average_pooling3d_4[0][0]']    
+                                                                                                  
+ conv3d_5 (Conv3D)              (None, 2, 61, 61, 6  55360       ['lambda_4[0][0]']               
+                                4)                                                                
+                                                                                                  
+ activation_29 (Activation)     (None, 2, 61, 61, 6  0           ['conv3d_5[0][0]']               
+                                4)                                                                
+                                                                                                  
+ batch_normalization_6 (BatchNo  (None, 2, 61, 61, 6  256        ['activation_29[0][0]']          
+ rmalization)                   4)                                                                
+                                                                                                  
+ max_pooling3d_5 (MaxPooling3D)  (None, 1, 31, 31, 6  0          ['batch_normalization_6[0][0]']  
+                                4)                                                                
+                                                                                                  
+ average_pooling3d_5 (AveragePo  (None, 1, 31, 31, 6  0          ['batch_normalization_6[0][0]']  
+ oling3D)                       4)                                                                
+                                                                                                  
+ lambda_5 (Lambda)              (None, 1, 31, 31, 6  0           ['max_pooling3d_5[0][0]',        
+                                4)                                'average_pooling3d_5[0][0]']    
+                                                                                                  
+ dropout_12 (Dropout)           (None, 1, 31, 31, 6  0           ['lambda_5[0][0]']               
+                                4)                                                                
+                                                                                                  
+ reshape_13 (Reshape)           (None, 31, 31, 64)   0           ['dropout_12[0][0]']             
+                                                                                                  
+ spatial_and_channel_joint_atte  (None, 31, 31, 64)  0           ['reshape_13[0][0]']             
+ ntion (SpatialAndChannelJointA                                                                   
+ ttention)                                                                                        
+                                                                                                  
+ reshape_14 (Reshape)           (None, 31, 1984)     0           ['spatial_and_channel_joint_atten
+                                                                 tion[0][0]']                     
+                                                                                                  
+ lstm_2 (LSTM)                  (None, 128)          1081856     ['reshape_14[0][0]']             
+                                                                                                  
+ lstm_3 (LSTM)                  (None, 128)          1081856     ['reshape_14[0][0]']             
+                                                                                                  
+ add_1 (Add)                    (None, 128)          0           ['lstm_2[0][0]',                 
+                                                                  'lstm_3[0][0]']                 
+                                                                                                  
+ flatten_6 (Flatten)            (None, 128)          0           ['add_1[0][0]']                  
+                                                                                                  
+ dense_27 (Dense)               (None, 100)          12900       ['flatten_6[0][0]']              
+                                                                                                  
+ activation_30 (Activation)     (None, 100)          0           ['dense_27[0][0]']               
+                                                                                                  
+ batch_normalization_7 (BatchNo  (None, 100)         400         ['activation_30[0][0]']          
+ rmalization)                                                                                     
+                                                                                                  
+ dropout_13 (Dropout)           (None, 100)          0           ['batch_normalization_7[0][0]']  
+                                                                                                  
+ dense2c (Dense)                (None, 64)           6464        ['dropout_13[0][0]']             
+                                                                                                  
+ activation_31 (Activation)     (None, 64)           0           ['dense2c[0][0]']                
+                                                                                                  
+ batch_normalization_8 (BatchNo  (None, 64)          256         ['activation_31[0][0]']          
+ rmalization)                                                                                     
+                                                                                                  
+ dropout_14 (Dropout)           (None, 64)           0           ['batch_normalization_8[0][0]']  
+                                                                                                  
+ dense_28 (Dense)               (None, 2)            130         ['dropout_14[0][0]']             
+                                                                                                  
+==================================================================================================
+Total params: 2,258,534
+Trainable params: 2,258,078
+Non-trainable params: 456
+__________________________________________________________________________________________________
+Epoch 1/10

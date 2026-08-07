@@ -213,22 +213,28 @@ def fig_method_summary(tr, roc, stil, v2, made):
     """Colour encodes the only criterion that matters here: does the bar clear
     the permutation null? Anything below it is indistinguishable from a model
     trained on shuffled labels, however far above 50% it happens to sit."""
+    # The bars are not all the same estimator: three are pooled out-of-fold
+    # balanced accuracy under nested CV, two are means over the
+    # training-percentage sweep. That difference is spelled out on every
+    # x-label rather than left for a reader to infer from the caption.
     rows = []
     if roc:
         c = roc["curves"]["temporal delta stats (best honest pipeline)"]
-        rows.append(("L1 logreg on\ntemporal deltas",
+        rows.append(("L1 logreg on\ntemporal deltas\n[out-of-fold]",
                      c["balanced_accuracy"] * 100))
     if stil:
-        rows.append(("STIL TIM+ISM\n(Tencent TFace)",
+        rows.append(("STIL TIM+ISM\n(Tencent TFace)\n[out-of-fold]",
                      stil["pooled_balanced_accuracy"] * 100))
     if tr:
-        for n, lab in [("SMA-CLMPNet", "SMA-CLMPNet\n(proposed)"),
-                       ("MobileNetV3Large", "MobileNetV3-Large\n(frozen)")]:
+        for n, lab in [("SMA-CLMPNet", "SMA-CLMPNet\n(proposed)\n[sweep mean]"),
+                       ("MobileNetV3Large",
+                        "MobileNetV3-Large\n(frozen)\n[sweep mean]")]:
             if n in tr:
                 rows.append((lab, np.nanmean(tr[n][:, 5]) * 100))
     if roc:
         c = roc["curves"]["per-frame mean+std (time-collapsed reference)"]
-        rows.append(("Time-collapsed\nreference", c["balanced_accuracy"] * 100))
+        rows.append(("Time-collapsed\nreference\n[out-of-fold]",
+                     c["balanced_accuracy"] * 100))
 
     null95 = v2["winner"]["null_p95"] * 100 if v2 else CHANCE
     rows = [(lab, v, C_GOOD if v > null95 else C_DEGEN) for lab, v in rows]
@@ -244,8 +250,10 @@ def fig_method_summary(tr, roc, stil, v2, made):
     ax.set_xticks(x)
     ax.set_xticklabels([r[0] for r in rows], fontsize=7.5)
     ax.set_ylabel("Balanced accuracy (%)")
-    ax.set_title("Every method tried, on identical data and folds\n"
-                 "Blue clears the permutation null; red does not")
+    ax.set_title("Five representative methods, on identical features "
+                 "and folds\n"
+                 "Blue clears the permutation null; red does not. "
+                 "Estimator is marked per bar.")
     ax.set_ylim(0, 85)
     for xi, r in zip(x, rows):
         ax.text(xi, r[1] + 1.2, f"{r[1]:.2f}", ha="center", fontsize=8.5,

@@ -717,10 +717,11 @@ def results(d):
       f"{aud['oof_auc']:.4f} measured — not a better threshold but a "
       "fundamentally better ranking of the videos.")
     B.append(_f("fig09_accuracy_ceiling.png",
-                "Fig. 10. Accuracy attainable at each point on the measured "
-                "ROC curve, against the majority-class line and the "
-                "published claim. The ceiling is a property of the curve, "
-                "not of the classifier reading it."))
+                "Fig. 10. The attainable-accuracy ceiling. Left to right: "
+                "the measured out-of-fold AUC, the best accuracy reachable "
+                "at any threshold on that curve, the permutation null's 95th "
+                "percentile, and the 95% target. The ceiling is a property "
+                "of the curve, not of the classifier reading it."))
     ci = {c["correct"]: c for c in aud["binomial_ci"]}
     rows = [[f"{c['correct']} / {c['n']}", f"{c['acc'] * 100:.2f}",
              f"[{c['lo'] * 100:.1f}, {c['hi'] * 100:.1f}]"]
@@ -763,6 +764,18 @@ def results(d):
       f"{w['null_p95'] * 100:.2f}%, giving p = {w['p_value']:.4f}. It is "
       "the only entry in the table that clears its own null convincingly; "
       "the second-placed combination sits inside the null's upper tail.")
+    p("This figure and the "
+      f"{fmt(d['roc']['curves']['temporal delta stats (best honest pipeline)']['balanced_accuracy'] * 100)}% "
+      "reported in Table 8 are the same pipeline measured two ways, and the "
+      "difference between them is worth naming because it recurs throughout "
+      "the small-sample literature. Table 11 reports the mean of the five "
+      "outer folds' balanced accuracies; Table 8 pools the out-of-fold "
+      "predictions across all fifty videos and scores them once. The pooled "
+      "estimate is the more conservative of the two and is the one the "
+      "paper's headline claims rest on. On folds of ten videos the two "
+      "differ by a couple of percentage points purely because a fold mean "
+      "weights each fold equally regardless of how the class balance fell "
+      "within it.")
     p("Two features of this result deserve emphasis. The winning "
       "representation is the one that preserves frame-to-frame change, "
       "which is the same conclusion Section 5.5 reaches from the ROC "
@@ -894,9 +907,12 @@ def results(d):
       "the best result obtained by any method in the study is a linear "
       "model on first-order temporal differences.")
     B.append(_f("fig08_method_comparison.png",
-                "Fig. 12. All measured methods against the permutation null. "
-                "Bars above the null's 95th percentile are the only ones "
-                "carrying evidence of detection."))
+                "Fig. 12. Five representative methods against the "
+                "permutation null. The estimator differs between bars and is "
+                "marked on each: three are pooled out-of-fold balanced "
+                "accuracy under nested cross-validation, two are means over "
+                "the training-percentage sweep. Only the bar above the "
+                "null's 95th percentile carries evidence of detection."))
     return "".join(B)
 
 
