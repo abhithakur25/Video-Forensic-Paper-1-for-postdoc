@@ -58,16 +58,23 @@ if (-not (Test-Path "$out\manifest.csv")) {
 }
 
 # --- 4. package for Drive ----------------------------------------------------
-# Store, don't deflate: the payload is 64k JPEGs, already entropy-coded, so
-# compression buys ~nothing and costs many minutes over that many files.
-# includeBaseDirectory=$false puts train/ val/ test/ manifest.csv at the archive
-# root, which is the layout the Colab notebook's unzip step expects.
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-if (Test-Path $zip) { Say "removing previous $([IO.Path]::GetFileName($zip))"; Remove-Item $zip -Force }
-Say "zipping $out"
+# Packaging is delegated to Optimized/repack_ffpp.py rather than done here with
+# [System.IO.Compression.ZipFile]::CreateFromDirectory. That API, on .NET
+# Framework (which is what PowerShell 5.1 runs on), writes entry names with
+# BACKSLASHES. ZIP APPNOTE 4.4.17 requires forward slashes, and Linux unzip
+# does not treat '\' as a separator - so the archive expanded on Colab as
+# 63,971 files with literal backslashes in their names in one flat directory,
+# with no train/val/test tree at all. Python's zipfile normalises arcnames, and
+# repack_ffpp.py also verifies the result before declaring success.
+Say "packaging via repack_ffpp.py (POSIX entry names + verification)"
 $t0 = Get-Date
-[System.IO.Compression.ZipFile]::CreateFromDirectory(
-    $out, $zip, [System.IO.Compression.CompressionLevel]::NoCompression, $false)
+& "$E\python.exe" -u "$P\Optimized\repack_ffpp.py" 2>&1 |
+    Tee-Object -FilePath "$log\ffpp_repack.log"
+if ($LASTEXITCODE -ne 0) {
+    Say "ABORT: packaging or verification failed (exit $LASTEXITCODE)"
+    Say "See logs\ffpp_repack.log. Do NOT upload the archive."
+    exit 1
+}
 $mins = ((Get-Date) - $t0).TotalMinutes
 
 $gb  = (Get-Item $zip).Length / 1GB

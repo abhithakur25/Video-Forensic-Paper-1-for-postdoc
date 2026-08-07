@@ -221,7 +221,10 @@ def main():
         if existing:
             skipped += 1
             for e in existing:
-                rows.append({"file": str(e.relative_to(OUT)), "split": sp,
+                # as_posix(), not str(): a backslash-separated path in the
+                # manifest resolves to nothing on the Linux side (Colab), and
+                # the failure only shows up after the archive is uploaded.
+                rows.append({"file": e.relative_to(OUT).as_posix(), "split": sp,
                              "label": cls, "method": method,
                              "identity": ident, "video": path.stem})
             counts[(sp, cls)] = counts.get((sp, cls), 0) + len(existing)
@@ -231,7 +234,7 @@ def main():
                 fp = d / f"{tag}__f{fi:05d}.jpg"
                 cv2.imwrite(str(fp), img,
                             [int(cv2.IMWRITE_JPEG_QUALITY), args.quality])
-                rows.append({"file": str(fp.relative_to(OUT)), "split": sp,
+                rows.append({"file": fp.relative_to(OUT).as_posix(), "split": sp,
                              "label": cls, "method": method,
                              "identity": ident, "video": path.stem})
                 counts[(sp, cls)] = counts.get((sp, cls), 0) + 1

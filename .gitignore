@@ -37,3 +37,4 @@ DATASET/FFPP_C23/
 # and the archive is far past GitHub's hard 100 MB per-file limit.
 DATASET/ffpp_frames/
 DATASET/ffpp_frames.zip
+DATASET/ffpp_frames.zip.tmp
