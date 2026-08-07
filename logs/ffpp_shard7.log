@@ -1,3 +1,7 @@
+# [tidied] ffpp_shard7.log
+# FF++ face-crop extraction shard 7 of 8: every 8th video starting at index 7, via ffpp_prepare.py --shard 7 --nshards 8.
+# tidied 2026-08-08 05:06:34; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 [15:38:36] cascade: haarcascade_frontalface_default.xml
 [15:38:36] shard 8/8: 250 videos (original + Deepfakes)
 [15:38:36] 32 frames each at 299px, margin 0.25

@@ -110,18 +110,38 @@ DESC = {
         "(FFPP pipeline).",
     "ffpp_prepare.log":
         "FFPP prepare step: scan tree, identity grouping, shard plan.",
-    "ffpp_shard0.log": "FFPP train/eval shard 0.",
-    "ffpp_shard1.log": "FFPP train/eval shard 1.",
-    "ffpp_shard2.log": "FFPP train/eval shard 2.",
-    "ffpp_shard3.log": "FFPP train/eval shard 3.",
-    "ffpp_shard4.log": "FFPP train/eval shard 4.",
-    "ffpp_shard5.log": "FFPP train/eval shard 5.",
-    "ffpp_shard6.log": "FFPP train/eval shard 6.",
-    "ffpp_shard7.log": "FFPP train/eval shard 7.",
+    # No training happens in these: each is a face-crop extraction worker
+    # taking every 8th video, run under WMI so it outlives the session.
+    **{f"ffpp_shard{i}.log":
+       f"FF++ face-crop extraction shard {i} of 8: every 8th video starting "
+       f"at index {i}, via ffpp_prepare.py --shard {i} --nshards 8."
+       for i in range(8)},
+    "ffpp_merge.log":
+        "Merge of the 8 shard manifests into manifest.csv + summary.json, "
+        "and the identity-leak assertion that gates the archive: no identity "
+        "may appear in two splits.",
+    "smaclmpnet_search.log":
+        "SMA-CLMPNet training-recipe search under nested CV (5 outer x 2 "
+        "inner, 6 configurations). Force-stopped in outer fold 2; fold 1 is "
+        "checkpointed in Optimized/smaclmpnet_search.json. Both published "
+        "anchors scored 50.00 balanced accuracy, which on this 29/21 corpus "
+        "is single-class prediction. See RESUME.md.",
+    "smaclmpnet_search.err": "Stderr companion of smaclmpnet_search.log.",
     "kfold_true.err": "Stderr companion of kfold_true.log.",
     "kfold_true_interrupted2.err":
         "Stderr companion of kfold_true_interrupted2.log.",
 }
+
+
+def describe(name):
+    """Description for a log, including the timestamped search snapshots."""
+    if name in DESC:
+        return DESC[name]
+    if name.startswith("smaclmpnet_partial_"):
+        return ("Snapshot of smaclmpnet_search.log taken before the run was "
+                "force-stopped, preserving the fits from the uncheckpointed "
+                "outer fold.")
+    return ""
 
 # (regex, label) - consecutive matching lines collapse to one counted line
 NOISE = [
@@ -135,6 +155,13 @@ NOISE = [
     (re.compile(r"This TensorFlow binary is optimized|To enable them in other operations"), "TF CPU-feature notice"),
     (re.compile(r"tf\.function retracing|reduce_retracing"), "TF retracing warning"),
     (re.compile(r"^\s*_warn\(\(\"h5py|h5py.*HDF5"), "h5py version warning"),
+    # SubFunctions/MUSE prints one of these per excitation branch on every
+    # model build, so a 65-fit search emits hundreds with no information in
+    # them. Same for the SCAM shape echo and the linspace dump.
+    (re.compile(r"^channel is \d+\s*$"), "MUSE channel echo"),
+    (re.compile(r"^\(None, \d+, \d+\)\s*$"), "SCAM shape echo"),
+    (re.compile(r"^linspaced \[|^\s*[\d.]+\s+[\d.]+\s+[\d.]+\s+[\d.]+\s*\]?\s*$"),
+     "linspace dump"),
 ]
 
 
@@ -177,7 +204,7 @@ def main():
     for f in sorted(LOGS.glob("*.log")) + sorted(LOGS.glob("*.md")):
         if f.name == "README.md":
             continue
-        desc = DESC.get(f.name, "")
+        desc = describe(f.name)
         if f.name in running:
             rows.append((f.name, len(f.read_text("utf-8", "replace").split("\n")),
                          0, desc + "  **(still being written)**"))

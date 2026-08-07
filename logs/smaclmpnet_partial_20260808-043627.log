@@ -1,336 +1,76 @@
+# [tidied] smaclmpnet_partial_20260808-043627.log
+# Snapshot of smaclmpnet_search.log taken before the run was force-stopped, preserving the fits from the uncheckpointed outer fold.
+# tidied 2026-08-08 05:06:34; 299 noise lines collapsed
+#--------------------------------------------------------------------------
 [21:48:45] features loaded: proposed(50, 10, 128, 128, 12) comparative1(50, 128, 128, 10) labels(50,)
 [21:48:45] proposed tensor (50, 10, 128, 128, 12)  labels [29, 21]
 [21:48:45] 6 configurations, outer 5 x inner 2 = 65 fits
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [21:56:11]   fold 1 cfg 1/6 inner bal 50.00  {'batch_size': 32, 'epochs': 10, 'lr0': 0.001, 'schedule': 'flat', 'class_weight': False, 'normalise': False, 'opt': 3}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [22:22:52]   fold 1 cfg 2/6 inner bal 50.00  {'batch_size': 8, 'epochs': 30, 'lr0': 0.001, 'schedule': 'cosine', 'class_weight': True, 'normalise': True, 'opt': 3}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [23:13:53]   fold 1 cfg 3/6 inner bal 52.08  {'batch_size': 16, 'class_weight': True, 'epochs': 60, 'lr0': 0.001, 'normalise': True, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [23:49:46]   fold 1 cfg 4/6 inner bal 54.17  {'batch_size': 4, 'class_weight': False, 'epochs': 30, 'lr0': 0.001, 'normalise': True, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [00:27:30]   fold 1 cfg 5/6 inner bal 50.00  {'batch_size': 4, 'class_weight': True, 'epochs': 30, 'lr0': 0.0003, 'normalise': True, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [01:42:14]   fold 1 cfg 6/6 inner bal 46.88  {'batch_size': 4, 'class_weight': True, 'epochs': 60, 'lr0': 0.003, 'normalise': False, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [02:14:40] outer fold 1/5: chose {'batch_size': 4, 'class_weight': False, 'epochs': 30, 'lr0': 0.001, 'normalise': True, 'opt': 3, 'schedule': 'flat'}  inner 54.17  ->  OUTER 50.00  (265.9 min)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [02:23:17]   fold 2 cfg 1/6 inner bal 50.00  {'batch_size': 32, 'epochs': 10, 'lr0': 0.001, 'schedule': 'flat', 'class_weight': False, 'normalise': False, 'opt': 3}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [02:53:02]   fold 2 cfg 2/6 inner bal 50.00  {'batch_size': 8, 'epochs': 30, 'lr0': 0.001, 'schedule': 'cosine', 'class_weight': True, 'normalise': True, 'opt': 3}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [03:44:01]   fold 2 cfg 3/6 inner bal 50.00  {'batch_size': 16, 'class_weight': True, 'epochs': 60, 'lr0': 0.001, 'normalise': True, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
 [04:14:30]   fold 2 cfg 4/6 inner bal 50.00  {'batch_size': 4, 'class_weight': False, 'epochs': 30, 'lr0': 0.001, 'normalise': True, 'opt': 3, 'schedule': 'flat'}
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [1 lines collapsed: linspace dump]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
-linspaced [0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455
+    ... [13 lines collapsed: MUSE channel echo]
  0.63636364 0.72727273 0.81818182 0.90909091 1.        ]
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-channel is 128
-(None, 1, 128)
+    ... [12 lines collapsed: MUSE channel echo]
