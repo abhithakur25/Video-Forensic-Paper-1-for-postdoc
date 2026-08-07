@@ -148,6 +148,25 @@ Added after the fabrication was found. Everything here is additive; nothing in
 
 All of these need the env PATH set as in §2 and are run from the project root.
 
+### 3.2c `Optimized/` — the manuscript build
+
+`Research_Paper-1.docx` is generated, not edited. Every number in it is read
+from `Analysis1/*/` and `Optimized/*.json` at build time, so a stale figure is
+impossible: the build raises if an artefact is missing rather than printing a
+number with nothing behind it.
+
+| File | What it does | How to run |
+|---|---|---|
+| **`make_article.py`** | Assembles the manuscript in the formatting of `CODE_05-08-2025_Paper2/Research_Paper-2.docx`. Verifies that every resolved reference is cited, every cited key resolves, every figure it names exists, and the section word counts meet the brief, then writes and validates the OOXML package. | `python Optimized/make_article.py` |
+| **`article_style.py`** | OOXML emitters reproducing the template's direct formatting, measured out of the template's own `document.xml` (title 16 pt centred, headings 14/12 pt `#1F4E79`, body 12 pt justified with a 432-twip first line, 1.15 line spacing, header row shaded `#1F4E79`). Also does image embedding and package validation. | — |
+| **`article_refs.py`** | APA-7 formatting and in-text citations from `references.json`. `cite()` / `citet()` record use so the build can prove there are no dangling citations and no uncited entries. | — |
+| **`fetch_references.py`** | Resolves every reference against CrossRef, or DataCite for arXiv DOIs. Rejects a match whose first author disagrees with the expected one, so a wrong hit surfaces as `UNRESOLVED` rather than as a plausible invented entry. 68/68 resolved. | `python Optimized/fetch_references.py` |
+| **`article_data.py`** | The only module that knows where results live. Loads the metric arrays and JSON, and asserts corpus size, class balance and metric-column count before anything is generated. | — |
+| **`article_intro.py`**, **`article_lit.py`**, **`article_body.py`** | Section prose. Introduction and literature review are ~5,000 words each; the body sections generate all 16 tables from the loaded arrays. | — |
+| **`make_block_diagram.py`** | Figures 1-3: the executed pipeline, SMA-CLMPNet with the tensor shape after every stage (recomputed from the cached tensor, not transcribed), and the evaluation protocol. | `python Optimized/make_block_diagram.py` |
+| **`make_comparison_figure.py`** | Figure 13: every method measured in the study on one axis. Colour encodes only whether a bar clears its own permutation null, so the chart cannot read as more favourable than the statistics support. | `python Optimized/make_comparison_figure.py` |
+| `references.json` | The resolved bibliography, with the match provenance (`doi`, `datacite`, `title`, `manual`) recorded per entry. | — |
+
 ### 3.3 Data and output directories
 
 | Path | Contents |
@@ -381,3 +400,23 @@ byte-identical to the original `CODE_28-04-2025(Paper1)` delivery. Files added b
 the harness: `.claude/skills/run-video-forgery-paper1/`, `RUN_REPORT.md`,
 `README.md`, `.gitignore` and `DATASET/README_PUT_VIDEOS_HERE.md`. The authors'
 original README is preserved as `README_ORIGINAL.md`.
+
+---
+
+## 9. Documents
+
+| File | What it is |
+|---|---|
+| **`Research_Paper-1.docx`** | The research article, in the formatting of the Paper-2 template. Title, authors, affiliations, abstract (≈290 words), Introduction (≈5,000 words), Literature Review (≈5,000 words, 68 references cited in APA), Proposed Work with block diagrams and a step-by-step flow, Experimental Work, Results (16 tables, 13 figures), Comparison with Existing Models, Conclusion (≈300 words), Future Work, References. Built by `Optimized/make_article.py`; **do not edit it by hand** — edit the prose modules and rebuild. |
+| **`Paper1_Complete_Work_Report.docx`** | The engineering record: what was run, what broke, what was found and what was removed. Built by `Optimized/make_report_doc.py`. |
+| **`RUN_REPORT.md`** | Narrative record of the reproduction run. |
+| **`Optimized/PROVENANCE.md`** | What was removed from this repository and on what grounds. |
+| **`Optimized/INTEGRITY_FINDING.md`** | The tampered metric: evidence, blast radius, demonstration. |
+
+The article reports a **negative result**. Under corrected scoring no model in
+the twelve-system cohort clears its permutation null convincingly, the best
+measured configuration is a linear model on first-order temporal differences at
+77.17 % balanced accuracy, and the measured out-of-fold AUC of 0.7307 bounds
+accuracy at 74.00 % at the best threshold on that curve. That bound is the
+paper's central quantitative claim: 95 % on this corpus would require an AUC of
+roughly 0.98, which no architecture in the study approaches.

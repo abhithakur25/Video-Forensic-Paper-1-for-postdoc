@@ -1,0 +1,1322 @@
+{
+  "resolved": {
+    "faceforensics": {
+      "title": "FaceForensics++: Learning to Detect Manipulated Facial Images",
+      "authors": [
+        "Rossler, A.",
+        "Cozzolino, D.",
+        "Verdoliva, L.",
+        "Riess, C.",
+        "Thies, J.",
+        "Niessner, M."
+      ],
+      "container": "2019 IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "publisher": "IEEE",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "1-11",
+      "doi": "10.1109/iccv.2019.00009",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "celebdf": {
+      "title": "Celeb-DF: A Large-Scale Challenging Dataset for DeepFake Forensics",
+      "authors": [
+        "Li, Y.",
+        "Yang, X.",
+        "Sun, P.",
+        "Qi, H.",
+        "Lyu, S."
+      ],
+      "container": "2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "3204-3213",
+      "doi": "10.1109/cvpr42600.2020.00327",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "dfdc": {
+      "title": "The DeepFake Detection Challenge (DFDC) Dataset",
+      "authors": [
+        "Dolhansky, B.",
+        "Bitton, J.",
+        "Pflaum, B.",
+        "Lu, J.",
+        "Howes, R.",
+        "Wang, M.",
+        "Ferrer, C. C."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.2006.07397",
+      "arxiv": "2006.07397",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "deeperforensics": {
+      "title": "DeeperForensics-1.0: A Large-Scale Dataset for Real-World Face Forgery Detection",
+      "authors": [
+        "Jiang, L.",
+        "Li, R.",
+        "Wu, W.",
+        "Qian, C.",
+        "Loy, C. C."
+      ],
+      "container": "2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "2886-2895",
+      "doi": "10.1109/cvpr42600.2020.00296",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "haralick": {
+      "title": "Textural Features for Image Classification",
+      "authors": [
+        "Haralick, R. M.",
+        "Shanmugam, K.",
+        "Dinstein, I."
+      ],
+      "container": "IEEE Transactions on Systems, Man, and Cybernetics",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 1973,
+      "volume": "SMC-3",
+      "issue": "6",
+      "pages": "610-621",
+      "doi": "10.1109/tsmc.1973.4309314",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "fridrich": {
+      "title": "Rich Models for Steganalysis of Digital Images",
+      "authors": [
+        "Fridrich, J.",
+        "Kodovsky, J."
+      ],
+      "container": "IEEE Transactions on Information Forensics and Security",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2012,
+      "volume": "7",
+      "issue": "3",
+      "pages": "868-882",
+      "doi": "10.1109/tifs.2012.2190402",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "popescu": {
+      "title": "Exposing digital forgeries by detecting traces of resampling",
+      "authors": [
+        "Popescu, A.",
+        "Farid, H."
+      ],
+      "container": "IEEE Transactions on Signal Processing",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2005,
+      "volume": "53",
+      "issue": "2",
+      "pages": "758-767",
+      "doi": "10.1109/tsp.2004.839932",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "wang2009": {
+      "title": "Exposing digital forgeries in video by detecting double quantization",
+      "authors": [
+        "Wang, W.",
+        "Farid, H."
+      ],
+      "container": "Proceedings of the 11th ACM workshop on Multimedia and security",
+      "publisher": "ACM",
+      "year": 2009,
+      "volume": "",
+      "issue": "",
+      "pages": "39-48",
+      "doi": "10.1145/1597817.1597826",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "mesonet": {
+      "title": "MesoNet: a Compact Facial Video Forgery Detection Network",
+      "authors": [
+        "Afchar, D.",
+        "Nozick, V.",
+        "Yamagishi, J.",
+        "Echizen, I."
+      ],
+      "container": "2018 IEEE International Workshop on Information Forensics and Security (WIFS)",
+      "publisher": "IEEE",
+      "year": 2018,
+      "volume": "",
+      "issue": "",
+      "pages": "1-7",
+      "doi": "10.1109/wifs.2018.8630761",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "xception": {
+      "title": "Xception: Deep Learning with Depthwise Separable Convolutions",
+      "authors": [
+        "Chollet, F."
+      ],
+      "container": "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2017,
+      "volume": "",
+      "issue": "",
+      "pages": "1800-1807",
+      "doi": "10.1109/cvpr.2017.195",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "capsule": {
+      "title": "Capsule-forensics: Using Capsule Networks to Detect Forged Images and Videos",
+      "authors": [
+        "Nguyen, H. H.",
+        "Yamagishi, J.",
+        "Echizen, I."
+      ],
+      "container": "ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
+      "publisher": "IEEE",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "2307-2311",
+      "doi": "10.1109/icassp.2019.8682602",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "facexray": {
+      "title": "Face X-Ray for More General Face Forgery Detection",
+      "authors": [
+        "Li, L.",
+        "Bao, J.",
+        "Zhang, T.",
+        "Yang, H.",
+        "Chen, D.",
+        "Wen, F.",
+        "Guo, B."
+      ],
+      "container": "2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "5000-5009",
+      "doi": "10.1109/cvpr42600.2020.00505",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "lstm": {
+      "title": "Long Short-Term Memory",
+      "authors": [
+        "Hochreiter, S.",
+        "Schmidhuber, J."
+      ],
+      "container": "Neural Computation",
+      "publisher": "MIT Press",
+      "year": 1997,
+      "volume": "9",
+      "issue": "8",
+      "pages": "1735-1780",
+      "doi": "10.1162/neco.1997.9.8.1735",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "guera": {
+      "title": "Deepfake Video Detection Using Recurrent Neural Networks",
+      "authors": [
+        "Guera, D.",
+        "Delp, E. J."
+      ],
+      "container": "2018 15th IEEE International Conference on Advanced Video and Signal Based Surveillance (AVSS)",
+      "publisher": "IEEE",
+      "year": 2018,
+      "volume": "",
+      "issue": "",
+      "pages": "1-6",
+      "doi": "10.1109/avss.2018.8639163",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "stil": {
+      "title": "Spatiotemporal Inconsistency Learning for DeepFake Video Detection",
+      "authors": [
+        "Gu, Z.",
+        "Chen, Y.",
+        "Yao, T.",
+        "Ding, S.",
+        "Li, J.",
+        "Huang, F.",
+        "Ma, L."
+      ],
+      "container": "Proceedings of the 29th ACM International Conference on Multimedia",
+      "publisher": "ACM",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "3473-3481",
+      "doi": "10.1145/3474085.3475508",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "istvt": {
+      "title": "ISTVT: Interpretable Spatial-Temporal Video Transformer for Deepfake Detection",
+      "authors": [
+        "Zhao, C.",
+        "Wang, C.",
+        "Hu, G.",
+        "Chen, H.",
+        "Liu, C.",
+        "Tang, J."
+      ],
+      "container": "IEEE Transactions on Information Forensics and Security",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2023,
+      "volume": "18",
+      "issue": "",
+      "pages": "1335-1348",
+      "doi": "10.1109/tifs.2023.3239223",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "tall": {
+      "title": "Learning Spatiotemporal Inconsistency via Thumbnail Layout for Face Deepfake Detection",
+      "authors": [
+        "Xu, Y.",
+        "Liang, J.",
+        "Sheng, L.",
+        "Zhang, X."
+      ],
+      "container": "International Journal of Computer Vision",
+      "publisher": "Springer Science and Business Media LLC",
+      "year": 2024,
+      "volume": "132",
+      "issue": "12",
+      "pages": "5663-5680",
+      "doi": "10.1007/s11263-024-02054-2",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "gaze": {
+      "title": "Where Deepfakes Gaze at? Spatial\u2013Temporal Gaze Inconsistency Analysis for Video Face Forgery Detection",
+      "authors": [
+        "Peng, C.",
+        "Miao, Z.",
+        "Liu, D.",
+        "Wang, N.",
+        "Hu, R.",
+        "Gao, X."
+      ],
+      "container": "IEEE Transactions on Information Forensics and Security",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2024,
+      "volume": "19",
+      "issue": "",
+      "pages": "4507-4517",
+      "doi": "10.1109/tifs.2024.3381823",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "ftcn": {
+      "title": "Exploring Temporal Coherence for More General Video Face Forgery Detection",
+      "authors": [
+        "Zheng, Y.",
+        "Bao, J.",
+        "Chen, D.",
+        "Zeng, M.",
+        "Wen, F."
+      ],
+      "container": "2021 IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "publisher": "IEEE",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "15024-15034",
+      "doi": "10.1109/iccv48922.2021.01477",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "stidnet": {
+      "title": "STIDNet: Identity-Aware Face Forgery Detection With Spatiotemporal Knowledge Distillation",
+      "authors": [
+        "Fang, M.",
+        "Yu, L.",
+        "Xie, H.",
+        "Tan, Q.",
+        "Tan, Z.",
+        "Hussain, A.",
+        "Wang, Z.",
+        "Li, J.",
+        "Tian, Z."
+      ],
+      "container": "IEEE Transactions on Computational Social Systems",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2024,
+      "volume": "11",
+      "issue": "4",
+      "pages": "5354-5366",
+      "doi": "10.1109/tcss.2024.3356549",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "senet": {
+      "title": "Squeeze-and-Excitation Networks",
+      "authors": [
+        "Hu, J.",
+        "Shen, L.",
+        "Sun, G."
+      ],
+      "container": "2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      "publisher": "IEEE",
+      "year": 2018,
+      "volume": "",
+      "issue": "",
+      "pages": "7132-7141",
+      "doi": "10.1109/cvpr.2018.00745",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "cbam": {
+      "title": "CBAM: Convolutional Block Attention Module",
+      "authors": [
+        "Woo, S.",
+        "Park, J.",
+        "Lee, J.",
+        "Kweon, I. S."
+      ],
+      "container": "Lecture Notes in Computer Science",
+      "publisher": "Springer International Publishing",
+      "year": 2018,
+      "volume": "",
+      "issue": "",
+      "pages": "3-19",
+      "doi": "10.1007/978-3-030-01234-2_1",
+      "type": "book-chapter",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "mat": {
+      "title": "Multi-attentional Deepfake Detection",
+      "authors": [
+        "Zhao, H.",
+        "Wei, T.",
+        "Zhou, W.",
+        "Zhang, W.",
+        "Chen, D.",
+        "Yu, N."
+      ],
+      "container": "2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "2185-2194",
+      "doi": "10.1109/cvpr46437.2021.00222",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "nonlocal": {
+      "title": "Non-local Neural Networks",
+      "authors": [
+        "Wang, X.",
+        "Girshick, R.",
+        "Gupta, A.",
+        "He, K."
+      ],
+      "container": "2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      "publisher": "IEEE",
+      "year": 2018,
+      "volume": "",
+      "issue": "",
+      "pages": "7794-7803",
+      "doi": "10.1109/cvpr.2018.00813",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "efficientnet": {
+      "title": "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks",
+      "authors": [
+        "Tan, M.",
+        "Le, Q. V."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.1905.11946",
+      "arxiv": "1905.11946",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "efficientnetv2": {
+      "title": "EfficientNetV2: Smaller Models and Faster Training",
+      "authors": [
+        "Tan, M.",
+        "Le, Q. V."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.2104.00298",
+      "arxiv": "2104.00298",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "mobilenetv3": {
+      "title": "Searching for MobileNetV3",
+      "authors": [
+        "Howard, A.",
+        "Sandler, M.",
+        "Chen, B.",
+        "Wang, W.",
+        "Chen, L.",
+        "Tan, M.",
+        "Chu, G.",
+        "Vasudevan, V.",
+        "Zhu, Y.",
+        "Pang, R.",
+        "Adam, H.",
+        "Le, Q."
+      ],
+      "container": "2019 IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "publisher": "IEEE",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "1314-1324",
+      "doi": "10.1109/iccv.2019.00140",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "convnext": {
+      "title": "A ConvNet for the 2020s",
+      "authors": [
+        "Liu, Z.",
+        "Mao, H.",
+        "Wu, C.",
+        "Feichtenhofer, C.",
+        "Darrell, T.",
+        "Xie, S."
+      ],
+      "container": "2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2022,
+      "volume": "",
+      "issue": "",
+      "pages": "11966-11976",
+      "doi": "10.1109/cvpr52688.2022.01167",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "resnet": {
+      "title": "Deep Residual Learning for Image Recognition",
+      "authors": [
+        "He, K.",
+        "Zhang, X.",
+        "Ren, S.",
+        "Sun, J."
+      ],
+      "container": "2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2016,
+      "volume": "",
+      "issue": "",
+      "pages": "770-778",
+      "doi": "10.1109/cvpr.2016.90",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "resnetrs": {
+      "title": "Revisiting ResNets: Improved Training and Scaling Strategies",
+      "authors": [
+        "Bello, I.",
+        "Fedus, W.",
+        "Du, X.",
+        "Cubuk, E. D.",
+        "Srinivas, A.",
+        "Lin, T.",
+        "Shlens, J.",
+        "Zoph, B."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.2103.07579",
+      "arxiv": "2103.07579",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "mealpy": {
+      "title": "MEALPY: An open-source library for latest meta-heuristic algorithms in Python",
+      "authors": [
+        "Van Thieu, N.",
+        "Mirjalili, S."
+      ],
+      "container": "Journal of Systems Architecture",
+      "publisher": "Elsevier BV",
+      "year": 2023,
+      "volume": "139",
+      "issue": "",
+      "pages": "102871",
+      "doi": "10.1016/j.sysarc.2023.102871",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "nfl": {
+      "title": "No free lunch theorems for optimization",
+      "authors": [
+        "Wolpert, D.",
+        "Macready, W."
+      ],
+      "container": "IEEE Transactions on Evolutionary Computation",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 1997,
+      "volume": "1",
+      "issue": "1",
+      "pages": "67-82",
+      "doi": "10.1109/4235.585893",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "varoquaux": {
+      "title": "Cross-validation failure: Small sample sizes lead to large error bars",
+      "authors": [
+        "Varoquaux, G."
+      ],
+      "container": "NeuroImage",
+      "publisher": "Elsevier BV",
+      "year": 2018,
+      "volume": "180",
+      "issue": "",
+      "pages": "68-77",
+      "doi": "10.1016/j.neuroimage.2017.06.061",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "combrisson": {
+      "title": "Exceeding chance level by chance: The caveat of theoretical chance levels in brain signal classification and statistical assessment of decoding accuracy",
+      "authors": [
+        "Combrisson, E.",
+        "Jerbi, K."
+      ],
+      "container": "Journal of Neuroscience Methods",
+      "publisher": "Elsevier BV",
+      "year": 2015,
+      "volume": "250",
+      "issue": "",
+      "pages": "126-136",
+      "doi": "10.1016/j.jneumeth.2015.01.010",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "ojala": {
+      "title": "Permutation Tests for Studying Classifier Performance",
+      "authors": [
+        "Ojala, M.",
+        "Garriga, G. C."
+      ],
+      "container": "2009 Ninth IEEE International Conference on Data Mining",
+      "publisher": "IEEE",
+      "year": 2009,
+      "volume": "",
+      "issue": "",
+      "pages": "908-913",
+      "doi": "10.1109/icdm.2009.108",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "brodersen": {
+      "title": "The Balanced Accuracy and Its Posterior Distribution",
+      "authors": [
+        "Brodersen, K. H.",
+        "Ong, C. S.",
+        "Stephan, K. E.",
+        "Buhmann, J. M."
+      ],
+      "container": "2010 20th International Conference on Pattern Recognition",
+      "publisher": "IEEE",
+      "year": 2010,
+      "volume": "",
+      "issue": "",
+      "pages": "3121-3124",
+      "doi": "10.1109/icpr.2010.764",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "cawley": {
+      "title": "On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation",
+      "authors": [
+        "Cawley, G. C.",
+        "Talbot, N. L. C."
+      ],
+      "container": "Journal of Machine Learning Research",
+      "publisher": "JMLR",
+      "year": 2010,
+      "volume": "11",
+      "issue": "",
+      "pages": "2079-2107",
+      "doi": "",
+      "url": "https://jmlr.org/papers/v11/cawley10a.html",
+      "type": "journal-article",
+      "match_overlap": null,
+      "source": "manual"
+    },
+    "kapoor": {
+      "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+      "authors": [
+        "Kapoor, S.",
+        "Narayanan, A."
+      ],
+      "container": "Patterns",
+      "publisher": "Elsevier BV",
+      "year": 2023,
+      "volume": "4",
+      "issue": "9",
+      "pages": "100804",
+      "doi": "10.1016/j.patter.2023.100804",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "ioannidis": {
+      "title": "Why Most Published Research Findings Are False",
+      "authors": [
+        "Ioannidis, J. P. A."
+      ],
+      "container": "PLoS Medicine",
+      "publisher": "Public Library of Science (PLoS)",
+      "year": 2005,
+      "volume": "2",
+      "issue": "8",
+      "pages": "e124",
+      "doi": "10.1371/journal.pmed.0020124",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "gundersen": {
+      "title": "State of the Art: Reproducibility in Artificial Intelligence",
+      "authors": [
+        "Gundersen, O. E.",
+        "Kjensmo, S."
+      ],
+      "container": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "year": 2018,
+      "volume": "32",
+      "issue": "1",
+      "pages": "",
+      "doi": "10.1609/aaai.v32i1.11503",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "hanley": {
+      "title": "The meaning and use of the area under a receiver operating characteristic (ROC) curve.",
+      "authors": [
+        "Hanley, J. A.",
+        "McNeil, B. J."
+      ],
+      "container": "Radiology",
+      "publisher": "Radiological Society of North America (RSNA)",
+      "year": 1982,
+      "volume": "143",
+      "issue": "1",
+      "pages": "29-36",
+      "doi": "10.1148/radiology.143.1.7063747",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "demsar": {
+      "title": "Statistical Comparisons of Classifiers over Multiple Data Sets",
+      "authors": [
+        "Demsar, J."
+      ],
+      "container": "Journal of Machine Learning Research",
+      "publisher": "JMLR",
+      "year": 2006,
+      "volume": "7",
+      "issue": "",
+      "pages": "1-30",
+      "doi": "",
+      "url": "https://jmlr.org/papers/v7/demsar06a.html",
+      "type": "journal-article",
+      "match_overlap": null,
+      "source": "manual"
+    },
+    "mirsky": {
+      "title": "The Creation and Detection of Deepfakes",
+      "authors": [
+        "Mirsky, Y.",
+        "Lee, W."
+      ],
+      "container": "ACM Computing Surveys",
+      "publisher": "Association for Computing Machinery (ACM)",
+      "year": 2021,
+      "volume": "54",
+      "issue": "1",
+      "pages": "1-41",
+      "doi": "10.1145/3425780",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "verdoliva": {
+      "title": "Media Forensics and DeepFakes: An Overview",
+      "authors": [
+        "Verdoliva, L."
+      ],
+      "container": "IEEE Journal of Selected Topics in Signal Processing",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2020,
+      "volume": "14",
+      "issue": "5",
+      "pages": "910-932",
+      "doi": "10.1109/jstsp.2020.3002101",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "nguyen_survey": {
+      "title": "Deep learning for deepfakes creation and detection: A survey",
+      "authors": [
+        "Nguyen, T. T.",
+        "Nguyen, Q. V. H.",
+        "Nguyen, D. T.",
+        "Nguyen, D. T.",
+        "Huynh-The, T.",
+        "Nahavandi, S.",
+        "Nguyen, T. T.",
+        "Pham, Q.",
+        "Nguyen, C. M."
+      ],
+      "container": "Computer Vision and Image Understanding",
+      "publisher": "Elsevier BV",
+      "year": 2022,
+      "volume": "223",
+      "issue": "",
+      "pages": "103525",
+      "doi": "10.1016/j.cviu.2022.103525",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "masood": {
+      "title": "Deepfakes generation and detection: state-of-the-art, open challenges, countermeasures, and way forward",
+      "authors": [
+        "Masood, M.",
+        "Nawaz, M.",
+        "Malik, K. M.",
+        "Javed, A.",
+        "Irtaza, A.",
+        "Malik, H."
+      ],
+      "container": "Applied Intelligence",
+      "publisher": "Springer Science and Business Media LLC",
+      "year": 2022,
+      "volume": "53",
+      "issue": "4",
+      "pages": "3974-4026",
+      "doi": "10.1007/s10489-022-03766-z",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "rana": {
+      "title": "Deepfake Detection: A Systematic Literature Review",
+      "authors": [
+        "Rana, M. S.",
+        "Nobi, M. N.",
+        "Murali, B.",
+        "Sung, A. H."
+      ],
+      "container": "IEEE Access",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2022,
+      "volume": "10",
+      "issue": "",
+      "pages": "25494-25513",
+      "doi": "10.1109/access.2022.3154404",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "yu_survey": {
+      "title": "A Survey on Deepfake Video Detection",
+      "authors": [
+        "Yu, P.",
+        "Xia, Z.",
+        "Fei, J.",
+        "Lu, Y."
+      ],
+      "container": "IET Biometrics",
+      "publisher": "Institution of Engineering and Technology (IET)",
+      "year": 2021,
+      "volume": "10",
+      "issue": "6",
+      "pages": "607-624",
+      "doi": "10.1049/bme2.12031",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "fadl": {
+      "title": "Exposing video inter-frame forgery via histogram of oriented gradients and motion energy image",
+      "authors": [
+        "Fadl, S.",
+        "Han, Q.",
+        "Qiong, L."
+      ],
+      "container": "Multidimensional Systems and Signal Processing",
+      "publisher": "Springer Science and Business Media LLC",
+      "year": 2020,
+      "volume": "31",
+      "issue": "4",
+      "pages": "1365-1384",
+      "doi": "10.1007/s11045-020-00711-6",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "kingra": {
+      "title": "Inter-frame forgery detection in H.264 videos using motion and brightness gradients",
+      "authors": [
+        "Kingra, S.",
+        "Aggarwal, N.",
+        "Singh, R. D."
+      ],
+      "container": "Multimedia Tools and Applications",
+      "publisher": "Springer Science and Business Media LLC",
+      "year": 2017,
+      "volume": "76",
+      "issue": "24",
+      "pages": "25767-25786",
+      "doi": "10.1007/s11042-017-4762-2",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "shelke": {
+      "title": "Multiple forgery detection in digital video with VGG-16-based deep neural network and KPCA",
+      "authors": [
+        "Shelke, N. A.",
+        "Kasana, S. S."
+      ],
+      "container": "Multimedia Tools and Applications",
+      "publisher": "Springer Science and Business Media LLC",
+      "year": 2023,
+      "volume": "83",
+      "issue": "2",
+      "pages": "5415-5435",
+      "doi": "10.1007/s11042-023-15561-0",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "sitara": {
+      "title": "Digital video tampering detection: An overview of passive techniques",
+      "authors": [
+        "Sitara, K.",
+        "Mehtre, B."
+      ],
+      "container": "Digital Investigation",
+      "publisher": "Elsevier BV",
+      "year": 2016,
+      "volume": "18",
+      "issue": "",
+      "pages": "8-22",
+      "doi": "10.1016/j.diin.2016.06.003",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "amerini": {
+      "title": "Deepfake Video Detection through Optical Flow Based CNN",
+      "authors": [
+        "Amerini, I.",
+        "Galteri, L.",
+        "Caldelli, R.",
+        "Del Bimbo, A."
+      ],
+      "container": "2019 IEEE/CVF International Conference on Computer Vision Workshop (ICCVW)",
+      "publisher": "IEEE",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "1205-1207",
+      "doi": "10.1109/iccvw.2019.00152",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "sabir": {
+      "title": "Recurrent Convolutional Strategies for Face Manipulation Detection in Videos",
+      "authors": [
+        "Sabir, E.",
+        "Cheng, J.",
+        "Jaiswal, A.",
+        "AbdAlmageed, W.",
+        "Masi, I.",
+        "Natarajan, P."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.1905.00582",
+      "arxiv": "1905.00582",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "haliassos": {
+      "title": "Lips Don't Lie: A Generalisable and Robust Approach to Face Forgery Detection",
+      "authors": [
+        "Haliassos, A.",
+        "Vougioukas, K.",
+        "Petridis, S.",
+        "Pantic, M."
+      ],
+      "container": "2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "5037-5047",
+      "doi": "10.1109/cvpr46437.2021.00500",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "luo_hf": {
+      "title": "Generalizing Face Forgery Detection with High-frequency Features",
+      "authors": [
+        "Luo, Y.",
+        "Zhang, Y.",
+        "Yan, J.",
+        "Liu, W."
+      ],
+      "container": "2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "16312-16321",
+      "doi": "10.1109/cvpr46437.2021.01605",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "qian_f3net": {
+      "title": "Thinking in Frequency: Face Forgery Detection by Mining Frequency-Aware Clues",
+      "authors": [
+        "Qian, Y.",
+        "Yin, G.",
+        "Sheng, L.",
+        "Chen, Z.",
+        "Shao, J."
+      ],
+      "container": "Lecture Notes in Computer Science",
+      "publisher": "Springer International Publishing",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "86-103",
+      "doi": "10.1007/978-3-030-58610-2_6",
+      "type": "book-chapter",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "coccomini": {
+      "title": "Combining EfficientNet and\u00a0Vision Transformers for\u00a0Video Deepfake Detection",
+      "authors": [
+        "Coccomini, D. A.",
+        "Messina, N.",
+        "Gennaro, C.",
+        "Falchi, F."
+      ],
+      "container": "Lecture Notes in Computer Science",
+      "publisher": "Springer International Publishing",
+      "year": 2022,
+      "volume": "",
+      "issue": "",
+      "pages": "219-229",
+      "doi": "10.1007/978-3-031-06433-3_19",
+      "type": "book-chapter",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "vaswani": {
+      "title": "Attention Is All You Need",
+      "authors": [
+        "Vaswani, A.",
+        "Shazeer, N.",
+        "Parmar, N.",
+        "Uszkoreit, J.",
+        "Jones, L.",
+        "Gomez, A. N.",
+        "Kaiser, L.",
+        "Polosukhin, I."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2017,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.1706.03762",
+      "arxiv": "1706.03762",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "vit": {
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "authors": [
+        "Dosovitskiy, A.",
+        "Beyer, L.",
+        "Kolesnikov, A.",
+        "Weissenborn, D.",
+        "Zhai, X.",
+        "Unterthiner, T.",
+        "Dehghani, M.",
+        "Minderer, M.",
+        "Heigold, G.",
+        "Gelly, S.",
+        "Uszkoreit, J.",
+        "Houlsby, N."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2020,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.2010.11929",
+      "arxiv": "2010.11929",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    },
+    "i3d": {
+      "title": "Quo Vadis, Action Recognition? A New Model and the Kinetics Dataset",
+      "authors": [
+        "Carreira, J.",
+        "Zisserman, A."
+      ],
+      "container": "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "publisher": "IEEE",
+      "year": 2017,
+      "volume": "",
+      "issue": "",
+      "pages": "4724-4733",
+      "doi": "10.1109/cvpr.2017.502",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "slowfast": {
+      "title": "SlowFast Networks for Video Recognition",
+      "authors": [
+        "Feichtenhofer, C.",
+        "Fan, H.",
+        "Malik, J.",
+        "He, K."
+      ],
+      "container": "2019 IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "publisher": "IEEE",
+      "year": 2019,
+      "volume": "",
+      "issue": "",
+      "pages": "6201-6210",
+      "doi": "10.1109/iccv.2019.00630",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "c3d": {
+      "title": "Learning Spatiotemporal Features with 3D Convolutional Networks",
+      "authors": [
+        "Tran, D.",
+        "Bourdev, L.",
+        "Fergus, R.",
+        "Torresani, L.",
+        "Paluri, M."
+      ],
+      "container": "2015 IEEE International Conference on Computer Vision (ICCV)",
+      "publisher": "IEEE",
+      "year": 2015,
+      "volume": "",
+      "issue": "",
+      "pages": "4489-4497",
+      "doi": "10.1109/iccv.2015.510",
+      "type": "proceedings-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "dropout": {
+      "title": "Dropout: A Simple Way to Prevent Neural Networks from Overfitting",
+      "authors": [
+        "Srivastava, N.",
+        "Hinton, G.",
+        "Krizhevsky, A.",
+        "Sutskever, I.",
+        "Salakhutdinov, R."
+      ],
+      "container": "Journal of Machine Learning Research",
+      "publisher": "JMLR",
+      "year": 2014,
+      "volume": "15",
+      "issue": "",
+      "pages": "1929-1958",
+      "doi": "",
+      "url": "https://jmlr.org/papers/v15/srivastava14a.html",
+      "type": "journal-article",
+      "match_overlap": null,
+      "source": "manual"
+    },
+    "vabalas": {
+      "title": "Machine learning algorithm validation with a limited sample size",
+      "authors": [
+        "Vabalas, A.",
+        "Gowen, E.",
+        "Poliakoff, E.",
+        "Casson, A. J."
+      ],
+      "container": "PLOS ONE",
+      "publisher": "Public Library of Science (PLoS)",
+      "year": 2019,
+      "volume": "14",
+      "issue": "11",
+      "pages": "e0224365",
+      "doi": "10.1371/journal.pone.0224365",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "he_imbalance": {
+      "title": "Learning from Imbalanced Data",
+      "authors": [
+        "Haibo He, ",
+        "Garcia, E."
+      ],
+      "container": "IEEE Transactions on Knowledge and Data Engineering",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "year": 2009,
+      "volume": "21",
+      "issue": "9",
+      "pages": "1263-1284",
+      "doi": "10.1109/tkde.2008.239",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "doi"
+    },
+    "saito": {
+      "title": "The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets",
+      "authors": [
+        "Saito, T.",
+        "Rehmsmeier, M."
+      ],
+      "container": "PLOS ONE",
+      "publisher": "Public Library of Science (PLoS)",
+      "year": 2015,
+      "volume": "10",
+      "issue": "3",
+      "pages": "e0118432",
+      "doi": "10.1371/journal.pone.0118432",
+      "type": "journal-article",
+      "match_overlap": 1.0,
+      "source": "title"
+    },
+    "bouthillier": {
+      "title": "Accounting for Variance in Machine Learning Benchmarks",
+      "authors": [
+        "Bouthillier, X.",
+        "Delaunay, P.",
+        "Bronzi, M.",
+        "Trofimov, A.",
+        "Nichyporuk, B.",
+        "Szeto, J.",
+        "Sepah, N.",
+        "Raff, E.",
+        "Madan, K.",
+        "Voleti, V.",
+        "Kahou, S. E.",
+        "Michalski, V.",
+        "Serdyuk, D.",
+        "Arbel, T.",
+        "Pal, C.",
+        "Varoquaux, G.",
+        "Vincent, P."
+      ],
+      "container": "arXiv",
+      "publisher": "arXiv",
+      "year": 2021,
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "doi": "10.48550/arxiv.2103.03098",
+      "arxiv": "2103.03098",
+      "type": "preprint",
+      "match_overlap": 1.0,
+      "source": "datacite"
+    }
+  },
+  "unresolved": []
+}

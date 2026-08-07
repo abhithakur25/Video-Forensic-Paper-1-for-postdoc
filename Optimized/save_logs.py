@@ -37,6 +37,18 @@ DESC = {
         "that had called Start-Process was reaped - Start-Process does not "
         "escape the harness job object. Fixed by launching through WMI "
         "(Optimized/run_kfold.bat) and adding --resume to kfold mode.",
+    "kfold_true_interrupted3.log":
+        "Third and fourth k-fold attempts, in one file because the second "
+        "appended to the first. The third ran k=6,7,8 to checkpoint over "
+        "~3 h and then died 18 min into k=9 with EXITCODE=1073807364 "
+        "(0x40010004, DBG_TERMINATE_PROCESS) when the machine went down "
+        "overnight - terminated, not crashed. The fourth resumed from the "
+        "k=8 checkpoint and died again mid-epoch in k=9, this time with no "
+        "EXITCODE line at all, meaning the launcher was killed alongside "
+        "Python; stderr holds no traceback. After that a watchdog was added "
+        "that notices a stale log with no python.exe running and relaunches "
+        "with --resume. No measured result was lost to any of the three "
+        "deaths: each k is checkpointed on completion.",
     "optimize_v2.log":
         "Representation and model search: 14 representations x 9 model "
         "families under nested cross-validation, with a 100-shuffle "
