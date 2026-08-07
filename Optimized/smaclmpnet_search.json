@@ -1,0 +1,119 @@
+{
+  "grid": [
+    {
+      "batch_size": 32,
+      "epochs": 10,
+      "lr0": 0.001,
+      "schedule": "flat",
+      "class_weight": false,
+      "normalise": false,
+      "opt": 3
+    },
+    {
+      "batch_size": 8,
+      "epochs": 30,
+      "lr0": 0.001,
+      "schedule": "cosine",
+      "class_weight": true,
+      "normalise": true,
+      "opt": 3
+    },
+    {
+      "batch_size": 16,
+      "class_weight": true,
+      "epochs": 60,
+      "lr0": 0.001,
+      "normalise": true,
+      "opt": 3,
+      "schedule": "flat"
+    },
+    {
+      "batch_size": 4,
+      "class_weight": false,
+      "epochs": 30,
+      "lr0": 0.001,
+      "normalise": true,
+      "opt": 3,
+      "schedule": "flat"
+    },
+    {
+      "batch_size": 4,
+      "class_weight": true,
+      "epochs": 30,
+      "lr0": 0.0003,
+      "normalise": true,
+      "opt": 3,
+      "schedule": "flat"
+    },
+    {
+      "batch_size": 4,
+      "class_weight": true,
+      "epochs": 60,
+      "lr0": 0.003,
+      "normalise": false,
+      "opt": 3,
+      "schedule": "flat"
+    }
+  ],
+  "protocol": {
+    "outer": 5,
+    "inner": 2,
+    "seed": 1234,
+    "selection": "inside training folds only",
+    "architecture": "published SMA-CLMPNet, unchanged",
+    "scored_by": "Optimized/metrics_fixed.py"
+  },
+  "oof": {
+    "0": {
+      "test_idx": [
+        0,
+        5,
+        12,
+        13,
+        14,
+        21,
+        32,
+        34,
+        39,
+        41
+      ],
+      "y_pred": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "chosen": {
+        "batch_size": 4,
+        "class_weight": false,
+        "epochs": 30,
+        "lr0": 0.001,
+        "normalise": true,
+        "opt": 3,
+        "schedule": "flat"
+      },
+      "inner_best": 54.166666666666664,
+      "inner_all": [
+        50.0,
+        50.0,
+        52.083333333333336,
+        54.166666666666664,
+        50.0,
+        46.875
+      ],
+      "outer_bal": 50.0,
+      "minutes": 265.8975945075353
+    }
+  ]
+}
