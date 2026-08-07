@@ -1,0 +1,155 @@
+# [tidied] lit_ceiling_search.log
+# Literature-guided representation x model search (15 reps x 8 algorithms: L1/L2 logistic, RBF/linear SVM, ExtraTrees, GBM, RF, kNN) with GridSearchCV inside training folds. Best: FAD high-band Xception + L1 logistic at 77.3% bal / 78% max acc (AUC 0.787); EfficientNetV2S frames + ExtraTrees max acc 80%. 95% NOT REACHED. Source of Optimized/lit_ceiling_search.json. ~80 min.
+# tidied 2026-08-07 16:09:40; 0 noise lines collapsed
+#--------------------------------------------------------------------------
+proposed (50, 10, 128, 128, 12) y {0: 29, 1: 21}
+temporal_delta (50, 120)
+xception_rgb_pool (50, 10, 2048) -> (50, 4096)
+xception_diff_pool (50, 9, 2048) -> (50, 4096)
+xception_both_pool (50, 10, 2048) -> (50, 4096)
+effv2s_frames (50, 20480) -> (50, 20480)
+mnv3_frames (50, 15360) -> (50, 15360)
+freq_reps keys ['LFS rgb', 'LFS lbp_edge', 'LFS grad', 'LFS hsv', 'FAD high band (Xception)', 'FAD mid band (Xception)', 'Xception RGB (reference)', 'Temporal delta stats (Section 5.5)']
+freq LFS rgb (50, 36)
+freq LFS lbp_edge (50, 36)
+freq LFS grad (50, 36)
+freq LFS hsv (50, 36)
+freq FAD high band (Xception) (50, 6144)
+freq FAD mid band (Xception) (50, 6144)
+freq Xception RGB (reference) (50, 6144)
+freq Temporal delta stats (Section 5.5) (50, 324)
+combo_td_xception (50, 8312)
+temporal_delta         logreg-l1    bal= 52.1 acc= 52.0 auc=0.616 max_acc= 64.0 max_bal= 62.4
+temporal_delta         logreg-l2    bal= 59.6 acc= 60.0 auc=0.675 max_acc= 68.0 max_bal= 70.4
+temporal_delta         svm-rbf      bal= 56.1 acc= 62.0 auc=0.568 max_acc= 66.0 max_bal= 64.1
+temporal_delta         svm-lin      bal= 50.9 acc= 56.0 auc=0.572 max_acc= 62.0 max_bal= 62.0
+temporal_delta         extra-trees  bal= 63.5 acc= 66.0 auc=0.665 max_acc= 70.0 max_bal= 70.9
+temporal_delta         gbm          bal= 51.1 acc= 54.0 auc=0.466 max_acc= 58.0 max_bal= 57.7
+temporal_delta         rf           bal= 57.0 acc= 60.0 auc=0.683 max_acc= 68.0 max_bal= 69.8
+temporal_delta         knn          bal= 58.0 acc= 62.0 auc=0.403 max_acc= 66.0 max_bal= 61.5
+xception_rgb_pool      logreg-l1    bal= 47.8 acc= 44.0 auc=0.498 max_acc= 60.0 max_bal= 53.9
+xception_rgb_pool      logreg-l2    bal= 54.2 acc= 56.0 auc=0.598 max_acc= 62.0 max_bal= 64.9
+xception_rgb_pool      svm-rbf      bal= 53.3 acc= 58.0 auc=0.514 max_acc= 58.0 max_bal= 55.9
+xception_rgb_pool      svm-lin      bal= 50.7 acc= 58.0 auc=0.466 max_acc= 60.0 max_bal= 53.0
+xception_rgb_pool      extra-trees  bal= 50.5 acc= 54.0 auc=0.598 max_acc= 62.0 max_bal= 66.6
+xception_rgb_pool      gbm          bal= 54.2 acc= 56.0 auc=0.536 max_acc= 62.0 max_bal= 62.0
+xception_rgb_pool      rf           bal= 50.5 acc= 54.0 auc=0.596 max_acc= 66.0 max_bal= 70.0
+xception_rgb_pool      knn          bal= 58.3 acc= 60.0 auc=0.611 max_acc= 64.0 max_bal= 60.5
+xception_diff_pool     logreg-l1    bal= 43.7 acc= 40.0 auc=0.420 max_acc= 58.0 max_bal= 52.1
+xception_diff_pool     logreg-l2    bal= 53.5 acc= 56.0 auc=0.576 max_acc= 60.0 max_bal= 62.9
+xception_diff_pool     svm-rbf      bal= 50.0 acc= 58.0 auc=0.509 max_acc= 58.0 max_bal= 55.9
+xception_diff_pool     svm-lin      bal= 44.8 acc= 52.0 auc=0.493 max_acc= 58.0 max_bal= 57.9
+xception_diff_pool     extra-trees  bal= 48.8 acc= 52.0 auc=0.482 max_acc= 60.0 max_bal= 54.9
+xception_diff_pool     gbm          bal= 33.7 acc= 36.0 auc=0.421 max_acc= 58.0 max_bal= 51.2
+xception_diff_pool     rf           bal= 50.2 acc= 56.0 auc=0.517 max_acc= 60.0 max_bal= 58.4
+xception_diff_pool     knn          bal= 53.8 acc= 54.0 auc=0.519 max_acc= 58.0 max_bal= 57.3
+xception_both_pool     logreg-l1    bal= 51.9 acc= 48.0 auc=0.534 max_acc= 62.0 max_bal= 55.4
+xception_both_pool     logreg-l2    bal= 54.2 acc= 56.0 auc=0.598 max_acc= 62.0 max_bal= 64.9
+xception_both_pool     svm-rbf      bal= 47.2 acc= 54.0 auc=0.487 max_acc= 58.0 max_bal= 53.8
+xception_both_pool     svm-lin      bal= 48.1 acc= 52.0 auc=0.471 max_acc= 62.0 max_bal= 56.2
+xception_both_pool     extra-trees  bal= 50.5 acc= 54.0 auc=0.598 max_acc= 62.0 max_bal= 66.6
+xception_both_pool     gbm          bal= 54.2 acc= 56.0 auc=0.536 max_acc= 62.0 max_bal= 62.0
+xception_both_pool     rf           bal= 50.5 acc= 54.0 auc=0.596 max_acc= 66.0 max_bal= 70.0
+xception_both_pool     knn          bal= 58.3 acc= 60.0 auc=0.611 max_acc= 64.0 max_bal= 60.5
+effv2s_frames          logreg-l1    bal= 66.3 acc= 64.0 auc=0.708 max_acc= 68.0 max_bal= 67.2
+effv2s_frames          logreg-l2    bal= 73.0 acc= 74.0 auc=0.814 max_acc= 78.0 max_bal= 77.8
+effv2s_frames          svm-rbf      bal= 52.6 acc= 58.0 auc=0.583 max_acc= 68.0 max_bal= 65.2
+effv2s_frames          svm-lin      bal= 71.7 acc= 74.0 auc=0.785 max_acc= 78.0 max_bal= 77.8
+effv2s_frames          extra-trees  bal= 68.0 acc= 72.0 auc=0.794 max_acc= 80.0 max_bal= 78.2
+effv2s_frames          gbm          bal= 67.8 acc= 68.0 auc=0.752 max_acc= 74.0 max_bal= 72.3
+effv2s_frames          rf           bal= 59.1 acc= 64.0 auc=0.775 max_acc= 74.0 max_bal= 75.6
+effv2s_frames          knn          bal= 67.6 acc= 70.0 auc=0.714 max_acc= 72.0 max_bal= 69.3
+mnv3_frames            logreg-l1    bal= 56.8 acc= 56.0 auc=0.516 max_acc= 64.0 max_bal= 59.8
+mnv3_frames            logreg-l2    bal= 67.2 acc= 68.0 auc=0.722 max_acc= 70.0 max_bal= 72.2
+mnv3_frames            svm-rbf      bal= 48.3 acc= 56.0 auc=0.424 max_acc= 58.0 max_bal= 54.5
+mnv3_frames            svm-lin      bal= 62.8 acc= 66.0 auc=0.722 max_acc= 70.0 max_bal= 72.8
+mnv3_frames            extra-trees  bal= 58.0 acc= 62.0 auc=0.699 max_acc= 76.0 max_bal= 75.4
+mnv3_frames            gbm          bal= 52.5 acc= 54.0 auc=0.581 max_acc= 60.0 max_bal= 58.4
+mnv3_frames            rf           bal= 63.9 acc= 68.0 auc=0.700 max_acc= 70.0 max_bal= 69.8
+mnv3_frames            knn          bal= 51.6 acc= 50.0 auc=0.571 max_acc= 64.0 max_bal= 61.1
+freq_LFS rgb           logreg-l1    bal= 59.6 acc= 60.0 auc=0.654 max_acc= 68.0 max_bal= 65.0
+freq_LFS rgb           logreg-l2    bal= 54.2 acc= 56.0 auc=0.624 max_acc= 68.0 max_bal= 63.7
+freq_LFS rgb           svm-rbf      bal= 50.5 acc= 54.0 auc=0.535 max_acc= 64.0 max_bal= 59.6
+freq_LFS rgb           svm-lin      bal= 44.8 acc= 52.0 auc=0.534 max_acc= 62.0 max_bal= 59.4
+freq_LFS rgb           extra-trees  bal= 46.4 acc= 50.0 auc=0.593 max_acc= 60.0 max_bal= 62.2
+freq_LFS rgb           gbm          bal= 61.7 acc= 64.0 auc=0.686 max_acc= 68.0 max_bal= 69.1
+freq_LFS rgb           rf           bal= 52.2 acc= 56.0 auc=0.603 max_acc= 64.0 max_bal= 65.7
+freq_LFS rgb           knn          bal= 54.2 acc= 56.0 auc=0.615 max_acc= 64.0 max_bal= 63.1
+freq_LFS lbp_edge      logreg-l1    bal= 50.3 acc= 50.0 auc=0.479 max_acc= 58.0 max_bal= 53.6
+freq_LFS lbp_edge      logreg-l2    bal= 54.2 acc= 56.0 auc=0.483 max_acc= 60.0 max_bal= 54.2
+freq_LFS lbp_edge      svm-rbf      bal= 49.0 acc= 50.0 auc=0.502 max_acc= 58.0 max_bal= 60.3
+freq_LFS lbp_edge      svm-lin      bal= 42.7 acc= 48.0 auc=0.361 max_acc= 58.0 max_bal= 50.0
+freq_LFS lbp_edge      extra-trees  bal= 46.6 acc= 48.0 auc=0.432 max_acc= 58.0 max_bal= 54.5
+freq_LFS lbp_edge      gbm          bal= 34.7 acc= 38.0 auc=0.332 max_acc= 58.0 max_bal= 52.8
+freq_LFS lbp_edge      rf           bal= 34.7 acc= 38.0 auc=0.418 max_acc= 58.0 max_bal= 55.6
+freq_LFS lbp_edge      knn          bal= 39.2 acc= 44.0 auc=0.305 max_acc= 58.0 max_bal= 51.7
+freq_LFS grad          logreg-l1    bal= 58.8 acc= 56.0 auc=0.540 max_acc= 60.0 max_bal= 61.8
+freq_LFS grad          logreg-l2    bal= 56.8 acc= 56.0 auc=0.596 max_acc= 64.0 max_bal= 67.7
+freq_LFS grad          svm-rbf      bal= 49.8 acc= 54.0 auc=0.493 max_acc= 62.0 max_bal= 60.0
+freq_LFS grad          svm-lin      bal= 40.3 acc= 46.0 auc=0.342 max_acc= 58.0 max_bal= 51.1
+freq_LFS grad          extra-trees  bal= 59.6 acc= 60.0 auc=0.627 max_acc= 68.0 max_bal= 63.9
+freq_LFS grad          gbm          bal= 67.6 acc= 70.0 auc=0.682 max_acc= 70.0 max_bal= 67.6
+freq_LFS grad          rf           bal= 60.0 acc= 62.0 auc=0.635 max_acc= 66.0 max_bal= 63.5
+freq_LFS grad          knn          bal= 63.1 acc= 64.0 auc=0.627 max_acc= 68.0 max_bal= 65.8
+freq_LFS hsv           logreg-l1    bal= 48.4 acc= 44.0 auc=0.457 max_acc= 58.0 max_bal= 50.8
+freq_LFS hsv           logreg-l2    bal= 49.3 acc= 48.0 auc=0.494 max_acc= 58.0 max_bal= 54.8
+freq_LFS hsv           svm-rbf      bal= 50.0 acc= 58.0 auc=0.547 max_acc= 62.0 max_bal= 61.3
+freq_LFS hsv           svm-lin      bal= 42.7 acc= 48.0 auc=0.461 max_acc= 58.0 max_bal= 54.5
+freq_LFS hsv           extra-trees  bal= 42.1 acc= 42.0 auc=0.422 max_acc= 60.0 max_bal= 53.0
+freq_LFS hsv           gbm          bal= 39.5 acc= 42.0 auc=0.291 max_acc= 58.0 max_bal= 50.0
+freq_LFS hsv           rf           bal= 45.3 acc= 48.0 auc=0.366 max_acc= 60.0 max_bal= 52.4
+freq_LFS hsv           knn          bal= 41.5 acc= 42.0 auc=0.397 max_acc= 60.0 max_bal= 52.4
+freq_FAD high band (Xception) logreg-l1    bal= 77.3 acc= 76.0 auc=0.787 max_acc= 78.0 max_bal= 79.1
+freq_FAD high band (Xception) logreg-l2    bal= 67.8 acc= 68.0 auc=0.739 max_acc= 72.0 max_bal= 74.5
+freq_FAD high band (Xception) svm-rbf      bal= 46.4 acc= 50.0 auc=0.573 max_acc= 64.0 max_bal= 66.3
+freq_FAD high band (Xception) svm-lin      bal= 63.5 acc= 66.0 auc=0.706 max_acc= 70.0 max_bal= 71.5
+freq_FAD high band (Xception) extra-trees  bal= 67.2 acc= 68.0 auc=0.719 max_acc= 76.0 max_bal= 77.3
+freq_FAD high band (Xception) gbm          bal= 62.0 acc= 62.0 auc=0.654 max_acc= 66.0 max_bal= 64.1
+freq_FAD high band (Xception) rf           bal= 62.4 acc= 64.0 auc=0.695 max_acc= 72.0 max_bal= 73.9
+freq_FAD high band (Xception) knn          bal= 58.9 acc= 60.0 auc=0.661 max_acc= 64.0 max_bal= 64.6
+freq_FAD mid band (Xception) logreg-l1    bal= 66.7 acc= 66.0 auc=0.727 max_acc= 70.0 max_bal= 72.2
+freq_FAD mid band (Xception) logreg-l2    bal= 71.9 acc= 72.0 auc=0.714 max_acc= 76.0 max_bal= 76.7
+freq_FAD mid band (Xception) svm-rbf      bal= 62.8 acc= 66.0 auc=0.645 max_acc= 72.0 max_bal= 70.6
+freq_FAD mid band (Xception) svm-lin      bal= 64.1 acc= 66.0 auc=0.726 max_acc= 72.0 max_bal= 74.5
+freq_FAD mid band (Xception) extra-trees  bal= 68.9 acc= 70.0 auc=0.726 max_acc= 74.0 max_bal= 74.3
+freq_FAD mid band (Xception) gbm          bal= 62.0 acc= 62.0 auc=0.622 max_acc= 64.0 max_bal= 63.7
+freq_FAD mid band (Xception) rf           bal= 64.1 acc= 66.0 auc=0.755 max_acc= 72.0 max_bal= 72.6
+freq_FAD mid band (Xception) knn          bal= 58.1 acc= 56.0 auc=0.597 max_acc= 62.0 max_bal= 62.6
+freq_Xception RGB (reference) logreg-l1    bal= 54.4 acc= 54.0 auc=0.599 max_acc= 60.0 max_bal= 61.2
+freq_Xception RGB (reference) logreg-l2    bal= 56.6 acc= 58.0 auc=0.642 max_acc= 66.0 max_bal= 70.0
+freq_Xception RGB (reference) svm-rbf      bal= 47.2 acc= 54.0 auc=0.498 max_acc= 58.0 max_bal= 57.7
+freq_Xception RGB (reference) svm-lin      bal= 49.2 acc= 54.0 auc=0.608 max_acc= 64.0 max_bal= 67.7
+freq_Xception RGB (reference) extra-trees  bal= 63.1 acc= 64.0 auc=0.655 max_acc= 66.0 max_bal= 70.0
+freq_Xception RGB (reference) gbm          bal= 57.2 acc= 58.0 auc=0.589 max_acc= 62.0 max_bal= 62.0
+freq_Xception RGB (reference) rf           bal= 46.4 acc= 50.0 auc=0.621 max_acc= 68.0 max_bal= 71.8
+freq_Xception RGB (reference) knn          bal= 57.0 acc= 60.0 auc=0.596 max_acc= 62.0 max_bal= 60.9
+freq_Temporal delta stats (Section 5.5) logreg-l1    bal= 65.0 acc= 64.0 auc=0.693 max_acc= 68.0 max_bal= 68.5
+freq_Temporal delta stats (Section 5.5) logreg-l2    bal= 63.1 acc= 64.0 auc=0.650 max_acc= 64.0 max_bal= 65.5
+freq_Temporal delta stats (Section 5.5) svm-rbf      bal= 45.7 acc= 50.0 auc=0.453 max_acc= 58.0 max_bal= 53.1
+freq_Temporal delta stats (Section 5.5) svm-lin      bal= 53.3 acc= 58.0 auc=0.674 max_acc= 70.0 max_bal= 70.9
+freq_Temporal delta stats (Section 5.5) extra-trees  bal= 61.1 acc= 64.0 auc=0.722 max_acc= 70.0 max_bal= 70.2
+freq_Temporal delta stats (Section 5.5) gbm          bal= 50.7 acc= 52.0 auc=0.520 max_acc= 60.0 max_bal= 55.1
+freq_Temporal delta stats (Section 5.5) rf           bal= 61.7 acc= 64.0 auc=0.665 max_acc= 68.0 max_bal= 69.1
+freq_Temporal delta stats (Section 5.5) knn          bal= 57.5 acc= 56.0 auc=0.559 max_acc= 60.0 max_bal= 62.2
+combo_td_xception      logreg-l1    bal= 53.0 acc= 50.0 auc=0.560 max_acc= 62.0 max_bal= 58.4
+combo_td_xception      logreg-l2    bal= 56.6 acc= 58.0 auc=0.624 max_acc= 66.0 max_bal= 68.7
+combo_td_xception      svm-rbf      bal= 46.6 acc= 54.0 auc=0.460 max_acc= 58.0 max_bal= 55.5
+combo_td_xception      svm-lin      bal= 49.2 acc= 54.0 auc=0.502 max_acc= 60.0 max_bal= 54.5
+combo_td_xception      extra-trees  bal= 49.4 acc= 52.0 auc=0.552 max_acc= 60.0 max_bal= 61.8
+combo_td_xception      gbm          bal= 47.0 acc= 50.0 auc=0.514 max_acc= 62.0 max_bal= 60.9
+combo_td_xception      rf           bal= 45.7 acc= 50.0 auc=0.608 max_acc= 64.0 max_bal= 68.3
+combo_td_xception      knn          bal= 65.4 acc= 66.0 auc=0.622 max_acc= 66.0 max_bal= 65.4
+
+=== BEST ===
+{
+  "rep": "freq_FAD high band (Xception)",
+  "model": "logreg-l1",
+  "acc_0.5": 76.0,
+  "bal_0.5": 77.34,
+  "auc": 0.7865,
+  "max_acc": 78.0,
+  "max_bal": 79.06,
+  "best_thr": 0.5425653316849846
+}
+95% status: NOT REACHED
+wrote C:\Users\USER\Downloads\PostDoc\Implimentation_Paper1\Optimized\lit_ceiling_search.json

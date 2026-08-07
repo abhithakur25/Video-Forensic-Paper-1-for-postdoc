@@ -1,0 +1,26 @@
+[15:38:35] cascade: haarcascade_frontalface_default.xml
+[15:38:35] shard 4/8: 250 videos (original + Deepfakes)
+[15:38:35] 32 frames each at 299px, margin 0.25
+[15:38:35] split by identity: 720 train / 140 val / 140 test
+[16:03:47]   50/250 videos  1599 crops  25.2 min  eta 100.8 min
+[18:22:57] cascade: haarcascade_frontalface_default.xml
+[18:22:57] shard 4/8: 250 videos (original + Deepfakes)
+[18:22:57] 32 frames each at 299px, margin 0.25
+[18:22:57] split by identity: 720 train / 140 val / 140 test
+[18:23:04]   50/250 videos  1599 crops  0.1 min  eta 0.5 min
+[18:54:59]   100/250 videos  3199 crops  32.0 min  eta 48.1 min
+[19:36:03]   150/250 videos  4799 crops  73.1 min  eta 48.7 min
+[20:37:30]   200/250 videos  6399 crops  134.6 min  eta 33.6 min
+[21:17:25]   250/250 videos  7999 crops  174.5 min  eta 0.0 min
+[21:17:28] 
+counts
+[21:17:28]   test/fake          544
+[21:17:28]   test/real          544
+[21:17:28]   train/fake        2880
+[21:17:28]   train/real        2879
+[21:17:28]   val/fake           576
+[21:17:28]   val/real           576
+[21:17:28] 
+manifest_03.csv  7999 rows
+[21:17:28] total 10472s
+EXITCODE=0 

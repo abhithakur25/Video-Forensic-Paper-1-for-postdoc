@@ -1,3 +1,7 @@
+# [tidied] extract_ffpp.log
+# FaceForensics++ frame extraction / face-crop cache build (FFPP pipeline).
+# tidied 2026-08-07 16:09:26; 0 noise lines collapsed
+#--------------------------------------------------------------------------
 archive   C:\Users\USER\Downloads\PostDoc\archive.zip  (16.7 GB)
 members   7010
 expands   16.7 GB
