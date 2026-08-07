@@ -9,8 +9,8 @@ import numpy as np
 from article_data import (ACC, BAL, F1, SPE, ORDER, degenerate, fmt,
                           majority_accuracy, mean_bal, pretty)
 from article_refs import cite, citet
-from article_style import (abstract_para, bullet, code, h1, h2, keywords,
-                           numbered, para, table)
+from article_style import (abstract_para, bullet, code, h1, h2, h3,
+                           keywords, numbered, para, table)
 
 # ruff: noqa: E501
 FIG = None            # set by make_article: a callable name -> XML
@@ -506,6 +506,16 @@ def results(d):
                 "Fig. 6. Balanced accuracy against training percentage. A "
                 "learning pipeline should trend upward as training data "
                 "increases; most curves here do not."))
+    B.append(_f("fig14_metrics_sweep_grouped.png",
+                "Fig. 7. Accuracy, precision, recall and F1 side by side for "
+                "every model, averaged over the sweep. Models annotated below "
+                "the axis never predict 'forged' at all; the four bars above "
+                "them do not show it and recall on the forged class does."))
+    B.append(_f("fig16_metric_panels_sweep.png",
+                "Fig. 8. Every metric against training percentage, one panel "
+                "per metric. Gaps in the precision panel are splits where the "
+                "quantity is undefined because the model predicted no "
+                "positives at all."))
 
     # ---------------------------------------------------------- 5.2
     B.append(h2("5.2 Current-Generation Backbones"))
@@ -605,9 +615,16 @@ def results(d):
       "predict that rankings on samples this size are dominated by "
       "resampling noise, and Section 5.6 quantifies the interval directly.")
     B.append(_f("fig04_kfold_balanced_accuracy.png",
-                "Fig. 7. Balanced accuracy by model and by k. The spread "
+                "Fig. 9. Balanced accuracy by model and by k. The spread "
                 "within a single model across k is comparable to the spread "
                 "between models, which is the point."))
+    B.append(_f("fig15_metrics_kfold_grouped.png",
+                "Fig. 10. Accuracy, precision, recall and F1 by model, "
+                "k-fold means."))
+    B.append(_f("fig17_metric_panels_kfold.png",
+                "Fig. 11. Every metric against k. Test folds hold five to "
+                "nine videos, so a single misclassification moves a point by "
+                "11 to 20 percentage points."))
 
     # ---------------------------------------------------------- 5.5
     B.append(h2("5.5 ROC Analysis, AUC and the Confusion Matrix"))
@@ -661,8 +678,16 @@ def results(d):
       f"almost evenly at {cmc['TN']}/{cmc['FP']} and {cmc['TP']}/"
       f"{cmc['FN']}.")
     B.append(_f("fig06_confusion_matrix.png",
-                "Fig. 9. Out-of-fold confusion matrix for the "
+                "Fig. 14. Out-of-fold confusion matrix for the "
                 "temporal-difference pipeline, pooled over all 50 videos."))
+    B.append(_f("fig18_roc_and_operating_points.png",
+                "Fig. 15. Left: the two curves that exist, from the "
+                "nested-CV pipelines that stored probabilities. Right: the "
+                "cohort. Those runs stored arg-max predictions, so each model "
+                "is one operating point and no curve is available; fitting a "
+                "curve through a single point would invent the shape between "
+                "its ends. Four models coincide exactly at the top-right "
+                "corner — perfect recall on authentic, none on forged."))
 
     # ---------------------------------------------------------- 5.6
     B.append(h2("5.6 Corpus Audit and the Accuracy Ceiling"))
@@ -896,7 +921,110 @@ def results(d):
       "step rather than from the model.")
 
     # ---------------------------------------------------------- 5.11
-    B.append(h2("5.11 Summary of Measured Results"))
+    fl = d.get("frame_level")
+    if fl:
+        B.append(h2("5.11 The Published Frame-Level Recipe"))
+        p("Every result above consumes one descriptor per video, which is not "
+          "how the published FaceForensics++ detectors are trained. They "
+          "train a face-cropped convolutional network on individual frames "
+          "and aggregate frame scores into a video decision "
+          + cite("faceforensics", "xception") + ". That recipe multiplies the "
+          "training set by the number of frames per video — here from 40 "
+          "samples to 400 — and is the most obvious untried lever, so it was "
+          "implemented and measured.")
+        p("The implementation follows the literature: per-frame ImageNet "
+          "backbone features from the face crop at the backbone's native "
+          "input resolution, horizontal-flip test-time augmentation, a "
+          "frame-level classifier whose regularisation is selected in inner "
+          "folds, and a video decision by aggregation. Three aggregation "
+          "rules were compared, since the surveys disagree about which is "
+          "best: mean probability, mean log-odds and majority vote. One thing "
+          "was kept from this paper's protocol rather than the literature's — "
+          "the split is by video, read from the same fold file every other "
+          "result here uses, so frames of one video never straddle a fold "
+          "boundary.")
+        rows = []
+        for k, v in fl["video_grouped_correct"].items():
+            rows.append([k, fmt(v["bal"]), fmt(v["acc"]), fmt(v["spe"]),
+                         f"{v['auc']:.4f}", v["rule"].replace("_", " ")])
+        r0 = d["roc"]["curves"]["temporal delta stats (best honest pipeline)"]
+        rows.append(["Temporal delta descriptor (Section 5.5)",
+                     fmt(r0["balanced_accuracy"] * 100),
+                     fmt(r0["accuracy"] * 100),
+                     fmt(r0["sensitivity_forged"] * 100),
+                     f"{r0['auc']:.4f}", "—"])
+        B.append(table(["Configuration", "Balanced acc.", "Accuracy",
+                        "Recall (forged)", "AUC", "Best aggregation"], rows,
+                       "TABLE 15. The published frame-level recipe on this "
+                       "corpus, video-grouped splits, against the descriptor "
+                       "already measured in Section 5.5.",
+                       widths=[3300, 1500, 1300, 1500, 1200, 1560],
+                       highlight=lambda r: r[0].startswith("Temporal delta")))
+        best_fl = max(fl["video_grouped_correct"].values(),
+                      key=lambda v: v["bal"])
+        p("The recipe does not help. Its best configuration reaches "
+          f"{fmt(best_fl['bal'])}% balanced accuracy against the "
+          f"{fmt(r0['balanced_accuracy'] * 100)}% of the temporal descriptor, "
+          "and every configuration sits below it. Ten times the training "
+          "samples buys nothing, because the additional samples are ten "
+          "near-copies of each video rather than ten additional videos. The "
+          "effective sample size is still fifty.")
+
+        B.append(h3("5.11.1 How a 95% Figure Appears on This Corpus"))
+        p("The same experiment answers a question this paper has so far "
+          "answered only by bounding it: what would it take to report 95% "
+          "here? The answer is a two-line change, and it is worth reporting "
+          "precisely because the resulting number is indistinguishable, in a "
+          "table, from an honest one.")
+        lk = fl["frame_split_leaky"]
+        rows = []
+        for k in fl["video_grouped_correct"]:
+            rows.append([k, fmt(fl["video_grouped_correct"][k]["bal"]),
+                         fmt(lk[k]["bal"]), fmt(lk[k]["acc"]),
+                         f"{lk[k]['auc']:.4f}",
+                         fmt(lk[k]["bal"]
+                             - fl["video_grouped_correct"][k]["bal"])])
+        B.append(table(["Features", "Split by video", "Split by frame",
+                        "Accuracy (frame split)", "AUC (frame split)",
+                        "Inflation"], rows,
+                       "TABLE 16. Identical features, identical model, "
+                       "identical code. The only difference is whether frames "
+                       "of one video may fall on both sides of the fold "
+                       "boundary. The right-hand columns are not results.",
+                       widths=[2900, 1500, 1500, 1700, 1600, 1160]))
+        worst = max(lk.values(), key=lambda v: v["bal"])
+        p("Splitting by frame instead of by video moves the best "
+          f"configuration from {fmt(best_fl['bal'])}% to "
+          f"{fmt(worst['bal'])}% balanced accuracy, and substituting a "
+          "radial-basis support vector machine for the linear model — an "
+          "entirely ordinary choice — carries it past 90%. Nothing else "
+          "changes: the same features, the same code, the same corpus.")
+        p("The mechanism is straightforward. Ten frames sampled from one clip "
+          "are near-identical images. Scattering them across the split "
+          "boundary means the classifier is asked at test time about frames "
+          "whose immediate neighbours it memorised during training, so it "
+          "succeeds by recognising footage rather than by detecting "
+          "manipulation. This is precisely the failure the identity-level "
+          "partition of FaceForensics++ was designed to prevent "
+          + cite("faceforensics") + ", and pooling fifty clips into a flat "
+          "set removes that protection. It is also, by some distance, the "
+          "most common form of leakage in the audit of "
+          + citet("kapoor") + ".")
+        p("This figure is reported here as a demonstration and is excluded "
+          "from every summary, table and chart of results elsewhere in the "
+          "paper. It is included because the practical value of the present "
+          "study is largely negative — a bound and a set of things that do "
+          "not work — and a reader is entitled to know how easily the "
+          "opposite result could have been produced from the same data.")
+        B.append(_f("fig19_literature_recipe_and_leakage.png",
+                    "Fig. 16. The published frame-level recipe on this "
+                    "corpus, with the correct and the leaking split side by "
+                    "side. The green line is the descriptor already measured "
+                    "in Section 5.5; the dotted line is the 95% target. Only "
+                    "the split differs between the members of each pair."))
+
+    # ---------------------------------------------------------- 5.12
+    B.append(h2("5.12 Summary of Measured Results"))
     p("Six independent lines of evidence converge on the same conclusion. "
       "The published cohort is degenerate under corrected scoring. Its "
       "ablations are indistinguishable from each other and from a constant "
@@ -922,7 +1050,7 @@ def comparison(d):
     p = lambda t: B.append(para(t))                       # noqa: E731
 
     B.append(h2("6.1 Measured Comparison on Identical Splits"))
-    p("Table 15 is the comparison this paper can defend. Every row was "
+    p("Table 17 is the comparison this paper can defend. Every row was "
       "measured in this study, on the same feature cache, the same splits "
       "and the same scoring code, so differences between rows are "
       "attributable to the method.")
@@ -944,7 +1072,7 @@ def comparison(d):
                  "50.00", "50.00", "0.00", "all"])
     B.append(table(["Method", "Sweep bal. acc. (%)", "k-fold bal. acc. (%)",
                     "k-fold specificity (%)", "Degenerate runs"], rows,
-                   "TABLE 15. All methods measured in this study, ordered by "
+                   "TABLE 17. All methods measured in this study, ordered by "
                    "k-fold balanced accuracy. Every row uses identical "
                    "splits and identical scoring.",
                    widths=[3600, 1700, 1700, 1700, 1660],
@@ -975,7 +1103,7 @@ def comparison(d):
       "measurements of the same quantity, and placing them in adjacent "
       "columns invites precisely the incommensurable comparison that "
       "produces claims like the one this paper set out to reproduce.")
-    p("What can be compared is the design of the studies. Table 16 sets the "
+    p("What can be compared is the design of the studies. Table 18 sets the "
       "present work beside the reference methods on the attributes that "
       "determine whether a reported number means anything.")
     B.append(table(
@@ -1008,7 +1136,7 @@ def comparison(d):
          ["SMA-CLMPNet (this study, re-measured)",
           "3D convolution + joint attention + LSTM",
           "50-video pooled subset of FaceForensics++", "Yes (LSTM)"]],
-        "TABLE 16. Design comparison against reference methods. Reported "
+        "TABLE 18. Design comparison against reference methods. Reported "
         "accuracies are deliberately omitted; see the text.",
         widths=[2900, 2900, 3100, 1460]))
     p("Two things are visible in that table. Every method in the "

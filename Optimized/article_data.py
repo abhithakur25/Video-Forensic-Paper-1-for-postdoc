@@ -80,6 +80,7 @@ def load():
         "stil": _json("oof_stil_tim.json"),
         "paper2": _json("paper2_model.json"),
         "probe": _json("feature_probe.json"),
+        "frame_level": _json("frame_level_summary.json", required=False),
     }
     # Consistency checks the manuscript's prose depends on.
     n = d["audit"]["n"]

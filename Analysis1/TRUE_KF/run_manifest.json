@@ -17,7 +17,9 @@
   "k_values": [
     6,
     7,
-    8
+    8,
+    9,
+    10
   ],
   "folds_per_k": 1,
   "epochs": 30,
@@ -25,5 +27,5 @@
   "head_epochs": 200,
   "batch_size": 8,
   "scored_with": "Optimized/metrics_fixed.py (real confusion matrix)",
-  "written": "2026-08-06 12:32:24"
+  "written": "2026-08-07 11:56:56"
 }

@@ -875,6 +875,16 @@ def main():
                     "bar and is marked on each: [out-of-fold] is pooled "
                     "balanced accuracy under nested CV, [sweep mean] is the "
                     "mean over the six training percentages."))
+    b.append(figure("fig19_literature_recipe_and_leakage.png",
+                    "Figure 10. The published frame-level recipe run on this "
+                    "corpus, with the correct and the leaking split side by "
+                    "side. Same features, same model, same code; only the "
+                    "split differs. Video-grouped it reaches 58.95%; split by "
+                    "frame it reaches 85.54%, and an RBF SVM on the same "
+                    "features reaches 90.80%. That gap is the mechanism by "
+                    "which a 95% figure appears on a corpus that cannot "
+                    "support one, and it is a two-line change from the "
+                    "correct protocol."))
     b.append(figure("fig13_comparison_bar.png",
                     "Figure 9. The full comparison: every method measured in "
                     "this study on one axis, with its protocol in brackets. "
