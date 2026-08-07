@@ -1,0 +1,221 @@
+{
+  "nested": {
+    "Xception RGB (reference)": {
+      "bal": 63.30049261083743,
+      "auc": 0.6518883415435139,
+      "C_per_fold": [
+        0.1,
+        0.3,
+        0.3,
+        0.3,
+        0.1
+      ]
+    },
+    "FAD mid band (Xception)": {
+      "bal": 66.0919540229885,
+      "auc": 0.7077175697865353,
+      "C_per_fold": [
+        0.3,
+        1.0,
+        1.0,
+        0.3,
+        0.3
+      ]
+    },
+    "FAD high band (Xception)": {
+      "bal": 70.19704433497537,
+      "auc": 0.7684729064039408,
+      "C_per_fold": [
+        1.0,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "Temporal delta stats (Section 5.5)": {
+      "bal": 60.91954022988506,
+      "auc": 0.6929392446633826,
+      "C_per_fold": [
+        0.3,
+        1.0,
+        0.3,
+        1.0,
+        1.0
+      ]
+    },
+    "LFS rgb": {
+      "bal": 64.12151067323481,
+      "auc": 0.6600985221674877,
+      "C_per_fold": [
+        0.3,
+        0.3,
+        1.0,
+        0.3,
+        0.3
+      ]
+    },
+    "LFS grad": {
+      "bal": 46.22331691297209,
+      "auc": 0.451559934318555,
+      "C_per_fold": [
+        0.3,
+        0.3,
+        1.0,
+        1.0,
+        0.003
+      ]
+    }
+  },
+  "best_nested": "FAD high band (Xception)",
+  "representations": {
+    "LFS rgb": 36,
+    "LFS lbp_edge": 36,
+    "LFS grad": 36,
+    "LFS hsv": 36,
+    "FAD high band (Xception)": 6144,
+    "FAD mid band (Xception)": 6144,
+    "Xception RGB (reference)": 6144,
+    "Temporal delta stats (Section 5.5)": 324
+  },
+  "protocol": "video-grouped 5-fold from cache/folds.npz; standardisation fitted on training folds only; ensemble members selected inside each training fold",
+  "table": {
+    "LFS rgb | logreg-l1": {
+      "bal": 44.827586206896555,
+      "auc": 0.4211822660098522
+    },
+    "LFS rgb | logreg-l2": {
+      "bal": 56.97865353037766,
+      "auc": 0.632183908045977
+    },
+    "LFS rgb | svm-rbf": {
+      "bal": 52.62725779967159,
+      "auc": 0.6091954022988506
+    },
+    "LFS rgb | extra-trees": {
+      "bal": 50.49261083743842,
+      "auc": 0.6108374384236452
+    },
+    "LFS lbp_edge | logreg-l1": {
+      "bal": 50.0,
+      "auc": 0.5
+    },
+    "LFS lbp_edge | logreg-l2": {
+      "bal": 50.49261083743842,
+      "auc": 0.522167487684729
+    },
+    "LFS lbp_edge | svm-rbf": {
+      "bal": 51.14942528735632,
+      "auc": 0.5812807881773399
+    },
+    "LFS lbp_edge | extra-trees": {
+      "bal": 35.385878489326764,
+      "auc": 0.35303776683087024
+    },
+    "LFS grad | logreg-l1": {
+      "bal": 50.0,
+      "auc": 0.5
+    },
+    "LFS grad | logreg-l2": {
+      "bal": 56.56814449917897,
+      "auc": 0.6223316912972086
+    },
+    "LFS grad | svm-rbf": {
+      "bal": 53.69458128078818,
+      "auc": 0.3957307060755336
+    },
+    "LFS grad | extra-trees": {
+      "bal": 56.56814449917897,
+      "auc": 0.6190476190476191
+    },
+    "LFS hsv | logreg-l1": {
+      "bal": 50.0,
+      "auc": 0.5
+    },
+    "LFS hsv | logreg-l2": {
+      "bal": 55.91133004926109,
+      "auc": 0.5435139573070608
+    },
+    "LFS hsv | svm-rbf": {
+      "bal": 54.761904761904766,
+      "auc": 0.46141215106732353
+    },
+    "LFS hsv | extra-trees": {
+      "bal": 51.14942528735632,
+      "auc": 0.42036124794745483
+    },
+    "FAD high band (Xception) | logreg-l1": {
+      "bal": 59.60591133004927,
+      "auc": 0.5697865353037767
+    },
+    "FAD high band (Xception) | logreg-l2": {
+      "bal": 67.81609195402298,
+      "auc": 0.729064039408867
+    },
+    "FAD high band (Xception) | svm-rbf": {
+      "bal": 44.827586206896555,
+      "auc": 0.5960591133004925
+    },
+    "FAD high band (Xception) | extra-trees": {
+      "bal": 61.74055829228242,
+      "auc": 0.7175697865353038
+    },
+    "FAD mid band (Xception) | logreg-l1": {
+      "bal": 57.88177339901477,
+      "auc": 0.6535303776683087
+    },
+    "FAD mid band (Xception) | logreg-l2": {
+      "bal": 67.15927750410509,
+      "auc": 0.7339901477832512
+    },
+    "FAD mid band (Xception) | svm-rbf": {
+      "bal": 54.35139573070607,
+      "auc": 0.548440065681445
+    },
+    "FAD mid band (Xception) | extra-trees": {
+      "bal": 68.88341543513957,
+      "auc": 0.7380952380952381
+    },
+    "Xception RGB (reference) | logreg-l1": {
+      "bal": 70.85385878489326,
+      "auc": 0.7848932676518883
+    },
+    "Xception RGB (reference) | logreg-l2": {
+      "bal": 58.29228243021347,
+      "auc": 0.645320197044335
+    },
+    "Xception RGB (reference) | svm-rbf": {
+      "bal": 42.03612479474549,
+      "auc": 0.4137931034482759
+    },
+    "Xception RGB (reference) | extra-trees": {
+      "bal": 52.87356321839081,
+      "auc": 0.645320197044335
+    },
+    "Temporal delta stats (Section 5.5) | logreg-l1": {
+      "bal": 51.970443349753694,
+      "auc": 0.5426929392446633
+    },
+    "Temporal delta stats (Section 5.5) | logreg-l2": {
+      "bal": 60.67323481116584,
+      "auc": 0.6945812807881773
+    },
+    "Temporal delta stats (Section 5.5) | svm-rbf": {
+      "bal": 51.31362889983579,
+      "auc": 0.5188834154351396
+    },
+    "Temporal delta stats (Section 5.5) | extra-trees": {
+      "bal": 59.35960591133005,
+      "auc": 0.6962233169129721
+    }
+  },
+  "stacked_ensemble": {
+    "bal": 66.0919540229885,
+    "auc": 0.6978653530377668
+  },
+  "best": "Xception RGB (reference) | logreg-l1",
+  "best_scores": {
+    "bal": 70.85385878489326,
+    "auc": 0.7848932676518883
+  }
+}

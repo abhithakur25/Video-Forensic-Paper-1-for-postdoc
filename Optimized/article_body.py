@@ -1023,6 +1023,69 @@ def results(d):
                     "in Section 5.5; the dotted line is the 95% target. Only "
                     "the split differs between the members of each pair."))
 
+    # ---------------------------------------------------------- 5.11.2
+    fad = d.get("fad")
+    if fad:
+        B.append(h3("5.11.2 Frequency-Aware Decomposition"))
+        p("A second family of technique from the same literature does help, "
+          "and is the one genuine improvement this study obtained over its own "
+          "earlier best. " + citet("qian_f3net") + " decompose each frame in "
+          "the discrete cosine domain and classify the resulting frequency "
+          "bands separately, reporting that the high band is the most "
+          "informative because the up-sampling operations inside a generator "
+          "leave their traces there; " + citet("luo_hf") + " reach the same "
+          "conclusion through a high-frequency residual stream. Neither had "
+          "been tried on this corpus.")
+        p("The implementation takes the two-dimensional discrete cosine "
+          "transform of each frame, masks all but one radial frequency band, "
+          "inverts the transform, and passes the resulting band image through "
+          "the same Xception backbone used elsewhere. Local frequency "
+          "statistics — block-wise transform power in six radial bands, "
+          "summarised over blocks — were also computed, on all four channel "
+          "triplets of the cached tensor rather than only the colour one. "
+          "Everything is evaluated on the same folds with the regularisation "
+          "chosen inside inner folds.")
+        rows = []
+        for k, v in fad.items():
+            pm = v.get("permutation", {})
+            rows.append([k, fmt(v["bal"]), f"{v['auc']:.4f}",
+                         fmt(v["max_accuracy_any_threshold"]),
+                         f"{pm.get('p_value', float('nan')):.4f}"])
+        r0 = d["roc"]["curves"]["temporal delta stats (best honest pipeline)"]
+        rows.append(["Temporal deltas alone (Section 5.5)",
+                     fmt(r0["balanced_accuracy"] * 100), f"{r0['auc']:.4f}",
+                     fmt(d["audit"]["max_accuracy_any_threshold"] * 100),
+                     f"{d['roc']['auc_permutation']['p_value']:.4f}"])
+        B.append(table(["Representation", "Balanced acc.", "AUC",
+                        "Ceiling at best threshold", "Permutation p"], rows,
+                       "TABLE 17. Frequency-aware decomposition against the "
+                       "previous best, same folds, regularisation selected in "
+                       "inner folds.",
+                       widths=[3400, 1500, 1300, 2100, 1560],
+                       highlight=lambda r: r[0].startswith("FAD high +")))
+        best = max((v for v in fad.values()), key=lambda v: v["auc"])
+        p("The high-band representation combined with the temporal-difference "
+          f"descriptor reaches an area under the curve of {best['auc']:.4f}, "
+          f"against the {r0['auc']:.4f} of Section 5.5, with a permutation "
+          f"p-value of {best['permutation']['p_value']:.4f} against a null "
+          f"mean of {best['permutation']['null_mean']:.4f}. That is a real "
+          "improvement in how well the method orders the videos, it is the "
+          "largest effect measured anywhere in this study, and it arrived "
+          "from the literature rather than from tuning.")
+        p("It does not raise the attainable accuracy. The ceiling stays at "
+          f"{best['max_accuracy_any_threshold']:.2f}%, unchanged. Figure 17 "
+          "shows why: the curve moves up and to the left, but on fifty "
+          "samples it is a staircase of at most fifty steps, and a better "
+          "ordering of the videos does not guarantee a better place to cut "
+          "it. Improving the ranking and improving the decision are different "
+          "things, and at this sample size only the first is within reach.")
+        B.append(_f("fig20_frequency_representation.png",
+                    "Fig. 17. Frequency-aware decomposition on this corpus. "
+                    "Left: the ranking improves and the area under the curve "
+                    "rises. Right: accuracy at each threshold on those same "
+                    "curves, against the majority-class line and the 95% "
+                    "target. The ceiling does not move."))
+
     # ---------------------------------------------------------- 5.12
     B.append(h2("5.12 Summary of Measured Results"))
     p("Six independent lines of evidence converge on the same conclusion. "
@@ -1050,7 +1113,7 @@ def comparison(d):
     p = lambda t: B.append(para(t))                       # noqa: E731
 
     B.append(h2("6.1 Measured Comparison on Identical Splits"))
-    p("Table 17 is the comparison this paper can defend. Every row was "
+    p("Table 18 is the comparison this paper can defend. Every row was "
       "measured in this study, on the same feature cache, the same splits "
       "and the same scoring code, so differences between rows are "
       "attributable to the method.")
@@ -1072,7 +1135,7 @@ def comparison(d):
                  "50.00", "50.00", "0.00", "all"])
     B.append(table(["Method", "Sweep bal. acc. (%)", "k-fold bal. acc. (%)",
                     "k-fold specificity (%)", "Degenerate runs"], rows,
-                   "TABLE 17. All methods measured in this study, ordered by "
+                   "TABLE 18. All methods measured in this study, ordered by "
                    "k-fold balanced accuracy. Every row uses identical "
                    "splits and identical scoring.",
                    widths=[3600, 1700, 1700, 1700, 1660],
@@ -1103,7 +1166,7 @@ def comparison(d):
       "measurements of the same quantity, and placing them in adjacent "
       "columns invites precisely the incommensurable comparison that "
       "produces claims like the one this paper set out to reproduce.")
-    p("What can be compared is the design of the studies. Table 18 sets the "
+    p("What can be compared is the design of the studies. Table 19 sets the "
       "present work beside the reference methods on the attributes that "
       "determine whether a reported number means anything.")
     B.append(table(
@@ -1136,7 +1199,7 @@ def comparison(d):
          ["SMA-CLMPNet (this study, re-measured)",
           "3D convolution + joint attention + LSTM",
           "50-video pooled subset of FaceForensics++", "Yes (LSTM)"]],
-        "TABLE 18. Design comparison against reference methods. Reported "
+        "TABLE 19. Design comparison against reference methods. Reported "
         "accuracies are deliberately omitted; see the text.",
         widths=[2900, 2900, 3100, 1460]))
     p("Two things are visible in that table. Every method in the "

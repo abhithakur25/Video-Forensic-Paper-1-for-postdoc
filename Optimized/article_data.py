@@ -81,6 +81,7 @@ def load():
         "paper2": _json("paper2_model.json"),
         "probe": _json("feature_probe.json"),
         "frame_level": _json("frame_level_summary.json", required=False),
+        "fad": _json("fad_followup.json", required=False),
     }
     # Consistency checks the manuscript's prose depends on.
     n = d["audit"]["n"]

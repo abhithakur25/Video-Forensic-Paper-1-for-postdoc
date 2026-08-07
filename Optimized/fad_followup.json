@@ -1,0 +1,40 @@
+{
+  "FAD high band": {
+    "bal": 72.57799671592775,
+    "auc": 0.7733990147783251,
+    "max_accuracy_any_threshold": 74.0,
+    "C_per_fold": [
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3
+    ],
+    "permutation": {
+      "observed_auc": 0.7733990147783251,
+      "null_mean": 0.4829679802955665,
+      "null_p95": 0.6280788177339901,
+      "p_value": 0.014925373134328358,
+      "n_shuffles": 200
+    }
+  },
+  "FAD high + temporal deltas": {
+    "bal": 66.7487684729064,
+    "auc": 0.7947454844006567,
+    "max_accuracy_any_threshold": 74.0,
+    "C_per_fold": [
+      1.0,
+      0.3,
+      1.0,
+      0.3,
+      0.3
+    ],
+    "permutation": {
+      "observed_auc": 0.7947454844006567,
+      "null_mean": 0.4790394088669951,
+      "null_p95": 0.6389162561576354,
+      "p_value": 0.004975124378109453,
+      "n_shuffles": 200
+    }
+  }
+}

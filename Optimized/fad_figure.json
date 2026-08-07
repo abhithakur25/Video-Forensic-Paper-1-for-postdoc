@@ -1,0 +1,20 @@
+[
+  {
+    "representation": "Temporal deltas (previous best)",
+    "auc": 0.6896551724137931,
+    "max_accuracy_any_threshold": 68.0,
+    "bal": 60.91954022988506
+  },
+  {
+    "representation": "FAD high band, Xception (new)",
+    "auc": 0.7733990147783251,
+    "max_accuracy_any_threshold": 74.0,
+    "bal": 72.57799671592775
+  },
+  {
+    "representation": "FAD high band + temporal deltas",
+    "auc": 0.7947454844006567,
+    "max_accuracy_any_threshold": 74.0,
+    "bal": 66.7487684729064
+  }
+]
