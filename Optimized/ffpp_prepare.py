@@ -124,7 +124,44 @@ def main():
     ap.add_argument("--limit", type=int, default=0,
                     help="videos per class, 0 = all")
     ap.add_argument("--quality", type=int, default=92)
+    ap.add_argument("--shard", type=int, default=0)
+    ap.add_argument("--nshards", type=int, default=1,
+                    help="run N copies with --shard 0..N-1 to use N cores; "
+                         "each writes manifest_<shard>.csv, merged by "
+                         "--merge")
+    ap.add_argument("--merge", action="store_true",
+                    help="combine manifest_*.csv into manifest.csv and exit")
     args = ap.parse_args()
+
+    if args.merge:
+        import pandas as pd
+        parts = sorted(OUT.glob("manifest_*.csv"))
+        if not parts:
+            raise SystemExit(f"no manifest shards in {OUT}")
+        df = pd.concat([pd.read_csv(f) for f in parts], ignore_index=True)
+        df = df.drop_duplicates(subset="file").sort_values("file")
+        df.to_csv(OUT / "manifest.csv", index=False)
+        counts = df.groupby(["split", "label"]).size()
+        summary = {"videos": int(df["video"].nunique()),
+                   "crops": int(len(df)),
+                   "counts": {f"{s}/{c}": int(v)
+                              for (s, c), v in counts.items()},
+                   "identity_level": True,
+                   "shards_merged": [f.name for f in parts]}
+        (OUT / "summary.json").write_text(json.dumps(summary, indent=2),
+                                          encoding="utf-8")
+        log(f"merged {len(parts)} shards -> manifest.csv, {len(df)} crops")
+        for k, v in summary["counts"].items():
+            log(f"  {k:<14} {v:7d}")
+        # No identity may straddle a partition; the whole protocol rests on it.
+        ids = df.groupby("split")["identity"].apply(set)
+        for a in ids.index:
+            for b in ids.index:
+                if a < b and (ids[a] & ids[b]):
+                    raise SystemExit(f"identity leak {a}/{b}: "
+                                     f"{sorted(ids[a] & ids[b])[:5]}")
+        log("no identity appears in two splits")
+        return
 
     methods = [m.strip() for m in args.methods.split(",") if m.strip()]
     # This build of cv2 has no cv2.data (the same defect that broke the
@@ -162,7 +199,12 @@ def main():
                 keep.append(j)
         jobs = keep
 
-    log(f"{len(jobs)} videos: original + {', '.join(methods)}")
+    # Interleaved rather than contiguous slicing, so every shard gets a mix of
+    # 1080p originals and smaller manipulated clips and they finish together.
+    if args.nshards > 1:
+        jobs = jobs[args.shard::args.nshards]
+    log(f"shard {args.shard + 1}/{args.nshards}: {len(jobs)} videos "
+        f"(original + {', '.join(methods)})")
     log(f"{args.frames} frames each at {args.size}px, margin {args.margin}")
     log(f"split by identity: {len(TRAIN_IDS)} train / {len(VAL_IDS)} val / "
         f"{len(VAL_IDS)} test")
@@ -200,7 +242,9 @@ def main():
     import pandas as pd
     df = pd.DataFrame(rows)
     OUT.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUT / "manifest.csv", index=False)
+    name = ("manifest.csv" if args.nshards == 1
+            else f"manifest_{args.shard:02d}.csv")
+    df.to_csv(OUT / name, index=False)
 
     summary = {
         "methods": methods, "frames_per_video": args.frames,
@@ -213,12 +257,13 @@ def main():
         "note": "a manipulated clip follows its TARGET identity, so footage "
                 "never crosses the split boundary",
     }
-    (OUT / "summary.json").write_text(json.dumps(summary, indent=2),
-                                      encoding="utf-8")
+    if args.nshards == 1:
+        (OUT / "summary.json").write_text(json.dumps(summary, indent=2),
+                                          encoding="utf-8")
     log("\ncounts")
     for k, v in summary["counts"].items():
         log(f"  {k:<14} {v:7d}")
-    log(f"\nmanifest.csv  {len(df)} rows")
+    log(f"\n{name}  {len(df)} rows")
     log(f"total {time.time() - t0:.0f}s")
 
 
