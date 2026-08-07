@@ -27,3 +27,8 @@ FFPP/results/
 # Commit hashes are recorded in Optimized/oof_*.json.
 External/
 .ipynb_checkpoints/
+
+# TLS-proxy CA bundle, machine-specific
+Optimized/cache/win-ca-bundle.pem
+# extracted FF++ metadata (regenerate with Optimized/extract_ffpp.py)
+DATASET/FFPP_C23/

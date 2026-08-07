@@ -1,0 +1,317 @@
+{
+  "corpus_n": 50,
+  "class_counts": {
+    "authentic": 29,
+    "forged": 21
+  },
+  "protocol": "video-grouped 5-fold OOF; StandardScaler + GridSearchCV inside each training fold only; sklearn metrics (same formulas as metrics_fixed.py)",
+  "literature_algorithms_tried": [
+    "logreg-l1",
+    "logreg-l2",
+    "svm-rbf",
+    "svm-lin",
+    "extra-trees",
+    "gbm",
+    "rf",
+    "knn"
+  ],
+  "representations": [
+    "temporal_delta",
+    "xception_rgb_pool",
+    "xception_diff_pool",
+    "xception_both_pool",
+    "effv2s_frames",
+    "mnv3_frames",
+    "freq_LFS rgb",
+    "freq_LFS lbp_edge",
+    "freq_LFS grad",
+    "freq_LFS hsv",
+    "freq_FAD high band (Xception)",
+    "freq_FAD mid band (Xception)",
+    "freq_Xception RGB (reference)",
+    "freq_Temporal delta stats (Section 5.5)",
+    "combo_td_xception"
+  ],
+  "ranking_top25": [
+    {
+      "rep": "freq_FAD high band (Xception)",
+      "model": "logreg-l1",
+      "acc_0.5": 76.0,
+      "bal_0.5": 77.34,
+      "auc": 0.7865,
+      "max_acc": 78.0,
+      "max_bal": 79.06,
+      "best_thr": 0.5425653316849846
+    },
+    {
+      "rep": "effv2s_frames",
+      "model": "extra-trees",
+      "acc_0.5": 72.0,
+      "bal_0.5": 67.98,
+      "auc": 0.7939,
+      "max_acc": 80.0,
+      "max_bal": 78.16,
+      "best_thr": 0.48
+    },
+    {
+      "rep": "effv2s_frames",
+      "model": "logreg-l2",
+      "acc_0.5": 74.0,
+      "bal_0.5": 72.99,
+      "auc": 0.8144,
+      "max_acc": 78.0,
+      "max_bal": 77.75,
+      "best_thr": 0.4748976509334236
+    },
+    {
+      "rep": "effv2s_frames",
+      "model": "svm-lin",
+      "acc_0.5": 74.0,
+      "bal_0.5": 71.67,
+      "auc": 0.7849,
+      "max_acc": 78.0,
+      "max_bal": 77.75,
+      "best_thr": 0.4483557114117872
+    },
+    {
+      "rep": "freq_FAD high band (Xception)",
+      "model": "extra-trees",
+      "acc_0.5": 68.0,
+      "bal_0.5": 67.16,
+      "auc": 0.7192,
+      "max_acc": 76.0,
+      "max_bal": 77.34,
+      "best_thr": 0.4500291455360379
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "logreg-l2",
+      "acc_0.5": 72.0,
+      "bal_0.5": 71.92,
+      "auc": 0.7143,
+      "max_acc": 76.0,
+      "max_bal": 76.68,
+      "best_thr": 0.452844484694222
+    },
+    {
+      "rep": "effv2s_frames",
+      "model": "rf",
+      "acc_0.5": 64.0,
+      "bal_0.5": 59.11,
+      "auc": 0.775,
+      "max_acc": 74.0,
+      "max_bal": 75.62,
+      "best_thr": 0.4125
+    },
+    {
+      "rep": "mnv3_frames",
+      "model": "extra-trees",
+      "acc_0.5": 62.0,
+      "bal_0.5": 58.05,
+      "auc": 0.6987,
+      "max_acc": 76.0,
+      "max_bal": 75.37,
+      "best_thr": 0.44333333333333336
+    },
+    {
+      "rep": "freq_FAD high band (Xception)",
+      "model": "logreg-l2",
+      "acc_0.5": 68.0,
+      "bal_0.5": 67.82,
+      "auc": 0.7389,
+      "max_acc": 72.0,
+      "max_bal": 74.55,
+      "best_thr": 0.3084899494187414
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "svm-lin",
+      "acc_0.5": 66.0,
+      "bal_0.5": 64.12,
+      "auc": 0.7258,
+      "max_acc": 72.0,
+      "max_bal": 74.55,
+      "best_thr": 0.4391782219776435
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "extra-trees",
+      "acc_0.5": 70.0,
+      "bal_0.5": 68.88,
+      "auc": 0.7258,
+      "max_acc": 74.0,
+      "max_bal": 74.3,
+      "best_thr": 0.4551079837449142
+    },
+    {
+      "rep": "freq_FAD high band (Xception)",
+      "model": "rf",
+      "acc_0.5": 64.0,
+      "bal_0.5": 62.4,
+      "auc": 0.6946,
+      "max_acc": 72.0,
+      "max_bal": 73.89,
+      "best_thr": 0.4275
+    },
+    {
+      "rep": "mnv3_frames",
+      "model": "svm-lin",
+      "acc_0.5": 66.0,
+      "bal_0.5": 62.81,
+      "auc": 0.7225,
+      "max_acc": 70.0,
+      "max_bal": 72.82,
+      "best_thr": 0.4508915146788181
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "rf",
+      "acc_0.5": 66.0,
+      "bal_0.5": 64.12,
+      "auc": 0.7545,
+      "max_acc": 72.0,
+      "max_bal": 72.58,
+      "best_thr": 0.4445769956987061
+    },
+    {
+      "rep": "effv2s_frames",
+      "model": "gbm",
+      "acc_0.5": 68.0,
+      "bal_0.5": 67.82,
+      "auc": 0.7521,
+      "max_acc": 74.0,
+      "max_bal": 72.33,
+      "best_thr": 0.9650546027960669
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "logreg-l1",
+      "acc_0.5": 66.0,
+      "bal_0.5": 66.75,
+      "auc": 0.7274,
+      "max_acc": 70.0,
+      "max_bal": 72.17,
+      "best_thr": 0.3801348315815647
+    },
+    {
+      "rep": "mnv3_frames",
+      "model": "logreg-l2",
+      "acc_0.5": 68.0,
+      "bal_0.5": 67.16,
+      "auc": 0.7225,
+      "max_acc": 70.0,
+      "max_bal": 72.17,
+      "best_thr": 0.7016290821489538
+    },
+    {
+      "rep": "freq_Xception RGB (reference)",
+      "model": "rf",
+      "acc_0.5": 50.0,
+      "bal_0.5": 46.39,
+      "auc": 0.6207,
+      "max_acc": 68.0,
+      "max_bal": 71.76,
+      "best_thr": 0.4161236263736262
+    },
+    {
+      "rep": "freq_FAD high band (Xception)",
+      "model": "svm-lin",
+      "acc_0.5": 66.0,
+      "bal_0.5": 63.46,
+      "auc": 0.7061,
+      "max_acc": 70.0,
+      "max_bal": 71.51,
+      "best_thr": 0.4201211265799186
+    },
+    {
+      "rep": "freq_Temporal delta stats (Section 5.5)",
+      "model": "svm-lin",
+      "acc_0.5": 58.0,
+      "bal_0.5": 53.28,
+      "auc": 0.6741,
+      "max_acc": 70.0,
+      "max_bal": 70.85,
+      "best_thr": 0.411858678579109
+    },
+    {
+      "rep": "temporal_delta",
+      "model": "extra-trees",
+      "acc_0.5": 66.0,
+      "bal_0.5": 63.46,
+      "auc": 0.665,
+      "max_acc": 70.0,
+      "max_bal": 70.85,
+      "best_thr": 0.4880826293294151
+    },
+    {
+      "rep": "freq_FAD mid band (Xception)",
+      "model": "svm-rbf",
+      "acc_0.5": 66.0,
+      "bal_0.5": 62.81,
+      "auc": 0.6453,
+      "max_acc": 72.0,
+      "max_bal": 70.61,
+      "best_thr": 0.47321309103263
+    },
+    {
+      "rep": "temporal_delta",
+      "model": "logreg-l2",
+      "acc_0.5": 60.0,
+      "bal_0.5": 59.61,
+      "auc": 0.6749,
+      "max_acc": 68.0,
+      "max_bal": 70.44,
+      "best_thr": 0.46801899990137225
+    },
+    {
+      "rep": "freq_Temporal delta stats (Section 5.5)",
+      "model": "extra-trees",
+      "acc_0.5": 64.0,
+      "bal_0.5": 61.08,
+      "auc": 0.7217,
+      "max_acc": 70.0,
+      "max_bal": 70.2,
+      "best_thr": 0.44461919214662904
+    },
+    {
+      "rep": "freq_Xception RGB (reference)",
+      "model": "extra-trees",
+      "acc_0.5": 64.0,
+      "bal_0.5": 63.05,
+      "auc": 0.6552,
+      "max_acc": 66.0,
+      "max_bal": 70.03,
+      "best_thr": 0.4458868257132379
+    }
+  ],
+  "best": {
+    "rep": "freq_FAD high band (Xception)",
+    "model": "logreg-l1",
+    "acc_0.5": 76.0,
+    "bal_0.5": 77.34,
+    "auc": 0.7865,
+    "max_acc": 78.0,
+    "max_bal": 79.06,
+    "best_thr": 0.5425653316849846
+  },
+  "best_auc_observed": 0.8144,
+  "auc_needed_approx_for_95_bal": 0.98,
+  "target_95_status": "NOT REACHED",
+  "why_95_unreachable_on_this_corpus": "With N=50 videos and best OOF AUC around 0.7-0.8, no threshold on the score ranking can produce 95% accuracy without mis-ranking many samples. Literature 95%+ numbers use ~2000 FF++ videos, face crops per frame (~1e5 samples), and fine-tuned Xception/EfficientNet.",
+  "literature_recipe_for_95": {
+    "dataset": "FaceForensics++ original + FaceSwap, c23, ~1000+1000 videos",
+    "unit": "aligned face crop per sampled frame (299x299 for Xception)",
+    "backbone": "Xception (R\u00f6ssler et al. ICCV 2019) or EfficientNet-B4/V2",
+    "training": {
+      "optimizer": "Adam",
+      "lr": "1e-4 to 2e-4 (fine-tune), sometimes 1e-3 head-only",
+      "batch_size": 32,
+      "epochs": "10-50 with early stopping on val AUC",
+      "augmentation": "horizontal flip p=0.5, mild crop/rotation",
+      "loss": "binary cross-entropy, optionally class-balanced"
+    },
+    "evaluation": "split by video/identity (never by frame); aggregate frame probabilities by mean; report video-level ACC/AUC",
+    "reported_range_c23": "low-to-mid 90s up to ~99% within-dataset FF++ HQ",
+    "pipeline_ready_in_repo": "FFPP/ (ffpp_data.py + ffpp_train.py), waiting on DATASET/"
+  }
+}
