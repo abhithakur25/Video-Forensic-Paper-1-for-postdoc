@@ -1,0 +1,4 @@
+[15:32:48] cascade: haarcascade_frontalface_default.xml
+[15:32:48] 2000 videos: original + Deepfakes
+[15:32:48] 32 frames each at 299px, margin 0.25
+[15:32:48] split by identity: 720 train / 140 val / 140 test
