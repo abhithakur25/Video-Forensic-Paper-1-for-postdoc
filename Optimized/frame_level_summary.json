@@ -1,0 +1,87 @@
+{
+  "question": "what do the published FaceForensics++ recipes give on this corpus?",
+  "recipe_from_literature": {
+    "frame_level_training": true,
+    "video_level_aggregation": [
+      "mean probability",
+      "mean log-odds",
+      "majority vote"
+    ],
+    "backbone": "Xception, ImageNet, 299x299 face crop",
+    "test_time_augmentation": "horizontal flip",
+    "split": "by video - frames of one video never straddle a fold"
+  },
+  "video_grouped_correct": {
+    "Xception RGB frames": {
+      "acc": 60.0,
+      "sen": 72.41379310344827,
+      "spe": 42.857142857142854,
+      "pre": 63.63636363636363,
+      "f1": 67.74193548387096,
+      "bal": 57.635467980295566,
+      "auc": 0.6535303776683087,
+      "rule": "mean_prob",
+      "seconds": 6.5
+    },
+    "Xception frame differences": {
+      "acc": 54.0,
+      "sen": 72.41379310344827,
+      "spe": 28.57142857142857,
+      "pre": 58.333333333333336,
+      "f1": 64.61538461538461,
+      "bal": 50.49261083743842,
+      "auc": 0.619047619047619,
+      "rule": "mean_prob",
+      "seconds": 5.4
+    },
+    "Xception RGB + differences": {
+      "acc": 60.0,
+      "sen": 65.51724137931035,
+      "spe": 52.38095238095239,
+      "pre": 65.51724137931035,
+      "f1": 65.51724137931035,
+      "bal": 58.94909688013137,
+      "auc": 0.654351395730706,
+      "rule": "majority",
+      "seconds": 11.8
+    }
+  },
+  "frame_split_leaky": {
+    "Xception RGB frames": {
+      "level": "frame (LEAKY - frames of one video on both sides)",
+      "n_samples": 500,
+      "acc": 86.2,
+      "sen": 89.65517241379311,
+      "spe": 81.42857142857143,
+      "f1": 88.28522920203736,
+      "bal": 85.54187192118226,
+      "auc": 0.9235632183908046
+    },
+    "Xception frame differences": {
+      "level": "frame (LEAKY - frames of one video on both sides)",
+      "n_samples": 450,
+      "acc": 75.1111111111111,
+      "sen": 81.60919540229885,
+      "spe": 66.13756613756614,
+      "f1": 79.182156133829,
+      "bal": 73.8733807699325,
+      "auc": 0.8291674268685761
+    },
+    "Xception RGB + differences": {
+      "level": "frame (LEAKY - frames of one video on both sides)",
+      "n_samples": 450,
+      "acc": 83.55555555555556,
+      "sen": 89.272030651341,
+      "spe": 75.66137566137566,
+      "f1": 86.29629629629629,
+      "bal": 82.46670315635834,
+      "auc": 0.9212633542135458
+    }
+  },
+  "reference_this_study": {
+    "temporal delta stats + L1 logreg (nested fold mean)": 77.16666666666667,
+    "temporal delta stats (pooled out-of-fold)": 74.95894909688013,
+    "pooled out-of-fold AUC": 0.7307060755336616
+  },
+  "conclusion": "the literature's frame-level recipe, applied faithfully with a video-grouped split, scores below the temporal descriptor already measured here. The same features under a frame-level split exceed 90%, and that gap is entirely leakage."
+}

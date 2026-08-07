@@ -1,0 +1,38 @@
+{
+  "backbone": "xception",
+  "input": "both",
+  "tta_flip": true,
+  "frames_per_video": 9,
+  "embedding_dim": 4096,
+  "protocol": "video-grouped 5-fold from cache/folds.npz; frame-level L2 logistic regression; C selected in inner folds grouped by video; video decision by aggregation",
+  "results": {
+    "mean_prob": {
+      "acc": 57.99999999999999,
+      "sen": 68.96551724137932,
+      "spe": 42.857142857142854,
+      "pre": 62.5,
+      "f1": 65.57377049180327,
+      "bal": 55.91133004926109,
+      "auc": 0.6502463054187192
+    },
+    "mean_logodds": {
+      "acc": 54.0,
+      "sen": 68.96551724137932,
+      "spe": 33.33333333333333,
+      "pre": 58.82352941176471,
+      "f1": 63.49206349206349,
+      "bal": 51.14942528735632,
+      "auc": 0.6338259441707716
+    },
+    "majority": {
+      "acc": 60.0,
+      "sen": 65.51724137931035,
+      "spe": 52.38095238095239,
+      "pre": 65.51724137931035,
+      "f1": 65.51724137931035,
+      "bal": 58.94909688013137,
+      "auc": 0.654351395730706
+    }
+  },
+  "best_rule": "majority"
+}
