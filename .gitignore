@@ -32,3 +32,8 @@ External/
 Optimized/cache/win-ca-bundle.pem
 # extracted FF++ metadata (regenerate with Optimized/extract_ffpp.py)
 DATASET/FFPP_C23/
+# Face crops built by Optimized/ffpp_prepare.py: ~64,000 JPEGs, and the ~2 GB
+# archive of them staged for Google Drive. Both are regenerable build output,
+# and the archive is far past GitHub's hard 100 MB per-file limit.
+DATASET/ffpp_frames/
+DATASET/ffpp_frames.zip
