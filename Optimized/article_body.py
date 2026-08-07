@@ -6,11 +6,11 @@ code (layer widths, channel counts, library versions).
 """
 import numpy as np
 
-from article_data import (ACC, BAL, F1, PRE, SEN, SPE, ORDER, degenerate, fmt,
+from article_data import (ACC, BAL, F1, SPE, ORDER, degenerate, fmt,
                           majority_accuracy, mean_bal, pretty)
 from article_refs import cite, citet
-from article_style import (abstract_para, bullet, caption, code, h1, h2, h3,
-                           keywords, numbered, para, picture, table)
+from article_style import (abstract_para, bullet, code, h1, h2, keywords,
+                           numbered, para, table)
 
 # ruff: noqa: E501
 FIG = None            # set by make_article: a callable name -> XML
@@ -312,6 +312,25 @@ def experimental(d):
       "(40 per cent training). The resulting granularity is between three "
       "and twenty percentage points, and Section 5.6 reports the binomial "
       "confidence intervals that follow from it.")
+    p("Three properties of the corpus should be recorded because they bound "
+      "what any result on it can mean. It is a subset rather than the "
+      "release: the fifty clips were pooled from FaceForensics++ without "
+      "preserving the identity-level partition the corpus defines, so the "
+      "protocols here are within-subset resampling rather than the "
+      "identity-held-out evaluation the benchmark intends. Section 5.6 "
+      "audits the consequence directly and finds no near-duplicate pairs, "
+      "but the departure is real and is stated here rather than in a "
+      "limitations paragraph. Second, no manipulation-method label is "
+      "retained, so per-method breakdowns and cross-manipulation "
+      "generalisation cannot be reported. Third, the source material is "
+      "compressed, which is realistic for deployment and which places a "
+      "ceiling on any purely spatial cue independent of the model.")
+    p("The features are computed once and cached. Every model in this study "
+      "reads the identical cache file, so no result in Section 5 can differ "
+      "from another because of a difference in preprocessing. The cache is "
+      "approximately one gigabyte and is not distributed with the code; the "
+      "script that regenerates it from the source videos is, and it is "
+      "deterministic given the same input files.")
 
     B.append(h2("4.2 Software and Hardware Environment"))
     p("All runs were executed on a single Windows 11 workstation, CPU only, "
@@ -358,6 +377,23 @@ def experimental(d):
       "absorbs any optimism introduced by the selection steps themselves "
       + cite("ojala") + ". Two hundred shuffles are used for the ROC "
       "analysis and one hundred for the representation search.")
+    p("Splits are generated from a fixed seed and written to disk before any "
+      "model is built, then read back by every model including the imported "
+      "PyTorch modules of Section 5.9. This is stronger than seeding each "
+      "run identically: it removes the possibility that two frameworks "
+      "consume the same seed differently and end up comparing models on "
+      "different partitions. The fold assignments are therefore a fixed "
+      "input to the study rather than a per-run derivation.")
+    p("One limitation of the sweep and k-fold protocols should be stated "
+      "plainly. Each measures a single fold per axis value rather than "
+      "averaging over repeats, which is what the released study's protocol "
+      "did and what re-measuring it faithfully requires. A single fold on "
+      "five to thirty-one videos is a noisy estimator, and the correct "
+      "reading of Tables 1 to 7 is as a description of what the published "
+      "protocol produces under corrected scoring — not as a precise ranking. "
+      "The claims the paper actually rests on come from the nested "
+      "protocol, where every sample contributes to the out-of-fold estimate "
+      "and the result is compared against its own permutation null.")
 
     B.append(h2("4.4 Metrics"))
     p("All metrics derive from the four entries of a confusion matrix "
