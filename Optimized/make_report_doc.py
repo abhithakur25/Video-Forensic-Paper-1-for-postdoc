@@ -879,7 +879,7 @@ def main():
                     "Figure 10. The published frame-level recipe run on this "
                     "corpus, with the correct and the leaking split side by "
                     "side. Same features, same model, same code; only the "
-                    "split differs. Video-grouped it reaches 58.95%; split by "
+                    "split differs. Video-grouped it reaches 57.64%; split by "
                     "frame it reaches 85.54%, and an RBF SVM on the same "
                     "features reaches 90.80%. That gap is the mechanism by "
                     "which a 95% figure appears on a corpus that cannot "

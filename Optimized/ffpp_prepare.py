@@ -8,8 +8,9 @@ Why identity-level. A manipulated FF++ clip is named <target>_<source>.mp4 and
 shares its underlying footage with original/<target>.mp4. Splitting by clip
 puts near-duplicate footage on both sides of the boundary, and a detector then
 scores highly by recognising the footage instead of the manipulation. Section
-5.11.1 of the paper measures that effect on the small subset: 58.95 % becomes
-85.54 % from the split alone. FaceForensics++ defines a 720/140/140 partition
+5.11.1 of the paper measures that effect on the small subset: for Xception RGB
+frames, 57.64 % becomes 85.54 % balanced accuracy from the split alone (both
+halves the same representation). FaceForensics++ defines a 720/140/140 partition
 over the 1,000 identities precisely to prevent it, and this script reproduces
 it: identity 0-719 train, 720-859 validation, 860-999 test. A manipulated clip
 goes wherever its TARGET identity went, so no identity is ever split.

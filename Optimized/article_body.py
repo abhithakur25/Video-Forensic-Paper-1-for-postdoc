@@ -992,9 +992,15 @@ def results(d):
                        "of one video may fall on both sides of the fold "
                        "boundary. The right-hand columns are not results.",
                        widths=[2900, 1500, 1500, 1700, 1600, 1160]))
-        worst = max(lk.values(), key=lambda v: v["bal"])
-        p("Splitting by frame instead of by video moves the best "
-          f"configuration from {fmt(best_fl['bal'])}% to "
+        # Both halves of this comparison must come from the SAME
+        # representation, or the sentence that follows - "the same features"
+        # - is not true of the numbers it quotes. Take the configuration that
+        # gains most from leaking, then read its own video-grouped score.
+        worst_k = max(lk, key=lambda k: lk[k]["bal"])
+        worst = lk[worst_k]
+        paired = fl["video_grouped_correct"][worst_k]
+        p(f"Splitting by frame instead of by video moves {worst_k} from "
+          f"{fmt(paired['bal'])}% to "
           f"{fmt(worst['bal'])}% balanced accuracy, and substituting a "
           "radial-basis support vector machine for the linear model — an "
           "entirely ordinary choice — carries it past 90%. Nothing else "
